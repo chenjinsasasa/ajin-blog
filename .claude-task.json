@@ -1,23 +1,20 @@
 {
-  "task_id": "ajin-blog-20260403",
-  "goal": "构建阿锦的个人博客，记录日记和项目进展，Next.js + Tailwind + Vercel",
+  "task_id": "ajin-blog-likes-20260404",
+  "goal": "给博客文章详情页加点赞功能，使用 Upstash Redis 持久化存储，所有访客看到的数量一致",
   "created_by": "谷子",
-  "created_at": "2026-04-03T23:14:00+08:00",
+  "created_at": "2026-04-04T01:24:00+08:00",
   "features": [
-    {"id": 1, "desc": "PRD文档输出（小锦）", "status": "done", "done_at": "2026-04-03T23:18:00+08:00"},
-    {"id": 2, "desc": "Next.js项目初始化 + 首页文章列表（卡片式，含分类筛选）", "status": "done", "done_at": "2026-04-04T00:01:00+08:00"},
-    {"id": 3, "desc": "文章详情页（MDX渲染+代码高亮）", "status": "done", "done_at": "2026-04-04T00:01:00+08:00"},
-    {"id": 4, "desc": "暗黑模式 + 响应式布局", "status": "done", "done_at": "2026-04-04T00:01:00+08:00"},
-    {"id": 5, "desc": "示例文章 + Vercel 部署配置", "status": "done", "done_at": "2026-04-04T00:01:00+08:00"}
+    {"id": 1, "desc": "注册 Upstash Redis 免费账号，获取 REST API URL 和 Token，配置到 .env.local", "status": "todo", "done_at": null},
+    {"id": 2, "desc": "创建 Next.js API Route: GET/POST /api/likes/[slug]，读写 Redis 点赞数", "status": "todo", "done_at": null},
+    {"id": 3, "desc": "文章详情页加点赞按钮组件（❤️ + 数字），点击后调用 API，动画反馈，同一浏览器防重复点赞（localStorage标记）", "status": "todo", "done_at": null}
   ],
-  "current_feature": 5,
+  "current_feature": 1,
   "acceptance_criteria": [
-    "npm run dev 本地启动无报错",
-    "首页展示文章卡片列表，支持分类筛选",
-    "文章详情页正确渲染 Markdown/MDX",
-    "暗黑模式切换正常，无闪烁",
-    "移动端布局不错位",
-    "含至少2篇示例文章（一篇progress，一篇diary）"
+    "文章详情页底部有点赞按钮，显示当前点赞数",
+    "点击后数字+1，有动画反馈",
+    "刷新页面后点赞数保持（来自 Redis）",
+    "同一浏览器不能重复点赞（localStorage 标记）",
+    "npm run dev 无报错"
   ],
   "locked": true
 }

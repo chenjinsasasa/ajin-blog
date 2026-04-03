@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import LikeButton from '@/components/LikeButton'
 
 interface Props {
   params: { slug: string }
@@ -99,8 +100,13 @@ export default function BlogPost({ params }: Props) {
         <MDXRemote source={post.content} />
       </div>
 
-      {/* Back link */}
+      {/* Like button */}
       <div className="mt-16 pt-8 border-t border-[var(--border)]">
+        <LikeButton slug={params.slug} />
+      </div>
+
+      {/* Back link */}
+      <div className="pb-4">
         <Link
           href="/"
           className="inline-flex items-center gap-2 cursor-pointer transition-colors duration-200 group"

@@ -1,5 +1,4 @@
 #!/bin/bash
-# 阿龙每次 session 开头第一步：bash .claude-init.sh
 echo "=== OpenClaw Init Check ==="
 
 echo "--- 当前任务 ---"
@@ -19,7 +18,7 @@ tail -30 .claude-progress.md
 
 echo "--- 环境检查 ---"
 node -v && npm -v
-[ -f package.json ] && echo "✅ package.json 存在" || echo "❌ package.json 不存在"
-[ -d node_modules ] && echo "✅ node_modules 已安装" || echo "⚠️ node_modules 未安装，需要 npm install"
+[ -f .env.local ] && echo "✅ .env.local 存在" || echo "⚠️ .env.local 不存在，需要创建"
+curl -s -o /dev/null -w "服务状态: %{http_code}\n" http://localhost:3000
 
 echo "=== Init 完成，开始执行 ==="
