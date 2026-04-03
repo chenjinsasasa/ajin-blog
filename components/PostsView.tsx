@@ -12,9 +12,10 @@ const STORAGE_KEY = 'blog-view'
 interface PostsViewProps {
   posts: PostMeta[]
   pinnedPost?: PostMeta | null
+  totalCount?: number
 }
 
-export default function PostsView({ posts, pinnedPost }: PostsViewProps) {
+export default function PostsView({ posts, pinnedPost, totalCount: totalCountProp }: PostsViewProps) {
   const [view, setView] = useState<ViewMode>('card')
   const [mounted, setMounted] = useState(false)
 
@@ -31,7 +32,7 @@ export default function PostsView({ posts, pinnedPost }: PostsViewProps) {
     localStorage.setItem(STORAGE_KEY, next)
   }
 
-  const totalCount = posts.length + (pinnedPost ? 1 : 0)
+  const totalCount = totalCountProp ?? (posts.length + (pinnedPost ? 1 : 0))
 
   if (totalCount === 0) {
     return (
@@ -47,8 +48,12 @@ export default function PostsView({ posts, pinnedPost }: PostsViewProps) {
 
   return (
     <>
-      {/* View toggle buttons */}
-      <div className="flex items-center justify-end gap-1 mb-5">
+      {/* 篇数 + 视图切换同行 */}
+      <div className="flex items-center justify-between mb-5">
+        <p className="text-[var(--muted-fg)]" style={{ fontSize: '0.875rem', letterSpacing: '0.01em' }}>
+          {totalCount > 0 ? `共 ${totalCount} 篇，按时间倒序` : '还没有文章'}
+        </p>
+        <div className="flex items-center gap-1">
         <button
           onClick={() => switchView('card')}
           aria-label="卡片视图"
@@ -108,6 +113,7 @@ export default function PostsView({ posts, pinnedPost }: PostsViewProps) {
           </svg>
           时间轴
         </button>
+        </div>
       </div>
 
       {/* Content */}

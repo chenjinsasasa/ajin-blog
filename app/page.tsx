@@ -35,18 +35,10 @@ export default function Home({ searchParams }: HomeProps) {
         >
           {categoryLabels[category] ?? '全部文章'}
         </h1>
-        <p
-          className="text-[var(--muted-fg)]"
-          style={{ fontSize: '0.875rem', letterSpacing: '0.01em' }}
-        >
-          {totalCount > 0
-            ? `共 ${totalCount} 篇，按时间倒序`
-            : '还没有文章'}
-        </p>
       </div>
 
       {/* Post list (with view toggle) */}
-      <PostsView pinnedPost={pinnedPost} posts={posts} />
+      <PostsView pinnedPost={pinnedPost} posts={posts} totalCount={totalCount} />
     </div>
   )
 }
