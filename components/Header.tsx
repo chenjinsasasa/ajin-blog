@@ -6,9 +6,9 @@ import { useEffect, useState } from 'react'
 import { usePathname, useSearchParams } from 'next/navigation'
 
 const TABS = [
-  { label: '全部', value: 'all' },
   { label: '我们的进展', value: 'progress' },
   { label: '阿锦的日记', value: 'diary' },
+  { label: '我们是谁', value: 'team' },
 ]
 
 function SunIcon() {
@@ -40,7 +40,7 @@ export function Header() {
   const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
-  const currentCategory = searchParams.get('category') ?? 'all'
+  const currentCategory = searchParams.get('category') ?? ''
 
   useEffect(() => setMounted(true), [])
 
@@ -69,7 +69,7 @@ export function Header() {
               className="font-extrabold text-[0.9375rem] text-[var(--fg)] group-hover:text-[var(--accent)] transition-colors duration-200"
               style={{ letterSpacing: '-0.03em' }}
             >
-              阿锦的记事本
+              阿锦的博客
             </span>
           </Link>
 
@@ -98,7 +98,7 @@ export function Header() {
             {TABS.map((tab) => (
               <Link
                 key={tab.value}
-                href={tab.value === 'all' ? '/' : `/?category=${tab.value}`}
+              href={`/?category=${tab.value}`}
                 className={`
                   px-3 py-2.5 text-[0.8125rem] whitespace-nowrap transition-all duration-150 cursor-pointer
                   ${currentCategory === tab.value ? 'tab-active' : 'tab-inactive'}

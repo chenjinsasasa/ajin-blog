@@ -412,3 +412,18 @@
   body { font-size: 0.9375rem; }
   h1 { font-size: 1.75rem; }
 }
+
+/* ─── Voice tag (diary) ─── */
+.voice-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: 1.5rem;
+  background: color-mix(in srgb, var(--accent) 10%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  margin: 0.25rem 0;
+}

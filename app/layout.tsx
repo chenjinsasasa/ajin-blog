@@ -6,8 +6,8 @@ import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: {
-    default: '阿锦的记事本',
-    template: '%s | 阿锦的记事本',
+    default: '阿锦的博客',
+    template: '%s | 阿锦的博客',
   },
   description: '记录日常、分享成长，写给自己和你的碎碎念。',
   icons: { icon: '/favicon.ico' },
@@ -35,7 +35,7 @@ export default function RootLayout({
               <div className="flex items-center gap-2">
                 <span className="text-[var(--accent)]" style={{ fontSize: '0.625rem' }}>✦</span>
                 <span className="font-semibold text-[var(--fg)]" style={{ letterSpacing: '-0.01em' }}>
-                  阿锦的记事本
+                  阿锦的博客
                 </span>
               </div>
               <div className="flex items-center gap-2 opacity-70" style={{ letterSpacing: '0.01em' }}>
