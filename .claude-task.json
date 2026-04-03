@@ -1,19 +1,60 @@
 {
-  "task_id": "ajin-blog-diary-protect-20260404",
-  "goal": "日记密码保护 + 「你好，这里是阿锦」置顶",
+  "task_id": "ajin-blog-author-20260404",
+  "goal": "文章署名：frontmatter 加 author 字段，详情页展示作者头像+名字",
   "created_by": "谷子",
-  "created_at": "2026-04-04T01:40:00+08:00",
+  "created_at": "2026-04-04T04:23:00+08:00",
   "features": [
-    {"id": 1, "desc": "日记文章密码保护：点进 diary 类文章时弹出密码框，输对才能看正文，通过后 sessionStorage 记住", "status": "done", "done_at": "2026-04-04T01:39:00+08:00"},
-    {"id": 2, "desc": "「你好，这里是阿锦 ✨」(slug: 2026-04-03-hello) 置顶：首页固定在最顶部，加 📌 置顶标记，其余文章时间排序在下面", "status": "done", "done_at": "2026-04-04T01:39:00+08:00"}
+    {
+      "id": 1,
+      "desc": "批量给所有 progress 文章的 frontmatter 加 author 字段",
+      "status": "todo",
+      "done_at": null
+    },
+    {
+      "id": 2,
+      "desc": "lib/posts.ts 的 PostMeta 类型加 author 字段，解析时读取",
+      "status": "todo",
+      "done_at": null
+    },
+    {
+      "id": 3,
+      "desc": "文章详情页 header 区域展示作者头像（32px 圆形）+ 名字，放在日期旁边",
+      "status": "todo",
+      "done_at": null
+    }
   ],
-  "current_feature": 2,
+  "current_feature": 1,
   "acceptance_criteria": [
-    "点进 diary 类文章时出现密码输入框，输错提示错误，输对显示正文",
-    "密码验证通过后 sessionStorage 记住，同一 session 内不再弹框",
-    "首页列表最顶部固定显示「你好，这里是阿锦 ✨」，有 📌 置顶标记",
-    "其余文章仍按时间倒序排列在置顶文章下方",
-    "npm run dev 无报错"
+    "所有 progress 文章 frontmatter 有 author 字段",
+    "文章详情页日期旁边显示作者头像（圆形）和名字",
+    "头像路径从 /avatars/<author>.png 或 .jpg 读取",
+    "npm run build 无报错"
   ],
+  "author_map": {
+    "2026-02-16-first-meet": "ajin",
+    "2026-02-19-first-failure": "ajin",
+    "2026-03-08-memory-system": "guzi",
+    "2026-03-11-guzi-avatar": "ajin",
+    "2026-03-12-ai-team": "ajin",
+    "2026-03-13-github-charts": "guzi",
+    "2026-03-16-agent-skills": "guzi",
+    "2026-03-17-multi-agent-v1": "guzi",
+    "2026-03-18-model-rules": "guzi",
+    "2026-03-19-first-product": "ajin",
+    "2026-03-21-workflow-engine": "guzi",
+    "2026-03-22-workflow-bug": "along",
+    "2026-03-23-session-cleanup": "guzi",
+    "2026-03-24-guzi-speaks": "ajin",
+    "2026-03-25-daily-magazine": "guzi",
+    "2026-03-25-router-worker": "along",
+    "2026-03-27-magazine-done": "guzi",
+    "2026-03-28-magazine-speedup": "ashang",
+    "2026-03-29-security-guard": "guzi",
+    "2026-03-30-harness": "along",
+    "2026-03-30-sandbox": "guzi",
+    "2026-04-03-blog-launch": "ajin",
+    "2026-04-03-hello": "ajin",
+    "2026-04-04-blog-polish": "guzi"
+  },
   "locked": true
 }

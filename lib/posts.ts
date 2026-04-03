@@ -10,6 +10,7 @@ export interface PostMeta {
   date: string
   category: 'progress' | 'diary'
   excerpt: string
+  author?: string
 }
 
 export interface Post extends PostMeta {
@@ -56,6 +57,7 @@ export function getAllPosts(category?: Category): PostMeta[] {
       date: data.date ?? '',
       category: data.category ?? 'diary',
       excerpt: data.excerpt ?? '',
+      author: data.author,
     }
   })
 
@@ -96,6 +98,7 @@ export function getPostBySlug(slug: string): Post | null {
       date: data.date ?? '',
       category: data.category ?? 'diary',
       excerpt: data.excerpt ?? '',
+      author: data.author,
       content,
     }
   }

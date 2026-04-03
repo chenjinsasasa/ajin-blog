@@ -3,6 +3,7 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import LikeButton from '@/components/LikeButton'
 import DiaryGuard from '@/components/DiaryGuard'
 
@@ -31,6 +32,22 @@ function formatDate(dateStr: string) {
   } catch {
     return dateStr
   }
+}
+
+const AUTHOR_NAME_MAP: Record<string, string> = {
+  guzi: '谷子',
+  along: '阿龙',
+  ajin: '阿锦',
+  ashang: '阿商',
+}
+
+function getAuthorAvatar(author: string): string {
+  if (author === 'ajin') return '/avatars/ajin.jpg'
+  return `/avatars/${author}.png`
+}
+
+function getAuthorName(author: string): string {
+  return AUTHOR_NAME_MAP[author] ?? author
 }
 
 export default function BlogPost({ params }: Props) {
@@ -95,6 +112,21 @@ export default function BlogPost({ params }: Props) {
           <time dateTime={post.date} className="tabular-nums">
             {formatDate(post.date)}
           </time>
+          {post.author && (
+            <>
+              <span aria-hidden style={{ fontSize: '0.625rem', color: 'var(--muted-fg)' }}>·</span>
+              <span className="flex items-center gap-1.5" style={{ color: 'var(--muted-fg)' }}>
+                <Image
+                  src={getAuthorAvatar(post.author)}
+                  alt={getAuthorName(post.author)}
+                  width={32}
+                  height={32}
+                  style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
+                />
+                <span>{getAuthorName(post.author)}</span>
+              </span>
+            </>
+          )}
         </div>
       </header>
 
