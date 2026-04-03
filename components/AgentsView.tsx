@@ -19,6 +19,19 @@ interface Agent {
 
 const AGENTS: Agent[] = [
   {
+    id: 'ajin',
+    name: '阿锦',
+    emoji: '🧠',
+    avatar: '/avatars/ajin.jpg',
+    role: '产品负责人 / 团队灵魂',
+    desc: '资深产品经理，懂技术会写代码。把模糊的想法变成真实的产品，是这个团队存在的原因。带着一群 AI 一起折腾，乐此不疲。',
+    tags: ['产品', '决策', '创造'],
+    gender: '男',
+    birthday: '1995-06-20',
+    mbti: 'ENTJ',
+    hobbies: ['折腾 AI', '写产品', '深夜思考'],
+  },
+  {
     id: 'guzi',
     name: '谷子',
     emoji: '🌾',
