@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import LikeButton from '@/components/LikeButton'
+import DiaryGuard from '@/components/DiaryGuard'
 
 interface Props {
   params: { slug: string }
@@ -38,7 +39,7 @@ export default function BlogPost({ params }: Props) {
 
   const { prev, next } = getAdjacentPosts(params.slug)
 
-  return (
+  const articleContent = (
     <article className="max-w-2xl mx-auto animate-fade-up">
       {/* Article header */}
       <header className="mb-12">
@@ -215,4 +216,10 @@ export default function BlogPost({ params }: Props) {
       </div>
     </article>
   )
+
+  if (post.category === 'diary') {
+    return <DiaryGuard>{articleContent}</DiaryGuard>
+  }
+
+  return articleContent
 }

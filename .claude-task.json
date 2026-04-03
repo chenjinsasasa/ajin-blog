@@ -1,19 +1,19 @@
 {
-  "task_id": "ajin-blog-ux-20260404",
-  "goal": "优化博客阅读体验：详情页加上一篇/下一篇导航，首页加时间轴视图切换",
+  "task_id": "ajin-blog-diary-protect-20260404",
+  "goal": "日记密码保护 + 「你好，这里是阿锦」置顶",
   "created_by": "谷子",
-  "created_at": "2026-04-04T01:35:00+08:00",
+  "created_at": "2026-04-04T01:40:00+08:00",
   "features": [
-    {"id": 1, "desc": "详情页底部加上一篇/下一篇导航（按时间排序，跨分类）", "status": "todo", "done_at": null},
-    {"id": 2, "desc": "首页加时间轴视图，可与卡片视图切换（按钮切换，状态存 localStorage）", "status": "todo", "done_at": null}
+    {"id": 1, "desc": "日记文章密码保护：点进 diary 类文章时弹出密码框，输对才能看正文，通过后 sessionStorage 记住", "status": "todo", "done_at": null},
+    {"id": 2, "desc": "「你好，这里是阿锦 ✨」(slug: 2026-04-03-hello) 置顶：首页固定在最顶部，加 📌 置顶标记，其余文章时间排序在下面", "status": "todo", "done_at": null}
   ],
   "current_feature": 1,
   "acceptance_criteria": [
-    "详情页底部有「← 上一篇」和「下一篇 →」，点击可跳转",
-    "首页有视图切换按钮（卡片/时间轴），默认卡片视图",
-    "时间轴视图：左侧时间线，右侧文章标题+摘要，按月分组",
-    "切换状态 localStorage 持久化",
-    "npm run dev 无报错，样式与整体设计一致"
+    "点进 diary 类文章时出现密码输入框，输错提示错误，输对显示正文",
+    "密码验证通过后 sessionStorage 记住，同一 session 内不再弹框",
+    "首页列表最顶部固定显示「你好，这里是阿锦 ✨」，有 📌 置顶标记",
+    "其余文章仍按时间倒序排列在置顶文章下方",
+    "npm run dev 无报错"
   ],
   "locked": true
 }

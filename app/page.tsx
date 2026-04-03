@@ -1,4 +1,4 @@
-import { getAllPosts, Category } from '@/lib/posts'
+import { getPostsWithPinned, Category } from '@/lib/posts'
 import PostsView from '@/components/PostsView'
 
 interface HomeProps {
@@ -7,7 +7,9 @@ interface HomeProps {
 
 export default function Home({ searchParams }: HomeProps) {
   const category = (searchParams.category as Category) ?? 'all'
-  const posts = getAllPosts(category)
+  const { pinnedPost, posts } = getPostsWithPinned(category)
+
+  const totalCount = posts.length + (pinnedPost ? 1 : 0)
 
   const categoryLabels: Record<string, string> = {
     all: '全部文章',
@@ -37,14 +39,14 @@ export default function Home({ searchParams }: HomeProps) {
           className="text-[var(--muted-fg)]"
           style={{ fontSize: '0.875rem', letterSpacing: '0.01em' }}
         >
-          {posts.length > 0
-            ? `共 ${posts.length} 篇，按时间倒序`
+          {totalCount > 0
+            ? `共 ${totalCount} 篇，按时间倒序`
             : '还没有文章'}
         </p>
       </div>
 
       {/* Post list (with view toggle) */}
-      <PostsView posts={posts} />
+      <PostsView pinnedPost={pinnedPost} posts={posts} />
     </div>
   )
 }

@@ -16,6 +16,8 @@ export interface Post extends PostMeta {
   content: string
 }
 
+export const PINNED_SLUG = '2026-04-03-hello'
+
 const contentDir = path.join(process.cwd(), 'content')
 
 function getFilesRecursive(dir: string): string[] {
@@ -58,6 +60,21 @@ export function getAllPosts(category?: Category): PostMeta[] {
   })
 
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
+}
+
+/** Returns { pinnedPost, posts } where posts excludes the pinned slug */
+export function getPostsWithPinned(category?: Category): {
+  pinnedPost: PostMeta | null
+  posts: PostMeta[]
+} {
+  const all = getAllPosts(category)
+  const pinnedIndex = all.findIndex((p) => p.slug === PINNED_SLUG)
+  if (pinnedIndex === -1) {
+    return { pinnedPost: null, posts: all }
+  }
+  const pinnedPost = all[pinnedIndex]
+  const posts = all.filter((_, i) => i !== pinnedIndex)
+  return { pinnedPost, posts }
 }
 
 export function getPostBySlug(slug: string): Post | null {
