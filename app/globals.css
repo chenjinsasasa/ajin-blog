@@ -1,10 +1,11 @@
 /* 
-  Design System: Magazine/Blog (ui-ux-pro-max)
-  Style: Minimalism & Swiss Style
-  Colors: Editorial Black + Accent Pink (#EC4899)
-  Typography: Inter (UI) + JetBrains Mono (code)
+  Design System: Magazine/Blog (ui-ux-pro-max — Round 3)
+  Style: Minimal & Direct + Swiss Modernism 2.0
+  Colors: Magazine/Blog Editorial — #18181B primary, #EC4899 accent pink
+  Typography: Bold Typography Mobile — Inter 600–800 (UI/headings) + Playfair Display Italic (pull quotes) + JetBrains Mono (code)
+  Design-system pattern: Newsletter / Content First (single column, content-first)
 */
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital@1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,157 +13,355 @@
 
 @layer base {
   :root {
+    /* Magazine/Blog color palette — ui-ux-pro-max colors.csv #1 */
     --bg: #FAFAFA;
     --fg: #09090B;
     --card: #FFFFFF;
     --card-fg: #09090B;
-    --muted: #E8ECF0;
-    --muted-fg: #64748B;
+    --muted: #F4F4F5;
+    --muted-fg: #71717A;
     --border: #E4E4E7;
     --accent: #EC4899;
+    --accent-subtle: #FDF2F8;
+    --accent-glow: rgba(236, 72, 153, 0.08);
     --primary: #18181B;
+    --secondary: #3F3F46;
+
+    /* Spacing scale — Swiss Modernism 2.0 mathematical ratios */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 2rem;
+    --space-xl: 4rem;
+
+    /* Typography scale — Bold Typography Mobile 5:1 H1:Body ratio */
+    --text-label: 0.75rem;
+    --text-body: 1rem;
+    --text-sub: 1.125rem;
+    --text-section: 1.375rem;
+    --text-h2: 1.75rem;
+    --text-h1: 2.5rem;
+
+    /* Radius */
+    --radius-sm: 6px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+
+    /* Shadows */
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.04);
+    --shadow-card-hover: 0 4px 24px rgba(0,0,0,0.08), 0 1px 4px rgba(0,0,0,0.04);
+    --shadow-accent: 0 4px 20px rgba(236, 72, 153, 0.15);
   }
 
   .dark {
     --bg: #09090B;
     --fg: #FAFAFA;
-    --card: #18181B;
+    --card: #111113;
     --card-fg: #FAFAFA;
-    --muted: #27272A;
-    --muted-fg: #94A3B8;
-    --border: #3F3F46;
+    --muted: #18181B;
+    --muted-fg: #A1A1AA;
+    --border: #27272A;
     --accent: #F472B6;
+    --accent-subtle: #1a0a12;
+    --accent-glow: rgba(244, 114, 182, 0.10);
     --primary: #FAFAFA;
+    --secondary: #A1A1AA;
+
+    --shadow-card: 0 1px 3px rgba(0,0,0,0.3), 0 4px 16px rgba(0,0,0,0.2);
+    --shadow-card-hover: 0 4px 24px rgba(0,0,0,0.5), 0 1px 4px rgba(0,0,0,0.3);
+    --shadow-accent: 0 4px 20px rgba(244, 114, 182, 0.2);
   }
 
   * {
     @apply border-[var(--border)];
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
     background-color: var(--bg);
     color: var(--fg);
     font-family: 'Inter', system-ui, sans-serif;
-    font-size: 16px;
+    font-size: var(--text-body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.25s ease;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  /* Headings — Inter 600–800, tight tracking (Bold Typography Mobile spec) */
+  h1 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 800;
+    font-size: var(--text-h1);
+    letter-spacing: -0.04em;
+    line-height: 1.15;
+  }
+
+  h2 {
     font-family: 'Inter', sans-serif;
     font-weight: 700;
-    letter-spacing: -0.025em;
+    font-size: var(--text-h2);
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.02em;
     line-height: 1.25;
   }
 
   code, pre {
     font-family: 'JetBrains Mono', 'Menlo', monospace;
   }
+
+  /* Focus ring — accessibility */
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: var(--radius-sm);
+  }
+
+  /* Scrollbar styling */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted-fg); }
 }
 
 @layer components {
-  /* Card — subtle lift on hover, no harsh shadows */
+
+  /* ─── Card ─── */
   .card {
     background-color: var(--card);
     color: var(--card-fg);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
 
   .card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-    border-color: var(--muted-fg);
-    transform: translateY(-1px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: var(--accent);
+    transform: translateY(-2px);
   }
 
-  .dark .card:hover {
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  /* ─── Accent line decoration ─── */
+  .accent-line {
+    display: inline-block;
+    width: 2.5rem;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent);
+    border-radius: 2px;
+    margin-bottom: 0.75rem;
   }
 
-  /* Tag pill */
+  /* ─── Tag pill ─── */
   .tag {
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    padding: 0.25rem 0.75rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 9999px;
-    font-size: 0.75rem;
-    font-weight: 500;
-    letter-spacing: 0.025em;
+    font-size: var(--text-label);
+    font-weight: 600;
+    letter-spacing: 0.03em;
     transition: all 0.15s ease;
+    border: 1px solid transparent;
   }
 
   .tag-progress {
     background-color: #EEF2FF;
-    color: #4F46E5;
+    color: #4338CA;
+    border-color: #C7D2FE;
   }
 
   .dark .tag-progress {
-    background-color: #1e1b4b;
+    background-color: rgba(67, 56, 202, 0.15);
     color: #A5B4FC;
+    border-color: rgba(99, 102, 241, 0.3);
   }
 
   .tag-diary {
-    background-color: #FDF2F8;
-    color: #9D174D;
+    background-color: var(--accent-subtle);
+    color: #BE185D;
+    border-color: #FBCFE8;
   }
 
   .dark .tag-diary {
-    background-color: #4a044e;
+    background-color: var(--accent-subtle);
     color: #F9A8D4;
+    border-color: rgba(244, 114, 182, 0.25);
   }
 
-  /* MDX prose */
+  /* ─── MDX Prose ─── */
   .prose {
     color: var(--fg);
     max-width: 68ch;
+    font-size: 1.0625rem;
+    line-height: 1.8;
   }
 
-  .prose h1 { font-size: 2rem; margin-top: 2rem; margin-bottom: 1rem; }
-  .prose h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
-  .prose h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-  .prose p { margin-bottom: 1.25rem; line-height: 1.8; }
-  .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
-  .prose a:hover { opacity: 0.8; }
-  .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
-  .prose li { margin-bottom: 0.5rem; line-height: 1.7; }
+  .prose h1 {
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose h2 {
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .prose h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 1.2em;
+    background: var(--accent);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  .prose h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose p {
+    margin-bottom: 1.4rem;
+    line-height: 1.85;
+  }
+
+  .prose a {
+    color: var(--accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: text-decoration-color 0.15s ease, opacity 0.15s ease;
+  }
+
+  .prose a:hover {
+    text-decoration-color: var(--accent);
+    opacity: 0.85;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.4rem;
+    padding-left: 1.5rem;
+  }
+
+  .prose li {
+    margin-bottom: 0.5rem;
+    line-height: 1.75;
+  }
+
   .prose ul li { list-style-type: disc; }
   .prose ol li { list-style-type: decimal; }
+
+  /* Pull quote — Playfair Display Italic (Bold Typography Mobile spec) */
   .prose blockquote {
     border-left: 3px solid var(--accent);
-    padding-left: 1.25rem;
-    margin: 1.5rem 0;
+    padding: 1rem 1.25rem;
+    margin: 2rem 0;
     font-family: 'Playfair Display', Georgia, serif;
     font-style: italic;
+    font-weight: 400;
     color: var(--muted-fg);
     font-size: 1.125rem;
+    background-color: var(--accent-glow);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    position: relative;
   }
-  .prose strong { font-weight: 600; color: var(--fg); }
-  .prose em { font-style: italic; }
-  .prose hr { border-color: var(--border); margin: 2rem 0; }
-  .prose img { border-radius: 8px; margin: 1.5rem auto; max-width: 100%; }
+
+  .prose strong {
+    font-weight: 700;
+    color: var(--fg);
+  }
+
+  .prose em {
+    font-style: italic;
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2.5rem 0;
+    position: relative;
+  }
+
+  .prose hr::after {
+    content: '✦';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--bg);
+    color: var(--accent);
+    padding: 0 0.75rem;
+    font-size: 0.75rem;
+  }
+
+  .prose img {
+    border-radius: var(--radius-md);
+    margin: 2rem auto;
+    max-width: 100%;
+    box-shadow: var(--shadow-card);
+  }
 
   /* Inline code */
   .prose code:not(pre code) {
     background-color: var(--muted);
     color: var(--accent);
-    padding: 0.15em 0.4em;
+    padding: 0.15em 0.45em;
     border-radius: 4px;
-    font-size: 0.875em;
+    font-size: 0.85em;
+    font-weight: 500;
   }
 
-  /* Code blocks — shiki/rehype-pretty-code */
+  /* Code blocks */
   .prose pre {
     background-color: #0d1117 !important;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1.25rem;
+    border: 1px solid #30363d;
+    border-radius: var(--radius-md);
+    padding: 1.375rem 1.25rem;
     overflow-x: auto;
-    margin: 1.5rem 0;
+    margin: 1.75rem 0;
     font-size: 0.875rem;
-    line-height: 1.6;
+    line-height: 1.65;
+    position: relative;
+  }
+
+  .prose pre::before {
+    content: '';
+    position: absolute;
+    top: 0.75rem;
+    left: 1rem;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #FF5F57;
+    box-shadow: 14px 0 0 #FFBD2E, 28px 0 0 #28C840;
   }
 
   .prose pre code {
@@ -172,17 +371,44 @@
   }
 }
 
-/* Tab active indicator */
+/* ─── Tab nav ─── */
 .tab-active {
   color: var(--fg);
   border-bottom: 2px solid var(--accent);
+  font-weight: 600;
 }
 
 .tab-inactive {
   color: var(--muted-fg);
   border-bottom: 2px solid transparent;
+  font-weight: 500;
 }
 
 .tab-inactive:hover {
   color: var(--fg);
+  border-bottom-color: var(--border);
+}
+
+/* ─── Animations ─── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.4s ease both;
+}
+
+/* ─── Reduced motion ─── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Responsive breakpoints: 375 / 768 / 1024 / 1440 ─── */
+@media (max-width: 375px) {
+  body { font-size: 0.9375rem; }
+  h1 { font-size: 1.75rem; }
 }

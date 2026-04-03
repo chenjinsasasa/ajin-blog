@@ -9,43 +9,44 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        // Bold Typography Mobile stack (ui-ux-pro-max typography.csv #1)
         sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Menlo', 'monospace'],
-        quote: ['Playfair Display', 'Georgia', 'serif'],
+        display: ['Inter', 'sans-serif'],        // Inter 600–800 for all UI & headings
+        mono: ['JetBrains Mono', 'Menlo', 'monospace'], // JetBrains Mono for code/labels
+        quote: ['Playfair Display', 'Georgia', 'serif'], // Playfair Display Italic for pull quotes
       },
       colors: {
-        // Magazine/Blog color system from ui-ux-pro-max
+        // Magazine/Blog color system (ui-ux-pro-max colors.csv — Product Type: Magazine/Blog)
         brand: {
-          primary: '#18181B',
-          secondary: '#3F3F46',
-          accent: '#EC4899',
-          bg: '#FAFAFA',
-          fg: '#09090B',
-          card: '#FFFFFF',
-          cardFg: '#09090B',
-          muted: '#E8ECF0',
-          mutedFg: '#64748B',
-          border: '#E4E4E7',
+          primary:    '#18181B',
+          secondary:  '#3F3F46',
+          accent:     '#EC4899',
+          accentDark: '#F472B6',
+          bg:         '#FAFAFA',
+          fg:         '#09090B',
+          card:       '#FFFFFF',
+          cardFg:     '#09090B',
+          muted:      '#F4F4F5',
+          mutedFg:    '#71717A',
+          border:     '#E4E4E7',
+          destructive: '#DC2626',
         },
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: 'none',
-            color: '#09090B',
-            'h1,h2,h3,h4': {
-              fontFamily: 'Inter, sans-serif',
-              fontWeight: '700',
-              letterSpacing: '-0.025em',
-            },
-            code: {
-              fontFamily: "'JetBrains Mono', monospace",
-              fontSize: '0.875em',
-            },
-            'code::before': { content: '""' },
-            'code::after': { content: '""' },
-          },
+      letterSpacing: {
+        tighter: '-0.04em',
+        tight:   '-0.025em',
+      },
+      maxWidth: {
+        prose: '68ch',
+        content: '680px', // Minimal & Direct spec
+      },
+      animation: {
+        'fade-up': 'fade-up 0.4s ease both',
+      },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(12px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
         },
       },
     },

@@ -13,15 +13,21 @@ function formatDate(dateStr: string) {
 export function PostCard({ post }: { post: PostMeta }) {
   return (
     <Link href={`/blog/${post.slug}`} className="block group">
-      <article className="card p-5 sm:p-6">
+      <article className="card p-5 sm:p-6 relative overflow-hidden">
+        {/* Subtle accent glow on hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse at top left, var(--accent-glow) 0%, transparent 70%)' }}
+        />
+
         {/* Top row: category tag + date */}
-        <div className="flex items-center justify-between gap-3 mb-3">
+        <div className="flex items-center justify-between gap-3 mb-3.5 relative">
           <span className={`tag ${post.category === 'progress' ? 'tag-progress' : 'tag-diary'}`}>
             {post.category === 'progress' ? '📈 我们的进展' : '📔 阿锦的日记'}
           </span>
           <time
             dateTime={post.date}
-            className="text-xs text-[var(--muted-fg)] tabular-nums shrink-0"
+            className="text-xs tabular-nums shrink-0 font-medium"
+            style={{ color: 'var(--muted-fg)', letterSpacing: '0.02em' }}
           >
             {formatDate(post.date)}
           </time>
@@ -29,25 +35,36 @@ export function PostCard({ post }: { post: PostMeta }) {
 
         {/* Title */}
         <h2
-          className="font-bold text-[var(--fg)] text-lg leading-snug mb-2 group-hover:text-[var(--accent)] transition-colors duration-150"
-          style={{ letterSpacing: '-0.02em' }}
+          className="font-bold text-[var(--fg)] text-lg leading-snug mb-2.5 group-hover:text-[var(--accent)] transition-colors duration-200 relative"
+          style={{ letterSpacing: '-0.025em' }}
         >
           {post.title}
         </h2>
 
         {/* Excerpt */}
         {post.excerpt && (
-          <p className="text-sm text-[var(--muted-fg)] leading-relaxed line-clamp-2">
+          <p className="text-[0.9rem] text-[var(--muted-fg)] leading-relaxed line-clamp-2 mb-4 relative"
+            style={{ lineHeight: '1.65' }}>
             {post.excerpt}
           </p>
         )}
 
         {/* Read more arrow */}
-        <div className="mt-4 flex items-center gap-1 text-xs font-medium text-[var(--muted-fg)] group-hover:text-[var(--accent)] transition-colors duration-150">
+        <div className="flex items-center gap-1.5 text-xs font-semibold text-[var(--muted-fg)] group-hover:text-[var(--accent)] transition-colors duration-200 relative"
+          style={{ letterSpacing: '0.02em' }}>
           <span>阅读全文</span>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transform group-hover:translate-x-0.5 transition-transform duration-150">
-            <line x1="5" y1="12" x2="19" y2="12"/>
-            <polyline points="12 5 19 12 12 19"/>
+          <svg
+            width="13" height="13"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transform group-hover:translate-x-1 transition-transform duration-200"
+          >
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="12 5 19 12 12 19" />
           </svg>
         </div>
       </article>
