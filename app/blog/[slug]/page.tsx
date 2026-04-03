@@ -191,7 +191,7 @@ export default function BlogPost({ params }: Props) {
       {/* Back link */}
       <div className="pb-4 mt-6">
         <Link
-          href="/"
+          href={`/?category=${post.category}`}
           className="inline-flex items-center gap-2 cursor-pointer transition-colors duration-200 group"
           style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--muted-fg)', letterSpacing: '0.01em' }}
         >
