@@ -56,7 +56,7 @@ export default function Home({ searchParams }: HomeProps) {
 
   const postList = (
     <PostsView
-      pinnedPost={isHome ? null : pinnedPost}
+      pinnedPost={null}
       posts={initialPosts}
       totalCount={totalCount}
       category={category}
@@ -82,8 +82,8 @@ export default function Home({ searchParams }: HomeProps) {
         </h1>
       </div>
 
-      {/* Pinned post — only on home */}
-      {isHome && pinnedPost && (
+      {/* Pinned post — 全部/进展/日记三个 tab 都常驻 */}
+      {pinnedPost && (
         <div className="mb-8">
           <PinnedPostCard post={pinnedPost} />
         </div>
