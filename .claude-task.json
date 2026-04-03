@@ -1,0 +1,24 @@
+{
+  "task_id": "ajin-blog-20260403",
+  "goal": "构建阿锦的个人博客，记录日记和项目进展，Next.js + Tailwind + Vercel",
+  "created_by": "谷子",
+  "created_at": "2026-04-03T23:14:00+08:00",
+  "features": [
+    {"id": 1, "desc": "PRD文档输出（小锦）", "status": "done", "done_at": "2026-04-03T23:18:00+08:00"},
+    {"id": 2, "desc": "Next.js项目初始化 + 首页文章列表（卡片式，含分类筛选）", "status": "todo", "done_at": null},
+    {"id": 3, "desc": "文章详情页（MDX渲染+代码高亮）", "status": "todo", "done_at": null},
+    {"id": 4, "desc": "暗黑模式 + 响应式布局", "status": "todo", "done_at": null},
+    {"id": 5, "desc": "示例文章 + Vercel 部署配置", "status": "todo", "done_at": null}
+  ],
+  "current_feature": 2,
+  "acceptance_criteria": [
+    "npm run dev 本地启动无报错",
+    "首页展示文章卡片列表，支持分类筛选",
+    "文章详情页正确渲染 Markdown/MDX",
+    "暗黑模式切换正常，无闪烁",
+    "移动端布局不错位",
+    "含至少2篇示例文章（一篇progress，一篇diary）"
+  ],
+  "ui_ux_required": true,
+  "locked": true
+}

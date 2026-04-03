@@ -1,0 +1,188 @@
+/* 
+  Design System: Magazine/Blog (ui-ux-pro-max)
+  Style: Minimalism & Swiss Style
+  Colors: Editorial Black + Accent Pink (#EC4899)
+  Typography: Inter (UI) + JetBrains Mono (code)
+*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500&family=Playfair+Display:ital@1&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #FAFAFA;
+    --fg: #09090B;
+    --card: #FFFFFF;
+    --card-fg: #09090B;
+    --muted: #E8ECF0;
+    --muted-fg: #64748B;
+    --border: #E4E4E7;
+    --accent: #EC4899;
+    --primary: #18181B;
+  }
+
+  .dark {
+    --bg: #09090B;
+    --fg: #FAFAFA;
+    --card: #18181B;
+    --card-fg: #FAFAFA;
+    --muted: #27272A;
+    --muted-fg: #94A3B8;
+    --border: #3F3F46;
+    --accent: #F472B6;
+    --primary: #FAFAFA;
+  }
+
+  * {
+    @apply border-[var(--border)];
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--fg);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    line-height: 1.25;
+  }
+
+  code, pre {
+    font-family: 'JetBrains Mono', 'Menlo', monospace;
+  }
+}
+
+@layer components {
+  /* Card — subtle lift on hover, no harsh shadows */
+  .card {
+    background-color: var(--card);
+    color: var(--card-fg);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+  }
+
+  .card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+    border-color: var(--muted-fg);
+    transform: translateY(-1px);
+  }
+
+  .dark .card:hover {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Tag pill */
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+    transition: all 0.15s ease;
+  }
+
+  .tag-progress {
+    background-color: #EEF2FF;
+    color: #4F46E5;
+  }
+
+  .dark .tag-progress {
+    background-color: #1e1b4b;
+    color: #A5B4FC;
+  }
+
+  .tag-diary {
+    background-color: #FDF2F8;
+    color: #9D174D;
+  }
+
+  .dark .tag-diary {
+    background-color: #4a044e;
+    color: #F9A8D4;
+  }
+
+  /* MDX prose */
+  .prose {
+    color: var(--fg);
+    max-width: 68ch;
+  }
+
+  .prose h1 { font-size: 2rem; margin-top: 2rem; margin-bottom: 1rem; }
+  .prose h2 { font-size: 1.5rem; margin-top: 2rem; margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .prose h3 { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+  .prose p { margin-bottom: 1.25rem; line-height: 1.8; }
+  .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+  .prose a:hover { opacity: 0.8; }
+  .prose ul, .prose ol { margin-bottom: 1.25rem; padding-left: 1.5rem; }
+  .prose li { margin-bottom: 0.5rem; line-height: 1.7; }
+  .prose ul li { list-style-type: disc; }
+  .prose ol li { list-style-type: decimal; }
+  .prose blockquote {
+    border-left: 3px solid var(--accent);
+    padding-left: 1.25rem;
+    margin: 1.5rem 0;
+    font-family: 'Playfair Display', Georgia, serif;
+    font-style: italic;
+    color: var(--muted-fg);
+    font-size: 1.125rem;
+  }
+  .prose strong { font-weight: 600; color: var(--fg); }
+  .prose em { font-style: italic; }
+  .prose hr { border-color: var(--border); margin: 2rem 0; }
+  .prose img { border-radius: 8px; margin: 1.5rem auto; max-width: 100%; }
+
+  /* Inline code */
+  .prose code:not(pre code) {
+    background-color: var(--muted);
+    color: var(--accent);
+    padding: 0.15em 0.4em;
+    border-radius: 4px;
+    font-size: 0.875em;
+  }
+
+  /* Code blocks — shiki/rehype-pretty-code */
+  .prose pre {
+    background-color: #0d1117 !important;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+    font-size: 0.875rem;
+    line-height: 1.6;
+  }
+
+  .prose pre code {
+    background: none !important;
+    padding: 0 !important;
+    color: inherit;
+  }
+}
+
+/* Tab active indicator */
+.tab-active {
+  color: var(--fg);
+  border-bottom: 2px solid var(--accent);
+}
+
+.tab-inactive {
+  color: var(--muted-fg);
+  border-bottom: 2px solid transparent;
+}
+
+.tab-inactive:hover {
+  color: var(--fg);
+}
