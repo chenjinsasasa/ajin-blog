@@ -127,7 +127,7 @@ function calcAge(dateStr: string) {
 }
 
 export default function AgentsView() {
-  const [selected, setSelected] = useState<string | null>(null)
+  const [selected, setSelected] = useState<string | null>('guzi')
   const selectedAgent = AGENTS.find((a) => a.id === selected) ?? null
 
   return (
