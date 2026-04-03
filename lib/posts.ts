@@ -88,3 +88,16 @@ export function getPostBySlug(slug: string): Post | null {
 export function getAllSlugs(): string[] {
   return getAllPosts().map((p) => p.slug)
 }
+
+export function getAdjacentPosts(slug: string): { prev: PostMeta | null; next: PostMeta | null } {
+  // getAllPosts returns posts sorted newest-first (descending by date)
+  const posts = getAllPosts()
+  const index = posts.findIndex((p) => p.slug === slug)
+  if (index === -1) return { prev: null, next: null }
+
+  // next = newer post (lower index), prev = older post (higher index)
+  const next = index > 0 ? posts[index - 1] : null
+  const prev = index < posts.length - 1 ? posts[index + 1] : null
+
+  return { prev, next }
+}

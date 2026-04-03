@@ -1,5 +1,5 @@
 import { getAllPosts, Category } from '@/lib/posts'
-import { PostCard } from '@/components/PostCard'
+import PostsView from '@/components/PostsView'
 
 interface HomeProps {
   searchParams: { category?: string }
@@ -43,22 +43,8 @@ export default function Home({ searchParams }: HomeProps) {
         </p>
       </div>
 
-      {/* Post list */}
-      {posts.length === 0 ? (
-        <div
-          className="text-center py-24 text-[var(--muted-fg)]"
-          style={{ opacity: 0.7 }}
-        >
-          <p className="text-4xl mb-4" aria-hidden>✍️</p>
-          <p className="text-base font-medium">还没有文章，去写第一篇吧～</p>
-        </div>
-      ) : (
-        <div className="flex flex-col gap-3.5">
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
-        </div>
-      )}
+      {/* Post list (with view toggle) */}
+      <PostsView posts={posts} />
     </div>
   )
 }

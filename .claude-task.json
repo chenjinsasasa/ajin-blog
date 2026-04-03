@@ -1,20 +1,19 @@
 {
-  "task_id": "ajin-blog-likes-20260404",
-  "goal": "给博客文章详情页加点赞功能，使用 Upstash Redis 持久化存储，所有访客看到的数量一致",
+  "task_id": "ajin-blog-ux-20260404",
+  "goal": "优化博客阅读体验：详情页加上一篇/下一篇导航，首页加时间轴视图切换",
   "created_by": "谷子",
-  "created_at": "2026-04-04T01:24:00+08:00",
+  "created_at": "2026-04-04T01:35:00+08:00",
   "features": [
-    {"id": 1, "desc": "注册 Upstash Redis 免费账号，获取 REST API URL 和 Token，配置到 .env.local", "status": "todo", "done_at": null},
-    {"id": 2, "desc": "创建 Next.js API Route: GET/POST /api/likes/[slug]，读写 Redis 点赞数", "status": "todo", "done_at": null},
-    {"id": 3, "desc": "文章详情页加点赞按钮组件（❤️ + 数字），点击后调用 API，动画反馈，同一浏览器防重复点赞（localStorage标记）", "status": "todo", "done_at": null}
+    {"id": 1, "desc": "详情页底部加上一篇/下一篇导航（按时间排序，跨分类）", "status": "todo", "done_at": null},
+    {"id": 2, "desc": "首页加时间轴视图，可与卡片视图切换（按钮切换，状态存 localStorage）", "status": "todo", "done_at": null}
   ],
   "current_feature": 1,
   "acceptance_criteria": [
-    "文章详情页底部有点赞按钮，显示当前点赞数",
-    "点击后数字+1，有动画反馈",
-    "刷新页面后点赞数保持（来自 Redis）",
-    "同一浏览器不能重复点赞（localStorage 标记）",
-    "npm run dev 无报错"
+    "详情页底部有「← 上一篇」和「下一篇 →」，点击可跳转",
+    "首页有视图切换按钮（卡片/时间轴），默认卡片视图",
+    "时间轴视图：左侧时间线，右侧文章标题+摘要，按月分组",
+    "切换状态 localStorage 持久化",
+    "npm run dev 无报错，样式与整体设计一致"
   ],
   "locked": true
 }

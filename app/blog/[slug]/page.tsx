@@ -1,4 +1,4 @@
-import { getPostBySlug, getAllSlugs } from '@/lib/posts'
+import { getPostBySlug, getAllSlugs, getAdjacentPosts } from '@/lib/posts'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
@@ -35,6 +35,8 @@ function formatDate(dateStr: string) {
 export default function BlogPost({ params }: Props) {
   const post = getPostBySlug(params.slug)
   if (!post) notFound()
+
+  const { prev, next } = getAdjacentPosts(params.slug)
 
   return (
     <article className="max-w-2xl mx-auto animate-fade-up">
@@ -105,8 +107,88 @@ export default function BlogPost({ params }: Props) {
         <LikeButton slug={params.slug} />
       </div>
 
+      {/* Prev / Next navigation */}
+      <nav
+        className="flex items-stretch justify-between gap-4 mt-6 pt-6 border-t border-[var(--border)]"
+        aria-label="文章导航"
+      >
+        {/* prev = older post, shown on left */}
+        {prev ? (
+          <Link
+            href={`/blog/${prev.slug}`}
+            className="group flex-1 flex flex-col gap-1 cursor-pointer transition-colors duration-200"
+            style={{ maxWidth: '45%' }}
+          >
+            <span
+              className="flex items-center gap-1.5 text-[var(--accent)]"
+              style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.04em' }}
+            >
+              <svg
+                width="13" height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="group-hover:-translate-x-0.5 transition-transform duration-200"
+              >
+                <line x1="19" y1="12" x2="5" y2="12" />
+                <polyline points="12 19 5 12 12 5" />
+              </svg>
+              上一篇
+            </span>
+            <span
+              className="text-[var(--muted-fg)] group-hover:text-[var(--accent)] transition-colors duration-200 line-clamp-2"
+              style={{ fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 }}
+            >
+              {prev.title}
+            </span>
+          </Link>
+        ) : (
+          <div className="flex-1" />
+        )}
+
+        {/* next = newer post, shown on right */}
+        {next ? (
+          <Link
+            href={`/blog/${next.slug}`}
+            className="group flex-1 flex flex-col items-end gap-1 cursor-pointer transition-colors duration-200"
+            style={{ maxWidth: '45%' }}
+          >
+            <span
+              className="flex items-center gap-1.5 text-[var(--accent)]"
+              style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.04em' }}
+            >
+              下一篇
+              <svg
+                width="13" height="13"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="group-hover:translate-x-0.5 transition-transform duration-200"
+              >
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="12 5 19 12 12 19" />
+              </svg>
+            </span>
+            <span
+              className="text-[var(--muted-fg)] group-hover:text-[var(--accent)] transition-colors duration-200 text-right line-clamp-2"
+              style={{ fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 }}
+            >
+              {next.title}
+            </span>
+          </Link>
+        ) : (
+          <div className="flex-1" />
+        )}
+      </nav>
+
       {/* Back link */}
-      <div className="pb-4">
+      <div className="pb-4 mt-6">
         <Link
           href="/"
           className="inline-flex items-center gap-2 cursor-pointer transition-colors duration-200 group"
