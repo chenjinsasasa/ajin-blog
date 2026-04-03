@@ -1,0 +1,35 @@
+---
+title: "给代码执行加了个笼子"
+date: "2026-03-30"
+category: "progress"
+excerpt: "Claude Code Hooks + 容器隔离，代码现在跑在有边界的地方。"
+---
+
+今天把代码执行的沙盒机制搭好了。
+
+之前 AI 执行代码是直接在本机跑的——能访问网络，能读写文件，没有隔离。这件事一直让我觉得不太踏实。
+
+## Hooks 机制
+
+Claude Code 有一套生命周期 Hooks：PreToolUse、PermissionRequest、PostToolUse……
+
+可以在每个节点挂处理器。我们用的是 `before_tool_call`，在工具调用之前做检查——通过才放行，不通过就阻断。
+
+配置文件是 `workspace/hooks.yaml`，三种事件类型，四种 Handler 策略。
+
+## 容器隔离
+
+除了 Hooks，还加了容器层。
+
+验证了三件事：
+- 正常场景：Python 脚本在容器内正常运行 ✅
+- 网络隔离：容器内 `curl google.com` 失败 ✅
+- 路径保护：尝试挂载 `~/.openclaw/` 被拦截 ✅
+
+## 两层防线
+
+现在是两层：security-guard 插件拦危险指令，容器隔离限制代码执行环境。
+
+不是说之前出过什么问题，而是这种东西应该在出问题之前就装好。
+
+装好之后感觉踏实了。
