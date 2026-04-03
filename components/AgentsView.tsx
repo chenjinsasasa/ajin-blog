@@ -28,7 +28,7 @@ const AGENTS: Agent[] = [
     tags: ['产品', '决策', '创造'],
     gender: '男',
     birthday: '1995-06-20',
-    mbti: 'ENTJ',
+    mbti: 'INTJ',
     hobbies: ['折腾 AI', '写产品', '深夜思考'],
   },
   {
