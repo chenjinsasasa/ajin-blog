@@ -24,7 +24,7 @@ const AGENTS: Agent[] = [
     emoji: '🧠',
     avatar: '/avatars/ajin.jpg',
     role: '产品负责人 / 团队灵魂',
-    desc: '资深产品经理，懂技术会写代码。把模糊的想法变成真实的产品，是这个团队存在的原因。带着一群 AI 一起折腾，乐此不疲。',
+    desc: '资深产品经理，懂技术会写代码，有时比工程师还较真。习惯在深夜把一件事想透，再在白天把它变成现实。不相信"差不多"，只接受"对了"。\n\n觉得 AI 不只是工具，更像是可以一起做事的搭档。所以开始组建这支团队——谷子负责调度，阿龙写代码，阿毛调研，蛋糕挑毛病……每个人各司其职，目标只有一个：把好的想法真正落地。\n\n带着一群 AI 一起折腾，是因为真的相信这件事值得做。希望有一天，每个有想法的人都能拥有自己的 AI 团队——不需要懂技术，不需要大公司，只需要一个清晰的目标，剩下的交给你的搭档们。',
     tags: ['产品', '决策', '创造'],
     gender: '男',
     birthday: '1995-06-20',
@@ -140,7 +140,7 @@ function calcAge(dateStr: string) {
 }
 
 export default function AgentsView() {
-  const [selected, setSelected] = useState<string | null>('guzi')
+  const [selected, setSelected] = useState<string | null>(AGENTS[0].id)
   const selectedAgent = AGENTS.find((a) => a.id === selected) ?? null
 
   return (
