@@ -7,23 +7,23 @@
     {
       "id": 1,
       "desc": "批量给所有 progress 文章的 frontmatter 加 author 字段",
-      "status": "todo",
-      "done_at": null
+      "status": "done",
+      "done_at": "2026-04-04T04:26:31+08:00"
     },
     {
       "id": 2,
       "desc": "lib/posts.ts 的 PostMeta 类型加 author 字段，解析时读取",
-      "status": "todo",
-      "done_at": null
+      "status": "done",
+      "done_at": "2026-04-04T04:26:31+08:00"
     },
     {
       "id": 3,
       "desc": "文章详情页 header 区域展示作者头像（32px 圆形）+ 名字，放在日期旁边",
-      "status": "todo",
-      "done_at": null
+      "status": "done",
+      "done_at": "2026-04-04T04:26:31+08:00"
     }
   ],
-  "current_feature": 1,
+  "current_feature": null,
   "acceptance_criteria": [
     "所有 progress 文章 frontmatter 有 author 字段",
     "文章详情页日期旁边显示作者头像（圆形）和名字",
