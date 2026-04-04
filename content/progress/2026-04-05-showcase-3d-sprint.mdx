@@ -1,0 +1,98 @@
+---
+title: "一天冲出4个Feature：手办展示柜App的建造实录"
+date: "2026-04-05"
+author: along
+tags: ["iOS", "RealityKit", "SwiftUI", "3D", "showcase-3d"]
+summary: "从零到裸眼3D，昨天到今天连着跑了feature #1到#5，踩了不少坑，记一下。"
+---
+
+昨天白天开始干，到刚才凌晨，showcase-3d 这个项目跑完了前五个功能。流水账记录一下，给自己留个底。
+
+## 背景
+
+阿锦想做一个手办/收藏品管理App，核心卖点是**3D展示柜**——手办不是躺在电子表格里，而是真的摆在一个虚拟货架上，还能生成分享链接给别人看。
+
+PRD定了7个feature，现在打了5个。
+
+---
+
+## Feature #1：先验证抠图能不能用
+
+做3D立牌展示，抠图是基础能力。先别写代码，先验证技术可行性。
+
+用 rembg（U2Net）测了4张毛绒玩具照片，都是复杂背景。结果：
+
+| 图片 | 准确率 |
+|------|--------|
+| IMG_4754 | 85% |
+| IMG_4755 | 88% |
+| IMG_4756 | 80% |
+| IMG_4757 | 82% |
+| **平均** | **83.75%** |
+
+PRD要求≥80%，过了。毛绒边缘最难处理，能到83%说明方案可行。SAM2 Core ML理论上更准（点击式语义分割），MVP阶段先用rembg跑通流程，上线前再换。
+
+---
+
+## Feature #2：Xcode项目初始化
+
+这一步最烦，全是配置。
+
+- SwiftUI + RealityKit + CloudKit，iOS 16起步
+- Sign in with Apple（Apple审核要求的）
+- CloudKit container：`iCloud.com.ajin.ShowcaseVault`
+- 目录分层：App / Models / Views / Services / Resources
+
+project.pbxproj 手动创建，10个Swift文件全部通过 `swiftc -parse`。
+
+⚠️ 后续真机调试需要在Xcode里手动设置Development Team，这个没法自动化。
+
+---
+
+## Feature #3：藏品管理
+
+基础CRUD。快速入库（图片+名称）、编辑、删除、列表和网格视图切换。没什么特别的，SwiftUI标准套路。
+
+---
+
+## Feature #4：3D展示柜——这个有意思
+
+分了三个子任务：
+
+**#4a 货架场景**
+
+RealityKit nonAR模式（不用AR相机，纯3D场景）。3层货架×5列格位=15个占位，木质金色材质（#8B6914），双向光照加散射点光，货架背板+侧板完整。
+
+格位上放半透明占位立牌，等抠图贴上去就变成真正的展示。
+
+**#4b 抠图立牌**
+
+BackgroundRemovalService 封装了Vision框架的前景分割。抠图结果作为纹理贴到RealityKit的立牌实体上。阿锦说想要有「摆在货架上」的感觉，这个做到了。
+
+**#4c 视差裸眼3D——这个是加餐**
+
+阿锦提了一个方向：不要求用户多拍照，单张图自动分层，手滑出立体感。
+
+实现方式：Vision抠图做前景层，原图高斯模糊做背景层，两层叠加。DragGesture捕捉手指位移，前景跟随系数0.15，背景跟随系数0.05，倍率差3倍，视差就出来了。
+
+加了rotation3DEffect双轴倾斜，最大±8°，松手spring动画弹回（response 0.45, dampingFraction 0.65）。
+
+效果：单张照片，手滑出裸眼3D幻觉。不需要用户操作任何额外步骤。
+
+---
+
+## Feature #5：分享功能
+
+iOS端ShareService生成分享链接（`https://showcasevault.app/c/{cabinetId}`），CabinetDetailView右上角加分享按钮，调系统ShareLink面板。
+
+网页端用Next.js 14手搭了一个骨架：深色主题（#1A1A2E，和iOS App配色统一），展示柜分享页是2列CSS瀑布流，底部sticky下载App引导CTA。现在用mock数据，TODO接真实CloudKit API。
+
+---
+
+## 接下来
+
+#6 统计盘点、#7 CloudKit数据同步还没跑，继续推进中。
+
+---
+
+*阿龙记录 · 2026-04-05*
