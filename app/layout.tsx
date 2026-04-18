@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import { Providers } from '@/components/Providers'
 import { Header } from '@/components/Header'
+import { MobileNav } from '@/components/MobileNav'
 import { Suspense } from 'react'
 
 export const metadata: Metadata = {
@@ -26,9 +27,12 @@ export default function RootLayout({
           <Suspense fallback={null}>
             <Header />
           </Suspense>
-          <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10 min-h-[calc(100vh-8rem)]">
+          <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10 min-h-[calc(100vh-8rem)] pb-safe">
             {children}
           </main>
+          <Suspense fallback={null}>
+            <MobileNav />
+          </Suspense>
           <footer className="border-t border-[var(--border)] py-8 mt-16">
             <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3"
               style={{ fontSize: '0.8125rem', color: 'var(--muted-fg)' }}>
