@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 
 interface Agent {
@@ -15,6 +15,12 @@ interface Agent {
   birthday: string
   mbti: string
   hobbies: string[]
+}
+
+interface BirthdayParts {
+  year: number
+  month: number
+  day: number
 }
 
 const AGENTS: Agent[] = [
@@ -122,26 +128,104 @@ const AGENTS: Agent[] = [
     mbti: 'ENTJ',
     hobbies: ['看财经', '下棋', '读年报'],
   },
+  {
+    id: 'gugu',
+    name: '咕咕',
+    emoji: '🐦',
+    avatar: null,
+    role: '执行调度与盯办中台',
+    desc: '谷子的执行助理。负责把已拍板的任务从"想法"推进到"有人在做、状态可见、结果可回收"。建任务、切状态、盯进度、回写外部状态——每一步都要有证据，不包装，不硬拖，卡点立刻上报。',
+    tags: ['调度', '盯办', '状态管理'],
+    gender: '女',
+    birthday: '2026-04-19',
+    mbti: 'ISTJ',
+    hobbies: ['列清单', '盯进度', '写日报'],
+  },
+  {
+    id: 'lizi',
+    name: '梨子',
+    emoji: '🍐',
+    avatar: null,
+    role: '知识库 / 图谱维护者',
+    desc: '团队的知识运营官。把任务里形成的决策、原则、复盘整理进知识库，补 Task ↔ Knowledge 链接，清理孤岛条目。不追求数量，追求可用链接密度——有来源才入库，有证据才说补齐。',
+    tags: ['知识库', '图谱', '巡检'],
+    gender: '女',
+    birthday: '2026-04-19',
+    mbti: 'INFP',
+    hobbies: ['整理笔记', '画图谱', '找断链'],
+  },
 ]
 
-function formatBirthday(dateStr: string) {
-  const d = new Date(dateStr)
-  return `${d.getFullYear()}年${d.getMonth() + 1}月${d.getDate()}日`
+function parseBirthday(dateStr: string): BirthdayParts {
+  const [year, month, day] = dateStr.split('-').map(Number)
+  return { year, month, day }
 }
 
-function calcAge(dateStr: string) {
-  const birth = new Date(dateStr)
-  const now = new Date()
-  const diffMs = now.getTime() - birth.getTime()
-  const days = Math.floor(diffMs / (1000 * 60 * 60 * 24))
-  if (days < 30) return `${days} 天`
-  if (days < 365) return `${Math.floor(days / 30)} 个月`
-  return `${Math.floor(days / 365)} 岁`
+function formatBirthday(dateStr: string) {
+  const { year, month, day } = parseBirthday(dateStr)
+  return `${year}年${month}月${day}日`
+}
+
+function calcAge(dateStr: string, today: Date) {
+  const { year, month, day } = parseBirthday(dateStr)
+  const birthDate = new Date(year, month - 1, day)
+  const currentDate = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+
+  if (currentDate.getTime() < birthDate.getTime()) {
+    return '0 天'
+  }
+
+  let ageYears = currentDate.getFullYear() - year
+  let ageMonths = currentDate.getMonth() + 1 - month
+  let ageDays = currentDate.getDate() - day
+
+  if (ageDays < 0) {
+    const previousMonthDays = new Date(
+      currentDate.getFullYear(),
+      currentDate.getMonth(),
+      0
+    ).getDate()
+    ageDays += previousMonthDays
+    ageMonths -= 1
+  }
+
+  if (ageMonths < 0) {
+    ageMonths += 12
+    ageYears -= 1
+  }
+
+  if (ageYears > 0) return `${ageYears} 岁`
+  if (ageMonths > 0) return `${ageMonths} 个月`
+  return `${ageDays} 天`
+}
+
+function getMillisecondsUntilNextDay(now: Date) {
+  const nextDay = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1)
+  return nextDay.getTime() - now.getTime() + 100
 }
 
 export default function AgentsView() {
   const [selected, setSelected] = useState<string | null>(AGENTS[0].id)
+  const [today, setToday] = useState(() => new Date())
   const selectedAgent = AGENTS.find((a) => a.id === selected) ?? null
+
+  useEffect(() => {
+    let timer = 0
+
+    const scheduleNextRefresh = () => {
+      const now = new Date()
+      timer = window.setTimeout(() => {
+        setToday(new Date())
+        scheduleNextRefresh()
+      }, getMillisecondsUntilNextDay(now))
+    }
+
+    scheduleNextRefresh()
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [])
 
   return (
     <div>
@@ -291,8 +375,8 @@ export default function AgentsView() {
                 </div>
                 <div className="flex items-center gap-1.5">
                   <span style={{ opacity: 0.6 }}>年龄</span>
-                  <span style={{ color: 'var(--fg)', fontWeight: 500 }}>
-                    {calcAge(selectedAgent.birthday)}
+                  <span suppressHydrationWarning style={{ color: 'var(--fg)', fontWeight: 500 }}>
+                    {calcAge(selectedAgent.birthday, today)}
                   </span>
                 </div>
                 <div className="flex items-center gap-1.5">
