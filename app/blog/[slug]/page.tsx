@@ -6,6 +6,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import LikeButton from '@/components/LikeButton'
 import DiaryGuard from '@/components/DiaryGuard'
+import ReadingProgress from '@/components/ReadingProgress'
 import { Pre, Table } from '@/components/MDXComponents'
 
 import remarkGfm from 'remark-gfm'
@@ -42,8 +43,14 @@ function formatDate(dateStr: string) {
 const AUTHOR_NAME_MAP: Record<string, string> = {
   guzi: '谷子',
   along: '阿龙',
+  amao: '阿毛',
+  xiaojin: '小锦',
   ajin: '阿锦',
   ashang: '阿商',
+  gugu: '咕咕',
+  lizi: '梨子',
+  xiaou: '小U',
+  dangao: '蛋糕',
 }
 
 function getAuthorAvatar(author: string): string {
@@ -63,6 +70,7 @@ export default function BlogPost({ params }: Props) {
 
   const articleContent = (
     <article className="max-w-2xl mx-auto animate-fade-up">
+      <ReadingProgress />
       {/* Article header */}
       <header className="mb-12">
         {/* Category tag */}
@@ -79,10 +87,10 @@ export default function BlogPost({ params }: Props) {
         <h1
           className="text-[var(--fg)] mb-4"
           style={{
-            fontSize: 'clamp(1.875rem, 5vw, 2.75rem)',
+            fontSize: 'clamp(1.75rem, 6vw, 2.75rem)',
             fontWeight: 800,
             letterSpacing: '-0.04em',
-            lineHeight: 1.15,
+            lineHeight: 1.1,
           }}
         >
           {post.title}
