@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
 
 const NAV_ITEMS = [
   {
@@ -54,17 +53,12 @@ const NAV_ITEMS = [
 ]
 
 export function MobileNav() {
-  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
   const searchParams = useSearchParams()
   const currentCategory = searchParams.get('category') ?? ''
 
-  useEffect(() => setMounted(true), [])
-
-  if (!mounted) return null
-
   return (
-    <div className="mobile-nav md:hidden">
+    <div className="mobile-nav lg:hidden">
       <nav className="mobile-nav__inner">
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === '/' && currentCategory === item.value

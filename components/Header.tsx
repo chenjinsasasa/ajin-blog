@@ -30,7 +30,7 @@ export function Header() {
 
         {isHomePage ? (
           <>
-            <div className="mobile-header-state md:hidden" aria-hidden="true">
+            <div className="mobile-header-state lg:hidden" aria-hidden="true">
               <span className="mobile-header-state__label">view</span>
               <span className="mobile-header-state__value">{activeTab.label}</span>
             </div>

@@ -1178,6 +1178,10 @@
     grid-template-columns: 1fr;
   }
 
+  .site-nav--blog {
+    display: none;
+  }
+
   .matrix-rain,
   .page-atmosphere__matrix {
     width: 100%;
