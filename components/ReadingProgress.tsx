@@ -9,26 +9,24 @@ export default function ReadingProgress() {
     const updateScrollCompletion = () => {
       const currentProgress = window.scrollY
       const scrollHeight = document.documentElement.scrollHeight - window.innerHeight
-      if (scrollHeight) {
-        setCompletion(
-          Number((currentProgress / scrollHeight).toFixed(2)) * 100
-        )
+
+      if (scrollHeight > 0) {
+        setCompletion(Number((currentProgress / scrollHeight).toFixed(2)) * 100)
       }
     }
 
+    updateScrollCompletion()
     window.addEventListener('scroll', updateScrollCompletion)
+
     return () => {
       window.removeEventListener('scroll', updateScrollCompletion)
     }
   }, [])
 
   return (
-    <div 
-      className="fixed top-0 left-0 w-full h-[3px] bg-transparent z-[60] pointer-events-none"
-      aria-hidden="true"
-    >
-      <div 
-        className="h-full bg-[var(--accent)] transition-all duration-150 ease-out shadow-[0_0_10px_var(--accent)]"
+    <div className="pointer-events-none fixed left-0 top-0 z-[60] h-1 w-full bg-transparent" aria-hidden="true">
+      <div
+        className="h-full rounded-r-full bg-[linear-gradient(90deg,var(--accent),var(--accent-strong))] shadow-[0_0_16px_rgba(99,255,142,0.28)] transition-[width] duration-150 ease-out"
         style={{ width: `${completion}%` }}
       />
     </div>

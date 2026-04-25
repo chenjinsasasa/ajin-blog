@@ -14,25 +14,27 @@ export default function DiaryGuard({ children }: DiaryGuardProps) {
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    const val = sessionStorage.getItem('diary-unlocked')
-    if (val === '1') {
-      setUnlocked(true)
-    }
+    const value = sessionStorage.getItem('diary-unlocked')
+    if (value === '1') setUnlocked(true)
     setMounted(true)
   }, [])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     if (!password.trim()) return
+
     setLoading(true)
     setError(false)
+
     try {
       const res = await fetch('/api/diary-auth', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password }),
       })
+
       const data = await res.json() as { ok: boolean }
+
       if (data.ok) {
         sessionStorage.setItem('diary-unlocked', '1')
         setUnlocked(true)
@@ -47,60 +49,32 @@ export default function DiaryGuard({ children }: DiaryGuardProps) {
     }
   }
 
-  // Before mount: render nothing to avoid hydration mismatch
   if (!mounted) return null
-
   if (unlocked) return <>{children}</>
 
   return (
-    <div
-      style={{
-        minHeight: '60vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '2rem 1rem',
-      }}
-    >
-      <div
-        className="card"
-        style={{
-          width: '100%',
-          maxWidth: '360px',
-          padding: '2.5rem 2rem',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: '1.5rem',
-          textAlign: 'center',
-        }}
-      >
-        {/* Lock icon */}
-        <div style={{ fontSize: '2.5rem', lineHeight: 1 }}>🔒</div>
+    <div className="flex min-h-[55vh] items-center justify-center px-1 py-4 sm:px-4">
+      <div className="card w-full max-w-[460px] p-6 text-center sm:p-8">
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--accent-softer)] text-[var(--accent-strong)]">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="4" y="11" width="16" height="9" rx="2" />
+            <path d="M8 11V8a4 4 0 1 1 8 0v3" />
+          </svg>
+        </div>
 
-        {/* Title */}
-        <h2
-          style={{
-            fontSize: '1.125rem',
-            fontWeight: 700,
-            color: 'var(--fg)',
-            letterSpacing: '-0.02em',
-            margin: 0,
-          }}
-        >
-          这是阿锦的私人日记
+        <p className="section-kicker mt-5 justify-center">Private Journal Access</p>
+        <h2 className="font-display text-[2.2rem] leading-[0.95] text-[var(--fg)] sm:text-[2.8rem]">
+          这一部分只对知道密码的人打开。
         </h2>
-
-        {/* Subtitle */}
-        <p style={{ fontSize: '0.875rem', color: 'var(--muted-fg)', margin: 0 }}>
-          请输入密码才能继续阅读 ✨
+        <p className="mt-4 text-[0.98rem] leading-7 text-[var(--muted-fg)]">
+          日记会更私人一些，所以多加了一层门。输入密码后，当前会话里会保持解锁状态。
         </p>
 
-        {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}
-        >
+        <form onSubmit={handleSubmit} className="mt-6 space-y-3 text-left">
+          <label className="block text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+            访问密码
+          </label>
+
           <input
             type="password"
             value={password}
@@ -108,54 +82,25 @@ export default function DiaryGuard({ children }: DiaryGuardProps) {
               setPassword(e.target.value)
               setError(false)
             }}
-            placeholder="密码"
+            placeholder="请输入密码"
             disabled={loading}
             autoFocus
-            style={{
-              width: '100%',
-              padding: '0.625rem 0.875rem',
-              borderRadius: '0.5rem',
-              border: `1.5px solid ${error ? '#ef4444' : 'var(--border)'}`,
-              background: 'var(--bg)',
-              color: 'var(--fg)',
-              fontSize: '0.9375rem',
-              outline: 'none',
-              transition: 'border-color 0.15s',
-              boxSizing: 'border-box',
-            }}
+            className="w-full rounded-[18px] border bg-[var(--panel-soft)] px-4 py-3 text-base text-[var(--fg)] outline-none transition-colors duration-200 placeholder:text-[var(--muted-fg)]"
+            style={{ borderColor: error ? '#ff7a7a' : 'var(--border)' }}
           />
 
           {error && (
-            <p
-              style={{
-                fontSize: '0.8125rem',
-                color: '#ef4444',
-                margin: 0,
-                textAlign: 'center',
-              }}
-            >
-              密码不对，再想想 🙈
+            <p className="text-sm text-[#ff7a7a]">
+              密码不对，再试一次。
             </p>
           )}
 
           <button
             type="submit"
             disabled={loading || !password.trim()}
-            style={{
-              width: '100%',
-              padding: '0.625rem 1rem',
-              borderRadius: '0.5rem',
-              border: 'none',
-              background: 'var(--accent)',
-              color: '#fff',
-              fontSize: '0.9375rem',
-              fontWeight: 600,
-              cursor: loading || !password.trim() ? 'not-allowed' : 'pointer',
-              opacity: loading || !password.trim() ? 0.6 : 1,
-              transition: 'opacity 0.15s',
-            }}
+            className="button-primary w-full px-4 py-3.5 text-sm disabled:cursor-not-allowed disabled:opacity-60"
           >
-            {loading ? '验证中…' : '进入'}
+            {loading ? '验证中...' : '进入日记'}
           </button>
         </form>
       </div>

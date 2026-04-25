@@ -7,11 +7,15 @@ export function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl
   const category = (searchParams.get('category') ?? 'all') as Category
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
+  const offsetParam = searchParams.get('offset')
   const limit = Math.max(1, parseInt(searchParams.get('limit') ?? '10', 10))
 
   const { pinnedPost, posts } = getPostsWithPinned(category)
 
-  const start = (page - 1) * limit
+  const start =
+    offsetParam !== null
+      ? Math.max(0, parseInt(offsetParam, 10) || 0)
+      : (page - 1) * limit
   const end = start + limit
   const slice = posts.slice(start, end)
   const hasMore = end < posts.length

@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 interface LikeButtonProps {
   slug: string
@@ -10,9 +10,7 @@ export default function LikeButton({ slug }: LikeButtonProps) {
   const [likes, setLikes] = useState<number | null>(null)
   const [liked, setLiked] = useState(false)
   const [animating, setAnimating] = useState(false)
-  const heartRef = useRef<HTMLSpanElement>(null)
 
-  // Load likes count and check localStorage on mount
   useEffect(() => {
     const hasLiked = localStorage.getItem(`liked:${slug}`) === 'true'
     setLiked(hasLiked)
@@ -26,7 +24,6 @@ export default function LikeButton({ slug }: LikeButtonProps) {
   const handleLike = async () => {
     if (liked || animating) return
 
-    // Trigger heart animation
     setAnimating(true)
     setTimeout(() => setAnimating(false), 400)
 
@@ -43,56 +40,47 @@ export default function LikeButton({ slug }: LikeButtonProps) {
   }
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        marginBottom: '2rem',
-      }}
-    >
+    <div className="mx-auto w-full max-w-md">
       <button
         onClick={handleLike}
         disabled={liked}
-        aria-label={liked ? '已点赞' : '点赞'}
-        style={{
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          padding: '0.5rem 1.25rem',
-          borderRadius: '9999px',
-          border: `1.5px solid ${liked ? 'var(--border)' : 'var(--accent)'}`,
-          background: liked ? 'transparent' : 'var(--accent-subtle, rgba(236,72,153,0.08))',
-          color: liked ? 'var(--muted-fg)' : 'var(--accent)',
-          fontSize: '0.9375rem',
-          fontWeight: 600,
-          cursor: liked ? 'not-allowed' : 'pointer',
-          transition: 'all 0.2s ease',
-          opacity: liked ? 0.55 : 1,
-          letterSpacing: '0.01em',
-        }}
+        aria-label={liked ? '已喜欢' : '喜欢这篇'}
+        className="button-secondary w-full px-4 py-3 text-left disabled:cursor-default disabled:opacity-80"
       >
         <span
-          ref={heartRef}
-          aria-hidden
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-[var(--accent-strong)]"
           style={{
-            display: 'inline-block',
-            fontSize: '1.1rem',
-            lineHeight: 1,
-            transform: animating ? 'scale(1.3)' : 'scale(1)',
-            transition: animating ? 'transform 0.15s ease-out' : 'transform 0.25s ease-in',
-            willChange: 'transform',
+            background: liked ? 'var(--accent-soft)' : 'transparent',
+            transform: animating ? 'scale(1.15)' : 'scale(1)',
           }}
         >
-          ❤️
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill={liked ? 'currentColor' : 'none'}
+            stroke="currentColor"
+            strokeWidth="1.8"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12 20.8s-7-4.2-9.2-8.8A5.8 5.8 0 0 1 12 5.2 5.8 5.8 0 0 1 21.2 12c-2.2 4.6-9.2 8.8-9.2 8.8Z" />
+          </svg>
         </span>
-        <span
-          style={{
-            minWidth: '1.5ch',
-            textAlign: 'center',
-            fontVariantNumeric: 'tabular-nums',
-          }}
-        >
-          {likes === null ? '—' : likes}
+
+        <span className="flex min-w-0 flex-1 items-center justify-between gap-3">
+          <span className="min-w-0">
+            <span className="block text-sm font-semibold text-[var(--fg)]">
+              {liked ? '谢谢你留下回应' : '喜欢这篇文章'}
+            </span>
+            <span className="block text-xs leading-6 text-[var(--muted-fg)]">
+              {liked ? '这份喜欢已经被记下来了。' : '点一下，给这篇内容一个小小的心跳。'}
+            </span>
+          </span>
+
+          <span className="rounded-full bg-[var(--accent-softer)] px-3 py-1 text-sm font-semibold text-[var(--accent-strong)]">
+            {likes === null ? '...' : likes}
+          </span>
         </span>
       </button>
     </div>

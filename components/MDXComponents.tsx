@@ -15,45 +15,45 @@ export function Pre({ children, ...props }: CodeBlockProps) {
 
   const handleCopy = async () => {
     if (!preRef.current) return
+
     const code = preRef.current.querySelector('code')?.innerText || ''
+
     try {
       await navigator.clipboard.writeText(code)
       setCopied(true)
       setTimeout(() => setCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy!', err)
+    } catch (error) {
+      console.error('Failed to copy code block', error)
     }
   }
 
   return (
-    <div className="relative group/code my-6 overflow-hidden rounded-[var(--radius-md)] border border-[var(--border)] bg-[#0d1117]">
-      {/* Header / Window Bar */}
-      <div className="flex items-center justify-between px-4 py-2.5 bg-[#161b22] border-b border-[#30363d]">
-        <div className="flex items-center gap-1.5">
-          <div className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#ffbd2e]" />
-          <div className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-          <span className="ml-2 text-[10px] font-bold text-[#8b949e] uppercase tracking-widest">
+    <div className="my-8 overflow-hidden rounded-[28px] border border-[var(--border-strong)] bg-[#07110b] shadow-[0_0_40px_rgba(48,164,84,0.12)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[rgba(99,255,142,0.12)] px-4 py-3 text-[var(--fg)]">
+        <div className="flex items-center gap-2">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#45d87a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#74d7aa]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#b8ffca]" />
+          <span className="ml-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
             {language}
           </span>
         </div>
-        
+
         <button
           onClick={handleCopy}
-          className="flex items-center gap-1.5 px-2 py-1 rounded-md text-[11px] font-medium transition-all duration-200 
-            text-[#8b949e] hover:text-white hover:bg-[#30363d] active:scale-95"
-          aria-label="Copy code"
+          className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[rgba(99,255,142,0.06)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--fg)] transition-colors duration-200 hover:bg-[rgba(99,255,142,0.12)]"
+          aria-label="复制代码"
         >
           {copied ? (
             <>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" className="text-[#28c840]">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="20 6 9 17 4 12" />
               </svg>
               <span>已复制</span>
             </>
           ) : (
             <>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
                 <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
               </svg>
@@ -63,11 +63,10 @@ export function Pre({ children, ...props }: CodeBlockProps) {
         </button>
       </div>
 
-      {/* Code Content */}
       <pre
         ref={preRef}
         {...props}
-        className="m-0 p-4 pt-4 pb-4 overflow-x-auto text-[13px] sm:text-[14px] leading-relaxed scrollbar-thin scrollbar-thumb-[#30363d]"
+        className="m-0 overflow-x-auto px-0 py-4 text-[13px] leading-7 text-[#e6ffed] sm:text-[14px]"
       >
         {children}
       </pre>

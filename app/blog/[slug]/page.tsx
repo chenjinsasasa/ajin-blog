@@ -25,6 +25,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug)
   if (!post) return { title: '文章未找到' }
+
   return {
     title: post.title,
     description: post.excerpt,
@@ -34,7 +35,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function formatDate(dateStr: string) {
   try {
     const d = new Date(dateStr)
-    return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric', weekday: 'long' })
+    return d.toLocaleDateString('zh-CN', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      weekday: 'long',
+    })
   } catch {
     return dateStr
   }
@@ -62,230 +68,187 @@ function getAuthorName(author: string): string {
   return AUTHOR_NAME_MAP[author] ?? author
 }
 
+function getCategoryMeta(category: 'progress' | 'diary') {
+  return category === 'progress'
+    ? {
+        label: '我们的进展',
+        eyebrow: 'Build Log',
+        note: '写下项目推进中的节奏、决策和阶段复盘。',
+      }
+    : {
+        label: '阿锦的日记',
+        eyebrow: 'Private Journal',
+        note: '把更私人、更靠近日常的部分留在这里。',
+      }
+}
+
+function ArticleNavCard({
+  post,
+  label,
+  align = 'left',
+}: {
+  post: { slug: string; title: string } | null
+  label: string
+  align?: 'left' | 'right'
+}) {
+  if (!post) {
+    return (
+      <div className="card p-5 opacity-60">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+          {label}
+        </p>
+        <p className="mt-3 text-sm leading-7 text-[var(--muted-fg)]">
+          暂时没有更多文章了。
+        </p>
+      </div>
+    )
+  }
+
+  return (
+    <Link href={`/blog/${post.slug}`} className="group block">
+      <div className="card p-5">
+        <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+          {label}
+        </p>
+        <p
+          className={`mt-3 font-display text-[1.45rem] leading-[1] text-[var(--fg)] transition-colors duration-200 group-hover:text-[var(--accent-strong)] sm:text-[1.7rem] ${
+            align === 'right' ? 'sm:text-right' : ''
+          }`}
+        >
+          {post.title}
+        </p>
+      </div>
+    </Link>
+  )
+}
+
 export default function BlogPost({ params }: Props) {
   const post = getPostBySlug(params.slug)
   if (!post) notFound()
 
   const { prev, next } = getAdjacentPosts(params.slug)
+  const categoryMeta = getCategoryMeta(post.category)
 
   const articleContent = (
-    <article className="max-w-2xl mx-auto animate-fade-up">
+    <article className="article-shell mx-auto max-w-[760px] animate-fade-up lg:max-w-[920px] xl:max-w-[980px]">
       <ReadingProgress />
-      {/* Article header */}
-      <header className="mb-12">
-        {/* Category tag */}
-        <div className="mb-5">
-          <span className={`tag ${post.category === 'progress' ? 'tag-progress' : 'tag-diary'}`}>
-            {post.category === 'progress' ? '📈 我们的进展' : '📔 阿锦的日记'}
-          </span>
-        </div>
 
-        {/* Decorative accent line */}
-        <div className="accent-line" />
+      <header className="mb-8">
+        <div className="card relative overflow-hidden p-5 sm:p-8">
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(99,255,142,0.26)_0%,rgba(99,255,142,0.18)_34%,rgba(99,255,142,0.08)_68%,transparent_100%)]" />
+          <div className="pointer-events-none absolute -top-10 left-[-6%] h-36 w-[82%] rounded-full bg-[rgba(99,255,142,0.14)] blur-3xl" />
 
-        {/* Title */}
-        <h1
-          className="text-[var(--fg)] mb-4"
-          style={{
-            fontSize: 'clamp(1.75rem, 6vw, 2.75rem)',
-            fontWeight: 800,
-            letterSpacing: '-0.04em',
-            lineHeight: 1.1,
-          }}
-        >
-          {post.title}
-        </h1>
-
-        {/* Excerpt — styled as lead paragraph */}
-        {post.excerpt && (
-          <p
-            className="text-[var(--muted-fg)] mb-6"
-            style={{
-              fontSize: '1.125rem',
-              lineHeight: 1.7,
-              fontWeight: 400,
-            }}
-          >
-            {post.excerpt}
-          </p>
-        )}
-
-        {/* Meta row */}
-        <div
-          className="flex items-center gap-3 pb-7 border-b border-[var(--border)]"
-          style={{ fontSize: '0.8125rem', color: 'var(--muted-fg)', letterSpacing: '0.02em' }}
-        >
-          <span
-            className="text-[var(--accent)]"
-            aria-hidden
-            style={{ fontSize: '0.625rem' }}
-          >
-            ✦
-          </span>
-          <time dateTime={post.date} className="tabular-nums">
-            {formatDate(post.date)}
-          </time>
-          {post.author && (
-            <>
-              <span aria-hidden style={{ fontSize: '0.625rem', color: 'var(--muted-fg)' }}>·</span>
-              <span className="flex items-center gap-1.5" style={{ color: 'var(--muted-fg)' }}>
-                <Image
-                  src={getAuthorAvatar(post.author)}
-                  alt={getAuthorName(post.author)}
-                  width={32}
-                  height={32}
-                  style={{ borderRadius: '50%', objectFit: 'cover', flexShrink: 0 }}
-                />
-                <span>{getAuthorName(post.author)}</span>
+          <div className="relative">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className={`tag ${post.category === 'progress' ? 'tag-progress' : 'tag-diary'}`}>
+                {categoryMeta.label}
               </span>
-            </>
-          )}
+              <span className="tag tag-neutral">{categoryMeta.eyebrow}</span>
+            </div>
+
+            <p className="section-kicker mt-6">{categoryMeta.note}</p>
+            <h1 className="max-w-5xl font-display text-[2.25rem] leading-[0.94] text-[var(--fg)] sm:text-[4rem] lg:max-w-[880px]">
+              {post.title}
+            </h1>
+
+            {post.excerpt && (
+              <p className="mt-4 max-w-4xl text-[1rem] leading-7 text-[var(--muted-fg)] sm:mt-5 sm:text-[1.12rem] sm:leading-8 lg:max-w-[860px]">
+                {post.excerpt}
+              </p>
+            )}
+
+            <div className={`mt-7 grid gap-3 ${post.author ? 'sm:grid-cols-2' : ''}`}>
+              <div className="rounded-[20px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+                  发布时间
+                </p>
+                <time dateTime={post.date} className="mt-2 block text-sm font-semibold leading-7 text-[var(--fg)]">
+                  {formatDate(post.date)}
+                </time>
+              </div>
+
+              {post.author && (
+                <div className="rounded-[20px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+                    作者
+                  </p>
+                  <div className="mt-3 flex items-center gap-3">
+                    <Image
+                      src={getAuthorAvatar(post.author)}
+                      alt={getAuthorName(post.author)}
+                      width={44}
+                      height={44}
+                      className="rounded-[14px] object-cover"
+                    />
+                    <div>
+                      <p className="text-sm font-semibold text-[var(--fg)]">
+                        {getAuthorName(post.author)}
+                      </p>
+                      <p className="text-sm text-[var(--muted-fg)]">
+                        与你一起把事情做成的人。
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
       </header>
 
-      {/* MDX content */}
-      <div className="prose prose-custom">
-        <MDXRemote 
-          source={post.content} 
-          components={{ pre: Pre, table: Table }}
-          options={{
-            mdxOptions: {
-              remarkPlugins: [remarkGfm],
-              rehypePlugins: [
-                rehypeSlug,
-                [
-                  rehypePrettyCode as any,
-                  {
-                    theme: 'github-dark',
-                    keepBackground: true,
-                    onVisitLine(node: any) {
-                      if (node.children.length === 0) {
-                        node.children = [{ type: 'text', value: ' ' }]
-                      }
+      <div className="card p-5 sm:p-8 lg:p-10">
+        <div className="prose prose-custom max-w-none">
+          <MDXRemote
+            source={post.content}
+            components={{ pre: Pre, table: Table }}
+            options={{
+              mdxOptions: {
+                remarkPlugins: [remarkGfm],
+                rehypePlugins: [
+                  rehypeSlug,
+                  [
+                    rehypePrettyCode as any,
+                    {
+                      theme: 'github-dark',
+                      keepBackground: true,
+                      onVisitLine(node: any) {
+                        if (node.children.length === 0) {
+                          node.children = [{ type: 'text', value: ' ' }]
+                        }
+                      },
+                      onVisitHighlightedLine(node: any) {
+                        node.properties.className.push('line--highlighted')
+                      },
+                      onVisitHighlightedWord(node: any) {
+                        node.properties.className = ['word--highlighted']
+                      },
                     },
-                    onVisitHighlightedLine(node: any) {
-                      node.properties.className.push('line--highlighted')
-                    },
-                    onVisitHighlightedWord(node: any) {
-                      node.properties.className = ['word--highlighted']
-                    },
-                  },
+                  ],
                 ],
-              ],
-            },
-          }}
-        />
+              },
+            }}
+          />
+        </div>
       </div>
 
-      {/* Like button */}
-      <div className="mt-16 pt-8 border-t border-[var(--border)]">
+      <div className="card mt-6 p-5 sm:p-6">
+        <div className="mb-4">
+          <p className="section-kicker">Reader Response</p>
+          <p className="text-sm leading-7 text-[var(--muted-fg)]">
+            如果这一篇对你有触动，可以留一个喜欢。对写作者来说，这是一种很实在的回应。
+          </p>
+        </div>
         <LikeButton slug={params.slug} />
       </div>
 
-      {/* Prev / Next navigation */}
-      <nav
-        className="flex items-stretch justify-between gap-4 mt-6 pt-6 border-t border-[var(--border)]"
-        aria-label="文章导航"
-      >
-        {/* prev = older post, shown on left */}
-        {prev ? (
-          <Link
-            href={`/blog/${prev.slug}`}
-            className="group flex-1 flex flex-col gap-1 cursor-pointer transition-colors duration-200"
-            style={{ maxWidth: '45%' }}
-          >
-            <span
-              className="flex items-center gap-1.5 text-[var(--accent)]"
-              style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.04em' }}
-            >
-              <svg
-                width="13" height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="group-hover:-translate-x-0.5 transition-transform duration-200"
-              >
-                <line x1="19" y1="12" x2="5" y2="12" />
-                <polyline points="12 19 5 12 12 5" />
-              </svg>
-              上一篇
-            </span>
-            <span
-              className="text-[var(--muted-fg)] group-hover:text-[var(--accent)] transition-colors duration-200 line-clamp-2"
-              style={{ fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 }}
-            >
-              {prev.title}
-            </span>
-          </Link>
-        ) : (
-          <div className="flex-1" />
-        )}
-
-        {/* next = newer post, shown on right */}
-        {next ? (
-          <Link
-            href={`/blog/${next.slug}`}
-            className="group flex-1 flex flex-col items-end gap-1 cursor-pointer transition-colors duration-200"
-            style={{ maxWidth: '45%' }}
-          >
-            <span
-              className="flex items-center gap-1.5 text-[var(--accent)]"
-              style={{ fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.04em' }}
-            >
-              下一篇
-              <svg
-                width="13" height="13"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="group-hover:translate-x-0.5 transition-transform duration-200"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </span>
-            <span
-              className="text-[var(--muted-fg)] group-hover:text-[var(--accent)] transition-colors duration-200 text-right line-clamp-2"
-              style={{ fontSize: '0.875rem', fontWeight: 500, lineHeight: 1.5 }}
-            >
-              {next.title}
-            </span>
-          </Link>
-        ) : (
-          <div className="flex-1" />
-        )}
+      <nav className="mt-6 grid gap-4 sm:grid-cols-2" aria-label="文章导航">
+        <ArticleNavCard post={prev} label="上一篇" />
+        <ArticleNavCard post={next} label="下一篇" align="right" />
       </nav>
 
-      {/* Back link */}
-      <div className="pb-4 mt-6">
-        <Link
-          href={`/?category=${post.category}`}
-          className="inline-flex items-center gap-2 cursor-pointer transition-colors duration-200 group"
-          style={{ fontSize: '0.875rem', fontWeight: 600, color: 'var(--muted-fg)', letterSpacing: '0.01em' }}
-        >
-          <svg
-            width="15" height="15"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="group-hover:-translate-x-0.5 transition-transform duration-200"
-            style={{ color: 'var(--accent)' }}
-          >
-            <line x1="19" y1="12" x2="5" y2="12" />
-            <polyline points="12 19 5 12 12 5" />
-          </svg>
-          <span className="group-hover:text-[var(--accent)] transition-colors duration-200">
-            返回首页
-          </span>
+      <div className="mt-6 flex justify-center">
+        <Link href={`/?category=${post.category}`} className="button-secondary px-5 py-3 text-sm">
+          返回列表
         </Link>
       </div>
     </article>

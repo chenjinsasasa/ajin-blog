@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 
 interface Agent {
@@ -204,10 +204,17 @@ function getMillisecondsUntilNextDay(now: Date) {
   return nextDay.getTime() - now.getTime() + 100
 }
 
+function getFallbackLabel(agent: Agent) {
+  return agent.name.slice(0, 1)
+}
+
 export default function AgentsView() {
   const [selected, setSelected] = useState<string | null>(AGENTS[0].id)
+  const [isMobileExpanded, setIsMobileExpanded] = useState(false)
   const [today, setToday] = useState(() => new Date())
-  const selectedAgent = AGENTS.find((a) => a.id === selected) ?? null
+  const avatarRailRef = useRef<HTMLDivElement | null>(null)
+  const avatarRefs = useRef<Record<string, HTMLButtonElement | null>>({})
+  const selectedAgent = AGENTS.find((agent) => agent.id === selected) ?? null
 
   useEffect(() => {
     let timer = 0
@@ -227,219 +234,242 @@ export default function AgentsView() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!selected) return
+
+    const rail = avatarRailRef.current
+    const avatar = avatarRefs.current[selected]
+    if (!rail || !avatar) return
+
+    avatar.scrollIntoView({
+      behavior: 'smooth',
+      block: 'nearest',
+      inline: 'center',
+    })
+  }, [selected])
+
+  useEffect(() => {
+    setIsMobileExpanded(false)
+  }, [selected])
+
   return (
-    <div>
-      {/* 头像列表 */}
-      <div className="flex flex-wrap gap-4 mb-8">
-        {AGENTS.map((agent) => (
-          <button
-            key={agent.id}
-            onClick={() => setSelected(selected === agent.id ? null : agent.id)}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '0.5rem',
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '0.5rem',
-              borderRadius: '0.75rem',
-              transition: 'background 0.15s',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.background = 'var(--muted)')}
-            onMouseLeave={e => (e.currentTarget.style.background = 'none')}
+    <div className="space-y-6">
+      <section className="card p-5 sm:p-6">
+        <div className="flex flex-col gap-4 sm:gap-5">
+          <div
+            ref={avatarRailRef}
+            className="agents-rail scrollbar-none flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 sm:gap-4 sm:pb-2"
           >
-            <div
-              style={{
-                width: 64,
-                height: 64,
-                borderRadius: '50%',
-                overflow: 'hidden',
-                border: selected === agent.id
-                  ? '2.5px solid var(--accent)'
-                  : '2.5px solid var(--border)',
-                transition: 'border-color 0.15s',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'var(--muted)',
-                fontSize: '2rem',
-                flexShrink: 0,
-              }}
-            >
-              {agent.avatar ? (
-                <Image
-                  src={agent.avatar}
-                  alt={agent.name}
-                  width={64}
-                  height={64}
-                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                />
-              ) : (
-                <span>{agent.emoji}</span>
-              )}
-            </div>
-            <span
-              style={{
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                color: selected === agent.id ? 'var(--accent)' : 'var(--muted-fg)',
-                transition: 'color 0.15s',
-                letterSpacing: '0.01em',
-              }}
-            >
-              {agent.name}
-            </span>
-          </button>
-        ))}
-      </div>
+            {AGENTS.map((agent) => {
+              const active = selected === agent.id
 
-      {/* 展开介绍卡片 */}
+              return (
+                <button
+                  key={agent.id}
+                  ref={(node) => {
+                    avatarRefs.current[agent.id] = node
+                  }}
+                  onClick={() => setSelected(agent.id)}
+                  className={`agents-rail__item group flex min-w-[5.9rem] shrink-0 snap-start flex-col items-center rounded-[24px] border px-3 py-3 text-center transition-all duration-200 sm:min-w-[6.8rem] sm:px-4 ${
+                    active
+                      ? 'border-[var(--accent)] bg-[var(--accent-softer)]'
+                      : 'border-[var(--border)] bg-[var(--panel-soft)]'
+                  }`}
+                >
+                  <div className="agents-rail__avatar relative h-16 w-16 overflow-hidden rounded-[20px] border border-[var(--border)] bg-[var(--muted)] sm:h-20 sm:w-20">
+                    {agent.avatar ? (
+                      <Image
+                        src={agent.avatar}
+                        alt={agent.name}
+                        fill
+                        sizes="80px"
+                        quality={60}
+                        className="object-cover"
+                      />
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center font-display text-3xl text-[var(--accent-strong)]">
+                        {getFallbackLabel(agent)}
+                      </div>
+                    )}
+                  </div>
+
+                  <span className="agents-rail__name mt-3 font-display text-[1.4rem] leading-none text-[var(--fg)]">
+                    {agent.name}
+                  </span>
+                  <span className="agents-rail__meta mt-2 rounded-full border border-[var(--border)] px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+                    {agent.mbti}
+                  </span>
+                </button>
+              )
+            })}
+          </div>
+        </div>
+      </section>
+
       {selectedAgent && (
-        <div
-          className="card p-5 sm:p-6"
-          style={{
-            border: '1.5px solid color-mix(in srgb, var(--accent) 30%, var(--border))',
-            marginBottom: '2rem',
-            animation: 'fade-up 0.2s ease both',
-          }}
-        >
-          <div className="flex items-start gap-4">
-            {/* 大头像 */}
-            <div
-              style={{
-                width: 60,
-                height: 60,
-                borderRadius: '50%',
-                overflow: 'hidden',
-                border: '2px solid var(--accent)',
-                flexShrink: 0,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'var(--muted)',
-                fontSize: '1.75rem',
-              }}
-            >
-              {selectedAgent.avatar ? (
-                <Image
-                  src={selectedAgent.avatar}
-                  alt={selectedAgent.name}
-                  width={60}
-                  height={60}
-                  style={{ objectFit: 'cover', width: '100%', height: '100%' }}
-                />
-              ) : (
-                <span>{selectedAgent.emoji}</span>
-              )}
-            </div>
-
-            <div className="flex flex-col gap-3 min-w-0 flex-1">
-              {/* 名字 + 职位 */}
-              <div>
-                <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
-                  <span style={{ fontSize: '1.0625rem', fontWeight: 700, color: 'var(--fg)', letterSpacing: '-0.02em' }}>
-                    {selectedAgent.name}
-                  </span>
-                  <span style={{ fontSize: '0.8125rem', color: 'var(--accent)', fontWeight: 500 }}>
-                    {selectedAgent.role}
-                  </span>
-                </div>
-                <p style={{ fontSize: '0.875rem', color: 'var(--muted-fg)', lineHeight: 1.65, margin: 0 }}>
-                  {selectedAgent.desc}
-                </p>
+        <article className="agents-detail-card card p-5 sm:p-8 lg:p-10">
+          <div className="agents-mobile-summary rounded-[24px] border border-[var(--border)] bg-[var(--panel-soft)] p-4 lg:hidden">
+            <div className="flex items-start gap-4">
+              <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-[22px] border border-[var(--border)] bg-[var(--muted)]">
+                {selectedAgent.avatar ? (
+                  <Image
+                    src={selectedAgent.avatar}
+                    alt={selectedAgent.name}
+                    fill
+                    sizes="80px"
+                    priority
+                    quality={70}
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center font-display text-4xl text-[var(--accent-strong)]">
+                    {getFallbackLabel(selectedAgent)}
+                  </div>
+                )}
               </div>
 
-              {/* 基本信息行 */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(140px, 1fr))',
-                  gap: '0.5rem 1.5rem',
-                  fontSize: '0.8125rem',
-                  color: 'var(--muted-fg)',
-                }}
-              >
-                <div className="flex items-center gap-1.5">
-                  <span style={{ opacity: 0.6 }}>性别</span>
-                  <span style={{ color: 'var(--fg)', fontWeight: 500 }}>
-                    {selectedAgent.gender === '女' ? '♀ 女' : '♂ 男'}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span style={{ opacity: 0.6 }}>生日</span>
-                  <span style={{ color: 'var(--fg)', fontWeight: 500 }}>
-                    {formatBirthday(selectedAgent.birthday)}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span style={{ opacity: 0.6 }}>年龄</span>
-                  <span suppressHydrationWarning style={{ color: 'var(--fg)', fontWeight: 500 }}>
-                    {calcAge(selectedAgent.birthday, today)}
-                  </span>
-                </div>
-                <div className="flex items-center gap-1.5">
-                  <span style={{ opacity: 0.6 }}>MBTI</span>
-                  <span
-                    style={{
-                      color: 'var(--accent)',
-                      fontWeight: 700,
-                      letterSpacing: '0.05em',
-                      fontSize: '0.8125rem',
-                    }}
-                  >
+              <div className="min-w-0 flex-1">
+                <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
+                  Active Profile
+                </p>
+                <div className="mt-2 flex flex-wrap items-center gap-2">
+                  <h3 className="font-display text-[2rem] leading-[0.94] text-[var(--fg)]">
+                    {selectedAgent.name}
+                  </h3>
+                  <span className="rounded-full bg-[var(--accent-soft)] px-2.5 py-1 text-xs font-semibold text-[var(--accent-strong)]">
                     {selectedAgent.mbti}
                   </span>
                 </div>
+                <p className="mt-2 text-sm leading-6 text-[var(--muted-fg)]">
+                  {selectedAgent.role}
+                </p>
               </div>
+            </div>
 
-              {/* 爱好 */}
-              <div>
-                <span style={{ fontSize: '0.75rem', color: 'var(--muted-fg)', opacity: 0.6, marginBottom: '0.375rem', display: 'block' }}>
-                  爱好
+            <div className="mt-4 flex flex-wrap gap-2">
+              {selectedAgent.tags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-[var(--border)] px-3 py-1.5 text-sm font-semibold text-[var(--secondary)]"
+                >
+                  {tag}
                 </span>
-                <div className="flex flex-wrap gap-1.5">
-                  {selectedAgent.hobbies.map((h) => (
-                    <span
-                      key={h}
-                      style={{
-                        padding: '0.15rem 0.55rem',
-                        borderRadius: '0.375rem',
-                        background: 'var(--muted)',
-                        color: 'var(--fg)',
-                        fontSize: '0.75rem',
-                        fontWeight: 500,
-                      }}
-                    >
-                      {h}
-                    </span>
-                  ))}
-                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:gap-8 lg:grid-cols-[180px_minmax(0,1fr)]">
+            <div className="hidden space-y-4 text-center lg:block lg:text-left">
+              <div className="relative mx-auto h-28 w-28 overflow-hidden rounded-[26px] border border-[var(--border)] bg-[var(--muted)] sm:h-36 sm:w-36 sm:rounded-[30px] lg:mx-0">
+                {selectedAgent.avatar ? (
+                  <Image
+                    src={selectedAgent.avatar}
+                    alt={selectedAgent.name}
+                    fill
+                    sizes="144px"
+                    priority
+                    quality={70}
+                    className="object-cover"
+                  />
+                ) : (
+                  <div className="flex h-full w-full items-center justify-center font-display text-5xl text-[var(--accent-strong)]">
+                    {getFallbackLabel(selectedAgent)}
+                  </div>
+                )}
               </div>
 
-              {/* 技能标签 */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="rounded-[24px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+                  Team Role
+                </p>
+                <p className="mt-2 text-sm leading-7 text-[var(--muted-fg)]">
+                  {selectedAgent.role}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-2 lg:justify-start">
                 {selectedAgent.tags.map((tag) => (
                   <span
                     key={tag}
-                    style={{
-                      padding: '0.15rem 0.55rem',
-                      borderRadius: '0.375rem',
-                      background: 'color-mix(in srgb, var(--accent) 10%, transparent)',
-                      border: '1px solid color-mix(in srgb, var(--accent) 20%, transparent)',
-                      color: 'var(--accent)',
-                      fontSize: '0.72rem',
-                      fontWeight: 600,
-                    }}
+                    className="rounded-full border border-[var(--border)] px-3 py-1.5 text-sm font-semibold text-[var(--secondary)]"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
             </div>
+
+            <div>
+              <p className="section-kicker hidden lg:inline-flex">Agent Profile</p>
+              <div className="hidden flex-col items-start gap-3 lg:flex lg:flex-row lg:flex-wrap lg:items-end">
+                <h3 className="font-display text-[2.2rem] leading-[0.94] text-[var(--fg)] sm:text-[3.4rem]">
+                  {selectedAgent.name}
+                </h3>
+                <span className="rounded-full bg-[var(--accent-soft)] px-3 py-1 text-sm font-semibold text-[var(--accent-strong)]">
+                  {selectedAgent.mbti}
+                </span>
+              </div>
+
+              <p className="mt-3 hidden text-[0.98rem] leading-7 text-[var(--muted-fg)] lg:block lg:text-[1.02rem] lg:leading-8">
+                {selectedAgent.role}
+              </p>
+
+              <div className="agents-stats-grid mt-5 grid gap-3 sm:mt-6 sm:grid-cols-2">
+                <div className="rounded-[20px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">生日</p>
+                  <p className="mt-2 text-sm font-semibold text-[var(--fg)]">{formatBirthday(selectedAgent.birthday)}</p>
+                </div>
+                <div className="rounded-[20px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">年龄</p>
+                  <p suppressHydrationWarning className="mt-2 text-sm font-semibold text-[var(--fg)]">
+                    {calcAge(selectedAgent.birthday, today)}
+                  </p>
+                </div>
+                <div className="rounded-[20px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">性别</p>
+                  <p className="mt-2 text-sm font-semibold text-[var(--fg)]">{selectedAgent.gender}</p>
+                </div>
+                <div className="rounded-[20px] border border-[var(--border)] bg-[var(--panel-soft)] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">偏好领域</p>
+                  <p className="mt-2 text-sm font-semibold text-[var(--fg)]">{selectedAgent.tags.join(' / ')}</p>
+                </div>
+              </div>
+
+              <div className={`agents-bio mt-5 space-y-3 sm:mt-6 sm:space-y-4 ${isMobileExpanded ? 'agents-bio--expanded' : 'agents-bio--collapsed'}`}>
+                {selectedAgent.desc.split('\n\n').map((paragraph) => (
+                  <p key={paragraph} className="agents-bio__paragraph text-[0.96rem] leading-7 text-[var(--muted-fg)] sm:text-[0.98rem] sm:leading-8">
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setIsMobileExpanded((prev) => !prev)}
+                className="button-secondary mt-4 px-4 py-2 text-xs sm:hidden"
+                aria-expanded={isMobileExpanded}
+              >
+                {isMobileExpanded ? '收起完整档案' : '展开完整档案'}
+              </button>
+
+              <div className={`agents-hobbies mt-5 sm:mt-6 ${isMobileExpanded ? 'agents-hobbies--expanded' : 'agents-hobbies--collapsed'}`}>
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-[var(--muted-fg)]">
+                  爱好
+                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {selectedAgent.hobbies.map((hobby) => (
+                    <span
+                      key={hobby}
+                      className="rounded-full border border-[var(--border)] bg-[var(--panel-soft)] px-3 py-1.5 text-sm text-[var(--secondary)]"
+                    >
+                      {hobby}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
       )}
     </div>
   )
