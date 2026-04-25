@@ -1,17 +1,24 @@
 import type { Metadata } from 'next'
+import Link from 'next/link'
+import { Suspense } from 'react'
 import './globals.css'
 import { Providers } from '@/components/Providers'
 import { Header } from '@/components/Header'
 import { MobileNav } from '@/components/MobileNav'
-import { Suspense } from 'react'
 
 export const metadata: Metadata = {
   title: {
     default: '阿锦的博客',
     template: '%s | 阿锦的博客',
   },
-  description: '记录日常、分享成长，写给自己和你的碎碎念。',
-  icons: { icon: '/favicon.ico' },
+  description: '阿锦的终端式博客。记录进展、团队和那些不想被时间吞掉的日常片段。',
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '512x512' },
+    ],
+    apple: '/apple-icon.png',
+  },
 }
 
 export default function RootLayout({
@@ -19,32 +26,30 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const currentYear = new Date().getFullYear()
+
   return (
     <html lang="zh-CN" suppressHydrationWarning>
-      <head />
       <body>
         <Providers>
           <Suspense fallback={null}>
             <Header />
           </Suspense>
-          <main className="max-w-3xl mx-auto px-4 sm:px-6 py-10 min-h-[calc(100vh-8rem)] pb-safe">
-            {children}
-          </main>
+          <main className="section-shell main-frame">{children}</main>
           <Suspense fallback={null}>
             <MobileNav />
           </Suspense>
-          <footer className="border-t border-[var(--border)] py-8 mt-16">
-            <div className="max-w-3xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-3"
-              style={{ fontSize: '0.8125rem', color: 'var(--muted-fg)' }}>
-              <div className="flex items-center gap-2">
-                <span className="text-[var(--accent)]" style={{ fontSize: '0.625rem' }}>✦</span>
-                <span className="font-semibold text-[var(--fg)]" style={{ letterSpacing: '-0.01em' }}>
-                  阿锦的博客
-                </span>
+          <footer className="site-footer">
+            <div className="section-shell site-footer__inner">
+              <div className="site-footer__brand">
+                <p className="site-footer__title">ajin.blog</p>
+                <p>build + diary archive / © {currentYear}</p>
               </div>
-              <div className="flex items-center gap-2 opacity-70" style={{ letterSpacing: '0.01em' }}>
-                <span>用心写，认真活</span>
-                <span className="text-[var(--accent)]">🌸</span>
+
+              <div className="site-footer__links">
+                <Link href="/">archive</Link>
+                <Link href="/?category=progress">progress</Link>
+                <Link href="/?category=team">agents</Link>
               </div>
             </div>
           </footer>
