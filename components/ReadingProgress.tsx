@@ -26,7 +26,7 @@ export default function ReadingProgress() {
   return (
     <div className="pointer-events-none fixed left-0 top-0 z-[60] h-1 w-full bg-transparent" aria-hidden="true">
       <div
-        className="h-full rounded-r-full bg-[linear-gradient(90deg,var(--accent),var(--accent-strong))] shadow-[0_0_16px_rgba(99,255,142,0.28)] transition-[width] duration-150 ease-out"
+        className="h-full rounded-r-full bg-[linear-gradient(90deg,var(--accent),var(--accent-strong))] shadow-[0_0_16px_rgba(188,155,106,0.28)] transition-[width] duration-150 ease-out"
         style={{ width: `${completion}%` }}
       />
     </div>

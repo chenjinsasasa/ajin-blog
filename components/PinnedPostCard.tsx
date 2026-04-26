@@ -18,7 +18,7 @@ export function PinnedPostCard({ post }: { post: PostMeta }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
       <article className="pinned-post-card card relative overflow-hidden p-5 sm:p-8">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(180deg,rgba(99,255,142,0.18)_0%,rgba(99,255,142,0.1)_42%,transparent_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(180deg,rgba(188,155,106,0.18)_0%,rgba(188,155,106,0.1)_42%,transparent_100%)]" />
 
         <div className="relative grid gap-5 sm:gap-6 lg:grid-cols-[minmax(0,1.45fr)_220px] lg:items-start">
           <div>

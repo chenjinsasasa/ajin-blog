@@ -135,8 +135,8 @@ export default function BlogPost({ params }: Props) {
 
       <header className="mb-8">
         <div className="card relative overflow-hidden p-5 sm:p-8">
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(99,255,142,0.26)_0%,rgba(99,255,142,0.18)_34%,rgba(99,255,142,0.08)_68%,transparent_100%)]" />
-          <div className="pointer-events-none absolute -top-10 left-[-6%] h-36 w-[82%] rounded-full bg-[rgba(99,255,142,0.14)] blur-3xl" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(188,155,106,0.24)_0%,rgba(188,155,106,0.16)_34%,rgba(188,155,106,0.08)_68%,transparent_100%)]" />
+          <div className="pointer-events-none absolute -top-10 left-[-6%] h-36 w-[82%] rounded-full bg-[rgba(188,155,106,0.14)] blur-3xl" />
 
           <div className="relative">
             <div className="flex flex-wrap items-center gap-2">

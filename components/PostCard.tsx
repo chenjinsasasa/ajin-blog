@@ -18,7 +18,7 @@ export function PostCard({ post }: { post: PostMeta }) {
   return (
     <Link href={`/blog/${post.slug}`} className="group block">
       <article className="post-card card relative overflow-hidden p-5 sm:p-7">
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(99,255,142,0.16)_0%,rgba(99,255,142,0.08)_42%,transparent_100%)]" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(188,155,106,0.16)_0%,rgba(188,155,106,0.08)_42%,transparent_100%)]" />
 
         <div className="relative">
           <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between">

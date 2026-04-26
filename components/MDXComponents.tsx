@@ -28,12 +28,12 @@ export function Pre({ children, ...props }: CodeBlockProps) {
   }
 
   return (
-    <div className="my-8 overflow-hidden rounded-[28px] border border-[var(--border-strong)] bg-[#07110b] shadow-[0_0_40px_rgba(48,164,84,0.12)]">
-      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[rgba(99,255,142,0.12)] px-4 py-3 text-[var(--fg)]">
+    <div className="my-8 overflow-hidden rounded-[28px] border border-[var(--border-strong)] bg-[#14110d] shadow-[0_24px_48px_rgba(20,14,7,0.16)]">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[rgba(188,155,106,0.12)] px-4 py-3 text-[var(--fg)]">
         <div className="flex items-center gap-2">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#45d87a]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#74d7aa]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#b8ffca]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#8b7140]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#bc9b6a]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#f2eadc]" />
           <span className="ml-2 text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--text-muted)]">
             {language}
           </span>
@@ -41,7 +41,7 @@ export function Pre({ children, ...props }: CodeBlockProps) {
 
         <button
           onClick={handleCopy}
-          className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[rgba(99,255,142,0.06)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--fg)] transition-colors duration-200 hover:bg-[rgba(99,255,142,0.12)]"
+          className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[rgba(188,155,106,0.06)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--fg)] transition-colors duration-200 hover:bg-[rgba(188,155,106,0.12)]"
           aria-label="复制代码"
         >
           {copied ? (
@@ -66,7 +66,7 @@ export function Pre({ children, ...props }: CodeBlockProps) {
       <pre
         ref={preRef}
         {...props}
-        className="m-0 overflow-x-auto px-0 py-4 text-[13px] leading-7 text-[#e6ffed] sm:text-[14px]"
+        className="m-0 overflow-x-auto px-0 py-4 text-[13px] leading-7 text-[#f2eadc] sm:text-[14px]"
       >
         {children}
       </pre>
