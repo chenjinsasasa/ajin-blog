@@ -3,6 +3,11 @@
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
+const OFFICIAL_SITE = {
+  label: 'Official',
+  href: 'https://chenjin.ai',
+}
+
 const TABS = [
   { label: 'Archive', value: '', href: '/' },
   { label: 'Progress', value: 'progress', href: '/?category=progress' },
@@ -49,6 +54,14 @@ export function Header() {
                   </Link>
                 )
               })}
+              <a
+                href={OFFICIAL_SITE.href}
+                target="_blank"
+                rel="noreferrer"
+                className="site-nav__pill"
+              >
+                {OFFICIAL_SITE.label}
+              </a>
             </nav>
           </>
         ) : (
@@ -56,6 +69,10 @@ export function Header() {
             <Link href="/">archive</Link>
             <span>/</span>
             <span>{onArticlePage ? 'article' : 'page'}</span>
+            <span>/</span>
+            <a href={OFFICIAL_SITE.href} target="_blank" rel="noreferrer">
+              official
+            </a>
           </div>
         )}
       </div>

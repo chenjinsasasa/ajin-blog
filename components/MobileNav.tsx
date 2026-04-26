@@ -3,6 +3,11 @@
 import Link from 'next/link'
 import { usePathname, useSearchParams } from 'next/navigation'
 
+const OFFICIAL_SITE = {
+  label: 'Official',
+  href: 'https://chenjin.ai',
+}
+
 const NAV_ITEMS = [
   {
     label: 'Archive',
@@ -50,6 +55,20 @@ const NAV_ITEMS = [
       </svg>
     ),
   },
+  {
+    label: OFFICIAL_SITE.label,
+    value: 'official',
+    href: OFFICIAL_SITE.href,
+    external: true,
+    icon: (
+      <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="8.5" />
+        <path d="M3.5 12h17" />
+        <path d="M12 3.5a14.5 14.5 0 0 1 0 17" />
+        <path d="M12 3.5a14.5 14.5 0 0 0 0 17" />
+      </svg>
+    ),
+  },
 ]
 
 export function MobileNav() {
@@ -61,14 +80,31 @@ export function MobileNav() {
     <div className="mobile-nav lg:hidden">
       <nav className="mobile-nav__inner">
         {NAV_ITEMS.map((item) => {
-          const isActive = pathname === '/' && currentCategory === item.value
+          const isActive = !item.external && pathname === '/' && currentCategory === item.value
+
+          const className = `mobile-nav__item ${isActive ? 'mobile-nav__item--active' : ''}`
+
+          if (item.external) {
+            return (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noreferrer"
+                className={className}
+              >
+                <span className="mobile-nav__icon" aria-hidden="true">{item.icon}</span>
+                <span className="mobile-nav__label">{item.label}</span>
+              </a>
+            )
+          }
 
           return (
             <Link
               key={item.label}
               href={item.href}
               aria-current={isActive ? 'page' : undefined}
-              className={`mobile-nav__item ${isActive ? 'mobile-nav__item--active' : ''}`}
+              className={className}
             >
               <span className="mobile-nav__icon" aria-hidden="true">{item.icon}</span>
               <span className="mobile-nav__label">{item.label}</span>
