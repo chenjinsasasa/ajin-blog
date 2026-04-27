@@ -1,6 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
+import { getHistoricalCoverByIndex } from '@/lib/historicalCovers'
 
 export type Category = 'all' | 'progress' | 'diary'
 
@@ -11,6 +12,8 @@ export interface PostMeta {
   category: 'progress' | 'diary'
   excerpt: string
   author?: string
+  coverImage?: string
+  fallbackCoverImage?: string
 }
 
 export interface Post extends PostMeta {
@@ -36,16 +39,39 @@ function getFilesRecursive(dir: string): string[] {
   return files
 }
 
-export function getAllPosts(category?: Category): PostMeta[] {
-  const dirs =
-    category && category !== 'all'
-      ? [path.join(contentDir, category)]
-      : [path.join(contentDir, 'progress'), path.join(contentDir, 'diary')]
+function getAllContentFiles(): string[] {
+  const dirs = [path.join(contentDir, 'progress'), path.join(contentDir, 'diary')]
 
   const files: string[] = []
   for (const dir of dirs) {
     files.push(...getFilesRecursive(dir))
   }
+
+  return files
+}
+
+function sortPosts(posts: PostMeta[]): PostMeta[] {
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
+}
+
+function applyHistoricalFallbackCovers(posts: PostMeta[]): PostMeta[] {
+  let fallbackIndex = 0
+
+  return posts.map((post) => {
+    if (post.coverImage) return post
+
+    const fallbackCoverImage = getHistoricalCoverByIndex(fallbackIndex).src
+    fallbackIndex += 1
+
+    return {
+      ...post,
+      fallbackCoverImage,
+    }
+  })
+}
+
+function getResolvedPosts(): PostMeta[] {
+  const files = getAllContentFiles()
 
   const posts: PostMeta[] = files.map((filePath) => {
     const raw = fs.readFileSync(filePath, 'utf-8')
@@ -58,10 +84,21 @@ export function getAllPosts(category?: Category): PostMeta[] {
       category: data.category ?? 'diary',
       excerpt: data.excerpt ?? '',
       author: data.author,
+      coverImage: data.coverImage ?? data.cover ?? data.image,
     }
   })
 
-  return posts.sort((a, b) => (a.date < b.date ? 1 : -1))
+  return applyHistoricalFallbackCovers(sortPosts(posts))
+}
+
+export function getAllPosts(category?: Category): PostMeta[] {
+  const posts = getResolvedPosts()
+
+  if (!category || category === 'all') {
+    return posts
+  }
+
+  return posts.filter((post) => post.category === category)
 }
 
 /** Returns { pinnedPost, posts } where posts excludes the pinned slug */
@@ -80,6 +117,9 @@ export function getPostsWithPinned(category?: Category): {
 }
 
 export function getPostBySlug(slug: string): Post | null {
+  const meta = getResolvedPosts().find((post) => post.slug === slug)
+  if (!meta) return null
+
   const categories = ['progress', 'diary']
   for (const cat of categories) {
     const mdxPath = path.join(contentDir, cat, `${slug}.mdx`)
@@ -91,14 +131,9 @@ export function getPostBySlug(slug: string): Post | null {
       : null
     if (!filePath) continue
     const raw = fs.readFileSync(filePath, 'utf-8')
-    const { data, content } = matter(raw)
+    const { content } = matter(raw)
     return {
-      slug,
-      title: data.title ?? slug,
-      date: data.date ?? '',
-      category: data.category ?? 'diary',
-      excerpt: data.excerpt ?? '',
-      author: data.author,
+      ...meta,
       content,
     }
   }

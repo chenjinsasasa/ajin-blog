@@ -10,7 +10,7 @@ const OFFICIAL_SITE = {
 
 const NAV_ITEMS = [
   {
-    label: 'Archive',
+    label: 'Home',
     value: '',
     href: '/',
     icon: (
@@ -43,7 +43,7 @@ const NAV_ITEMS = [
     ),
   },
   {
-    label: 'Agents',
+    label: 'Team',
     value: 'team',
     href: '/?category=team',
     icon: (

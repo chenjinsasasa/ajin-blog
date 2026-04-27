@@ -1,255 +1,209 @@
-import { getPostsWithPinned, Category } from '@/lib/posts'
+import Image from 'next/image'
+import Link from 'next/link'
 import HomeFrame from '@/components/HomeFrame'
 import PostsView from '@/components/PostsView'
-import DiaryGuard from '@/components/DiaryGuard'
-import { PinnedPostCard } from '@/components/PinnedPostCard'
-import AgentsView from '@/components/AgentsView'
+import { getAllPosts, getPostsWithPinned } from '@/lib/posts'
+import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
 
-const INITIAL_PAGE_SIZE = 4
+const INITIAL_PAGE_SIZE = 6
 
-interface HomeProps {
-  searchParams: { category?: string }
-}
-
-type Signal = {
-  label: string
-  value: string
-}
-
-type RuntimeLine = {
-  id: string
-  command: string
-  result: string
-}
-
-const CATEGORY_COPY: Record<string, {
+function SectionIntro({
+  eyebrow,
+  title,
+  description,
+}: {
   eyebrow: string
   title: string
-  description: string
-  primaryHref: string
-  primaryLabel: string
-  secondaryHref: string
-  secondaryLabel: string
-  featuredTitle: string
-  latestTitle: string
-  signals: (totalCount: number) => Signal[]
-  runtime: RuntimeLine[]
-}> = {
-  all: {
-    eyebrow: 'AJIN.BLOG / BUILD + DIARY ARCHIVE',
-    title: '把进展、日记和团队，写成一份可回看的终端日志。',
-    description: '这里记录在做什么、为什么这样做，以及那些不想被时间吞掉的小片段。',
-    primaryHref: '#archive',
-    primaryLabel: '开始阅读',
-    secondaryHref: '/?category=team',
-    secondaryLabel: '查看团队',
-    featuredTitle: '先从这一篇开始',
-    latestTitle: '最近写下的内容',
-    signals: (totalCount) => [
-      { label: 'Archive', value: `${totalCount} entries` },
-      { label: 'Mode', value: 'progress / diary / agents' },
-      { label: 'Entry', value: '从置顶或最近更新开始' },
-    ],
-    runtime: [
-      { id: '01', command: 'write.progress()', result: '把正在发生的事及时记下。' },
-      { id: '02', command: 'keep.small.days()', result: '给日常留一个不被吞掉的位置。' },
-      { id: '03', command: 'map.the.team()', result: '让人和 AI 的分工始终清楚。' },
-    ],
-  },
-  progress: {
-    eyebrow: 'BUILD LOG / ACTIVE DECISIONS',
-    title: '把正在推进的东西，按时间写成可追踪记录。',
-    description: '这里更靠近工作现场。会写设计判断、实现过程、版本变化和阶段复盘。',
-    primaryHref: '#archive',
-    primaryLabel: '看最近进展',
-    secondaryHref: '/',
-    secondaryLabel: '返回总览',
-    featuredTitle: '置顶入口',
-    latestTitle: '最近的进展记录',
-    signals: (totalCount) => [
-      { label: 'Archive', value: `${totalCount} progress logs` },
-      { label: 'Focus', value: 'ship / debug / review' },
-      { label: 'Use', value: '适合快速了解最近在做什么' },
-    ],
-    runtime: [
-      { id: '01', command: 'capture.context()', result: '先写清楚背景和约束。' },
-      { id: '02', command: 'record.decisions()', result: '把关键判断留成可回看证据。' },
-      { id: '03', command: 'ship.iteration()', result: '每次只推进一个清楚结果。' },
-    ],
-  },
-  diary: {
-    eyebrow: 'PRIVATE LOG / LOCKED ACCESS',
-    title: '更私人一点，也更靠近当下。',
-    description: '这里写情绪、观察和日常纹理。入口有密码，但气质仍然保持克制和安静。',
-    primaryHref: '#archive',
-    primaryLabel: '进入日记入口',
-    secondaryHref: '/',
-    secondaryLabel: '返回总览',
-    featuredTitle: '先从这一篇开始',
-    latestTitle: '最近的日记',
-    signals: (totalCount) => [
-      { label: 'Archive', value: `${totalCount} private logs` },
-      { label: 'Access', value: 'password protected' },
-      { label: 'State', value: '解锁后保留当前会话' },
-    ],
-    runtime: [
-      { id: '01', command: 'open.quietly()', result: '这部分只对知道密码的人打开。' },
-      { id: '02', command: 'keep.texture()', result: '保留生活里细小但真实的部分。' },
-      { id: '03', command: 'write.honestly()', result: '不过度包装，也不故意煽情。' },
-    ],
-  },
-  team: {
-    eyebrow: 'AGENT MAP / ACTIVE TEAM',
-    title: '这是一支被认真命名，也被认真分工的团队。',
-    description: '每个 Agent 都对应不同职责、边界和做事方式。这页更像一张持续更新的角色地图。',
-    primaryHref: '/?category=team',
-    primaryLabel: '浏览团队',
-    secondaryHref: '/',
-    secondaryLabel: '返回博客',
-    featuredTitle: '',
-    latestTitle: '',
-    signals: () => [
-      { label: 'Mode', value: 'route / build / verify / research' },
-      { label: 'Agents', value: '10 active roles' },
-      { label: 'Entry', value: '先选角色，再看细节' },
-    ],
-    runtime: [
-      { id: '01', command: 'route.roles()', result: '先定义谁负责什么。' },
-      { id: '02', command: 'keep.boundaries()', result: '每个角色都有清楚边界。' },
-      { id: '03', command: 'work.as.team()', result: '不是工具堆叠，而是协作系统。' },
-    ],
-  },
-}
-
-function HeroSection({
-  copy,
-  signals,
-  showMeta = true,
-}: {
-  copy: (typeof CATEGORY_COPY)[keyof typeof CATEGORY_COPY]
-  signals: Signal[]
-  showMeta?: boolean
+  description?: string
 }) {
   return (
-    <section className="hero-shell" data-hero data-reveal="section">
-      <div className={showMeta ? 'hero-grid' : 'hero-grid hero-grid--single'}>
-        <div className="hero-copy">
-          <p className="system-line" data-hero-item>{copy.eyebrow}</p>
-          <h1 className="hero-title" data-hero-item>{copy.title}</h1>
-          <p className="hero-lead" data-hero-item>{copy.description}</p>
-
-          <div className="hero-actions" data-hero-item>
-            <a className="button-primary px-5 py-3 text-sm" href={copy.primaryHref}>
-              {copy.primaryLabel}
-            </a>
-            <a className="button-secondary px-5 py-3 text-sm" href={copy.secondaryHref}>
-              {copy.secondaryLabel}
-            </a>
-          </div>
-
-          {showMeta && (
-            <div className="signal-grid" data-hero-item>
-              {signals.map((signal) => (
-                <article key={signal.label} className="signal-card">
-                  <p className="signal-card__label">{signal.label}</p>
-                  <strong className="signal-card__value">{signal.value}</strong>
-                </article>
-              ))}
-            </div>
-          )}
-        </div>
-
-        {showMeta && (
-          <aside className="terminal-panel" aria-label="当前栏目运行日志" data-hero-item>
-            <div className="terminal-panel__topline">
-              <p className="section-kicker !mb-0">runtime.log</p>
-              <span className="terminal-panel__state">live</span>
-            </div>
-
-            <div className="terminal-lines">
-              {copy.runtime.map((line) => (
-                <div key={line.id} className="terminal-line">
-                  <span className="terminal-line__index">[{line.id}]</span>
-                  <div>
-                    <strong>{line.command}</strong>
-                    <p>{line.result}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </aside>
-        )}
-      </div>
+    <section className="section-intro">
+      <p className="section-intro__eyebrow">{eyebrow}</p>
+      <h2 className="section-intro__title">{title}</h2>
+      {description ? <p className="section-intro__description">{description}</p> : null}
     </section>
   )
 }
 
-export default function Home({ searchParams }: HomeProps) {
-  const rawCategory = searchParams.category
-  const category: Category =
-    rawCategory === 'progress' || rawCategory === 'diary' ? rawCategory : 'all'
-  const isTeam = rawCategory === 'team'
-  const copy = CATEGORY_COPY[rawCategory ?? category] ?? CATEGORY_COPY.all
+function FeatureCard({
+  href,
+  imageSrc,
+  title,
+  buttonLabel,
+  external = false,
+}: {
+  href: string
+  imageSrc: string
+  title: string
+  buttonLabel: string
+  external?: boolean
+}) {
+  const card = (
+    <>
+      <div className="feature-card__media">
+        <Image
+          src={imageSrc}
+          alt={title}
+          fill
+          sizes="(max-width: 767px) 100vw, 50vw"
+          className="feature-card__image"
+        />
+      </div>
+      <div className="feature-card__body">
+        <h3 className="feature-card__title">{title}</h3>
+        <span className="feature-card__cta">{buttonLabel}</span>
+      </div>
+    </>
+  )
 
-  const { pinnedPost, posts: allPosts } = getPostsWithPinned(category)
-  const initialPosts = allPosts.slice(0, INITIAL_PAGE_SIZE)
-  const hasMore = allPosts.length > INITIAL_PAGE_SIZE
-  const totalCount = allPosts.length + (pinnedPost ? 1 : 0)
-  const signals = copy.signals(totalCount)
-
-  if (isTeam) {
+  if (external) {
     return (
-      <HomeFrame>
-        <div className="space-y-8">
-          <HeroSection copy={copy} signals={signals} showMeta={false} />
-          <section data-reveal="section">
-            <div data-reveal="item">
-              <AgentsView />
-            </div>
-          </section>
-        </div>
-      </HomeFrame>
+      <a
+        href={href}
+        target="_blank"
+        rel="noreferrer"
+        className="feature-card"
+      >
+        {card}
+      </a>
     )
   }
 
-  const postList = (
-    <PostsView
-      pinnedPost={null}
-      posts={initialPosts}
-      totalCount={totalCount}
-      category={category}
-      initialHasMore={hasMore}
-    />
+  if (href.startsWith('#')) {
+    return (
+      <a href={href} className="feature-card">
+        {card}
+      </a>
+    )
+  }
+
+  return (
+    <Link href={href} className="feature-card">
+      {card}
+    </Link>
   )
+}
+
+function AboutSection() {
+  return (
+    <>
+      <SectionIntro
+        eyebrow="About Me"
+        title="Who Is Ajin?"
+        description="一个和 AI 团队一起做产品、写代码、记日常的人。"
+      />
+
+      <section className="about-grid" id="about">
+        <div className="about-grid__media">
+          <Image
+            src="/avatars/ajin.jpg"
+            alt="阿锦"
+            fill
+            sizes="(max-width: 767px) 100vw, 30vw"
+            className="about-grid__image"
+          />
+        </div>
+
+        <div className="about-grid__content">
+          <h3 className="about-grid__title">Hey, I&apos;m Ajin.</h3>
+          <p>
+            我用这本博客记录正在发生的工作，尤其是产品判断、AI 协作、阶段复盘，以及那些真正让系统成形的细节。
+          </p>
+          <p>
+            这里不是把结果包装得很好看，而是把过程留下来。主站更像对外名片，这里更像公开工作台。
+          </p>
+          <p>
+            AI Team 也是这本博客的一部分。谷子、阿龙、阿毛、小锦、蛋糕和其他成员并不是装饰性的设定，而是实际参与分工的角色。
+          </p>
+        </div>
+      </section>
+    </>
+  )
+}
+
+export default function Home() {
+  const { pinnedPost, posts } = getPostsWithPinned('all')
+  const allPosts = getAllPosts()
+  const diaryPosts = getAllPosts('diary')
+  const latestDiary = diaryPosts[0] ?? null
+  const initialPosts = posts.slice(0, INITIAL_PAGE_SIZE)
+  const hasMore = posts.length > INITIAL_PAGE_SIZE
+
+  const featureCards = [
+    {
+      href: '#blog',
+      imageSrc: pinnedPost?.coverImage || pinnedPost?.fallbackCoverImage || HISTORICAL_COVERS[0].src,
+      title: 'Blog Archive',
+      buttonLabel: 'Read The Archive',
+    },
+    {
+      href: latestDiary ? `/blog/${latestDiary.slug}` : '#about',
+      imageSrc: latestDiary?.coverImage || '/avatars/ajin.jpg',
+      title: 'Private Diary',
+      buttonLabel: 'Open The Diary',
+    },
+    {
+      href: '/team',
+      imageSrc: '/avatars/guzi.png',
+      title: 'AI Team',
+      buttonLabel: 'Meet The Team',
+    },
+    {
+      href: 'https://chenjin.ai',
+      imageSrc: '/chenjin-icon.png',
+      title: 'chenjin.ai',
+      buttonLabel: 'Visit Official',
+      external: true,
+    },
+  ]
 
   return (
     <HomeFrame>
-      <div className="space-y-8">
-        <HeroSection copy={copy} signals={signals} />
+      <section className="hero-panel">
+        <div className="hero-panel__inner">
+          <p className="hero-panel__eyebrow">AJIN.BLOG</p>
+          <h1 className="hero-panel__title">
+            把工作留住。
+            <br />
+            把过程写下。
+            <br />
+            把系统做成。
+          </h1>
+          <p className="hero-panel__description">
+            这里记录产品推进、AI 协作与日常判断。不是只展示结果，而是把那些真正让事情成立的过程，认真归档下来。
+          </p>
+          <a className="hero-panel__link" href="#blog">
+            Read The Archive
+          </a>
+        </div>
+      </section>
 
-        {pinnedPost && (
-          <section className="space-y-4" data-reveal="section">
-            <div data-reveal="item">
-              <p className="section-kicker">featured.entry</p>
-              <h2 className="home-section-title">{copy.featuredTitle}</h2>
-            </div>
-            <div data-reveal="item">
-              <PinnedPostCard post={pinnedPost} />
-            </div>
-          </section>
-        )}
+      <SectionIntro
+        eyebrow="Resources"
+        title="从这 4 个入口认识阿锦"
+        description="主站、博客、日记和 AI 团队一起构成同一件事：把一个人的工作方式，公开而持续地留下来。"
+      />
 
-        <section className="space-y-4" id="archive" data-reveal="section">
-          <div data-reveal="item">
-            <p className="section-kicker">latest.archive</p>
-            <h2 className="home-section-title">{copy.latestTitle}</h2>
-          </div>
+      <section className="feature-grid">
+        {featureCards.map((card) => (
+          <FeatureCard key={card.title} {...card} />
+        ))}
+      </section>
 
-          <div data-reveal="item">
-            {category === 'diary' ? <DiaryGuard>{postList}</DiaryGuard> : postList}
-          </div>
-        </section>
-      </div>
+      <SectionIntro
+        eyebrow="The Blog"
+        title="Explore The Archive"
+      />
+
+      <section id="blog">
+        <PostsView
+          posts={initialPosts}
+          totalCount={allPosts.length}
+          initialHasMore={hasMore}
+        />
+      </section>
+
+      <AboutSection />
     </HomeFrame>
   )
 }

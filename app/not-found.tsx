@@ -15,10 +15,10 @@ export default function NotFound() {
 
         <p className="section-kicker mt-5 justify-center">Page Missing</p>
         <h1 className="font-display text-[2.8rem] leading-[0.94] text-[var(--fg)] sm:text-[3.6rem]">
-          这一页暂时没有在这里。
+          这页暂时不在当前档案里。
         </h1>
         <p className="mt-4 text-[1rem] leading-7 text-[var(--muted-fg)]">
-          也许文章还没写完，也许链接已经换了方向。我们先回到首页继续翻。
+          也许文章还在整理，也许入口已经换了位置。先回到首页，从总览、进展、日记或团队页重新进入。
         </p>
 
         <div className="mt-8">

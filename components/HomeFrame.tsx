@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import type { ReactNode } from 'react'
 
 interface HomeFrameProps {
@@ -7,15 +8,28 @@ interface HomeFrameProps {
 }
 
 export default function HomeFrame({ children }: HomeFrameProps) {
-  return (
-    <div className="home-frame">
-      <div className="page-atmosphere" aria-hidden="true">
-        <div className="page-atmosphere__grain" />
-        <div className="page-atmosphere__glow page-atmosphere__glow--one" />
-        <div className="page-atmosphere__glow page-atmosphere__glow--two" />
-      </div>
+  useEffect(() => {
+    function scrollToHash() {
+      const hash = window.location.hash.replace('#', '')
+      if (!hash) return
 
-      <div className="home-frame__content">{children}</div>
-    </div>
+      const element = document.getElementById(hash)
+      if (!element) return
+
+      requestAnimationFrame(() => {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+      })
+    }
+
+    scrollToHash()
+    window.addEventListener('hashchange', scrollToHash)
+
+    return () => {
+      window.removeEventListener('hashchange', scrollToHash)
+    }
+  }, [])
+
+  return (
+    <div className="home-frame">{children}</div>
   )
 }

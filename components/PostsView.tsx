@@ -1,19 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef, useCallback } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { PostCard } from '@/components/PostCard'
-import TimelineView from '@/components/TimelineView'
-import { PinnedPostCard } from '@/components/PinnedPostCard'
 import type { PostMeta } from '@/lib/posts'
 
-type ViewMode = 'card' | 'timeline'
-
-const STORAGE_KEY = 'blog-view'
-const LOAD_MORE_SIZE = 8
+const LOAD_MORE_SIZE = 6
 
 interface PostsViewProps {
   posts: PostMeta[]
-  pinnedPost?: PostMeta | null
   totalCount?: number
   category?: string
   initialHasMore?: boolean
@@ -21,23 +15,13 @@ interface PostsViewProps {
 
 export default function PostsView({
   posts: initialPosts,
-  pinnedPost,
   totalCount: totalCountProp,
   category = 'all',
   initialHasMore = false,
 }: PostsViewProps) {
-  const [view, setView] = useState<ViewMode>('card')
-  const [mounted, setMounted] = useState(false)
   const [posts, setPosts] = useState<PostMeta[]>(initialPosts)
   const [hasMore, setHasMore] = useState(initialHasMore)
   const [loading, setLoading] = useState(false)
-  const sentinelRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY) as ViewMode | null
-    if (saved === 'card' || saved === 'timeline') setView(saved)
-    setMounted(true)
-  }, [])
 
   useEffect(() => {
     setPosts(initialPosts)
@@ -60,43 +44,7 @@ export default function PostsView({
       setLoading(false)
     }
   }, [loading, hasMore, posts.length, category])
-
-  useEffect(() => {
-    const el = sentinelRef.current
-    if (!el) return
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) loadMore()
-      },
-      { rootMargin: '220px' }
-    )
-
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [loadMore])
-
-  useEffect(() => {
-    if (!mounted || loading || !hasMore) return
-
-    const el = sentinelRef.current
-    if (!el) return
-
-    const sentinelTop = el.getBoundingClientRect().top
-    const preloadThreshold = window.innerHeight + 180
-
-    if (sentinelTop <= preloadThreshold) {
-      void loadMore()
-    }
-  }, [mounted, posts.length, hasMore, loading, loadMore])
-
-  function switchView(next: ViewMode) {
-    setView(next)
-    localStorage.setItem(STORAGE_KEY, next)
-  }
-
-  const totalCount = totalCountProp ?? (posts.length + (pinnedPost ? 1 : 0))
-  const toggleBase = 'inline-flex flex-1 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 sm:flex-none'
+  const totalCount = totalCountProp ?? posts.length
 
   if (totalCount === 0) {
     return (
@@ -118,82 +66,30 @@ export default function PostsView({
 
   return (
     <>
-      <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
-          <p className="section-kicker">Archive View</p>
-          <p className="text-sm leading-7 text-[var(--muted-fg)]">
-            共 {totalCount} 篇，按时间倒序排列。
-          </p>
-        </div>
-
-        <div className="glass inline-flex w-full items-center gap-1 rounded-full p-1 sm:w-fit">
-          <button
-            onClick={() => switchView('card')}
-            aria-label="卡片视图"
-            className={`${toggleBase} ${
-              view === 'card'
-                ? 'bg-[var(--accent-soft)] text-[var(--accent-strong)]'
-                : 'text-[var(--muted-fg)]'
-            }`}
-            style={{ opacity: mounted ? 1 : 0 }}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
-              <rect x="1" y="2" width="14" height="3" rx="1.5" />
-              <rect x="1" y="7" width="14" height="3" rx="1.5" />
-              <rect x="1" y="12" width="14" height="3" rx="1.5" />
-            </svg>
-            列表
-          </button>
-
-          <button
-            onClick={() => switchView('timeline')}
-            aria-label="时间轴视图"
-            className={`${toggleBase} ${
-              view === 'timeline'
-                ? 'bg-[var(--accent-soft)] text-[var(--accent-strong)]'
-                : 'text-[var(--muted-fg)]'
-            }`}
-            style={{ opacity: mounted ? 1 : 0 }}
-          >
-            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round">
-              <line x1="3" y1="2.5" x2="3" y2="13.5" />
-              <circle cx="3" cy="4" r="1.3" fill="currentColor" stroke="none" />
-              <circle cx="3" cy="10.5" r="1.3" fill="currentColor" stroke="none" />
-              <line x1="6" y1="4" x2="14" y2="4" />
-              <line x1="6" y1="10.5" x2="14" y2="10.5" />
-            </svg>
-            时间轴
-          </button>
-        </div>
+      <div className="post-grid">
+        {posts.map((post) => (
+          <PostCard key={post.slug} post={post} />
+        ))}
       </div>
 
-      {view === 'card' ? (
-        <div className="flex flex-col gap-4">
-          {pinnedPost && <PinnedPostCard post={pinnedPost} />}
-          {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
-          ))}
+      {hasMore ? (
+        <div className="post-grid__footer">
+          <button
+            onClick={() => void loadMore()}
+            disabled={loading}
+            className="load-more-button"
+          >
+            {loading ? 'Loading...' : 'Load More'}
+          </button>
         </div>
-      ) : (
-        <TimelineView posts={posts} pinnedPost={pinnedPost} />
-      )}
+      ) : null}
 
-      <div ref={sentinelRef} className="h-px" />
-
-      {loading && (
-        <div className="flex justify-center py-8">
+      {loading && hasMore && (
+        <div className="flex justify-center py-6">
           <span
             className="inline-block h-6 w-6 rounded-full border-2 border-[var(--border)] border-t-[var(--accent)]"
             style={{ animation: 'spin 0.7s linear infinite' }}
           />
-        </div>
-      )}
-
-      {!hasMore && posts.length > 0 && (
-        <div className="flex items-center justify-center gap-3 py-8 text-sm text-[var(--muted-fg)]">
-          <span className="accent-line w-10" />
-          <span>已经翻到最后一页了</span>
-          <span className="accent-line w-10" />
         </div>
       )}
 
