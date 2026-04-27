@@ -47,6 +47,11 @@ This file defines project-level working rules for agents operating in `ajin-blog
 - Save local cover files under `public/covers/`.
 - Prefer filenames based on slug, for example:
   - `public/covers/2026-04-27-some-post.jpg`
+- Before commit/push, optimize every new or updated cover with:
+  - `npm run cover:optimize -- public/covers/2026-04-27-some-post.jpg`
+- When many covers are touched, normalize the whole library with:
+  - `npm run covers:optimize`
+- The optimizer keeps repeat runs idempotent via `scripts/cover-optimization-manifest.json`; do not hand-edit that file unless the workflow itself changes.
 - Frontmatter example:
 
 ```md
@@ -69,8 +74,10 @@ coverAttribution: "Optional credit line"
   1. Check whether a suitable local cover already exists.
   2. If not, search approved public-domain / CC0 sources.
   3. If no suitable sourced cover is available, generate one in the approved house style rather than committing a new post without a cover.
-  4. Before commit/push, verify that the selected or generated cover matches the project style: black-and-white vintage engraving / etching / woodcut / old editorial illustration, ivory or paper-like background, high-contrast ink drawing, calm and serious, not glossy.
-  5. If the cover comes from an external source, preserve provenance in frontmatter or notes.
+  4. Save the selected or generated asset under `public/covers/`.
+  5. Run `npm run cover:optimize -- <cover-path>` before updating frontmatter or committing.
+  6. Before commit/push, verify that the selected or generated cover matches the project style: black-and-white vintage engraving / etching / woodcut / old editorial illustration, ivory or paper-like background, high-contrast ink drawing, calm and serious, not glossy.
+  7. If the cover comes from an external source, preserve provenance in frontmatter or notes.
 - For historical posts, follow the user’s separate backfill process; this file’s hard requirement applies to newly created posts going forward.
 - Do not invent fake license or attribution details.
 - If attribution is unclear, surface that uncertainty instead of pretending it is resolved.

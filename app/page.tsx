@@ -2,28 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import HomeFrame from '@/components/HomeFrame'
 import PostsView from '@/components/PostsView'
+import { SectionIntro } from '@/components/SectionIntro'
 import { getAllPosts, getPostsWithPinned } from '@/lib/posts'
 import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
 
 const INITIAL_PAGE_SIZE = 6
-
-function SectionIntro({
-  eyebrow,
-  title,
-  description,
-}: {
-  eyebrow: string
-  title: string
-  description?: string
-}) {
-  return (
-    <section className="section-intro">
-      <p className="section-intro__eyebrow">{eyebrow}</p>
-      <h2 className="section-intro__title">{title}</h2>
-      {description ? <p className="section-intro__description">{description}</p> : null}
-    </section>
-  )
-}
 
 function FeatureCard({
   href,

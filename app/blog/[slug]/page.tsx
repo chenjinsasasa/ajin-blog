@@ -9,6 +9,7 @@ import DiaryGuard from '@/components/DiaryGuard'
 import ReadingProgress from '@/components/ReadingProgress'
 import { Pre, Table } from '@/components/MDXComponents'
 import { getAuthorName } from '@/lib/authors'
+import { formatPostDate, getPostCategoryEyebrow } from '@/lib/postPresentation'
 
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
@@ -31,29 +32,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: post.title,
     description: post.excerpt,
   }
-}
-
-function formatDate(dateStr: string) {
-  try {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  } catch {
-    return dateStr
-  }
-}
-
-function getCategoryMeta(category: 'progress' | 'diary') {
-  return category === 'progress'
-    ? {
-        eyebrow: 'Build Log',
-      }
-    : {
-        eyebrow: 'Private Journal',
-      }
 }
 
 function formatReadingTime(content: string) {
@@ -90,7 +68,6 @@ export default function BlogPost({ params }: Props) {
   if (!post) notFound()
 
   const { prev, next } = getAdjacentPosts(params.slug)
-  const categoryMeta = getCategoryMeta(post.category)
   const authorName = post.author ? getAuthorName(post.author) : null
 
   const articleContent = (
@@ -109,11 +86,11 @@ export default function BlogPost({ params }: Props) {
 
       <div className="detail-page__container">
         <header className="detail-header">
-          <p className="detail-header__eyebrow">{categoryMeta.eyebrow}</p>
+          <p className="detail-header__eyebrow">{getPostCategoryEyebrow(post.category)}</p>
 
           <div className="detail-header__meta">
             <time dateTime={post.date} className="detail-header__meta-item">
-              {formatDate(post.date)}
+              {formatPostDate(post.date, 'en-US')}
             </time>
             {authorName && (
               <span className="detail-header__meta-item">

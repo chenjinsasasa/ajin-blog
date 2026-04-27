@@ -4,6 +4,7 @@ import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
 import { getAuthorName } from '@/lib/authors'
 import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
+import { formatPostCoverDate, formatPostDate } from '@/lib/postPresentation'
 
 type CoverVariant = 'radar' | 'columns' | 'orbital' | 'ledger'
 
@@ -59,34 +60,6 @@ const COVER_PALETTES = [
     accent: 'rgba(49, 81, 78, 0.14)',
   },
 ] as const
-
-function formatDate(dateStr: string) {
-  try {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('zh-CN', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-    })
-  } catch {
-    return dateStr
-  }
-}
-
-function formatCoverDate(dateStr: string) {
-  try {
-    const d = new Date(dateStr)
-    return d
-      .toLocaleDateString('zh-CN', {
-        year: 'numeric',
-        month: '2-digit',
-        day: '2-digit',
-      })
-      .replace(/\//g, '.')
-  } catch {
-    return dateStr
-  }
-}
 
 function hashString(value: string) {
   let hash = 0
@@ -197,7 +170,7 @@ function FallbackCover({ post }: { post: PostMeta }) {
 
       <div className="progress-cover__meta progress-cover__meta--right">
         <span>{byline}</span>
-        <strong>{formatCoverDate(post.date)}</strong>
+        <strong>{formatPostCoverDate(post.date)}</strong>
       </div>
 
       <p className="progress-cover__caption">{post.title}</p>
@@ -254,7 +227,7 @@ export function ProgressPostCard({ post }: { post: PostMeta }) {
           <div className="progress-post-card__footer">
             <span>{byline}</span>
             <span aria-hidden="true">•</span>
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
+            <time dateTime={post.date}>{formatPostDate(post.date)}</time>
           </div>
         </div>
       </article>

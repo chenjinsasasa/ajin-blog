@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
+import { PostCategoryTag } from '@/components/PostCategoryTag'
 
 interface TimelineViewProps {
   posts: PostMeta[]
@@ -40,10 +41,6 @@ function groupByMonth(posts: PostMeta[]): { monthKey: string; items: PostMeta[] 
   return Array.from(map.entries()).map(([monthKey, items]) => ({ monthKey, items }))
 }
 
-function getCategoryLabel(category: PostMeta['category']) {
-  return category === 'progress' ? '我们的进展' : '阿锦的日记'
-}
-
 export default function TimelineView({ posts, pinnedPost }: TimelineViewProps) {
   const groups = groupByMonth(posts)
 
@@ -53,9 +50,7 @@ export default function TimelineView({ posts, pinnedPost }: TimelineViewProps) {
         <div className="card p-5 sm:p-6">
           <div className="flex flex-wrap items-center gap-2">
             <span className="tag tag-pinned">置顶文章</span>
-            <span className={`tag ${pinnedPost.category === 'progress' ? 'tag-progress' : 'tag-diary'}`}>
-              {getCategoryLabel(pinnedPost.category)}
-            </span>
+            <PostCategoryTag category={pinnedPost.category} />
           </div>
 
           <Link href={`/blog/${pinnedPost.slug}`} className="group mt-4 block">
@@ -94,9 +89,7 @@ export default function TimelineView({ posts, pinnedPost }: TimelineViewProps) {
 
                   <div>
                     <div className="flex flex-wrap items-center gap-2">
-                      <span className={`tag ${post.category === 'progress' ? 'tag-progress' : 'tag-diary'}`}>
-                        {getCategoryLabel(post.category)}
-                      </span>
+                      <PostCategoryTag category={post.category} />
                     </div>
                     <p className="timeline-item__title mt-3 font-display text-[1.4rem] leading-[1] text-[var(--fg)] transition-colors duration-200 group-hover:text-[var(--accent-strong)] sm:text-[1.6rem]">
                       {post.title}

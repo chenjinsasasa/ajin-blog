@@ -3,23 +3,11 @@ import Link from 'next/link'
 import { PostMeta } from '@/lib/posts'
 import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
 import { getAuthorName } from '@/lib/authors'
-
-function formatDate(dateStr: string) {
-  try {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
-  } catch {
-    return dateStr
-  }
-}
-
-function getCategoryLabel(category: PostMeta['category']) {
-  return category === 'progress' ? 'Ajin Team' : 'Ajin'
-}
+import { formatPostDate, getPostCategoryAuthorLabel } from '@/lib/postPresentation'
 
 export function PostCard({ post }: { post: PostMeta }) {
   const fallbackCover = post.fallbackCoverImage || HISTORICAL_COVERS[0].src
-  const authorName = post.author ? getAuthorName(post.author) : getCategoryLabel(post.category)
+  const authorName = post.author ? getAuthorName(post.author) : getPostCategoryAuthorLabel(post.category)
 
   return (
     <Link href={`/blog/${post.slug}`} className="post-list-card">
@@ -48,7 +36,7 @@ export function PostCard({ post }: { post: PostMeta }) {
 
         <div className="post-list-card__meta">
           <span>{authorName}</span>
-          <span>{formatDate(post.date)}</span>
+          <span>{formatPostDate(post.date)}</span>
         </div>
       </article>
     </Link>

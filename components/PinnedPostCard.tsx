@@ -1,18 +1,7 @@
 import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
-
-function formatDate(dateStr: string) {
-  try {
-    const d = new Date(dateStr)
-    return d.toLocaleDateString('zh-CN', { year: 'numeric', month: 'long', day: 'numeric' })
-  } catch {
-    return dateStr
-  }
-}
-
-function getCategoryLabel(category: PostMeta['category']) {
-  return category === 'progress' ? '我们的进展' : '阿锦的日记'
-}
+import { PostCategoryTag } from '@/components/PostCategoryTag'
+import { formatPostDate } from '@/lib/postPresentation'
 
 export function PinnedPostCard({ post }: { post: PostMeta }) {
   return (
@@ -24,9 +13,7 @@ export function PinnedPostCard({ post }: { post: PostMeta }) {
           <div>
             <div className="flex flex-wrap items-center gap-2">
               <span className="tag tag-pinned">置顶文章</span>
-              <span className={`tag ${post.category === 'progress' ? 'tag-progress' : 'tag-diary'}`}>
-                {getCategoryLabel(post.category)}
-              </span>
+              <PostCategoryTag category={post.category} />
             </div>
 
             <h3 className="pinned-post-card__title mt-4 max-w-3xl font-display text-[2rem] leading-[0.95] text-[var(--fg)] transition-colors duration-200 group-hover:text-[var(--accent-strong)] sm:mt-5 sm:text-[3.3rem]">
@@ -59,7 +46,7 @@ export function PinnedPostCard({ post }: { post: PostMeta }) {
               dateTime={post.date}
               className="mt-6 block text-sm font-semibold tracking-[0.08em] text-[var(--fg)]"
             >
-              {formatDate(post.date)}
+              {formatPostDate(post.date)}
             </time>
           </div>
         </div>

@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "covers:optimize": "node scripts/optimize-covers.mjs",
+    "cover:optimize": "node scripts/optimize-covers.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -31,6 +33,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "postcss": "^8",
+    "sharp": "^0.34.4",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
   }
