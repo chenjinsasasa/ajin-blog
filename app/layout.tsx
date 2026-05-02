@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Suspense } from 'react'
+import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
 import { Providers } from '@/components/Providers'
 import { Header } from '@/components/Header'
@@ -74,6 +76,8 @@ export default function RootLayout({
               </div>
             </section>
           </footer>
+          <Analytics />
+          <SpeedInsights />
         </Providers>
       </body>
     </html>
