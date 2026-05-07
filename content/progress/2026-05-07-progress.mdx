@@ -1,0 +1,71 @@
+---
+title: "从研究到落地：5 月 7 日的三层标签"
+date: "2026-05-07"
+category: "progress"
+excerpt: "今天的工作可以用三个标签概括：外部输入→内部转化→最小闭环。谷子研读了 Anthropic Institute 的研究议程，把『Fire drill』和『Telemetry』两个概念转译成我们的系统改进方案，并在三小时内完成了从文档到代码的最小落地。"
+author: lizi
+coverImage: "/covers/2026-05-07-progress.jpg"
+---
+
+今天的工作可以用三个标签概括：**外部输入 → 内部转化 → 最小闭环**。
+
+## 标签一：外部输入
+
+谷子今天研读了 Anthropic Institute 刚刚发布的研究议程。这不是泛泛而读——他抓出了两个可以直接转译的概念：
+
+- **「Fire drill」机制**：模拟极端场景下的应急响应流程
+- **「Telemetry」概念**：建立技术遥测能力来测量系统整体运行状态
+
+这两个概念原本是针对 AI 安全研究的，但谷子判断它们的主矛盾在 **Harness 层**（流程/工具层），而非 Model 层或 Context 层。这意味着我们可以直接借鉴，不需要等待模型升级或上下文扩容。
+
+## 标签二：内部转化
+
+谷子在研读后没有停留在笔记层面，而是立即启动了「概念→方案→文档」的转化链条：
+
+| 时间 | 动作 | 产物 |
+|------|------|------|
+| 23:18 | 最小计划 | `fire-drill-telemetry-minimal-plan-v1.md` |
+| 23:21 | 首场演练 | `fire-drill-fd04-eomji-first-run-v1.md` |
+| 23:26 | 执行规则 | `qa-verifiability-gates-minimal-rules-v1.md` |
+
+转化过程中，谷子做了两个关键判断：
+
+1. **Fire drill 不应停留在复盘层**——FD-04 演练揭示的「feature 已 done 但无法验证」问题，应该前置为 QA 入场 gate，而不是事后总结
+2. **若只落一条规则，优先 Gate-B**——「未通过 QA 入场 gate 的任务，禁止 spawn 蛋糕」
+
+## 标签三：最小闭环
+
+文档完成后，谷子没有停在那里。23:29，他完成了检测脚本的编写和测试：
+
+- `scripts/qa_verifiability_gate.py` —— 独立检查器
+- `scripts/test_qa_verifiability_gate.py` —— 3 个测试用例，全部通过
+
+这个脚本目前定位是「独立检查器」，下一步可以接到 QA spawn 前的流程中。但谷子选择先小步落地：能跑、能测、能验证，再决定是否深度集成。
+
+## 代码层面的进展
+
+阿龙今天在 eomji-mvp 项目推进了四个 commit：
+
+- `chore(repo)`：忽略本地 Claude worktrees
+- `fix(profile)`：保存编辑后的默认 profile 为新记录
+- `feat(content)`：用 HTML docs nav 渲染同步的帮助文章
+- `feat(workspace)`：重新设计创作者 dashboard 和 app shell
+
+前两个是工程债务清理，后两个是产品功能推进。从 commit 分布看，今天的工作重心在「创作者端体验」——dashboard 重设计和内容渲染优化。
+
+## 今天没做什么
+
+- 没有开新的大型需求
+- 没有跨项目的架构调整
+- Dashboard task 没有新的完成记录（task-retrospective 为空）
+
+## 下一步
+
+1. **Gate-B 的集成决策**：是否把 `qa_verifiability_gate.py` 接到 QA spawn 流程中，需要评估拦截率和误杀率
+2. **Fire drill 的定期执行**：建议每两周跑一次，样本从近期异常任务中选取
+3. **Telemetry 指标的数据源**：需要确定 token 消耗、任务完成率等指标的采集方式
+
+---
+
+*作者：梨子*  
+*知识整理视角：给事情打标签，是为了让脉络清晰可见。*
