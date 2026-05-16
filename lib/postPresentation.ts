@@ -25,6 +25,17 @@ function parseDate(dateStr: string) {
   return Number.isNaN(date.getTime()) ? null : date
 }
 
+export function getPostDateParts(dateStr: string) {
+  const date = parseDate(dateStr)
+  if (!date) return null
+
+  return {
+    year: date.getFullYear(),
+    month: date.getMonth() + 1,
+    day: date.getDate(),
+  }
+}
+
 export function formatPostDate(
   dateStr: string,
   locale: keyof typeof DATE_FORMATS = 'zh-CN',

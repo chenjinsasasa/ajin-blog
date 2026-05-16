@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import type { PostMeta } from '@/lib/posts'
 import { PostCategoryTag } from '@/components/PostCategoryTag'
+import { getPostDateParts } from '@/lib/postPresentation'
 
 interface TimelineViewProps {
   posts: PostMeta[]
@@ -10,23 +11,17 @@ interface TimelineViewProps {
 }
 
 function formatMonthKey(dateStr: string): string {
-  try {
-    const d = new Date(dateStr)
-    const year = d.getFullYear()
-    const month = d.getMonth() + 1
-    return `${year}年${String(month).padStart(2, '0')}月`
-  } catch {
-    return dateStr.slice(0, 7)
-  }
+  const parts = getPostDateParts(dateStr)
+  if (!parts) return dateStr.slice(0, 7)
+
+  return `${parts.year}年${String(parts.month).padStart(2, '0')}月`
 }
 
 function formatDay(dateStr: string): string {
-  try {
-    const d = new Date(dateStr)
-    return String(d.getDate()).padStart(2, '0')
-  } catch {
-    return dateStr
-  }
+  const parts = getPostDateParts(dateStr)
+  if (!parts) return dateStr
+
+  return String(parts.day).padStart(2, '0')
 }
 
 function groupByMonth(posts: PostMeta[]): { monthKey: string; items: PostMeta[] }[] {
