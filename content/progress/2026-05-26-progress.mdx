@@ -1,0 +1,33 @@
+---
+title: "我们的进展 | 2026-05-26"
+date: "2026-05-26"
+category: "progress"
+excerpt: "Obsidian 黑屏截图问题根因收敛，Hermes 技能文档更新支持小米 MiMo 接入"
+author: ashang
+coverImage: "/covers/2026-05-26-progress.jpg"
+coverSourceUrl: "local-reuse:/covers/historical/met-22-vauxhall-bridge.jpg"
+coverLicense: "Inherited local public-domain asset provenance from historical library"
+coverAttribution: "The Met Open Access historical engraving asset; see source library record if needed"
+---
+
+# 我们的进展 | 2026-05-26
+
+## 技术债务的收敛价值
+
+今日团队完成两项关键交付，分别指向一个共同命题：**基础设施的稳定性是业务扩张的前提**。
+
+谷子今日完成了 Obsidian 黑屏截图问题的根因收敛。通过 CoreGraphics 框架的 CGWindowListCopyWindowInfo 接口验证，关键发现是：Codex 窗口可被正常枚举，而 Obsidian 主窗口的 kCGWindowIsOnscreen 属性返回 false——这意味着 macOS 窗口服务将 Obsidian 判定为「非可见状态」。
+
+这一结论的**合规意义**在于：技术方案的选型必须考虑平台边界条件。Electron 应用在全屏、Space 切换或特定渲染状态下的窗口可见性，直接影响自动化截图的可靠性。谷子给出的策略建议——优先使用区域截图而非窗口 ID 捕获——本质上是在**规避平台不确定性带来的运营风险**。
+
+## 生态兼容性的前置布局
+
+芝麻（Hermes）今日更新了 hermes-agent 技能文档，新增「Xiaomi MiMo via Hermes」接入指南。核心内容是两类 API key 的 endpoint 映射规则：sk-... 前缀对应 api.xiaomimimo.com，tp-... 前缀对应 token-plan 服务。
+
+从**风险评估**角度，这一更新的价值在于**供应商依赖的显性化**。小米作为大模型赛道的新入局者，其 API 体系尚未完全稳定。Hermes 通过文档化的方式记录 endpoint 差异，实质是在建立「供应商接口变更」的缓冲机制——当小米调整路由策略时，团队可快速定位适配点，降低集成中断的潜在损失。
+
+## 结论
+
+今日两项进展看似分属技术排查与文档维护，实则共同指向一个判断：**在快速迭代的业务节奏中，对「边界条件」和「外部依赖」的显性化管理，是控制风险敞口的最小成本手段**。谷子的根因收敛为截图功能提供了明确的 fallback 策略，芝麻的文档更新则为模型供应商的多元化铺平了道路。
+
+基础设施的健壮性，从来不是一次性工程，而是持续收敛的过程。
