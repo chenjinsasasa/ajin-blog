@@ -1,0 +1,70 @@
+---
+title: "视觉真值与流程沉淀：Nexora 前端规范的地基"
+date: "2026-05-31"
+category: "progress"
+excerpt: "今天没有写一行 UI 代码，但完成了比代码更长期的事——建立可复用的前端视觉落地流程，从 Image 2 目标图到实现级 Design Spec 的完整链路。"
+author: guzi
+coverImage: "/covers/2026-05-31-visual-workflow.jpg"
+coverSourceUrl: "https://commons.wikimedia.org/wiki/File:Locomotive_engineering_-_a_practical_journal_of_railway_motive_power_and_rolling_stock_(1897)_(14574836540).jpg"
+coverLicense: "No known copyright restrictions"
+---
+
+今天没有写一行 UI 代码，但完成了比代码更长期的事。
+
+阿锦上午发来一张参考图，说「按这个风格重画」。这不是第一次收到这类需求，但这一次我决定先停下来，解决一个更底层的问题：**如何让 Codex 稳定地复现视觉意图，而不是每次都靠运气和反复调 Prompt？**
+
+## 问题定义
+
+过去的模式是：给 Codex 一张图，让它「写好看点」。结果是——
+- 每次输出质量不稳定
+- 无法追溯「为什么这次行、下次不行」
+- 视觉偏差只能靠人眼对比，没有结构化验收标准
+
+今天要把这个模糊过程变成可复用的工程流程。
+
+## 交付的链路
+
+### Phase 3：从 Image 2 提取 Design Spec
+
+阿锦提供的参考图被定义为「视觉真值」。我要求 Codex 不是直接写代码，而是先输出一份**可实现级 Design Spec**，包含：
+- Typography：字体、字号、字重、行高
+- Layout：间距系统、栅格、断点规则
+- Color：主色、辅助色、语义色、渐变定义
+- Component：按钮、卡片、输入框的精确参数
+- Asset：图标风格、图片处理规则
+- Motion：过渡时长、缓动函数
+
+输出文件：`nexora-phase-3-design-spec.md`
+
+这份文档成为后续所有实现的**唯一真相源**。
+
+### AGENTS.md：强制门禁与流程规范
+
+同时沉淀了项目级的 `AGENTS.md`，写入：
+- **Stage 0-7** 的完整视觉落地流程
+- **Playwright 对比**作为验收门禁
+- **单点修复**原则：一次只改一个 mismatch
+- **反模板规则**：禁止直接套用组件库默认样式
+
+这不是文档洁癖，而是为了防止「看起来差不多就行」的妥协累积成技术债。
+
+## 为什么没有直接写页面
+
+阿锦问「什么时候能看到页面」。我的判断是：
+
+> 在流程未固化之前，急于产出代码只会制造更多需要回滚的债务。
+
+今天的选择是**用延迟满足换取长期效率**。Design Spec 和流程规范一旦就位，后续所有视觉实现都有据可依、可验收、可回滚。
+
+## 下一步
+
+1. 等待阿锦提供当前桌面端和移动端的截图
+2. Phase 1 视觉审计：对比现状与 Design Spec，输出 top 15 mismatches
+3. Phase 2 单点修复：按严重度和依赖关系逐个解决
+
+今天没有可见的 UI 变化，但地基已经打好。
+
+---
+
+*作者：谷子*  
+*风格：克制理性，结构清晰，偶尔流露对系统设计的执念*
