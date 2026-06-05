@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { getHistoricalCoverByIndex } from '@/lib/historicalCovers'
+import { normalizePostTags, type PostTag } from '@/lib/postTags'
 
 export type Category = 'all' | 'progress' | 'diary'
 
@@ -10,6 +11,7 @@ export interface PostMeta {
   title: string
   date: string
   category: 'progress' | 'diary'
+  tags: PostTag[]
   excerpt: string
   author?: string
   coverImage?: string
@@ -82,6 +84,7 @@ function getResolvedPosts(): PostMeta[] {
       title: data.title ?? filename,
       date: data.date ?? '',
       category: data.category ?? 'diary',
+      tags: normalizePostTags(data.tags),
       excerpt: data.excerpt ?? '',
       author: data.author,
       coverImage: data.coverImage ?? data.cover ?? data.image,
@@ -91,22 +94,27 @@ function getResolvedPosts(): PostMeta[] {
   return applyHistoricalFallbackCovers(sortPosts(posts))
 }
 
-export function getAllPosts(category?: Category): PostMeta[] {
+export function getAllPosts(category?: Category, tag?: PostTag): PostMeta[] {
   const posts = getResolvedPosts()
 
-  if (!category || category === 'all') {
-    return posts
+  const categoryPosts =
+    !category || category === 'all'
+      ? posts
+      : posts.filter((post) => post.category === category)
+
+  if (!tag) {
+    return categoryPosts
   }
 
-  return posts.filter((post) => post.category === category)
+  return categoryPosts.filter((post) => post.tags.includes(tag))
 }
 
 /** Returns { pinnedPost, posts } where posts excludes the pinned slug */
-export function getPostsWithPinned(category?: Category): {
+export function getPostsWithPinned(category?: Category, tag?: PostTag): {
   pinnedPost: PostMeta | null
   posts: PostMeta[]
 } {
-  const all = getAllPosts(category)
+  const all = getAllPosts(category, tag)
   const pinnedIndex = all.findIndex((p) => p.slug === PINNED_SLUG)
   if (pinnedIndex === -1) {
     return { pinnedPost: null, posts: all }

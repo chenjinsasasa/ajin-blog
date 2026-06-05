@@ -1,16 +1,23 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { getPostsWithPinned, Category } from '@/lib/posts'
+import { getPostsWithPinned, type Category } from '@/lib/posts'
+import { isPostTag } from '@/lib/postTags'
 
 export const dynamic = 'force-dynamic'
 
+function normalizeCategory(category: string | null): Category {
+  return category === 'progress' || category === 'diary' ? category : 'all'
+}
+
 export function GET(req: NextRequest) {
   const { searchParams } = req.nextUrl
-  const category = (searchParams.get('category') ?? 'all') as Category
+  const category = normalizeCategory(searchParams.get('category'))
+  const tagParam = searchParams.get('tag')
+  const selectedTag = isPostTag(tagParam) ? tagParam : undefined
   const page = Math.max(1, parseInt(searchParams.get('page') ?? '1', 10))
   const offsetParam = searchParams.get('offset')
   const limit = Math.max(1, parseInt(searchParams.get('limit') ?? '10', 10))
 
-  const { pinnedPost, posts } = getPostsWithPinned(category)
+  const { pinnedPost, posts } = getPostsWithPinned(category, selectedTag)
 
   const start =
     offsetParam !== null

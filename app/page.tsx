@@ -3,8 +3,9 @@ import Link from 'next/link'
 import HomeFrame from '@/components/HomeFrame'
 import PostsView from '@/components/PostsView'
 import { SectionIntro } from '@/components/SectionIntro'
-import { getAllPosts, getPostsWithPinned } from '@/lib/posts'
+import { getAllPosts, getPostsWithPinned, type Category } from '@/lib/posts'
 import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
+import { isPostTag, POST_TAGS } from '@/lib/postTags'
 
 const INITIAL_PAGE_SIZE = 6
 
@@ -81,7 +82,8 @@ function AboutSection() {
           <Image
             src="/avatars/ajin.jpg"
             alt="阿锦"
-            fill
+            width={640}
+            height={640}
             sizes="(max-width: 767px) 100vw, 30vw"
             className="about-grid__image"
           />
@@ -104,9 +106,22 @@ function AboutSection() {
   )
 }
 
-export default function Home() {
-  const { pinnedPost, posts } = getPostsWithPinned('all')
-  const allPosts = getAllPosts()
+interface HomeProps {
+  searchParams?: {
+    category?: string
+    tag?: string
+  }
+}
+
+function normalizeCategory(category?: string): Category {
+  return category === 'progress' || category === 'diary' ? category : 'all'
+}
+
+export default function Home({ searchParams }: HomeProps) {
+  const category = normalizeCategory(searchParams?.category)
+  const selectedTag = isPostTag(searchParams?.tag) ? searchParams.tag : undefined
+  const { pinnedPost, posts } = getPostsWithPinned(category, selectedTag)
+  const allPosts = getAllPosts(category, selectedTag)
   const diaryPosts = getAllPosts('diary')
   const latestDiary = diaryPosts[0] ?? null
   const initialPosts = posts.slice(0, INITIAL_PAGE_SIZE)
@@ -121,7 +136,7 @@ export default function Home() {
     },
     {
       href: latestDiary ? `/blog/${latestDiary.slug}` : '#about',
-      imageSrc: latestDiary?.coverImage || '/avatars/ajin.jpg',
+      imageSrc: latestDiary?.coverImage || HISTORICAL_COVERS[1].src,
       title: 'Private Diary',
       buttonLabel: 'Open The Diary',
     },
@@ -182,6 +197,9 @@ export default function Home() {
         <PostsView
           posts={initialPosts}
           totalCount={allPosts.length}
+          availableTags={[...POST_TAGS]}
+          selectedTag={selectedTag}
+          category={category}
           initialHasMore={hasMore}
         />
       </section>

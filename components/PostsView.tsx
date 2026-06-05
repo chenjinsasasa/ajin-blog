@@ -1,8 +1,10 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, useEffect, useCallback } from 'react'
 import { PostCard } from '@/components/PostCard'
 import type { PostMeta } from '@/lib/posts'
+import type { PostTag } from '@/lib/postTags'
 
 const LOAD_MORE_SIZE = 6
 
@@ -10,6 +12,8 @@ interface PostsViewProps {
   posts: PostMeta[]
   totalCount?: number
   category?: string
+  availableTags?: PostTag[]
+  selectedTag?: PostTag
   initialHasMore?: boolean
 }
 
@@ -17,6 +21,8 @@ export default function PostsView({
   posts: initialPosts,
   totalCount: totalCountProp,
   category = 'all',
+  availableTags = [],
+  selectedTag,
   initialHasMore = false,
 }: PostsViewProps) {
   const [posts, setPosts] = useState<PostMeta[]>(initialPosts)
@@ -26,7 +32,7 @@ export default function PostsView({
   useEffect(() => {
     setPosts(initialPosts)
     setHasMore(initialHasMore)
-  }, [category, initialHasMore]) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [category, selectedTag, initialPosts, initialHasMore])
 
   const loadMore = useCallback(async () => {
     if (loading || !hasMore) return
@@ -34,7 +40,17 @@ export default function PostsView({
 
     try {
       const offset = posts.length
-      const res = await fetch(`/api/posts?category=${category}&offset=${offset}&limit=${LOAD_MORE_SIZE}`)
+      const params = new URLSearchParams({
+        category,
+        offset: String(offset),
+        limit: String(LOAD_MORE_SIZE),
+      })
+
+      if (selectedTag) {
+        params.set('tag', selectedTag)
+      }
+
+      const res = await fetch(`/api/posts?${params.toString()}`)
       const data = await res.json() as { posts: PostMeta[]; hasMore: boolean }
       setPosts((prev) => [...prev, ...data.posts])
       setHasMore(data.hasMore)
@@ -43,8 +59,23 @@ export default function PostsView({
     } finally {
       setLoading(false)
     }
-  }, [loading, hasMore, posts.length, category])
+  }, [loading, hasMore, posts.length, category, selectedTag])
   const totalCount = totalCountProp ?? posts.length
+
+  function getTagHref(tag?: PostTag) {
+    const params = new URLSearchParams()
+
+    if (category !== 'all') {
+      params.set('category', category)
+    }
+
+    if (tag) {
+      params.set('tag', tag)
+    }
+
+    const query = params.toString()
+    return `/${query ? `?${query}` : ''}#blog`
+  }
 
   if (totalCount === 0) {
     return (
@@ -66,6 +97,28 @@ export default function PostsView({
 
   return (
     <>
+      {availableTags.length > 0 && (
+        <nav className="post-filter" aria-label="文章标签">
+          <Link
+            href={getTagHref()}
+            className={`post-filter__item ${!selectedTag ? 'post-filter__item--active' : ''}`}
+            aria-current={!selectedTag ? 'page' : undefined}
+          >
+            全部
+          </Link>
+          {availableTags.map((tag) => (
+            <Link
+              key={tag}
+              href={getTagHref(tag)}
+              className={`post-filter__item ${selectedTag === tag ? 'post-filter__item--active' : ''}`}
+              aria-current={selectedTag === tag ? 'page' : undefined}
+            >
+              {tag}
+            </Link>
+          ))}
+        </nav>
+      )}
+
       <div className="post-grid">
         {posts.map((post) => (
           <PostCard key={post.slug} post={post} />

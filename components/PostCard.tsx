@@ -25,6 +25,16 @@ export function PostCard({ post }: { post: PostMeta }) {
         <div className="post-list-card__text">
           <h3 className="post-list-card__title">{post.title}</h3>
 
+          {post.tags.length > 0 && (
+            <div className="post-list-card__tags" aria-label="文章标签">
+              {post.tags.slice(0, 3).map((tag) => (
+                <span key={tag} className="post-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+
           {post.excerpt ? (
             <div className="post-list-card__excerpt">
               <p>{post.excerpt}</p>

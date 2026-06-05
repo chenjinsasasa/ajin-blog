@@ -107,6 +107,16 @@ export default function BlogPost({ params }: Props) {
           {post.excerpt && (
             <p className="detail-header__excerpt">{post.excerpt}</p>
           )}
+
+          {post.tags.length > 0 && (
+            <div className="detail-header__tags" aria-label="文章标签">
+              {post.tags.map((tag) => (
+                <span key={tag} className="post-tag">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
         </header>
 
         <section className="detail-content">

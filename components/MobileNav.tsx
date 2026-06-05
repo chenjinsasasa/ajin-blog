@@ -45,7 +45,7 @@ const NAV_ITEMS = [
   {
     label: 'Team',
     value: 'team',
-    href: '/?category=team',
+    href: '/team',
     icon: (
       <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
         <path d="M16 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2" />
@@ -80,7 +80,11 @@ export function MobileNav() {
     <div className="mobile-nav lg:hidden">
       <nav className="mobile-nav__inner">
         {NAV_ITEMS.map((item) => {
-          const isActive = !item.external && pathname === '/' && currentCategory === item.value
+          const isActive = !item.external && (
+            item.href === '/team'
+              ? pathname === '/team'
+              : pathname === '/' && currentCategory === item.value
+          )
 
           const className = `mobile-nav__item ${isActive ? 'mobile-nav__item--active' : ''}`
 

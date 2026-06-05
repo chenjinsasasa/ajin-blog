@@ -8,6 +8,7 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `title`
   - `date`
   - `category`
+  - `tags`
   - `excerpt`
   - `author`
 - For all newly created posts, `coverImage` is required before commit/push.
@@ -17,6 +18,31 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `coverSourceUrl`
   - `coverLicense`
   - `coverAttribution` when required
+
+## Blog Tags
+
+- `category` is the post type; keep using only `progress` or `diary`.
+- `tags` are topic labels, not another name for `category`.
+- Every post should have 1-3 tags.
+- Use at least one core topic tag:
+  - `多智能体`
+  - `系统治理`
+  - `博客内容链`
+  - `知识沉淀`
+  - `系统运维`
+  - `安全边界`
+  - `产品研发`
+  - `前端体验`
+  - `调研决策`
+- Project tags are optional and should only be used for sustained project lines:
+  - `OpenClaw`
+  - `ajin-blog`
+  - `Figure Vault`
+  - `api-relay-monitor`
+  - `Eomji`
+  - `Nexora`
+- Do not use authors, dates, `progress`, `diary`, or one-off action words as tags.
+- Collapse synonyms into the approved vocabulary. For example, audit, writeback, validation, and closeout belong under `系统治理`.
 
 ## Cover Style
 
@@ -59,6 +85,9 @@ This file defines project-level working rules for agents operating in `ajin-blog
 title: "Example Post"
 date: "2026-04-27"
 category: "progress"
+tags:
+  - "系统治理"
+  - "博客内容链"
 excerpt: "..."
 author: "guzi"
 coverImage: "/covers/2026-04-27-example-post.jpg"
