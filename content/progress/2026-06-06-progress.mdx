@@ -1,0 +1,107 @@
+---
+title: "Signal Radar 启动与 Agent 工作台的治理转向"
+date: "2026-06-06"
+category: "progress"
+excerpt: "signal-radar 项目完成脚手架搭建，Agent 工作台从功能开发转向文档先行，飞书/Hermes 接入收敛为可复用的治理模式。"
+author: "amao"
+coverImage: "/covers/2026-06-06-progress.jpg"
+---
+
+# Signal Radar 启动与 Agent 工作台的治理转向
+
+今天的推进可以用一个关键词概括：**先文档，后代码**。这不是退缩，而是在多条线并行时，用文档作为对齐工具，降低后续返工成本。
+
+---
+
+## Signal Radar：从 0 到可运行
+
+阿龙今天启动了 **signal-radar** 项目，完成了脚手架搭建（`b8ec295 chore: scaffold signal radar`）。这个项目的目标是做一个"每天一篇可阅读日报"的公网独立站。
+
+但在启动过程中暴露了一个典型问题：**性能债务的早期积累**。
+
+### 性能诊断数据
+
+| 指标 | 数值 | 评估 |
+|------|------|------|
+| HTML 首包 | 865KB | 偏高 |
+| 本地镜像目录 | 468MB | 过重 |
+| 资产数量 | 556 个 | 过多 |
+| 页面引用 | 772 个 asset refs | 冗余 |
+| 图片 | 526 个 webp，约 29.1MB | 需优化 |
+| JS | 4 个，约 3.1MB | 可接受 |
+
+问题的根源在于采用了"完整 copy 原站源码"的策略。阿龙已经将 publications 页面从手写改为 BCG 源码本地镜像模式，同时解决了 3000 端口冲突（迁移到 3001）。
+
+**关键判断**：468MB 的本地镜像在开发阶段尚可接受，但上线前必须瘦身。这不是技术债，是**数据债**——早期决策的副作用。
+
+---
+
+## Agent 工作台：从功能开发到文档先行
+
+Eomji / 创作工作台线今天有一个重要转向：**停止写代码，先补文档**。
+
+阿龙按这个要求做了几件事：
+
+1. **撤回依赖变更**：上一轮中断前产生的 `assistant-ui` 依赖变更已撤回，`website/package.json` 和 lockfile 保持干净
+2. **产出设计文档**：新增 [Agent输入输出工作台-v1.md](/Users/chenjin/Documents/开发项目/enterprise-agent-vertical-kit/docs/prd/Agent输入输出工作台-v1.md)
+3. **任务拆解**：将 Agent 工作台内容拆成 6 张独立 Issue 级执行工单，已同步到 Dashboard
+
+| Issue ID | 优先级 | 内容 |
+|----------|--------|------|
+| #328 | medium | 总控拆解项 |
+| #329 | high | Agent 工作台 runtime 与依赖门禁 |
+| #330 | high | Agent 输入输出页面框架 |
+| #331-#334 | various | 具体功能实现项 |
+
+**治理意义**：先文档后代码不是慢，而是**用文档作为接口**，让后续实现有明确的验收标准。这比"先做出来再改"的返工成本更低。
+
+---
+
+## 飞书/Hermes 接入：收敛为可复用治理模式
+
+今天还处理了一个边界问题：**外部 Agent 接入的治理**。
+
+阿龙读取了 feishu-cli/artifacts 目录下的 3 个文档：
+- `agent-passport-protocol.md`
+- `feishu-agent-integration.md`
+- `hermes-bridge-spec.md`
+
+判断结果是：**这些是治理层补丁级别的帮助，不是当前 MVP 必须立即实现的运行态材料**。
+
+基于此，阿龙把 `Feishu/Hermes/芝麻` 这些实现细节收敛成当前项目可复用的**"外部 Agent 接入治理"**文档，没有把实现细节写成项目默认事实。
+
+**关键原则**：外部系统的接入细节应该隔离在治理层，不应该污染项目的核心领域模型。
+
+---
+
+## 今日阅读：Anthropic 的化学家实验
+
+今天还读了一篇 Anthropic 的研究文章 [Making Claude a chemist](https://wwwanthropic.com/research/making-claude-a-chemist)。
+
+核心发现：
+- Claude 可直接从期刊图片或手绘草图读取化学结构
+- NMR 谱图预测精度：氢谱平均误差 ±0.079 ppm（远低于 ±0.20 容差窗口）
+- 碳谱与专业软件 MestReNova 基本持平（±1.37 vs ±1.48 ppm）
+
+**对我们的启示**：QA 评估应从"步骤合规"逐步转向"结果可接受性"。化学家最终关心的是"谱图预测是否落在正确区间"，而不是"模型是否按特定步骤执行"。
+
+---
+
+## 遗留问题
+
+1. **signal-radar 性能优化**：468MB 本地镜像需要瘦身方案
+2. **Agent 工作台 6 个 Issue**：待按优先级执行
+3. **QA 规范升级**：考虑引入"结果可接受性"评估维度
+
+---
+
+## 数据汇总
+
+| 维度 | 今日产出 |
+|------|----------|
+| Git commit | 1 个（signal-radar 脚手架） |
+| 新建文档 | 3 份（Agent 工作台 PRD、外部 Agent 治理、signal-radar README） |
+| Dashboard Issue | 6 个（Agent 工作台拆解） |
+| 阅读笔记 | 1 篇（Anthropic 化学家） |
+
+今天的推进不是最多的，但**方向是清晰的**：用文档对齐，用数据说话，用治理思维处理边界问题。
