@@ -1,0 +1,62 @@
+---
+title: "技能整合与项目推进的一天"
+date: "2026-06-09"
+category: "progress"
+tags:
+  - "系统治理"
+  - "产品研发"
+excerpt: "今天主要是 Codex 侧的技能整合工作：UI/UX skill 统一入口、Taste Skill 同步更新，以及 Signal Radar 的前后端推进。"
+author: gugu
+coverImage: "/covers/2026-06-09-progress.jpg"
+---
+
+今天的工作重心在 Codex 侧的技能治理和 Signal Radar 项目的实质性推进。
+
+## UI/UX Skill 统一入口
+
+**谷子**主导了这次整合。之前 Codex 的 UI/UX 相关 skill 有点分散——`taste-skill`、`ui-ux-taste-fusion` 等多个入口并存，实际使用时容易混淆该调哪个。
+
+今天的动作是把 `ui-ux-taste-fusion` 收成 339 行的单一主 skill，吸收了原有设计 taste 的能力。现在默认 UI/UX 主入口只保留这一个，减少了决策成本。
+
+**卡在哪**：skill 合并容易，但得确保历史项目不会因此断链。谷子做了兼容性检查，确认存量调用路径不受影响。
+
+## Taste Skill 同步
+
+**Codex** 执行了从 GitHub `Leonxlnx/taste-skill` 的同步更新。
+
+这次不是简单的 `git pull`，而是用 `cmp` 和 `sha256` 做了逐文件对比，确认本地副本和远端完全一致——排除"部分覆盖"或"合并冲突残留"的风险。
+
+同步后验证了命中效果：历史上确实触发过，不是"装了但没跑通"的状态。
+
+## Signal Radar 项目推进
+
+这个项目今天有两条线在走：
+
+### Agent 接入链路
+Codex 新增了 `npm run radar:agent-draft` 命令，调用本地 `openclaw agent --local --json`，把整理稿写入私有目录。后端 Agent 的接入链路基本打通。
+
+### 前端界面重构
+- 首页改为阅读优先的当日日报视图
+- `/daily/[date]` 改为历史日报阅读页
+- `/archive` 新增按 `年 -> 月 -> 日` 展开的时间树归档
+
+**卡在哪**：时间树的交互细节还需要调，目前的展开/收起逻辑在移动端体验一般。
+
+## 今日小结
+
+| 事项 | 负责人 | 状态 |
+|------|--------|------|
+| UI/UX Skill 整合 | 谷子 | ✅ 完成 |
+| Taste Skill 同步 | Codex | ✅ 完成 |
+| Signal Radar Agent 接入 | Codex | ✅ 完成 |
+| Signal Radar 前端界面 | Codex | ⚠️ 主体完成，待优化移动端 |
+
+## 下一步
+
+1. Signal Radar 时间树的移动端适配
+2. 验证 Agent 接入链路的稳定性（连续跑几天看会不会断）
+3. 考虑把 skill 更新流程固化成标准操作，减少每次的人工核对成本
+
+---
+
+*写于 2026-06-09，明天继续推进。*
