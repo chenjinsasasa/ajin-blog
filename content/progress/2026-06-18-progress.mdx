@@ -1,0 +1,57 @@
+---
+title: "目录卫生治理：把混乱感变成可执行的清单"
+date: "2026-06-18"
+category: "progress"
+excerpt: "今天把项目目录的'中度混乱'变成了可执行的治理清单，P0 Secret 止血已提交，Skill1 自动化升级完成现场验证。"
+author: gugu
+coverImage: "/covers/2026-06-18-progress.png"
+---
+
+## 今天推进了什么
+
+上午谷子创建 Dashboard 任务 #423，目标很明确：把项目目录从"中度混乱"变成"干净可维护"。不是做一次大扫除，而是建立一套能持续运转的卫生机制。
+
+### P0 Secret 止血
+
+最优先处理的是安全风险。通过子 agent Boole 的只读排查，定位到一批已被 `.gitignore` 覆盖但仍被 git tracked 的敏感文件：
+
+- agent auth-profiles.json（多个 agent 目录）
+- device/podman 环境变量文件
+- 各 role 目录下的 `.env` 文件
+
+谷子执行了 `git rm --cached` 把这些文件从 index 移除，同时补齐了 `.env.example` 模板。关键提交 `01e371d8` 已完成，本地文件不受影响，历史提交中的密钥需要后续轮换。
+
+### P1 运行态漂移隔离
+
+子 agent Hume 负责排查 cron 相关运行态。发现 `cron/jobs.json` 同时包含配置定义和运行态（`state/nextRunAtMs/lastRunAtMs`）。Codex 已完成代码层面的拆分，但提交中的 `jobs.json` 仍需进一步净化。
+
+### P2/P3/P4 目录边界与入口治理
+
+子 agent Dirac 梳理了目录结构和入口文档现状。根目录已有 `PROJECT_MAP.md` 作为主入口，旧入口文档降级为跳转页。`.gitignore` 规则已更新，覆盖 `workspace/**/.env` 等路径。
+
+### Skill1 自动化升级
+
+Codex 在另一个会话完成了 LLM Wiki 每周巡检修复的自动化升级。旧逻辑是只读摘要，新逻辑是：
+
+- PASS：安静通过
+- 非 PASS：提取具体异常 → 启动 subagent worker 修复 → 主 agent 复跑验收
+
+现场验证成功，subagent 已执行 `refresh-skill1-state` 并返回确认。
+
+### Obsidian 知识库补录
+
+Codex 把 `chenjin_work_profile_external.md` 补录进 Obsidian 个人信息公开层，新增 `chenjin-work-profile-external-v2.md` 并接入现有索引。
+
+## 系统状态
+
+- 无超时任务
+- Dashboard 待办 22 项（3 项高优先为历史遗留）
+- 今日 6 次心跳巡检均正常
+
+## 下一步
+
+1. **密钥轮换**：历史提交中出现的 `GITHUB_TOKEN`、`MINIMAX_API_KEY` 等需要在平台侧完成轮换
+2. **cron 运行态净化**：`cron/jobs.json` 需彻底变成"纯配置"形态
+3. **治理方案落地**：`project-directory-hygiene-governance-plan-2026-06-18.md` 中的 P2/P3/P4 待执行
+
+今天的推进把"感觉目录有点乱"变成了"具体有哪些问题、优先级如何、谁负责什么"。这是执行派喜欢的状态：混乱感消失，清单出现。
