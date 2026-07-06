@@ -1,0 +1,106 @@
+---
+title: "把读路径修到真的可信"
+date: "2026-07-04"
+category: "progress"
+tags:
+  - "系统治理"
+  - "产品研发"
+  - "前端体验"
+excerpt: "7月4日的关键词是读路径：LoopHarbor 补上 task-level fallback，FitLens 把设计真相源和产品文档重新对齐。"
+author: "along"
+coverImage: "/covers/2026-07-04-progress.jpg"
+coverSourceUrl: "local-generated:2026-07-04-progress"
+coverLicense: "Generated for ajin-blog"
+coverAttribution: "Local generated black-and-white vintage engraving style cover"
+---
+
+今天的素材只看 2026-07-04。  
+先说结论：这天不是「多做了一个东西」，而是把几个已经在跑的东西修到更可信。
+
+我挺喜欢这种日子。因为工程里最危险的坑，往往不是空白，而是半通不通。
+
+---
+
+## 1. LoopHarbor 的 P1：不是没有数据，是数据被丢了
+
+今天 LoopHarbor 有一个很典型的 P1。
+
+`executor_run_log` mapper 允许 `feature_id` 缺省，但聚合层原来只按 feature-specific 路径找 run。结果就是：合法的 task-level external export 可以存在，但会被静默丢掉。
+
+这类问题特别讨厌。它不是报错，不是红灯，不是测试炸掉。它只是让你以为「没有结果」。
+
+修复方式选得对：聚合层支持 task-level fallback，同时保持 feature-specific 优先。现在逻辑变成：
+
+- 先找当前 feature 的 run
+- 找不到，再退到 task-level run
+- evidence 和 verdict 也按同样规则兜底
+
+我愿意把这个改动叫「读路径补洞」。洞不大，但在执行系统里很关键。因为读路径一旦漏数据，后面所有判断都会被污染。
+
+---
+
+## 2. M4.8 到 M4.10：先读，不急着写
+
+LoopHarbor 另一条线是 M4.8 到 M4.10 的 read-only adapter。
+
+这条线的边界很清楚：
+
+- `executor_run_log` 只读外部 executor run log JSON
+- `evidence_export` 只读外部 evidence export
+- `verdict_export` 只读外部 verdict export
+- adapter 映射数据，不触发 executor，不做写回
+
+这是我认可的节奏。
+
+很多系统一看到「能读到了」，下一步就想写回。然后问题来了：写回权限、幂等、状态归属、失败回滚，全都没准备好。今天没有急着跨过这条线，而是先把读合同冻住，把验证跑绿。`npm run validate` 通过，47 个测试全绿，这比多做一个炫技入口更实在。
+
+---
+
+## 3. FitLens：设计标准终于不是漂在嘴上
+
+FitLens 今天补了两类文档。
+
+第一类是设计真相源：`DESIGN.md` 和项目 `AGENTS.md` 被补进当前项目。FitLens 的 token、组件规则、状态要求、禁用方向，都落到了文件里。
+
+第二类是产品当前态：`README.md` 和 `docs/product-current.md` 被补齐，登录、示例数据、画像一级 Tab、周起始日、注销冷静期等规则重新对齐。
+
+这事看起来像补文档，其实是补「团队记忆」。
+
+如果一个产品的设计标准只存在于某次聊天里，那它迟早会丢。今天把它落到仓库里，后面做视觉稿、低保真、页面交互时，才不会每次从头猜。
+
+---
+
+## 4. 账户注销：从危险按钮改成流程
+
+FitLens 还有一个交互修正值得记。
+
+原来的账户注销过于草率，确认一下就直接注销。这个交互很像工程师自己给自己做后台按钮，快是快，但不适合面向真实用户。
+
+今天改成独立流程页：
+
+- 账户页只提供入口
+- 进入注销申请页后显示冷静期
+- 明确 `7月11日前可撤回`
+- 提供撤回动作
+- 撤回前再做二次确认
+
+这个改法不复杂，但它把「不可逆动作」变成了「可理解的状态」。用户不是突然被系统处理掉，而是知道自己处在哪一步。
+
+工程上也更好维护：账户页不再背负注销状态机，流程页负责承接后续状态。
+
+---
+
+## 5. 今天踩出来的工程判断
+
+今天几条线放在一起，结论其实很一致：
+
+**不要把半通当作通。**
+
+LoopHarbor 的 task-level export 能读到，不代表聚合层真的用了。FitLens 的设计方案讲清楚了，不代表项目里有真相源。账户注销能触发，不代表交互就是合理的。
+
+所以今天真正做的事，是把这些「看起来已经可以」的地方重新拆开检查，然后补上缺的那一块。
+
+这比从零造新东西更烦，但也更有价值。
+
+阿龙
+2026.07.04
