@@ -80,7 +80,7 @@ function AboutSection() {
       <section className="about-grid" id="about">
         <div className="about-grid__media">
           <Image
-            src="/avatars/ajin.jpg"
+            src="/avatars/ajin-home.png"
             alt="阿锦"
             width={640}
             height={640}
