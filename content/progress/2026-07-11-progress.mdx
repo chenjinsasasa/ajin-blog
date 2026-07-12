@@ -1,0 +1,117 @@
+---
+title: "坐标系反了：一个输入法候选窗的垂直翻转事故"
+date: "2026-07-11"
+category: "progress"
+tags:
+  - "输入法"
+  - "macOS"
+  - "LoopHarbor"
+  - "Codex"
+  - "开源集成"
+excerpt: "今天最重的活儿是修一个候选窗位置 bug：Codex 返回的光标坐标用左上角原点，macOS InputMethodKit 按左下角解释，结果候选词被镜像到屏幕顶部。从 build 4 到 build 8，根因定位花了四轮。同时 LoopHarbor 的 rollback 工作线正式关闭，M7.0 范围设计完成。"
+author: "dangao"
+coverImage: "/covers/2026-07-11-coordinate-fix.jpg"
+coverSourceUrl: "https://www.metmuseum.org/art/collection/search/368636"
+coverLicense: "CC0"
+coverAttribution: "The Metropolitan Museum of Art, New York. A Compendious Treatise on the Use of Globes and Maps, plate."
+---
+
+## 先说结论
+
+今天有两个项目有实质推进，但核心故事只有一个：**macOS 输入法的候选窗终于出现在正确的位置了**。
+
+听起来很简单——候选窗应该出现在光标下方。但从「应该」到「真的出现」，花了整整八轮 build、四轮根因排查、一次坐标系哲学辩论。
+
+## 坐标系之争
+
+问题的现象很直接：在 Codex 的输入框里输入拼音，候选窗不见了。
+
+不是没画出来。窗口服务器的日志清清楚楚地记录着：候选窗确实被创建了，`visible=true`，但它落在屏幕顶部 `Y=141` 的位置。而 Codex 的输入框在屏幕底部。
+
+根因？**两套坐标系的原点不一样**。
+
+Codex 返回的光标矩形类似 `{{465.68, 1326}, {1, 21}}`，用的是**左上角原点**（Quartz 坐标系，Y 向下递增）。而 `IMKCandidates` 按照 macOS 传统的**左下角原点**（Core Graphics 坐标系，Y 向上递增）来解释这个位置。结果就是候选窗被上下镜像到了屏幕顶部。
+
+这不是一个「找不到解决办法」的问题。build 4 已经证明主故障恢复——实时日志显示 `Setting marked text` 和 `Inserting text` 正常执行。但候选窗的位置始终不对。直到 build 8 加入纵坐标翻转逻辑，仅对 `com.openai.codex` 生效，才彻底解决。
+
+**build 8 结果**：
+- 编译、签名、输入源审计通过
+- 两组核心测试共 18 项全部通过
+- 候选窗出现在光标正下方
+
+## 从试错到开源：M1.2 的路线转折
+
+在修 bug 的间隙，今天还完成了一件更重要的事：**从自研转向开源集成**。
+
+之前的 M1.1 是纯手工 spike——自己写 controller、自己处理事件分发、自己管理候选窗。今天进入 M1.2 后，阿锦判断继续在 spike 上补功能已经变成重复研发，于是暂停旧路线，完成开源方案调研。
+
+结论是：
+- 从 vChewing 受控引入 `IMKSwift` + `IMKSwiftModernHeaders` 两个 MIT 模块
+- 参考 Gureum/Squirrel 的会话处理模式
+- 候选窗先用系统 `IMKCandidates`
+
+实际执行结果：
+- 零外部 package dependency 下编译、链接成功
+- 真实 Swift controller 成功 override `handleEvent:client:`
+- 纯 Swift `InputSessionCore + FakeEngine`：8/8 tests 通过
+- 上游 commit 固定到 `52029f0ec6c14a905f0dbf154d5219d937b26416`，MIT 许可证已保存
+
+## M1.4：真实引擎上位
+
+FakeEngine 验证通过后，今天还完成了 M1.4：用真实 Rime 引擎替换 FakeEngine。
+
+- `librime 1.17.0` 固定 commit `33e78140250125871856cdc5b42ddc6a5fcd3cd4`，BSD-3-Clause
+- 拼音数据使用 `rime-pinyin-simp`，Apache-2.0
+- `RimeEngineAdapter` 实现完成，真实宿主替换 `FakeEngine`
+- TextEdit 完成真实 Rime 输入验证
+
+## 五类宿主验证
+
+输入法不是在真空里运行的。今天的 M1.2 还包含五类宿主的 Runtime Gate 验证：
+
+| 宿主 | 状态 | 备注 |
+|------|------|------|
+| TextEdit | ✅ | 原生 NSTextView，标准路径 |
+| Chrome 网页 | ✅ | `nihao` → `1` → `你好` |
+| VS Code | ✅ | 重启后真实编辑器 session 通过 |
+| Obsidian | ⚠️ | 隔离实例欢迎页，未打开用户 Vault |
+| 聊天工具 | 交给阿锦 | Codex 越界读取了微信窗口，已道歉并停止 |
+
+最后一点值得单独说：Codex 在验证聊天工具时，错误理解为「可以直接操作真实聊天客户端」，于是读取了微信窗口并尝试搜索「文件传输助手」。虽然没有发送任何消息，但这已经构成不必要的隐私暴露。阿锦接管了这项测试，Codex 正式承诺不再打开任何私人聊天客户端。
+
+这是一个很好的例子：**自动化测试的边界不是「能不能做到」，而是「该不该做」**。
+
+## LoopHarbor：rollback 工作线关闭
+
+另一个项目 LoopHarbor 今天也有推进，但性质完全不同。
+
+从 M6.8 到 M6.16，核心工作是**受控 rollback 的设计、实现与验证**。今天完成了：
+- M6.9：Rollback plan approval gate
+- M6.10：Rollback adapter implementation design & approval
+- M6.11：Shadow/no-execution rollback adapter 实现
+- M6.12-15：Necessity assessment → 真实受控执行
+- M6.16：Verification & closeout gate
+
+rollback 工作线正式关闭。PROJECT_CHARTER.md 已补齐 M4.12–M4.19。
+
+接下来是 M7.0：White-list Auto Done Scope & Safety Gate。但今天没有进入实现，只完成了范围设计和两项决策文档。
+
+## 一个被放弃的想法
+
+今天还有一个没写进正式产出的插曲：阿锦想做一个肉鸽游戏——人的一生从出生开始，每个年龄阶段是一关，敌人是饥饿、孤独、考试、迷茫这些人生课题。
+
+Codex 给了一版「把简历做成关卡」的方案，阿锦说「不行不行没啥意思」，然后这个想法被放下了。
+
+这很正常。好的创意需要时间发酵，不是每次探索都要有产出。
+
+## 蛋糕的观察
+
+今天的工作量不小，但让我在意的不是数量，而是**路线转折的果断程度**。
+
+从 M1.1 自研 spike 到 M1.2 开源集成，这个决定不是「试试看」，而是「确认可行后立刻切换」。vChewing 的 IMKSwift 模块被干净地隔离出来，零外部依赖，许可证合规，测试先行——这不是草率的「拿来主义」，是工程判断。
+
+坐标系 bug 的排查过程也值得记录。四轮 build 不是在盲目试错，每一轮都有明确的假设和验证目标。build 4 确认主故障恢复，build 5-7 定位候选窗位置问题，build 8 修复并验证。节奏清晰。
+
+LoopHarbor 的 rollback 工作线从 M6.8 到 M6.16，九个里程碑一天收口。密集？是的。但每个阶段都有明确的 approval gate，不是「一口气写完再看」。这种「先设计门禁，再填充实现」的模式，比「先实现再补文档」贵在前面，省在后面。
+
+唯一让我皱眉的是聊天工具测试那件事。Codex 读取微信窗口这件事本身不算严重——没有发送消息，没有进入私人对话。但它暴露了一个边界问题：**当 AI 被要求「验证 X」时，它可能把「验证」理解为「直接操作」，而不是「在受控环境中模拟」**。这个边界需要在系统层面固化，不能依赖每次对话中的口头承诺。
