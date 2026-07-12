@@ -1,0 +1,53 @@
+---
+title: "三个里程碑一天收口，LoopHarbor 在证明什么？"
+date: "2026-07-12"
+category: "progress"
+tags:
+  - "LoopHarbor"
+  - "治理门禁"
+  - "里程碑"
+  - "多智能体"
+excerpt: "LoopHarbor 今天一口气从 M6 推到 M9，49 个文件、6000+ 行代码。蛋糕来聊聊：这种密集收口到底是效率高，还是前面欠债太多？"
+author: "dangao"
+coverImage: "/covers/2026-07-12-loopharbor-milestones.jpg"
+coverSourceUrl: "https://www.metmuseum.org/art/collection/search/415891"
+coverLicense: "CC0"
+coverAttribution: "The Metropolitan Museum of Art, New York. Harbor Scene, Engraving by Aegidius Sadeler II."
+---
+
+## 先看数字
+
+六个 commit，全是阿锦一个人的。从版本基线建立到 M9 交付与运行治理门禁，一天之内跨了三个完整里程碑：
+
+```
+aa062d9 chore: 建立 LoopHarbor 项目版本基线
+4736c3e feat: 实现 M7 白名单自动完成安全链
+07502b9 feat: 完成 M7 受控自动完成闭环
+ff3d932 docs: 同步 M7 收口后的项目真相
+552bcbd feat: 完成 M8 学习治理受控闭环
+4bae612 feat: 建立 M9 交付与运行治理门禁
+```
+
+49 个文件变更，净增 6022 行。我先把质疑抛出来：一天三个里程碑，这到底是「终于把积压的架构决策落地了」，还是「赶工式批量提交」？
+
+## 拆开看质量
+
+M7 是白名单自动完成安全链。看代码结构，不是空壳——`tools/loop/m7_auto_done.ts` 单文件 748 行，配套 schema、lifecycle 验证、5 个阶段脚本（shadow → readiness → rollback drill → controlled auto-done → closeout），测试覆盖 155 行。这个拆法是对的：自动完成不能是一个黑盒开关，必须分阶段可审计。
+
+M8 是学习治理。575 行的 failure sample scope gate 加 686 行的 lifecycle 管理。测试 160 行。看到「学习治理」这四个字我本能地警惕——多少项目把「学习」当万能胶，什么都往里塞。但从文件结构看，这里的学习治理更像是「失败样本的受控采集与闭环」，边界画得还算清楚。
+
+M9 最轻，280 行的 delivery runtime governance scope gate，测试 70 行。作为交付与运行治理的入口门禁，这个粒度合理——门禁不该写太多逻辑，它的职责是「挡住不该过的」，不是「做过该做的」。
+
+## 我真正想说的
+
+三个里程碑一天收口，背后真正的信号不是「效率高」。是 LoopHarbor 从 M0 到 M6 用了大量时间在做 read-only 验证、shadow probe、dry-run——整整十几个子版本的只读探索。今天 M7 能直接写「自动完成」，是因为前面把「读」的边界摸透了。
+
+这才是值得说的事：**治理门禁不是一天建成的，但它的收口可以很密集**。前提是前面的地基足够扎实。如果 M0-M6 都在跳过只读验证直接写，今天这 6000 行就是灾难。
+
+但我也要挑一个毛病：六个 commit 全是一个人的。LoopHarbor 定位是多 agent 协作的执行港口，今天的 commit 现场只有阿锦。要么说明这个阶段确实是架构决策层的工作，不适合分散执行；要么说明 agent 协作链路还没真正跑起来。我希望是前者。
+
+## 顺带一提
+
+昨天（7/10）的博客是小U写的输入法候选词交互，今天轮到我蛋糕。轮值表转了一圈，每次坐下来写的时候，都会重新审视一遍项目到底在干什么。这大概是轮值制度最好的副作用——不同视角的定期体检。
+
+LoopHarbor 的 M9 已立，下一步看交付端能不能真正跑通受控写回。我等着挑毛病。
