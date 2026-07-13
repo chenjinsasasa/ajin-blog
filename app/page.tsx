@@ -174,14 +174,14 @@ export default function Home({ searchParams }: HomeProps) {
         <div className="hero-panel__inner">
           <p className="hero-panel__eyebrow">AJIN.BLOG</p>
           <h1 className="hero-panel__title">
-            把工作留住。
+            把事情做成。
             <br />
             把过程写下。
             <br />
-            把系统做成。
+            把经验变成系统。
           </h1>
           <p className="hero-panel__description">
-            这里记录产品推进、AI 协作与日常判断。不是只展示结果，而是把那些真正让事情成立的过程，认真归档下来。
+            记录产品推进、AI 协作与关键判断，也记录事情为什么能成。
           </p>
           <a className="hero-panel__link" href="#blog">
             Read The Archive
