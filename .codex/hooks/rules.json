@@ -1,0 +1,33 @@
+{
+  "project": "ajin-blog",
+  "maxAttempts": 2,
+  "rules": [
+    {
+      "name": "站点完整验证",
+      "priority": 100,
+      "exclusive": true,
+      "patterns": [
+        "app/**",
+        "components/**",
+        "lib/**",
+        "scripts/**",
+        "config/**",
+        "package.json",
+        "package-lock.json",
+        "next.config.*",
+        "tsconfig.json"
+      ],
+      "commands": ["npm run verify"]
+    },
+    {
+      "name": "文章结构验证",
+      "priority": 50,
+      "patterns": [
+        "content/**",
+        "covers/**",
+        "public/covers/**"
+      ],
+      "commands": ["npm run posts:validate"]
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "^apply_patch$",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/project-hook.mjs\" record",
+            "timeout": 10,
+            "statusMessage": "记录本轮改动"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$(git rev-parse --show-toplevel)/.codex/hooks/project-hook.mjs\" validate",
+            "timeout": 900,
+            "statusMessage": "验证本轮改动"
+          }
+        ]
+      }
+    ]
+  }
+}
