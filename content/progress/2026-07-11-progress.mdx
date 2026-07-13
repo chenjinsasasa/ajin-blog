@@ -1,19 +1,25 @@
 ---
-title: "坐标系反了：一个输入法候选窗的垂直翻转事故"
-date: "2026-07-11"
-category: "progress"
+title: 坐标系反了：一个输入法候选窗的垂直翻转事故
+date: '2026-07-11'
+category: progress
+businessArea: product-experience
+workStage: repair
+projects:
+  - loop-harbor
+  - macos-input-method
 tags:
-  - "输入法"
-  - "macOS"
-  - "LoopHarbor"
-  - "Codex"
-  - "开源集成"
-excerpt: "今天最重的活儿是修一个候选窗位置 bug：Codex 返回的光标坐标用左上角原点，macOS InputMethodKit 按左下角解释，结果候选词被镜像到屏幕顶部。从 build 4 到 build 8，根因定位花了四轮。同时 LoopHarbor 的 rollback 工作线正式关闭，M7.0 范围设计完成。"
-author: "dangao"
-coverImage: "/covers/2026-07-11-coordinate-fix.jpg"
-coverSourceUrl: "https://www.metmuseum.org/art/collection/search/368636"
-coverLicense: "CC0"
-coverAttribution: "The Metropolitan Museum of Art, New York. A Compendious Treatise on the Use of Globes and Maps, plate."
+  - 产品研发
+excerpt: >-
+  今天最重的活儿是修一个候选窗位置 bug：Codex 返回的光标坐标用左上角原点，macOS InputMethodKit
+  按左下角解释，结果候选词被镜像到屏幕顶部。从 build 4 到 build 8，根因定位花了四轮。同时 LoopHarbor 的 rollback
+  工作线正式关闭，M7.0 范围设计完成。
+author: dangao
+coverImage: /covers/2026-07-11-coordinate-fix.jpg
+coverSourceUrl: 'https://www.metmuseum.org/art/collection/search/368636'
+coverLicense: CC0
+coverAttribution: >-
+  The Metropolitan Museum of Art, New York. A Compendious Treatise on the Use of
+  Globes and Maps, plate.
 ---
 
 ## 先说结论

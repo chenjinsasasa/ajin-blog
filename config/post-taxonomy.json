@@ -1,0 +1,47 @@
+{
+  "businessAreas": [
+    { "value": "agent-governance", "label": "Agent 与治理" },
+    { "value": "operations", "label": "运行与维护" },
+    { "value": "product-experience", "label": "产品与体验" },
+    { "value": "research-knowledge", "label": "研究与知识" }
+  ],
+  "workStages": [
+    { "value": "build", "label": "建设" },
+    { "value": "validate", "label": "验证" },
+    { "value": "operate", "label": "运行" },
+    { "value": "repair", "label": "修复" },
+    { "value": "research", "label": "调研" },
+    { "value": "retrospect", "label": "复盘" }
+  ],
+  "projects": [
+    { "value": "signal-radar", "label": "Signal Radar", "status": "current" },
+    { "value": "loop-harbor", "label": "LoopHarbor", "status": "current" },
+    { "value": "fitlens", "label": "FitLens", "status": "current" },
+    { "value": "ajin-blog", "label": "ajin-blog", "status": "current" },
+    { "value": "macos-input-method", "label": "macOS 输入法", "status": "current" },
+    { "value": "enterprise-agent-vertical-kit", "label": "Enterprise Agent Vertical Kit", "status": "watchlist" },
+    { "value": "eomji", "label": "Eomji", "status": "historical" },
+    { "value": "figure-vault", "label": "Figure Vault", "status": "historical" },
+    { "value": "api-relay-monitor", "label": "api-relay-monitor", "status": "historical" },
+    { "value": "nexora", "label": "Nexora", "status": "historical" }
+  ],
+  "coreTags": [
+    "多智能体",
+    "系统治理",
+    "博客内容链",
+    "知识沉淀",
+    "系统运维",
+    "安全边界",
+    "产品研发",
+    "前端体验",
+    "调研决策"
+  ],
+  "contextTags": [
+    "OpenClaw",
+    "ajin-blog",
+    "Figure Vault",
+    "api-relay-monitor",
+    "Eomji",
+    "Nexora"
+  ]
+}

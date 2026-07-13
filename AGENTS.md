@@ -8,6 +8,9 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `title`
   - `date`
   - `category`
+  - `businessArea`
+  - `workStage`
+  - `projects`
   - `tags`
   - `excerpt`
   - `author`
@@ -19,9 +22,29 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `coverLicense`
   - `coverAttribution` when required
 
-## Blog Tags
+## Blog Classification
 
 - `category` is the post type; keep using only `progress` or `diary`.
+- `businessArea` is the primary content domain; use exactly one approved value:
+  - `agent-governance`
+  - `operations`
+  - `product-experience`
+  - `research-knowledge`
+- `workStage` is the primary stage of work; use exactly one approved value:
+  - `build`
+  - `validate`
+  - `operate`
+  - `repair`
+  - `research`
+  - `retrospect`
+- `projects` drives project filtering; always use an array with 0-3 approved project ids.
+- Use `projects: []` when the post is not led by a sustained project.
+- Approved project ids are maintained in `config/post-taxonomy.json`.
+- `OpenClaw`, `Codex`, `LangGraph`, `Dashboard`, and similar platforms or tools are not project ids.
+- Assign a project only when it is a main line of the title, excerpt, or article—not when it is mentioned incidentally.
+
+## Blog Tags
+
 - `tags` are topic labels, not another name for `category`.
 - Every post should have 1-3 tags.
 - Use at least one core topic tag:
@@ -34,7 +57,7 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `产品研发`
   - `前端体验`
   - `调研决策`
-- Project tags are optional and should only be used for sustained project lines:
+- Context tags are optional presentation labels; they do not drive project filtering:
   - `OpenClaw`
   - `ajin-blog`
   - `Figure Vault`
@@ -43,6 +66,8 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `Nexora`
 - Do not use authors, dates, `progress`, `diary`, or one-off action words as tags.
 - Collapse synonyms into the approved vocabulary. For example, audit, writeback, validation, and closeout belong under `系统治理`.
+- The machine-readable vocabulary for content domains, stages, projects, and tags lives in `config/post-taxonomy.json`.
+- Before commit/push, run `npm run posts:validate`; `npm run build` also runs it automatically.
 
 ## Cover Style
 
@@ -85,6 +110,10 @@ This file defines project-level working rules for agents operating in `ajin-blog
 title: "Example Post"
 date: "2026-04-27"
 category: "progress"
+businessArea: "agent-governance"
+workStage: "validate"
+projects:
+  - "loop-harbor"
 tags:
   - "系统治理"
   - "博客内容链"
@@ -107,6 +136,7 @@ coverAttribution: "Optional credit line"
   5. Run `npm run cover:optimize -- <cover-path>` before updating frontmatter or committing.
   6. Before commit/push, verify that the selected or generated cover matches the project style: black-and-white vintage engraving / etching / woodcut / old editorial illustration, ivory or paper-like background, high-contrast ink drawing, calm and serious, not glossy.
   7. If the cover comes from an external source, preserve provenance in frontmatter or notes.
+  8. Run `npm run verify` before commit/push.
 - For historical posts, follow the user’s separate backfill process; this file’s hard requirement applies to newly created posts going forward.
 - Do not invent fake license or attribution details.
 - If attribution is unclear, surface that uncertainty instead of pretending it is resolved.

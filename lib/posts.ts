@@ -3,6 +3,15 @@ import path from 'path'
 import matter from 'gray-matter'
 import { getHistoricalCoverByIndex } from '@/lib/historicalCovers'
 import { normalizePostTags, type PostTag } from '@/lib/postTags'
+import {
+  isBusinessArea,
+  isWorkStage,
+  normalizeProjects,
+  type BusinessArea,
+  type PostFilters,
+  type ProjectId,
+  type WorkStage,
+} from '@/lib/postTaxonomy'
 
 export type Category = 'all' | 'progress' | 'diary'
 
@@ -11,6 +20,9 @@ export interface PostMeta {
   title: string
   date: string
   category: 'progress' | 'diary'
+  businessArea: BusinessArea
+  workStage: WorkStage
+  projects: ProjectId[]
   tags: PostTag[]
   excerpt: string
   author?: string
@@ -79,11 +91,17 @@ function getResolvedPosts(): PostMeta[] {
     const raw = fs.readFileSync(filePath, 'utf-8')
     const { data } = matter(raw)
     const filename = path.basename(filePath, path.extname(filePath))
+    const date = data.date instanceof Date
+      ? data.date.toISOString().slice(0, 10)
+      : String(data.date ?? '')
     return {
       slug: filename,
       title: data.title ?? filename,
-      date: data.date ?? '',
+      date,
       category: data.category ?? 'diary',
+      businessArea: isBusinessArea(data.businessArea) ? data.businessArea : 'product-experience',
+      workStage: isWorkStage(data.workStage) ? data.workStage : 'build',
+      projects: normalizeProjects(data.projects),
       tags: normalizePostTags(data.tags),
       excerpt: data.excerpt ?? '',
       author: data.author,
@@ -94,27 +112,27 @@ function getResolvedPosts(): PostMeta[] {
   return applyHistoricalFallbackCovers(sortPosts(posts))
 }
 
-export function getAllPosts(category?: Category, tag?: PostTag): PostMeta[] {
+export function getAllPosts(filters: PostFilters = {}): PostMeta[] {
   const posts = getResolvedPosts()
+  const { category = 'all', area, stage, project, author, month } = filters
 
-  const categoryPosts =
-    !category || category === 'all'
-      ? posts
-      : posts.filter((post) => post.category === category)
-
-  if (!tag) {
-    return categoryPosts
-  }
-
-  return categoryPosts.filter((post) => post.tags.includes(tag))
+  return posts.filter((post) => {
+    if (category !== 'all' && post.category !== category) return false
+    if (area && post.businessArea !== area) return false
+    if (stage && post.workStage !== stage) return false
+    if (project && !post.projects.includes(project)) return false
+    if (author && post.author !== author) return false
+    if (month && !post.date.startsWith(`${month}-`)) return false
+    return true
+  })
 }
 
 /** Returns { pinnedPost, posts } where posts excludes the pinned slug */
-export function getPostsWithPinned(category?: Category, tag?: PostTag): {
+export function getPostsWithPinned(filters: PostFilters = {}): {
   pinnedPost: PostMeta | null
   posts: PostMeta[]
 } {
-  const all = getAllPosts(category, tag)
+  const all = getAllPosts(filters)
   const pinnedIndex = all.findIndex((p) => p.slug === PINNED_SLUG)
   if (pinnedIndex === -1) {
     return { pinnedPost: null, posts: all }
