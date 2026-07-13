@@ -8,9 +8,6 @@ const refreshFromHead = process.argv.includes('--refresh-from-head')
 const taxonomy = JSON.parse(
   fs.readFileSync(path.join(process.cwd(), 'config/post-taxonomy.json'), 'utf8'),
 )
-const coreTags = taxonomy.coreTags
-const contextTags = taxonomy.contextTags
-const allowedTags = new Set([...coreTags, ...contextTags])
 
 const tagAliases = new Map([
   ['自动化', '系统运维'],
@@ -125,14 +122,9 @@ function normalizeTags(rawTags, area, projects) {
 
   for (const rawTag of rawTags) {
     const tag = String(rawTag).trim()
+    if (!tag) continue
     const mapped = tagAliases.get(tag) ?? tag
-    if (
-      allowedTags.has(mapped) &&
-      (coreTags.includes(mapped) || mapped === 'OpenClaw') &&
-      !normalized.includes(mapped)
-    ) {
-      normalized.push(mapped)
-    }
+    if (!normalized.includes(mapped)) normalized.push(mapped)
   }
 
   const projectTagMap = {
@@ -150,16 +142,14 @@ function normalizeTags(rawTags, area, projects) {
     'research-knowledge': '调研决策',
   }
 
-  if (!normalized.some((tag) => coreTags.includes(tag))) normalized.unshift(areaFallback[area])
+  if (normalized.length === 0) normalized.push(areaFallback[area])
 
   for (const project of projects) {
     const projectTag = projectTagMap[project]
     if (projectTag && !normalized.includes(projectTag)) normalized.push(projectTag)
   }
 
-  const core = normalized.filter((tag) => coreTags.includes(tag))
-  const context = normalized.filter((tag) => contextTags.includes(tag))
-  return [...core, ...context].slice(0, 3)
+  return normalized.slice(0, 3)
 }
 
 function orderedFrontmatter(data, taxonomy) {

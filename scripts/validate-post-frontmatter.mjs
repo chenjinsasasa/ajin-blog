@@ -23,8 +23,6 @@ const categories = new Set(['progress', 'diary'])
 const businessAreas = new Set(taxonomy.businessAreas.map((item) => item.value))
 const workStages = new Set(taxonomy.workStages.map((item) => item.value))
 const projects = new Set(taxonomy.projects.map((item) => item.value))
-const coreTags = new Set(taxonomy.coreTags)
-const allowedTags = new Set([...taxonomy.coreTags, ...taxonomy.contextTags])
 
 function getFiles(dir) {
   if (!fs.existsSync(dir)) return []
@@ -120,11 +118,9 @@ for (const filePath of files) {
     addError('tags 必须是数组')
   } else {
     if (data.tags.length < 1 || data.tags.length > 3) addError('tags 必须包含 1–3 个值')
-    if (hasDuplicates(data.tags)) addError('tags 不能重复')
-    if (!data.tags.some((tag) => coreTags.has(tag))) addError('tags 至少包含 1 个核心主题标签')
-    for (const tag of data.tags) {
-      if (!allowedTags.has(tag)) addError(`tags 包含未批准值：${String(tag)}`)
-    }
+    if (!data.tags.every(isNonEmptyString)) addError('tags 必须都是非空字符串')
+    const normalizedTags = data.tags.map((tag) => (typeof tag === 'string' ? tag.trim() : tag))
+    if (hasDuplicates(normalizedTags)) addError('tags 不能重复')
   }
 
   if (data.coverImage !== undefined) {

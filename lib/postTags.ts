@@ -19,16 +19,14 @@ export type ContextPostTag =
   | 'Eomji'
   | 'Nexora'
 
-export type PostTag = CorePostTag | ContextPostTag
+export type PostTag = string
 
 export const CORE_POST_TAGS = taxonomy.coreTags as CorePostTag[]
 export const CONTEXT_POST_TAGS = taxonomy.contextTags as ContextPostTag[]
 export const POST_TAGS: PostTag[] = [...CORE_POST_TAGS, ...CONTEXT_POST_TAGS]
 
-const allowedTags = new Set<string>(POST_TAGS)
-
 export function isPostTag(tag: string | null | undefined): tag is PostTag {
-  return typeof tag === 'string' && allowedTags.has(tag)
+  return typeof tag === 'string' && tag.trim().length > 0
 }
 
 export function normalizePostTags(rawTags: unknown): PostTag[] {
@@ -37,7 +35,8 @@ export function normalizePostTags(rawTags: unknown): PostTag[] {
   const tags: PostTag[] = []
 
   for (const rawTag of rawTags) {
-    const tag = String(rawTag).trim()
+    if (typeof rawTag !== 'string') continue
+    const tag = rawTag.trim()
     if (isPostTag(tag) && !tags.includes(tag)) tags.push(tag)
   }
 

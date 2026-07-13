@@ -25,7 +25,7 @@ This file defines project-level working rules for agents operating in `ajin-blog
 ## Blog Classification
 
 - `category` is the post type; keep using only `progress` or `diary`.
-- `businessArea` is the primary content domain; use exactly one approved value:
+- `businessArea` is the primary content domain and a closed single-select field. It must contain exactly one value from `config/post-taxonomy.json.businessAreas[].value`; automation must not invent values. Current values are:
   - `agent-governance`
   - `operations`
   - `product-experience`
@@ -45,9 +45,10 @@ This file defines project-level working rules for agents operating in `ajin-blog
 
 ## Blog Tags
 
-- `tags` are topic labels, not another name for `category`.
-- Every post should have 1-3 tags.
-- Use at least one core topic tag:
+- `tags` are open presentation labels, not another name for `category` and not a primary filtering dimension.
+- Every post must have 1-3 non-empty, unique topic tags. Automation may create a precise new tag such as `工程效率` when it describes the article.
+- `coreTags` and `contextTags` in `config/post-taxonomy.json` are recommendations, not an allowlist. A post does not need to contain a `coreTag`.
+- Recommended core topic tags:
   - `多智能体`
   - `系统治理`
   - `博客内容链`
@@ -57,16 +58,16 @@ This file defines project-level working rules for agents operating in `ajin-blog
   - `产品研发`
   - `前端体验`
   - `调研决策`
-- Context tags are optional presentation labels; they do not drive project filtering:
+- Recommended context tags:
   - `OpenClaw`
   - `ajin-blog`
   - `Figure Vault`
   - `api-relay-monitor`
   - `Eomji`
   - `Nexora`
-- Do not use authors, dates, `progress`, `diary`, or one-off action words as tags.
-- Collapse synonyms into the approved vocabulary. For example, audit, writeback, validation, and closeout belong under `系统治理`.
-- The machine-readable vocabulary for content domains, stages, projects, and tags lives in `config/post-taxonomy.json`.
+- Avoid authors, dates, `progress`, `diary`, and one-off action words as tags.
+- Prefer an existing recommended term when it has the same meaning; for example, audit, writeback, validation, and closeout can usually use `系统治理`. This is editorial guidance, not validation.
+- The machine-readable closed vocabularies for `businessArea`, `workStage`, and `projects`, plus the recommended tag vocabulary and open-tag policy, live in `config/post-taxonomy.json`.
 - Before commit/push, run `npm run posts:validate`; `npm run build` also runs it automatically.
 
 ## Cover Style

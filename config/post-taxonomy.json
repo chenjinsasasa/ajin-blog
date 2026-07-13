@@ -25,6 +25,14 @@
     { "value": "api-relay-monitor", "label": "api-relay-monitor", "status": "historical" },
     { "value": "nexora", "label": "Nexora", "status": "historical" }
   ],
+  "tagPolicy": {
+    "mode": "open",
+    "minItems": 1,
+    "maxItems": 3,
+    "nonEmpty": true,
+    "unique": true,
+    "recommendationFields": ["coreTags", "contextTags"]
+  },
   "coreTags": [
     "多智能体",
     "系统治理",
