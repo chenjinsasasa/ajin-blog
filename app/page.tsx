@@ -3,9 +3,15 @@ import Link from 'next/link'
 import HomeFrame from '@/components/HomeFrame'
 import PostsView from '@/components/PostsView'
 import { SectionIntro } from '@/components/SectionIntro'
-import { getAllPosts, getPostsWithPinned, type Category } from '@/lib/posts'
-import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
-import { isPostTag, POST_TAGS } from '@/lib/postTags'
+import { getAllPosts, getPostsWithPinned } from '@/lib/posts'
+import { getAuthorName } from '@/lib/authors'
+import {
+  isBusinessArea,
+  isPostMonth,
+  isProjectId,
+  isWorkStage,
+  type PostFilters,
+} from '@/lib/postTaxonomy'
 
 const INITIAL_PAGE_SIZE = 6
 
@@ -108,47 +114,54 @@ function AboutSection() {
 
 interface HomeProps {
   searchParams?: {
-    category?: string
-    tag?: string
+    area?: string
+    stage?: string
+    project?: string
+    author?: string
+    month?: string
   }
 }
 
-function normalizeCategory(category?: string): Category {
-  return category === 'progress' || category === 'diary' ? category : 'all'
-}
-
 export default function Home({ searchParams }: HomeProps) {
-  const category = normalizeCategory(searchParams?.category)
-  const selectedTag = isPostTag(searchParams?.tag) ? searchParams.tag : undefined
-  const { pinnedPost, posts } = getPostsWithPinned(category, selectedTag)
-  const allPosts = getAllPosts(category, selectedTag)
-  const diaryPosts = getAllPosts('diary')
+  const filters: PostFilters = {
+    area: isBusinessArea(searchParams?.area) ? searchParams.area : undefined,
+    stage: isWorkStage(searchParams?.stage) ? searchParams.stage : undefined,
+    project: isProjectId(searchParams?.project) ? searchParams.project : undefined,
+    author: searchParams?.author?.trim() || undefined,
+    month: isPostMonth(searchParams?.month) ? searchParams.month : undefined,
+  }
+  const { posts } = getPostsWithPinned(filters)
+  const allUnfilteredPosts = getAllPosts()
+  const diaryPosts = getAllPosts({ category: 'diary' })
   const latestDiary = diaryPosts[0] ?? null
   const initialPosts = posts.slice(0, INITIAL_PAGE_SIZE)
   const hasMore = posts.length > INITIAL_PAGE_SIZE
+  const authorOptions = Array.from(new Set(allUnfilteredPosts.flatMap((post) => post.author ?? [])))
+    .map((value) => ({ value, label: getAuthorName(value) }))
+  const monthOptions = Array.from(new Set(allUnfilteredPosts.map((post) => post.date.slice(0, 7))))
 
   const featureCards = [
     {
       href: '#blog',
-      imageSrc: pinnedPost?.coverImage || pinnedPost?.fallbackCoverImage || HISTORICAL_COVERS[0].src,
+      imageSrc: '/entry-cards/blog-archive.jpg',
       title: 'Blog Archive',
       buttonLabel: 'Read The Archive',
     },
     {
       href: latestDiary ? `/blog/${latestDiary.slug}` : '#about',
-      imageSrc: latestDiary?.coverImage || HISTORICAL_COVERS[1].src,
+      imageSrc: '/entry-cards/private-diary.jpg',
       title: 'Private Diary',
       buttonLabel: 'Open The Diary',
     },
     {
       href: '/team',
-      imageSrc: '/avatars/guzi.png',
+      imageSrc: '/entry-cards/ai-team.jpg',
       title: 'AI Team',
       buttonLabel: 'Meet The Team',
     },
     {
       href: 'https://chenjin.ai',
-      imageSrc: '/chenjin-icon.png',
+      imageSrc: '/entry-cards/chenjin-official.jpg',
       title: 'chenjin.ai',
       buttonLabel: 'Visit Official',
       external: true,
@@ -196,10 +209,10 @@ export default function Home({ searchParams }: HomeProps) {
       <section id="blog">
         <PostsView
           posts={initialPosts}
-          totalCount={allPosts.length}
-          availableTags={[...POST_TAGS]}
-          selectedTag={selectedTag}
-          category={category}
+          totalCount={posts.length}
+          filters={filters}
+          authorOptions={authorOptions}
+          monthOptions={monthOptions}
           initialHasMore={hasMore}
         />
       </section>
