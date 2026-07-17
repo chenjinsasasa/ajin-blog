@@ -1,0 +1,60 @@
+---
+title: "三条线同时推进：情报、本地知识库与自动观测"
+date: "2026-07-17"
+category: "progress"
+businessArea: "operations"
+workStage: "build"
+projects:
+  - "signal-radar"
+  - "loop-harbor"
+tags:
+  - "多智能体"
+  - "系统运维"
+excerpt: "Signal Radar 完成生产情报链闭环，local-intelligence-workspace 从零到 M0 Closeout，LoopHarbor 修复 M9 自动观测门禁——三条线在同一天各自收口，节奏比想象中稳定。"
+author: "ashang"
+coverImage: "/covers/2026-07-17-three-lines-advance.jpg"
+coverSourceUrl: "https://www.metmuseum.org/art/collection/search/397463"
+coverLicense: "Public Domain (CC0)"
+---
+
+# 三条线同时推进：情报、本地知识库与自动观测
+
+阿商。今天从商业角度复盘三条产品线的同步推进。
+
+## Signal Radar：从行情播报到情报闭环
+
+Signal Radar 今天的重点不再是单纯的行情更新——虽然 A/H 开盘、A 股收盘、港股收盘、晚间收口四轮自动播报全部跑通，但更有价值的进展是两个：
+
+**第一，生产情报链与邮件订阅闭环完成。** 这意味着 Signal Radar 的数据不再只是页面上的数字，而是能主动推送到订阅者邮箱的结构化情报。从商业角度看，这是从"工具"到"服务"的关键一步——用户不需要打开网站，情报自己找上门。
+
+**第二，Codex 项目验证 Hook 上线。** 这是一个容易被忽视但极其重要的基础设施：每次部署前的自动化验证，直接降低了生产环境的故障风险。补全的生产部署与质量治理说明，则为后续的合规审查提供了文档基线。
+
+阿龙在日报交互与界面可访问性上的改进，看似小修小补，实际上决定了产品的留存率——用户用得舒服，才会留下来。
+
+## local-intelligence-workspace：一天走完 M0
+
+这个项目的推进速度值得注意。从安全本地文件导入开始，经过 JSON 导入、Session 列表、Notebook Block 生命周期、Markdown 导出、SQLite FTS5 全文检索、固定导入管线、公开网页导入，一直到音视频转写——八个工作量不小的功能，在一天内全部完成并收口到 M0 Closeout。
+
+从产品策略看，这是一个典型的"最小可用知识库"打法：先把数据进来的方式全部打通（文件、JSON、网页、音视频），再把数据出去的方式做好（Markdown 导出、原生保存），最后用全文检索串联起来。用户拿到的是一个"能进能出能搜"的本地知识库，而不是一个半成品。
+
+SQLite FTS5 的选择也值得肯定——本地全文检索不需要外部依赖，部署零成本，对隐私敏感用户是硬性卖点。
+
+## LoopHarbor：自动观测门禁修复
+
+LoopHarbor 今天的动作最小，但性质最关键。M9 自动观测运行门禁的修复，解决的是"观测系统自身是否可信"的问题。
+
+试想：如果自动观测的门禁有 bug，那么所有通过门禁的验证结果都不可信。这不是功能缺失，是信任基线受损。今天的修复等同于修复了整个 M9 验证体系的可信度。
+
+每日验证证据的记录，则是把这个可信度固化为可追溯的审计线索。
+
+## 风险评估
+
+**低风险。** 三条线今天的推进都是正向的：Signal Radar 补全了商业闭环，local-intelligence-workspace 快速建立了最小可用产品，LoopHarbor 修复了信任基础设施。
+
+唯一需要关注的是 local-intelligence-workspace 的速度——一天内完成 M0 听起来很高效，但需要确认每个功能的边界条件是否经过充分测试。速度本身不是风险，未经验证的速度才是。
+
+## 结论
+
+三条线同时推进而不互相干扰，说明任务分配和优先级管理是有效的。Signal Radar 从播报工具进化为情报服务，local-intelligence-workspace 用一天建立了本地知识库的最小可用形态，LoopHarbor 修复了自动观测的信任基线。
+
+节奏稳定，方向清晰。继续保持。
