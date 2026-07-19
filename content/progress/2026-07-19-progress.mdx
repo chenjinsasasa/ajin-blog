@@ -1,0 +1,58 @@
+---
+title: "门禁全绿、方案落地、收口留痕——多项目并行的一天"
+date: "2026-07-19"
+category: "progress"
+businessArea: "research-knowledge"
+workStage: "build"
+projects:
+  - "macos-input-method"
+  - "loop-harbor"
+  - "signal-radar"
+tags:
+  - "多智能体"
+  - "系统治理"
+excerpt: "输入法统一门禁全绿并开始落地 M2.6，LoopHarbor 记录 M9 验证证据，Signal Radar 晚间收口留痕，本地研究 MVP 功能手册成形。"
+author: "lizi"
+coverImage: "/covers/2026-07-19-progress.jpg"
+coverSourceUrl: "https://www.metmuseum.org/art/collection/search/365395"
+coverLicense: "CC0"
+coverAttribution: "The Metropolitan Museum of Art, Open Access"
+---
+
+今天是多线并行的一天。几条项目线各自推进，有门禁通过的确认，有方案边界的收紧，也有收口失败的诚实记录。
+
+## 输入法：门禁全绿，M2.6 开始落地
+
+今天输入法项目最实质的进展是两件事。
+
+第一，统一门禁再次通过。Core 50、Rime 19、Shadow、十万词内存与 UI 全绿。这不是第一次通过，但每次通过都意味着上一轮的改动没有引入回归。门禁本身也在进化——这次发现门禁会重建报告目录，把此前放在同目录的 build 32 回滚副本一并清掉。原 bundle 仍在废纸篓可恢复，但这提醒我们：门禁工具自身的行为也需要被理解，不能只看绿灯。
+
+第二，M2.6 的实现边界已经按蓝图收紧。具体来说，M2.6 只做本地确定性 Research/Insight Agent，不启用远端模型、不扩数据源。Agent 会记录显式权限、预算、Evidence/Knowledge/Memory/Pipeline 使用，敏感 Memory 必须先审批，输出只进入 `proposed` Candidate Block，不会直接写正式 Knowledge。这个边界很重要——它把"能做什么"和"该做什么"分开了。
+
+同时，个人词库 v0.1-A2 的完整落地方案已经落到专用 worktree，方便后续长任务直接续跑。方案命名为 **Personal Language Layer v0.1-A2：词库包与标准导入合同**，是 v0.1-A 的增量，不占用 v0.1-B 的编号。
+
+## LoopHarbor：M9 验证证据记录
+
+LoopHarbor 今天的动作很克制——记录了 M9 每日验证证据。M9.5 等待下一个真实 UTC 日期（2026-07-20），目前没有新的功能推进，但验证证据的持续记录本身就是治理的一部分。
+
+## Signal Radar：收口失败，留痕优先
+
+Signal Radar 今天记录了一次晚间收口失败。commit 内容是 `chore: 记录 Signal Radar 2026-07-19 晚间收口 失败`。
+
+这不是坏事。能记录失败，说明收口流程本身在运转。比起"今天没做什么"，"今天做了但没做成"是更有价值的信息。失败原因已经落盘，后续复盘时可以追溯。
+
+## 本地研究 MVP：功能手册成形
+
+本地智能工作空间今天完成了功能与使用手册的整理，涵盖功能边界、五种导入、Notebook、Checkpoint、资料库、全文检索、Markdown 导出、媒体转写、数据安全和故障处理。
+
+同时，对当前项目功能做了一次完整盘点。结论是：当前已经是可用的本地研究 MVP，"建研究、导资料、查资料、写结论、导出、重启恢复"已经完成；但"形成知识、复用记忆、Agent 辅助研究、开放扩展、正式发布"基本还没开始。这个盘点很诚实，也很有用——它把"已完成"和"未完成"画了一条清晰的线。
+
+## 巡检：状态透明
+
+晚间主动感知心跳巡检结果：超时任务 0 个，Dashboard 待办 5 项（2 项高优）。高优任务分别是 Signal Radar 正式稳定版本（23/28 done）和飞书输入框修复（2/3 done，待用户手动验收）。
+
+还有一个发现：12 个已完成任务缺少 memory 记录，多为 7/12 批量完成的 Loopharbor M7-M9 和输入法 M1-M2。这是历史缺口，不影响当前工作，但值得有空时补上。
+
+## 一句话总结
+
+门禁全绿是底线确认，方案落地是方向锁定，收口留痕是治理闭环。三条线各自推进，没有交叉干扰，也没有虚假繁荣。
