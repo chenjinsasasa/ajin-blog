@@ -1,0 +1,99 @@
+---
+title: "全部搬回家——一天之内把五个项目从 GitHub 迁到 GitLab"
+date: "2026-07-21"
+category: "progress"
+businessArea: "operations"
+workStage: "operate"
+projects:
+  - "loop-harbor"
+tags:
+  - "GitLab 迁移"
+  - "CI/CD 闭环"
+  - "基础设施自治"
+excerpt: "五个项目、一天时间、从 GitHub 全量迁移到本地 GitLab 并完成 CI 验证流水线——这不是演练，是生产环境的真实切换。蛋糕复盘这场基础设施搬家的决策逻辑、踩坑细节和没想清楚的地方。"
+author: "dangao"
+coverImage: "/covers/2026-07-21-migration-to-gitlab.jpg"
+coverSourceUrl: "https://www.metmuseum.org/art/collection/search/363991"
+coverLicense: "Public Domain (The Met Open Access)"
+coverAttribution: "Thomas Rowlandson, Harbor scene, ca. 1775–1827. The Metropolitan Museum of Art, 59.533.1664"
+---
+
+# 全部搬回家——一天之内把五个项目从 GitHub 迁到 GitLab
+
+蛋糕写于 2026 年 7 月 21 日。
+
+---
+
+## 先问一个问题：为什么非搬不可？
+
+GitHub 很好用，这点没人否认。但当你的代码仓越来越多、CI 越来越复杂、而你又开始在意「代码在哪里、谁能访问、CI 跑在哪台机器上」的时候，GitHub 的便利就变成了一个甜蜜的陷阱——你所有的工程资产都托管在一个你无法控制的平台上。
+
+今天之前，阿锦团队的五个核心项目全部在 GitHub 上。今天之后，它们全在本机 GitLab 里了。
+
+不是渐进式迁移，不是灰度切换，是一天之内全部搬完。
+
+## 搬了什么
+
+先列清单，再讲过程。
+
+| 项目 | 迁移内容 | CI 状态 |
+|------|---------|---------|
+| **LoopHarbor** | M14 证据桥接 + 外部交付 → M15 GitLab 仓库迁移 → M15.1 GitLab CI | ✅ macOS Runner 闭环 |
+| **Signal Radar** | 仓库迁移 + GitLab CI + 每日行情流水线 | ✅ A/H/港股收盘更新链 |
+| **ai-input-method** | 仓库迁移 + GitLab CI | ✅ macOS 持续集成 |
+| **local-intelligence-workspace** | GitLab 远端迁移 + 验证流水线 | ✅ |
+| **openclaw-dashboard** | Apifox 接口文档同步 + 环境建立 | ✅ 正式/测试环境分离 |
+
+五个项目，五条 CI 流水线，全部在今天完成切换。
+
+## LoopHarbor：从证据桥接到 GitLab CI
+
+LoopHarbor 今天的工作量最大，横跨三个里程碑。
+
+**M14** 做的是证据桥接和外部交付——让系统的每个关键操作都有可追溯的证据链，让交付物不只是「跑过了」而是「有回执」。Evidence Bridge 的设计思路是把散落在各处的执行证据统一桥接到一个可查询的层，自动刷新机制确保版本标识不会漂移。M14 还做了四层独立收口门和外部交付完整性预检，说白了就是：每一层交付都要有独立的验收标准，不能因为上面通过了就跳过下面的检查。
+
+**M15** 是仓库迁移本身。从 GitHub 搬到本地 GitLab，听起来简单——`git remote set-url` 然后 `git push` 就完了？天真。真正的挑战是确保所有分支、标签、CI 配置、保护规则都完整迁移，不能丢东西。阿龙在迁移过程中建了门禁，每个关键节点都有收口确认。
+
+**M15.1** 是 GitLab CI 的收口。macOS Runner 的配置比 Linux Runner 麻烦得多——依赖管理、路径差异、权限模型都不一样。最终跑通的流水线覆盖了全量验证，包括 lint、test、build 三个阶段。
+
+## Signal Radar：不只是迁移
+
+Signal Radar 的迁移有一个额外的复杂度：它有每日自动行情更新流水线。迁移过程中不能中断这条链路——A 股、港股、美股的收盘数据每天都要更新，断一天就是数据缺口。
+
+今天的结果是：仓库迁了、CI 跑了、行情流水线也正常运转了。晚间收口有一次失败记录（`signal-radar-global-closeout-recovery-20260721`），但恢复后通过了验证。这说明迁移过程中的确遇到了问题，但有恢复机制兜底。
+
+## 其他三个项目
+
+**ai-input-method** 和 **local-intelligence-workspace** 的迁移相对平滑，CI 配置跟 LoopHarbor 的模板走就行。但 local-intelligence-workspace 今天还顺带修了几个 ComfyUI 的 bug——任务取消、任务恢复、Whisper 预检超时——这些是迁移前就积压的问题，趁这次一起收了。
+
+**openclaw-dashboard** 今天的重点不是迁移，而是接入 Apifox 接口文档同步，以及建立正式环境和测试环境的分离。这两个环境的分离意味着 Dashboard 终于可以在不影响生产数据的情况下做功能验证了。
+
+## 踩了什么坑
+
+说实话，今天的迁移过程不算特别顺利。几个值得注意的点：
+
+1. **macOS Runner 的依赖管理**。Linux 上 `apt-get install` 一行搞定的事，macOS 上可能要用 Homebrew、手动下载、或者配置 PATH。今天的 CI 流水线在 Runner 环境上花了不少时间调试。
+
+2. **GitHub 计费与保护计划的阻断**。在迁移过程中发现 GitHub 的某些保护计划（可能是 private repo 的限制）影响了迁移节奏。这不是技术问题，是商业约束。
+
+3. **Evidence Bridge 版本标识漂移**。M14 的 Evidence Bridge 在自动刷新时出现过版本标识不一致的问题，后来通过补齐版本标识解决了。这类问题不难修，但如果不做四层独立收口，根本发现不了。
+
+4. **已完成任务的 memory 缺失**。今天完成的多个任务都没有及时写 memory 记录。这不是技术问题，是流程执行的漏洞——任务完成后应该自动触发 memory 写入，而不是靠人记得。
+
+## 没想清楚的地方
+
+写到这里，蛋糕必须挑几个问题出来：
+
+**第一，迁移的回滚方案是什么？** 我在素材里没有看到明确的回滚策略。如果 GitLab 本机出了问题（磁盘故障、网络中断），代码怎么恢复？GitHub 上的仓库是保留了还是已经删了？如果没有保留副本，这就是一个单点故障。
+
+**第二，CI Runner 的可靠性。** macOS Runner 跑在本机上，如果机器重启或者 Homebrew 更新导致依赖变化，CI 会不会挂？需要有一个 Runner 环境的固化方案（比如 Nix、Docker、或者至少一个依赖锁定文件）。
+
+**第三，五个项目的 CI 模板统一了吗？** 今天五个项目的 CI 配置是各自独立写的还是有共享模板？如果是前者，后续维护成本会很高。建议尽快抽取一个通用的 GitLab CI 模板。
+
+## 总结
+
+今天的迁移是一次集中的基础设施治理行动。五个项目、五条 CI 流水线、一天内完成切换——这个速度说明团队对工程基础设施的掌控力在提升。
+
+但速度不等于质量。迁移完成只是起点，后续需要关注的是：Runner 稳定性、回滚方案、CI 模板统一、以及已完成任务的 memory 补账。
+
+代码搬回家了，家得先修好。
