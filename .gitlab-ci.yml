@@ -17,7 +17,8 @@ default:
   interruptible: true
   timeout: 60m
   after_script:
-    - for cleanup_path in .vercel "/tmp/vercel-deploy-$CI_JOB_ID"; do if [ -e "$cleanup_path" ]; then find "$cleanup_path" -depth -delete; fi; done
+    - if [ -d "/tmp/vercel-git-$CI_JOB_ID" ] && [ ! -e .git ]; then mv "/tmp/vercel-git-$CI_JOB_ID" .git; fi
+    - if [ -d .vercel ]; then find .vercel -depth -delete; fi
 
 variables:
   CI: "1"
@@ -51,10 +52,12 @@ deploy_preview:
     - npm install --global "vercel@$VERCEL_CLI_VERSION"
     - vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
     - vercel build --token="$VERCEL_TOKEN"
-    - deploy_dir="/tmp/vercel-deploy-$CI_JOB_ID"
-    - mkdir -p "$deploy_dir"
-    - cp -R .vercel "$deploy_dir/.vercel"
-    - deployment_url=$(vercel deploy "$deploy_dir" --prebuilt --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - git_dir="/tmp/vercel-git-$CI_JOB_ID"
+    - mv .git "$git_dir"
+    - trap 'if [ -d "$git_dir" ] && [ ! -e .git ]; then mv "$git_dir" .git; fi' EXIT
+    - deployment_url=$(vercel deploy --prebuilt --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - mv "$git_dir" .git
+    - trap - EXIT
     - case "$deployment_url" in https://*.vercel.app) ;; *) echo "invalid Vercel deployment URL" >&2; exit 1 ;; esac
     - printf 'VERCEL_DEPLOYMENT_URL=%s\nVERCEL_DEPLOYMENT_SHA=%s\nVERCEL_DEPLOYMENT_TARGET=preview\n' "$deployment_url" "$CI_COMMIT_SHA" > vercel-deployment.env
   artifacts:
@@ -76,10 +79,12 @@ deploy_production:
     - npm install --global "vercel@$VERCEL_CLI_VERSION"
     - vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
     - vercel build --prod --token="$VERCEL_TOKEN"
-    - deploy_dir="/tmp/vercel-deploy-$CI_JOB_ID"
-    - mkdir -p "$deploy_dir"
-    - cp -R .vercel "$deploy_dir/.vercel"
-    - deployment_url=$(vercel deploy "$deploy_dir" --prebuilt --prod --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - git_dir="/tmp/vercel-git-$CI_JOB_ID"
+    - mv .git "$git_dir"
+    - trap 'if [ -d "$git_dir" ] && [ ! -e .git ]; then mv "$git_dir" .git; fi' EXIT
+    - deployment_url=$(vercel deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - mv "$git_dir" .git
+    - trap - EXIT
     - case "$deployment_url" in https://*.vercel.app) ;; *) echo "invalid Vercel deployment URL" >&2; exit 1 ;; esac
     - printf 'VERCEL_DEPLOYMENT_URL=%s\nVERCEL_DEPLOYMENT_SHA=%s\nVERCEL_DEPLOYMENT_TARGET=production\n' "$deployment_url" "$CI_COMMIT_SHA" > vercel-deployment.env
   artifacts:
