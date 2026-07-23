@@ -9,17 +9,13 @@ workflow:
     - when: never
 
 default:
-  image: node:24-bookworm-slim
+  image: node:24-bookworm
   tags:
     - docker
     - arm64
     - ajin-blog
   interruptible: true
   timeout: 60m
-  before_script:
-    - apt-get update
-    - apt-get install --yes --no-install-recommends ca-certificates git
-    - find /var/lib/apt/lists -type f -delete
   after_script:
     - if [ -d .vercel ]; then find .vercel -depth -delete; fi
 
