@@ -1,0 +1,77 @@
+---
+title: "输入法收口撞上 CI/CD 炸弹，还有一只 503 的幽灵"
+date: "2026-07-23"
+category: "progress"
+businessArea: "operations"
+workStage: "build"
+projects:
+  - "macos-input-method"
+  - "signal-radar"
+tags:
+  - "多线并行"
+  - "输入法"
+excerpt: "输入法 main 分支终局收口、Chenjin Platform 恢复验证全绿、CI/CD 流水线一口气优化了 10 个 commit——但真正的坑藏在 SIGTERM 和 503 背后。"
+author: "along"
+coverImage: "/covers/2026-07-23-progress.jpg"
+---
+
+# 输入法收口撞上 CI/CD 炸弹，还有一只 503 的幽灵
+
+今天的战线拉得很长。四条线同时在跑，说实话到晚上收口的时候脑子已经不太转了。但回头看，产出还挺扎实的。
+
+## 输入法：从 M8 到 main，一场收口马拉松
+
+ajin-input-method 这个项目今天干了两件大事：
+
+**词库分页 + M8.1 最终门禁**（commit 162c4ba）。词库数据量上来之后，不分页直接渲染就是自杀行为。这个 commit 把分页逻辑和 M8.1 的最终验收门禁一起收了，5 个 features 全部通过，437k tokens 烧下去，main 分支终于 closed。
+
+中间还踩了一个挺恶心的坑：**宿主探针的外部按键隔离**（commit 0283c1c）。测试环境里探针会捕获宿主的按键事件，导致门禁判定飘了。修了隔离逻辑之后，M8 安装隔离门禁基线（commit 772b018）也一起推了。这种问题不踩一次根本想不到——你的测试框架本身在干扰测试结果，经典套娃。
+
+**Edge 浏览器的 OpenClaw 输入框中文输入兼容**，这个是用户侧反馈的问题。Edge 的 IME 事件处理和 Chrome 有微妙差异，compositionstart/compositionend 的触发时机不一样，导致中文输入过程中会出现候选词被吞掉的情况。修完之后 cake=100，5 features 全过。
+
+## Chenjin Platform：v1.0 收口 + v1.1 恢复验证
+
+v1.0 基础保护收口（159k tokens），review approved，干净利落。
+
+重头戏是 **v1.1 恢复验证**，这个跑了 501k tokens。要验证的东西包括：GitLab 官方隔离恢复、Secrets 注入、自检流程、5 个项目 / 76 个 refs 的完整性、SSH clone、Web 登录、live Runner 回归。全部通过，`restore_tested=true`。
+
+这个验证的意义在于：我们的灾备恢复流程终于有了一个可量化的绿灯。之前恢复流程是"理论上可以"，现在是"跑过了，过了"。
+
+## CI/CD 流水线：一天 10 个 commit 的基建日
+
+ajin-blog 和 chenjin-ai-website 各跑了 5 个 CI/CD 优化 commit，主要是 Vercel GitLab 发布链和预览部署隔离。这些活儿不性感，但没有它们，后面的迭代会一直被部署问题拖后腿。
+
+## Signal Radar：安静但没停
+
+日内行情更新正常跑着，A/H 开盘更新 ×3、港股收盘更新 ×2、晚间收口。没什么好说的，稳定运行就是最好的状态。
+
+## 今天的两个坑
+
+### 1. radar:bundle SIGTERM (exit 143)
+
+bundle 阶段被系统超时杀掉了。exit 143 = SIGTERM，不是代码 bug，是 CI 的 timeout 配置太紧。改了 timeout 阈值就好了。但这种问题最烦人——你查了半天代码，发现跟你没关系，是平台配置的问题。
+
+**解法**：给 CI pipeline 的 bundle 阶段单独加 timeout 覆盖，别用全局默认值。
+
+### 2. Chenjin Platform v1.2 connector /ready=503
+
+安全公网入口在 connector 的 readiness check 上卡住了，`/ready` 一直返回 503。这个还没解，是明天的第一个任务。初步判断是 connector 依赖的下游服务启动顺序问题，但还需要确认。
+
+**临时解法**：先跳过公网入口验证，v1.2 的其他功能不受影响。根因待查。
+
+## 谁干了什么
+
+| 人员 | 产出 |
+|------|------|
+| 阿龙 | 输入法 main 收口、Chenjin Platform v1.0/v1.1、Edge 兼容、CI/CD 优化 |
+| cron | Signal Radar 日内行情定时更新（自动） |
+
+## 明天的重点
+
+1. **Chenjin Platform v1.2 connector 503 根因排查**——这是 blocker，不解开后面的公网入口全卡着
+2. 输入法 main 合并后的回归验证
+3. CI/CD 流水线观察一轮，确认 Vercel 部署链稳定
+
+---
+
+*今天四线并行，烧了差不多 1100k tokens。不是每天都这样，但收口阶段就是得一把梭。*
