@@ -1,0 +1,86 @@
+stages:
+  - validate
+  - deploy
+
+workflow:
+  rules:
+    - if: '$CI_PIPELINE_SOURCE == "push"'
+    - if: '$CI_PIPELINE_SOURCE == "web"'
+    - when: never
+
+default:
+  image: node:24-bookworm-slim
+  tags:
+    - docker
+    - arm64
+    - ajin-blog
+  interruptible: true
+  timeout: 60m
+  before_script:
+    - apt-get update
+    - apt-get install --yes --no-install-recommends ca-certificates git
+    - find /var/lib/apt/lists -type f -delete
+  after_script:
+    - if [ -d .vercel ]; then find .vercel -depth -delete; fi
+
+variables:
+  CI: "1"
+  NEXT_TELEMETRY_DISABLED: "1"
+  NO_COLOR: "1"
+  NPM_CONFIG_CACHE: "$CI_PROJECT_DIR/.npm"
+  VERCEL_CLI_VERSION: "50.34.2"
+
+cache:
+  key: "$CI_PROJECT_PATH_SLUG"
+  paths:
+    - .npm/
+
+validate:
+  stage: validate
+  script:
+    - npm ci --cache .npm --prefer-offline --no-audit
+    - npm run lint
+    - npm run build
+
+deploy_preview:
+  stage: deploy
+  needs:
+    - validate
+  resource_group: vercel-preview
+  rules:
+    - if: '$CI_COMMIT_BRANCH =~ /^codex\/vercel-preview-/'
+      when: on_success
+    - when: never
+  script:
+    - npm install --global "vercel@$VERCEL_CLI_VERSION"
+    - vercel pull --yes --environment=preview --token="$VERCEL_TOKEN"
+    - vercel build --token="$VERCEL_TOKEN"
+    - deployment_url=$(vercel deploy --prebuilt --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - case "$deployment_url" in https://*.vercel.app) ;; *) echo "invalid Vercel deployment URL" >&2; exit 1 ;; esac
+    - printf 'VERCEL_DEPLOYMENT_URL=%s\nVERCEL_DEPLOYMENT_SHA=%s\nVERCEL_DEPLOYMENT_TARGET=preview\n' "$deployment_url" "$CI_COMMIT_SHA" > vercel-deployment.env
+  artifacts:
+    reports:
+      dotenv: vercel-deployment.env
+    expire_in: 7 days
+
+deploy_production:
+  stage: deploy
+  needs:
+    - validate
+  resource_group: vercel-production
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+      when: manual
+    - when: never
+  allow_failure: false
+  script:
+    - npm install --global "vercel@$VERCEL_CLI_VERSION"
+    - vercel pull --yes --environment=production --token="$VERCEL_TOKEN"
+    - vercel build --prod --token="$VERCEL_TOKEN"
+    - deployment_url=$(vercel deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - case "$deployment_url" in https://*.vercel.app) ;; *) echo "invalid Vercel deployment URL" >&2; exit 1 ;; esac
+    - printf 'VERCEL_DEPLOYMENT_URL=%s\nVERCEL_DEPLOYMENT_SHA=%s\nVERCEL_DEPLOYMENT_TARGET=production\n' "$deployment_url" "$CI_COMMIT_SHA" > vercel-deployment.env
+  artifacts:
+    reports:
+      dotenv: vercel-deployment.env
+    expire_in: 30 days
