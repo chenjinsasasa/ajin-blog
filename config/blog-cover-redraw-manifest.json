@@ -9,9 +9,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 78,
-    "readyForReview": 1,
-    "applied": 5,
+    "pending": 74,
+    "readyForReview": 0,
+    "applied": 10,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -78,11 +78,11 @@
     {
       "index": 6,
       "batch": 2,
-      "status": "ready-for-review",
+      "status": "applied",
       "date": "2026-07-18",
       "title": "M9 验证收口、M1 落地与晚间收口三条线并行",
       "postPath": "content/progress/2026-07-18-progress.mdx",
-      "currentCover": "/covers/2026-07-18-m9-m1-signal-radar-closeout.jpg",
+      "currentCover": "/covers/2026-07-18-m9-m1-signal-radar-closeout-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-18-m9-m1-signal-radar-closeout-image2-v2.png",
       "targetCoverExists": true
@@ -90,50 +90,50 @@
     {
       "index": 7,
       "batch": 2,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-17",
       "title": "三条线同时推进：情报、本地知识库与自动观测",
       "postPath": "content/progress/2026-07-17-progress.mdx",
-      "currentCover": "/covers/2026-07-17-three-lines-advance.jpg",
+      "currentCover": "/covers/2026-07-17-three-lines-advance-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-17-three-lines-advance-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 8,
       "batch": 2,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-16",
       "title": "安全收口之后：从 M8.0 Gate 到 M8.1 Shadow 的产品逻辑",
       "postPath": "content/progress/2026-07-16-progress.mdx",
-      "currentCover": "/covers/2026-07-16-safety-to-shadow.png",
+      "currentCover": "/covers/2026-07-16-safety-to-shadow-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-16-safety-to-shadow-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 9,
       "batch": 2,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-15",
       "title": "三条线并行：输入法 M8 落地、Loop 面板启用、Sidecar 首链路通",
       "postPath": "content/progress/2026-07-15-progress.mdx",
-      "currentCover": "/covers/2026-07-15-three-lines-converge.jpg",
+      "currentCover": "/covers/2026-07-15-three-lines-converge-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-15-three-lines-converge-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 10,
       "batch": 2,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-14",
       "title": "标签闭集与开放集：一次校验失败引发的全链路治理",
       "postPath": "content/progress/2026-07-14-progress.mdx",
-      "currentCover": "/covers/2026-07-14-taxonomy-chain.jpg",
+      "currentCover": "/covers/2026-07-14-taxonomy-chain-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-14-taxonomy-chain-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 11,
