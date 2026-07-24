@@ -5,13 +5,14 @@
   "model": "image-2",
   "promptVersion": "steam-industrial-v2",
   "briefVersion": "full-article-v2",
+  "backfillCutoffDate": "2026-07-23",
   "batchSize": 5,
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 74,
+    "pending": 69,
     "readyForReview": 0,
-    "applied": 10,
+    "applied": 15,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -138,62 +139,62 @@
     {
       "index": 11,
       "batch": 3,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-13",
       "title": "周一收口日：六个项目同时落子，系统治理进入深水区",
       "postPath": "content/progress/2026-07-13-progress.mdx",
-      "currentCover": "/covers/2026-07-13-monday-harvest.png",
+      "currentCover": "/covers/2026-07-13-monday-harvest-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-13-monday-harvest-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 12,
       "batch": 3,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-12",
       "title": "从 M6 到 M12 一天跨六个里程碑，LoopHarbor 在证明什么？",
       "postPath": "content/progress/2026-07-12-progress.mdx",
-      "currentCover": "/covers/2026-07-12-loopharbor-milestones.jpg",
+      "currentCover": "/covers/2026-07-12-loopharbor-milestones-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-12-loopharbor-milestones-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 13,
       "batch": 3,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-11",
       "title": "坐标系反了：一个输入法候选窗的垂直翻转事故",
       "postPath": "content/progress/2026-07-11-progress.mdx",
-      "currentCover": "/covers/2026-07-11-coordinate-fix.jpg",
+      "currentCover": "/covers/2026-07-11-coordinate-fix-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-11-coordinate-fix-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 14,
       "batch": 3,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-10",
       "title": "输入法不是一个功能，是一场与操作系统的谈判",
       "postPath": "content/progress/2026-07-10-progress.mdx",
-      "currentCover": "/covers/2026-07-10-input-method-negotiation.jpg",
+      "currentCover": "/covers/2026-07-10-input-method-negotiation-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-10-input-method-negotiation-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 15,
       "batch": 3,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-09",
       "title": "数据自己跑，人只需要确认它跑对了",
       "postPath": "content/progress/2026-07-09-progress.mdx",
-      "currentCover": "/covers/2026-07-09-data-runs-itself.jpg",
+      "currentCover": "/covers/2026-07-09-data-runs-itself-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-09-data-runs-itself-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 16,

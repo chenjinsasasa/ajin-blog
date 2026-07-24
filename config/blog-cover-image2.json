@@ -1,6 +1,7 @@
 {
   "schemaVersion": 1,
   "enforcementStartDate": "2026-07-24",
+  "backfillCutoffDate": "2026-07-23",
   "provider": "codex",
   "model": "image-2",
   "executionMode": "builtin-imagegen",

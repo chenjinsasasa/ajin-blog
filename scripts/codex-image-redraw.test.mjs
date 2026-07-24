@@ -3,6 +3,7 @@ import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import test from 'node:test'
+import matter from 'gray-matter'
 
 import {
   createCoverRedrawManifest,
@@ -75,6 +76,43 @@ test('清单按日期倒序分批，并从文件与 frontmatter 推导断点状�
   )
 })
 
+test('历史封面清单忽略截止日之后新增的文章并保持批次断点稳定', () => {
+  const posts = [
+    {
+      postPath: 'content/progress/2026-07-24-progress.mdx',
+      title: '当天新文章',
+      date: '2026-07-24',
+      coverImage: '/covers/24.png',
+      coverPromptVersion: 'steam-industrial-v2',
+      coverContractValid: true,
+    },
+    {
+      postPath: 'content/progress/2026-07-23-progress.mdx',
+      title: '历史文章',
+      date: '2026-07-23',
+      coverImage: '/covers/23.jpg',
+      coverPromptVersion: '',
+      coverContractValid: false,
+    },
+  ]
+
+  const manifest = createCoverRedrawManifest({
+    batchSize: 5,
+    config: {
+      backfillCutoffDate: '2026-07-23',
+      promptVersion: 'steam-industrial-v2',
+    },
+    exists: () => true,
+    posts,
+  })
+
+  assert.equal(manifest.total, 1)
+  assert.equal(manifest.backfillCutoffDate, '2026-07-23')
+  assert.deepEqual(manifest.entries.map(({ date, batch }) => ({ date, batch })), [
+    { date: '2026-07-23', batch: 1 },
+  ])
+})
+
 test('应用候选图时只更新封面字段并保持正文原样', () => {
   const raw = `---
 title: "示例"
@@ -103,6 +141,29 @@ coverAttribution: "Old Source"
   assert.match(next, /coverPromptVersion: "steam-industrial-v2"/)
   assert.doesNotMatch(next, /coverSourceUrl:|coverLicense:|coverAttribution:/)
   assert.equal(next.slice(next.indexOf('\n---\n') + 5), raw.slice(raw.indexOf('\n---\n') + 5))
+})
+
+test('移除多行来源字段时不残留 YAML 块内容', () => {
+  const raw = `---
+title: 示例
+coverImage: /covers/old.jpg
+coverAttribution: >-
+  The Metropolitan Museum of Art, New York. Harbor Scene,
+  Engraving by Aegidius Sadeler II.
+---
+
+正文
+`
+
+  const next = upsertCoverProvenance(
+    raw,
+    { coverImage: '/covers/new-image2-v2.png' },
+    ['coverAttribution'],
+  )
+
+  assert.doesNotMatch(next, /Metropolitan Museum|Engraving by/)
+  assert.equal(matter(next).data.coverImage, '/covers/new-image2-v2.png')
+  assert.equal(matter(next).content.trim(), '正文')
 })
 
 test('批次验证失败时恢复本批所有已写文件', async (t) => {

@@ -15,7 +15,12 @@ export function createCoverRedrawManifest({ batchSize, config, exists, posts }) 
     throw new Error('batchSize 必须是正整数')
   }
 
-  const sorted = [...posts].sort(
+  const backfillCutoffDate =
+    typeof config.backfillCutoffDate === 'string' ? config.backfillCutoffDate.trim() : ''
+  const scopedPosts = backfillCutoffDate
+    ? posts.filter((post) => post.date && post.date <= backfillCutoffDate)
+    : posts
+  const sorted = [...scopedPosts].sort(
     (a, b) => b.date.localeCompare(a.date) || b.postPath.localeCompare(a.postPath),
   )
   const entries = sorted.map((post, index) => {
@@ -48,6 +53,7 @@ export function createCoverRedrawManifest({ batchSize, config, exists, posts }) 
     model: config.model || 'image-2',
     promptVersion: config.promptVersion,
     briefVersion: config.briefVersion || '',
+    backfillCutoffDate,
     batchSize,
     batchCount: Math.ceil(entries.length / batchSize),
     total: entries.length,

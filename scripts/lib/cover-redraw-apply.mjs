@@ -34,9 +34,17 @@ export function upsertCoverProvenance(rawPost, fields, removeFields = []) {
   if (!match) throw new Error('文章缺少可识别的 YAML frontmatter')
 
   const removePatterns = removeFields.map((field) => new RegExp(`^${field}:`))
-  const lines = match[1]
-    .split(/\r?\n/)
-    .filter((line) => !removePatterns.some((pattern) => pattern.test(line)))
+  const lines = []
+  let removingBlock = false
+  for (const line of match[1].split(/\r?\n/)) {
+    if (/^\S/.test(line)) {
+      removingBlock = removePatterns.some((pattern) => pattern.test(line))
+      if (removingBlock) continue
+    } else if (removingBlock) {
+      continue
+    }
+    lines.push(line)
+  }
   const missing = []
   for (const [field, value] of Object.entries(fields)) {
     const index = lines.findIndex((line) => new RegExp(`^${field}:`).test(line))
