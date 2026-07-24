@@ -72,7 +72,7 @@ deploy_production:
   resource_group: vercel-production
   rules:
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
-      when: manual
+      when: on_success
     - when: never
   allow_failure: false
   script:
