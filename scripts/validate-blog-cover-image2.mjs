@@ -18,9 +18,20 @@ const exactFields = {
   coverExecutionMode: config.executionMode,
   coverStyle: config.style,
   coverPromptVersion: config.promptVersion,
+  coverBriefVersion: config.briefVersion,
   coverReferenceSet: config.referenceSet,
 }
 const forbiddenExternalFields = ['coverSourceUrl', 'coverLicense', 'coverAttribution']
+const requiredBriefFields = [
+  'coreEventZh',
+  'primarySubjectZh',
+  'keyActionZh',
+  'resultZh',
+  'tensionZh',
+  'industrialMetaphorZh',
+  'sceneDescriptionZh',
+  'imagePromptEn',
+]
 
 function getFiles(dir) {
   if (!fs.existsSync(dir)) return []
@@ -57,6 +68,15 @@ function hashFile(filePath) {
   return crypto.createHash('sha256').update(fs.readFileSync(filePath)).digest('hex')
 }
 
+function hashText(value) {
+  return crypto.createHash('sha256').update(value).digest('hex')
+}
+
+function expectedBriefPath(filePath) {
+  const slug = path.basename(filePath, path.extname(filePath))
+  return path.join('content', 'cover-briefs', `${slug}.json`)
+}
+
 function verifyReferences(errors) {
   for (const reference of config.references) {
     const absolutePath = path.join(projectRoot, reference.path)
@@ -73,7 +93,9 @@ function verifyReferences(errors) {
 
 async function validatePost(filePath, force, errors) {
   const relativePath = path.relative(projectRoot, filePath)
-  const data = matter(fs.readFileSync(filePath, 'utf8')).data
+  const rawPost = fs.readFileSync(filePath, 'utf8')
+  const post = matter(rawPost)
+  const data = post.data
   const date = normalizeDate(data.date)
   if (!force && (!date || date < config.enforcementStartDate)) return false
 
@@ -85,6 +107,53 @@ async function validatePost(filePath, force, errors) {
   for (const field of forbiddenExternalFields) {
     if (Object.prototype.hasOwnProperty.call(data, field)) {
       addError(`Image 2 封面不得保留外部来源字段 ${field}`)
+    }
+  }
+
+  const expectedRelativeBriefPath = expectedBriefPath(filePath)
+  if (data.coverBriefPath !== expectedRelativeBriefPath) {
+    addError(`coverBriefPath 必须是 ${JSON.stringify(expectedRelativeBriefPath)}`)
+  }
+  const briefRoot = path.resolve(projectRoot, 'content', 'cover-briefs')
+  const briefPath = path.resolve(projectRoot, expectedRelativeBriefPath)
+  if (!briefPath.startsWith(`${briefRoot}${path.sep}`)) {
+    addError('coverBriefPath 解析后必须仍位于 content/cover-briefs/')
+  } else if (!fs.existsSync(briefPath)) {
+    addError(`visual brief 文件不存在：${expectedRelativeBriefPath}`)
+  } else {
+    try {
+      const brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'))
+      if (brief.schemaVersion !== 1) addError('visual brief schemaVersion 必须是 1')
+      if (brief.briefVersion !== config.briefVersion) {
+        addError(`visual brief briefVersion 必须是 ${JSON.stringify(config.briefVersion)}`)
+      }
+      if (brief.promptVersion !== config.promptVersion) {
+        addError(`visual brief promptVersion 必须是 ${JSON.stringify(config.promptVersion)}`)
+      }
+      if (brief.generatedBy !== 'codex' || brief.executionMode !== 'full-article-analysis') {
+        addError('visual brief 必须由 Codex full-article-analysis 生成')
+      }
+      if (brief.postPath !== relativePath) addError('visual brief postPath 与文章不一致')
+      if (brief.postSha256 !== hashText(rawPost)) addError('visual brief 已过期：文章哈希不一致')
+      if (brief.bodySha256 !== hashText(post.content.trim())) {
+        addError('visual brief 已过期：正文哈希不一致')
+      }
+      for (const field of requiredBriefFields) {
+        if (typeof brief.visualBrief?.[field] !== 'string' || !brief.visualBrief[field].trim()) {
+          addError(`visual brief 缺少非空字段 ${field}`)
+        }
+      }
+      const symbols = brief.visualBrief?.supportingSymbolsZh
+      if (
+        !Array.isArray(symbols) ||
+        symbols.length < 2 ||
+        symbols.length > 5 ||
+        !symbols.every((item) => typeof item === 'string' && item.trim())
+      ) {
+        addError('visual brief supportingSymbolsZh 必须包含 2-5 个非空字符串')
+      }
+    } catch (error) {
+      addError(`visual brief 无法读取：${error.message}`)
     }
   }
 
@@ -161,6 +230,7 @@ async function main() {
         status: 'ok',
         model: config.model,
         promptVersion: config.promptVersion,
+        briefVersion: config.briefVersion,
         referenceSet: config.referenceSet,
         enforcementStartDate: config.enforcementStartDate,
         postsChecked: enforced,

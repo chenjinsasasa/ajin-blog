@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "coreEventZh",
+    "primarySubjectZh",
+    "keyActionZh",
+    "resultZh",
+    "tensionZh",
+    "industrialMetaphorZh",
+    "supportingSymbolsZh",
+    "sceneDescriptionZh",
+    "imagePromptEn"
+  ],
+  "properties": {
+    "coreEventZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "primarySubjectZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "keyActionZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "resultZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tensionZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "industrialMetaphorZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "supportingSymbolsZh": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sceneDescriptionZh": {
+      "type": "string",
+      "minLength": 1
+    },
+    "imagePromptEn": {
+      "type": "string",
+      "minLength": 1
+    }
+  }
+}

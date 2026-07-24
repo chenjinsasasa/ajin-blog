@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v1",
+  "promptVersion": "steam-industrial-v1",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-23-progress.mdx",
+  "postSha256": "b9ae29bbacfc8a8c2c7dddcd5e3dcf6753036b1c8eba80f6a4098cf30c036f7e",
+  "bodySha256": "36eb2aa430c0c7be9f1d0c21e9b26f46bcdf324bc9d6fdcad5ed8d3ef0b811a5",
+  "bodyCharacters": 1924,
+  "generatedAt": "2026-07-24T05:09:20.454Z",
+  "visualBrief": {
+    "coreEventZh": "四条工程线并行收口，核心生产与恢复验证顺利通过，但通往外部的连接关口仍被未知故障阻断。",
+    "primarySubjectZh": "一名负责总验收的工坊工程师与一套多线并行的工业生产系统。",
+    "keyActionZh": "工程师封闭已完成的主生产线、确认备用恢复装置可用，同时沿管路排查外部连接闸门的异常。",
+    "resultZh": "主生产线完成收口，恢复机制通过实测，输送流程得到加固；外部入口仍亮着故障信号，等待次日查明根因。",
+    "tensionZh": "大部分机械已经稳定归位，超时停机也已解除，唯独出口闸门持续拒绝开启，使完整收口停在最后一道关卡。",
+    "industrialMetaphorZh": "将输入法收口转译为完成校准并封印的排字机生产线，将恢复验证转译为通过负载试验的备用动力机组，将 CI 超时转译为过早落下的总停机闸，将 503 转译为因下游启动失序而闭锁的外部压力阀。",
+    "supportingSymbolsZh": [
+      "盖有验收印章的排字机",
+      "恢复运转并显示正常压力的备用蒸汽机",
+      "被重新调校的定时停机闸",
+      "持续泄压并拒绝开启的出口阀门",
+      "稳定输送记录纸带的自动行情装置"
+    ],
+    "sceneDescriptionZh": "夜晚的工业总装工坊内，一名工程师站在中央控制台前，左侧刚完成校准的排字机已被验收封印，后方备用蒸汽机平稳运转，头顶的停机闸刚被重新调校；他的注意力集中在右侧通往厂外的粗大管道上，那里的出口阀门仍在泄出白汽并亮着故障灯，几条已经稳定运行的生产线共同汇向这道尚未打开的最后关口。",
+    "imagePromptEn": "A single coherent nighttime scene inside a nineteenth-century industrial assembly workshop: a chief engineer stands at a central control desk after sealing and approving a calibrated typesetting production line; a backup steam engine runs steadily behind him, and an overhead shutdown governor has just been readjusted. His attention is fixed on a large pipe leading outside the factory, where the final outlet valve remains locked and vents white steam under a warning lamp. Several orderly production lines converge toward this unresolved gateway, while a small automatic ticker mechanism continues feeding paper quietly in the background. No text, numbers, logos, screens, or modern devices."
+  }
+}

@@ -9,6 +9,7 @@
   "outputFormat": "png",
   "style": "steam-industrial-engraving",
   "promptVersion": "steam-industrial-v1",
+  "briefVersion": "full-article-v1",
   "referenceSet": "homepage-entry-cards-v1",
   "references": [
     {

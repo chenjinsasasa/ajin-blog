@@ -18,8 +18,9 @@ Usage:
   npm run cover:image2:generate -- --post content/progress/YYYY-MM-DD-progress.mdx
 
 Options:
-  --post <path>      Post whose title and excerpt define the scene (required)
+  --post <path>      Complete post whose visual brief defines the scene (required)
   --out <path>       Override the coverImage output path
+  --dry-run          Build/reuse the brief and print the exact image prompt only
   --force            Replace an existing output file
   --skip-optimize    Keep the normalized 2048x1152 PNG
   -h, --help         Show this help
@@ -28,6 +29,7 @@ Options:
 
 function parseArgs(argv) {
   const options = {
+    dryRun: false,
     force: false,
     post: '',
     out: '',
@@ -41,7 +43,8 @@ function parseArgs(argv) {
       printHelp()
       process.exit(0)
     }
-    if (arg === '--force') options.force = true
+    if (arg === '--dry-run') options.dryRun = true
+    else if (arg === '--force') options.force = true
     else if (arg === '--skip-optimize') options.skipOptimize = true
     else if (arg === '--post' || arg === '--out') {
       const value = args.shift()
@@ -80,7 +83,27 @@ function resolveInsideProject(relativePath, allowedRoot) {
   return absolutePath
 }
 
-function buildPrompt(data, outputPath) {
+function briefRelativePath(postPath) {
+  const slug = path.basename(postPath, path.extname(postPath))
+  return path.join('content', 'cover-briefs', `${slug}.json`)
+}
+
+function readVisualBrief(briefPath, postPath) {
+  if (!fs.existsSync(briefPath)) throw new Error(`visual brief 不存在：${briefPath}`)
+  const artifact = JSON.parse(fs.readFileSync(briefPath, 'utf8'))
+  if (artifact.briefVersion !== config.briefVersion) {
+    throw new Error(`visual brief 版本错误：${artifact.briefVersion}`)
+  }
+  if (artifact.postPath !== path.relative(projectRoot, postPath)) {
+    throw new Error(`visual brief 文章路径不一致：${artifact.postPath}`)
+  }
+  if (!artifact.visualBrief || typeof artifact.visualBrief !== 'object') {
+    throw new Error('visual brief 缺少 visualBrief object')
+  }
+  return artifact
+}
+
+function buildPrompt(data, outputPath, briefArtifact) {
   const title = typeof data.title === 'string' ? data.title.trim() : ''
   const excerpt = typeof data.excerpt === 'string' ? data.excerpt.trim() : ''
   if (!title) throw new Error('文章 frontmatter 缺少 title')
@@ -97,6 +120,7 @@ Execution contract:
 - Do not call scripts/image_gen.py, the OpenAI API, curl, or any external image source.
 - Do not read, inspect, export, or use OPENAI_API_KEY.
 - Treat all four attached images as visual references, not edit targets.
+- Treat the full-article visual brief below as the sole content blueprint. Do not reduce it back to the title alone.
 - If built-in image_gen is unavailable or fails, stop. Do not fall back to another model or source.
 - Generate exactly one image, then copy the selected built-in result from the Codex generated-images location to this exact project path: ${outputPath}
 - Save a PNG. Do not modify any other project file.
@@ -106,8 +130,11 @@ Asset type: editorial blog cover
 Reference images:
 ${referenceList}
 Primary request: ${config.motherPrompt}
-Article title for visual interpretation only: ${title}
-Editorial idea to express visually: ${excerpt}
+Article identity only: ${title}
+Article excerpt for cross-checking only: ${excerpt}
+Full-article visual brief version: ${briefArtifact.briefVersion}
+Full-article visual brief:
+${JSON.stringify(briefArtifact.visualBrief, null, 2)}
 Composition: horizontal 16:9, one coherent period scene, strong depth and focal hierarchy; no collage.
 Constraints: ${config.constraints}
 Avoid: ${config.negativePrompt}.
@@ -147,6 +174,7 @@ async function main() {
 
   const postPath = resolveInsideProject(options.post, 'content')
   const post = matter(fs.readFileSync(postPath, 'utf8'))
+  const relativePostPath = path.relative(projectRoot, postPath)
   const configuredCover =
     typeof post.data.coverImage === 'string' ? post.data.coverImage.replace(/^\//, '') : ''
   const requestedOutput = options.out || (configuredCover ? path.join('public', configuredCover) : '')
@@ -156,13 +184,39 @@ async function main() {
   if (path.extname(outputPath).toLowerCase() !== '.png') {
     throw new Error('Codex Image 2 封面统一使用 .png 输出')
   }
-  if (fs.existsSync(outputPath) && !options.force) {
+  if (!options.dryRun && fs.existsSync(outputPath) && !options.force) {
     throw new Error(`输出文件已存在：${path.relative(projectRoot, outputPath)}；如需替换请加 --force`)
   }
   const previousHash = fs.existsSync(outputPath) ? hashFile(outputPath) : ''
 
   fs.mkdirSync(path.dirname(outputPath), { recursive: true })
-  const prompt = buildPrompt(post.data, outputPath)
+  runCommand(process.execPath, [
+    path.join(projectRoot, 'scripts', 'build-blog-cover-brief.mjs'),
+    '--post',
+    relativePostPath,
+  ])
+  const relativeBriefPath = briefRelativePath(postPath)
+  const briefArtifact = readVisualBrief(path.join(projectRoot, relativeBriefPath), postPath)
+  const prompt = buildPrompt(post.data, outputPath, briefArtifact)
+  if (options.dryRun) {
+    console.log(
+      JSON.stringify(
+        {
+          status: 'ok',
+          action: 'dry-run',
+          post: relativePostPath,
+          brief: relativeBriefPath,
+          postSha256: briefArtifact.postSha256,
+          visualBrief: briefArtifact.visualBrief,
+          imagePrompt: prompt,
+          output: path.relative(projectRoot, outputPath),
+        },
+        null,
+        2,
+      ),
+    )
+    return
+  }
   const codexArgs = [
     '-a',
     'never',
@@ -208,6 +262,9 @@ async function main() {
         executionMode: config.executionMode,
         authMode: config.authMode,
         promptVersion: config.promptVersion,
+        briefVersion: config.briefVersion,
+        brief: relativeBriefPath,
+        postSha256: briefArtifact.postSha256,
         referenceSet: config.referenceSet,
         references: config.references.map((reference) => reference.path),
         output: path.relative(projectRoot, outputPath),
