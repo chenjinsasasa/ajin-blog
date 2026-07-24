@@ -11,6 +11,8 @@ export function buildCodexImageArgs(projectRoot) {
     'never',
     '-s',
     'workspace-write',
+    '-c',
+    'model_reasoning_effort="low"',
     'exec',
     '--ephemeral',
     '--skip-git-repo-check',

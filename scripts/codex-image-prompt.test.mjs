@@ -38,6 +38,10 @@ test('生图命令不附加参考图输入', () => {
   const args = buildCodexImageArgs('/workspace')
 
   assert.equal(args.includes('-i'), false)
+  assert.deepEqual(
+    args.slice(args.indexOf('-c'), args.indexOf('-c') + 2),
+    ['-c', 'model_reasoning_effort="low"'],
+  )
   assert.equal(args.at(-1), '-')
 })
 
