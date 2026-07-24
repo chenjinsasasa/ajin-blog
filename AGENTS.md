@@ -133,8 +133,10 @@ coverReferenceSet: "homepage-entry-cards-v1"
 - For historical posts, follow the user’s separate backfill process; this file’s hard requirement applies to newly created posts going forward.
 - Historical backfill is resumable and newest-first in five-cover batches:
   1. Refresh the 84-cover inventory with `npm run cover:image2:backfill:inventory`.
-  2. Generate one batch with `npm run cover:image2:backfill:generate -- --batch <n>`; this creates sibling `*-image2-v2.png` candidates without changing published frontmatter.
-  3. Visually inspect every candidate against the locked style and its v2 full-article brief.
-  4. Only after visual approval, apply the whole batch with `npm run cover:image2:backfill:apply -- --batch <n> --approved`, or one approved post with `--post <post-path> --approved`.
-  5. Keep the previous cover file until the replacement has passed build and deployment verification; the apply step changes references but does not delete the previous asset.
+  2. Run `npm run cover:image2:backfill:validate`; all 84 post/body hashes, briefs, reference hashes, three-focus prompts, output paths, and the 700-character prompt cap must pass before generation or application.
+  3. Generate one batch with `npm run cover:image2:backfill:generate -- --batch <n>`; this creates sibling `*-image2-v2.png` candidates without changing published frontmatter.
+  4. Visually inspect every candidate against the locked style and its v2 full-article brief.
+  5. Only after visual approval, apply the whole batch with `npm run cover:image2:backfill:apply -- --batch <n> --approved`, or one approved post with `--post <post-path> --approved`.
+  6. Treat apply as atomic: all candidates are preflighted before writing, and any validation failure restores the post, brief, and manifest for the entire scope.
+  7. Keep the previous cover file until the replacement has passed build and deployment verification; the apply step changes references but does not delete the previous asset.
 - Never substitute another source or model when Image 2 fails.

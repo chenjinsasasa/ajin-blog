@@ -35,8 +35,8 @@ coverProvider: "codex"
 coverModel: "image-2"
 coverExecutionMode: "builtin-imagegen"
 coverStyle: "steam-industrial-engraving"
-coverPromptVersion: "steam-industrial-v1"
-coverBriefVersion: "full-article-v1"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
 coverBriefPath: "content/cover-briefs/YYYY-MM-DD-progress.json"
 coverReferenceSet: "homepage-entry-cards-v1"
 ```
@@ -60,7 +60,7 @@ The brief stage reads the complete article, not only `title` and `excerpt`. Code
 - result
 - tension / unresolved problem
 - industrial-age metaphor
-- 2-5 supporting symbols
+- exactly 3 supporting symbols: subject, stable result, unresolved obstruction
 - one coherent scene description
 - an English content-only image prompt
 
@@ -86,7 +86,7 @@ The command:
 1. creates or refreshes the full-article visual brief;
 2. verifies all four reference hashes;
 3. requires three consecutive transport-level probes to `chatgpt.com` before starting the long image request;
-4. starts a bounded `codex exec` task with all four references and uses Codex's built-in `image_gen` tool;
+4. starts a bounded `codex exec` task that uses Codex's built-in `image_gen` tool without attaching input images;
 5. injects the visual brief as the content blueprint and the mother prompt as the fixed style blueprint;
 6. removes `OPENAI_API_KEY` from the child environment and uses the Codex login state only;
 7. saves a local PNG under `public/covers/`;
@@ -119,3 +119,13 @@ Before commit/push, visually check that the result belongs beside the four homep
 ## Historical Covers
 
 Historical files are not silently rewritten by the new-post gate. Backfill them in explicit batches, review the generated images, update frontmatter provenance, run validation, then commit each bounded batch.
+
+Before generating or applying a historical batch, validate the complete queue:
+
+```bash
+npm run cover:image2:backfill:validate
+```
+
+This gate verifies all manifest entries, fresh post/body hashes, the v2 brief and prompt versions, exactly three focal elements, the 700-character Image 2 prompt limit, unique project-local PNG targets, and all four locked reference hashes.
+
+Apply remains all-or-nothing. The apply command preflights every candidate before writing, writes the post, brief, and manifest as one recoverable transaction, validates every changed post, and requires the rebuilt manifest to report the whole scope as `applied`. Any failure restores every file in the batch to its pre-apply contents. Previous cover assets are retained for deployment rollback.
