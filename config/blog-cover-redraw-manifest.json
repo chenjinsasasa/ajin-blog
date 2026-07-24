@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 29,
+    "pending": 24,
     "readyForReview": 0,
-    "applied": 55,
+    "applied": 60,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -679,62 +679,62 @@
     {
       "index": 56,
       "batch": 12,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-25",
       "title": "从链路贯通到新项目启动：系统治理的两种节奏",
       "postPath": "content/progress/2026-05-25-progress.mdx",
-      "currentCover": "/covers/2026-05-25-progress.png",
+      "currentCover": "/covers/2026-05-25-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-25-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 57,
       "batch": 12,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-24",
       "title": "博客素材链治理：从漏洞识别到系统性修复",
       "postPath": "content/progress/2026-05-24-progress.mdx",
-      "currentCover": "/covers/2026-05-24-progress.jpg",
+      "currentCover": "/covers/2026-05-24-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-24-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 58,
       "batch": 12,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-23",
       "title": "不是修目录，是把知识库边界、会话治理和素材链一起拉直",
       "postPath": "content/progress/2026-05-23-progress.mdx",
-      "currentCover": "/covers/2026-05-23-progress.jpg",
+      "currentCover": "/covers/2026-05-23-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-23-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 59,
       "batch": 12,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-22",
       "title": "不是静默，是把能卡人的细节一口气修顺",
       "postPath": "content/progress/2026-05-22-progress.mdx",
-      "currentCover": "/covers/2026-05-22-progress.png",
+      "currentCover": "/covers/2026-05-22-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-22-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 60,
       "batch": 12,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-21",
       "title": "不是空白，是给系统留一个安静窗口",
       "postPath": "content/progress/2026-05-21-progress.mdx",
-      "currentCover": "/covers/2026-05-21-progress.png",
+      "currentCover": "/covers/2026-05-21-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-21-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 61,
