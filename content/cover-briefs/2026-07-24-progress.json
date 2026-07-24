@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-24-progress.mdx",
+  "postSha256": "47e2d1762d73f9589911361693a0431b3c0134777211c53dbc595e055e1e7023",
+  "bodySha256": "a1dd9fed583c97d3f89bace6a1caddba64b3d6311045a9ed145b399d10330e28",
+  "bodyCharacters": 1814,
+  "generatedAt": "2026-07-24T15:32:36.014Z",
+  "visualBrief": {
+    "coreEventZh": "历史封面第二批批量重绘在校验、预生成与原子回滚机制的保护下完成落地。",
+    "primarySubjectZh": "负责批量封面重绘的工程操作者与受控生产链路。",
+    "keyActionZh": "操作者先检查整批备料与关卡，再通过具备整体退回能力的机制启动批量生产。",
+    "resultZh": "批量重绘形成了可验证、可审计且能以低成本整批恢复的稳定成果。",
+    "tensionZh": "大规模生产效率与单点错误可能扩散至整个批次之间的矛盾。",
+    "industrialMetaphorZh": "一座十九世纪印刷工坊将批量重绘转译为受检验闸门和总回退装置约束的连续压印作业。",
+    "supportingSymbolsZh": [
+      "站在控制台前检查流程的工坊监工",
+      "整齐码放且印迹一致的成批铜版画",
+      "卡在检验闸门前的瑕疵铜版"
+    ],
+    "sceneDescriptionZh": "单帧画面中，工坊监工立于中央控制台，一手操纵整批回退杠杆，一手核对生产链路；他身后是整齐码放、印迹稳定的成批铜版画，前方一块瑕疵铜版被检验闸门截停。背景仅呈现纵深的印刷工坊空间与斜射天光。",
+    "focalElementsEn": [
+      "workshop overseer operating a batch rollback lever",
+      "orderly stacks of consistently printed copperplates",
+      "flawed copperplate stopped at an inspection gate"
+    ],
+    "imagePromptEn": "A workshop overseer at the center operates a batch rollback lever while inspecting the production line. Behind him, orderly stacks of consistently printed copperplates show stable completed output. In front, a single flawed copperplate is stopped at an inspection gate before it can enter the batch. The three elements form a clear foreground-center-background relationship in one coherent workshop scene."
+  }
+}
