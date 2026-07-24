@@ -9,8 +9,8 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 79,
-    "readyForReview": 0,
+    "pending": 78,
+    "readyForReview": 1,
     "applied": 5,
     "missingCurrentCover": 0
   },
@@ -78,14 +78,14 @@
     {
       "index": 6,
       "batch": 2,
-      "status": "pending",
+      "status": "ready-for-review",
       "date": "2026-07-18",
       "title": "M9 验证收口、M1 落地与晚间收口三条线并行",
       "postPath": "content/progress/2026-07-18-progress.mdx",
       "currentCover": "/covers/2026-07-18-m9-m1-signal-radar-closeout.jpg",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-18-m9-m1-signal-radar-closeout-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 7,
