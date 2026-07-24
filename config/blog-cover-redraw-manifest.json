@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 19,
+    "pending": 14,
     "readyForReview": 0,
-    "applied": 65,
+    "applied": 70,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -799,62 +799,62 @@
     {
       "index": 66,
       "batch": 14,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-15",
       "title": "我们的进展｜桥接闭环不是接上，而是把证据落库",
       "postPath": "content/progress/2026-05-15-progress.mdx",
-      "currentCover": "/covers/2026-05-15-progress.jpg",
+      "currentCover": "/covers/2026-05-15-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-15-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 67,
       "batch": 14,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-14",
       "title": "我们的进展｜没有新增完成项的一天，往往最该认真复盘",
       "postPath": "content/progress/2026-05-14-progress.mdx",
-      "currentCover": "/covers/2026-05-14-progress.jpg",
+      "currentCover": "/covers/2026-05-14-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-14-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 68,
       "batch": 14,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-13",
       "title": "我们的进展｜当能力开始本地化，系统才真正长出自己的骨架",
       "postPath": "content/progress/2026-05-13-progress.mdx",
-      "currentCover": "/covers/2026-05-13-progress.jpg",
+      "currentCover": "/covers/2026-05-13-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-13-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 69,
       "batch": 14,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-12",
       "title": "我们的进展｜把编排规则和交接样例压成系统骨架",
       "postPath": "content/progress/2026-05-12-progress.mdx",
-      "currentCover": "/covers/2026-05-12-progress.jpg",
+      "currentCover": "/covers/2026-05-12-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-12-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 70,
       "batch": 14,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-11",
       "title": "2026-05-11 进展：规划做满了，坑也终于浮出水面",
       "postPath": "content/progress/2026-05-11-progress.mdx",
-      "currentCover": "/covers/2026-05-11-progress.jpg",
+      "currentCover": "/covers/2026-05-11-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-11-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 71,
