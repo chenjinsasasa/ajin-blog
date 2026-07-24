@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-07-progress.mdx",
+  "postSha256": "591e8026fba7270a8a32f857441bc8bd5d97843d905c0ef50ee8f0b9f3efe242",
+  "bodySha256": "88b719e47b06740530bf6372e731b78b909ccf86d208187616db87d5ffb3911c",
+  "bodyCharacters": 1586,
+  "generatedAt": "2026-07-24T12:33:26.672Z",
+  "visualBrief": {
+    "coreEventZh": "将外部研究中的演练与遥测思想，转化为一套能够运行和检验的最小质量关卡。",
+    "primarySubjectZh": "一名工业工程师在工作台前校验新制成的机械检查器。",
+    "keyActionZh": "工程师操作检查器完成独立测试，并审视它与主生产流程之间尚未接通的接口。",
+    "resultZh": "概念已从研究和规则沉淀为可运行、可测试、可验证的独立机制。",
+    "tensionZh": "检查器已经稳定工作，但在误拦风险得到评估前，仍不能贸然接入主流程。",
+    "industrialMetaphorZh": "把质量验证转译为工厂入口的机械闸门：独立校验装置已经制成，而通往主传动线的联轴结构仍被谨慎隔离。",
+    "supportingSymbolsZh": [
+      "正在校准机械检查器的工业工程师",
+      "指针稳定、闸门顺畅闭合的独立检验机",
+      "与主传动线断开的联轴器"
+    ],
+    "sceneDescriptionZh": "昏暗工坊中，工程师俯身操作工作台上的独立检验机，稳定的表针与闭合闸门显示校验成功；机器另一侧的联轴器停在主传动线前，保留一段清晰间隙。背景仅呈现纵深厂房与侧窗光线。",
+    "focalElementsEn": [
+      "engineer calibrating a mechanical inspector",
+      "tested inspection machine with a steady gauge and closed gate",
+      "disconnected coupling before the main drive line"
+    ],
+    "imagePromptEn": "An engineer calibrates a mechanical inspector at the center workbench. Its steady gauge and firmly closed gate show a successful test. On the far side, a disconnected coupling stops just short of the main drive line, leaving a deliberate gap between the proven machine and the larger process."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-10-progress.mdx",
+  "postSha256": "f26fb1a0f3886b13c79d1ac0334ff3b48274765a091541dc4d37b2f84ee06c29",
+  "bodySha256": "63a3918403b9849c99ea8933d69b31ad22a163395dcf6089b9a3381667c2f85d",
+  "bodyCharacters": 1144,
+  "generatedAt": "2026-07-24T12:32:08.627Z",
+  "visualBrief": {
+    "coreEventZh": "系统在没有新输入的一天完成状态确认，并将留白承认为正常运行的一部分。",
+    "primarySubjectZh": "负责值守的系统设计者。",
+    "keyActionZh": "在机器停转时检查仪表与机构，确认系统正常后克制地不再启动新工序。",
+    "resultZh": "空白被记录为一种有效、诚实且可持续的运行状态。",
+    "tensionZh": "持续产出的惯性压力，与允许系统在无输入时安静休息之间的矛盾。",
+    "industrialMetaphorZh": "一座十九世纪工厂进入冷却时段，值守工程师确认已完成的机械稳定停驻，同时拒绝为制造动静而强行投料。",
+    "supportingSymbolsZh": [
+      "守在停机控制杆旁的值守工程师",
+      "整齐静止且状态稳定的齿轮机组",
+      "卡在空投料口前、试图迫使机器空转的沉重压杆"
+    ],
+    "sceneDescriptionZh": "单帧场景中，值守工程师站在停机控制杆旁，面向已经稳定静止的齿轮机组；另一侧的沉重压杆卡在空投料口前，形成是否强行启动的压力。背景仅为安静的工厂空间与穿窗而入的柔和晨光。",
+    "focalElementsEn": [
+      "a watch engineer beside the shutdown lever",
+      "a stable motionless gear assembly",
+      "a heavy pressure bar jammed before an empty feed chute"
+    ],
+    "imagePromptEn": "A watch engineer stands calmly beside a shutdown lever, facing a stable motionless gear assembly. Across the frame, a heavy pressure bar is jammed before an empty feed chute, pushing toward the idle machine, while the engineer deliberately keeps the lever untouched. Quiet factory space and soft window light only."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-06-progress.mdx",
+  "postSha256": "3fd56bdf325743cb49152234386502db4eb615bf05ad837f53b30a95de936bd1",
+  "bodySha256": "09d448ecb1689db2abee7d66bc1aa40759c070c771244d958ceed1ba5be44505",
+  "bodyCharacters": 1192,
+  "generatedAt": "2026-07-24T12:33:45.612Z",
+  "visualBrief": {
+    "coreEventZh": "系统在无人救场、没有新增动作的静默日里保持平稳运行，并等待下一轮轻量巡检。",
+    "primarySubjectZh": "巡场者观察一套无需人工干预仍能稳定运转的工业机械。",
+    "keyActionZh": "巡场者停在机器旁倾听运转声，同时留意远处尚待检查的受阻管道。",
+    "resultZh": "既有修补持续生效，主机械安静而稳定地自行运转。",
+    "tensionZh": "眼前的静默究竟代表真实稳定，还是尚未暴露的漏报与延迟故障。",
+    "industrialMetaphorZh": "把系统治理转译为施工结束后的工厂巡场：主机械平稳呼吸，修补过的结构保持牢固，而一段受阻管道仍需下一次巡检确认。",
+    "supportingSymbolsZh": [
+      "手持听诊器巡查机器的巡场者",
+      "平稳转动且补丁牢固的主机械",
+      "远处阀门紧闭的受阻管道"
+    ],
+    "sceneDescriptionZh": "单帧呈现巡场者立于平稳转动的主机械旁，以听诊器贴近机壳确认其稳定；主机械上的修补板牢固无泄漏，远处一段阀门紧闭的管道暗示下一步仍需排查。背景仅为安静厂房的纵深与柔和侧光。",
+    "focalElementsEn": [
+      "an inspector listening to machinery",
+      "a steadily turning patched engine",
+      "a distant pipe with a closed valve"
+    ],
+    "imagePromptEn": "An inspector stands beside a steadily turning patched engine, pressing a listening tube to its casing. The repaired plates remain firm as the mechanism runs unattended. Farther away, a pipe with a closed valve waits in shadow, forming the unresolved endpoint of the inspector’s gaze."
+  }
+}

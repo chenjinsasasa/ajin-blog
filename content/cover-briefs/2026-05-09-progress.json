@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-09-progress.mdx",
+  "postSha256": "06c97ebbaf1a78aa1c94c22884117714e1650ff7855b911cb36bf1632679d209",
+  "bodySha256": "3ae6b5950f7f3ee38233b841d7b6412f45297d0185dd14dc24b3c953282a85b8",
+  "bodyCharacters": 2983,
+  "generatedAt": "2026-07-24T12:32:32.784Z",
+  "visualBrief": {
+    "coreEventZh": "将“解释原因优先于下达行动”的认识映射到质量治理，并准备从事后纠错转向事前理解意图。",
+    "primarySubjectZh": "一名在检验关口前重新审视作业原理的工业工程师。",
+    "keyActionZh": "工程师依据标注意图的机械蓝图校准检验关口，而非直接推动流程运转。",
+    "resultZh": "质量检查与需求意图之间的映射已经建立，形成了可供后续实践的治理依据。",
+    "tensionZh": "清晰的原因能够减少返工，但工期压力仍驱使人们跳过解释，继续依赖事后拦截。",
+    "industrialMetaphorZh": "把质量治理比作十九世纪工厂的检验关口：蓝图不仅规定机器如何运转，还揭示每道机构为何存在；若工人只服从动作指令，故障便会在流水末端集中暴露。",
+    "supportingSymbolsZh": [
+      "在检验关口前研读原理的工业工程师",
+      "展开并标明机械意图的稳定蓝图",
+      "被蒸汽压力推挤、尚未校准的检验闸门"
+    ],
+    "sceneDescriptionZh": "一座昏暗工坊内，工业工程师站在检验闸门前展开蓝图，一手沿着原理标记校准闸门；闸门另一侧承受蒸汽压力而轻微震动，表现理解原因与仓促放行之间的冲突，背景仅保留纵深空间与侧窗光线。",
+    "focalElementsEn": [
+      "industrial engineer studying operating principles",
+      "stable blueprint annotated with mechanical intent",
+      "uncalibrated inspection gate under steam pressure"
+    ],
+    "imagePromptEn": "An industrial engineer studies operating principles beside a stable blueprint annotated with mechanical intent, using it to calibrate an inspection gate. The gate strains under steam pressure, poised between careful alignment and premature release. Arrange the engineer and blueprint in the foreground and the pressured gate directly ahead, within a dim workshop lit from one side."
+  }
+}

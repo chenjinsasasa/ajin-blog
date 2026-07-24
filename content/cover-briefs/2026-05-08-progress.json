@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-08-progress.mdx",
+  "postSha256": "18b58608084a07a4ff1ab71c2c1dd07d9c22579c7004dcf58651ccdeb2595994",
+  "bodySha256": "3499b2d9847c2da30d2de8337286a20a90a8ea53559bdd6a47de74e50304ee4c",
+  "bodyCharacters": 3636,
+  "generatedAt": "2026-07-24T12:33:01.781Z",
+  "visualBrief": {
+    "coreEventZh": "把分散的研究、治理、检测、清扫与自动化收束为一条更清楚、更可靠的系统主路径。",
+    "primarySubjectZh": "一名工业校准员在黄昏的工坊走廊中检修主传动线路。",
+    "keyActionZh": "校准员将已接通的检测闸门与节律机构对准主轴，同时清除遮蔽判断的历史残渣。",
+    "resultZh": "主传动线路获得稳定的检测、通行与记录节律，前行路径被清晰照亮。",
+    "tensionZh": "已经成形的秩序仍受到不可验证历史残渣的遮挡，可靠机制与虚假活跃之间形成核心冲突。",
+    "industrialMetaphorZh": "将系统治理转译为十九世纪工坊的主传动线校准：闸门代表质量检测与规则落地，稳定运转的齿轮组代表已经接通的自动化成果，堵塞轨道的废料代表尚未彻底消解的历史噪音。",
+    "supportingSymbolsZh": [
+      "手持校准工具的工业校准员",
+      "与主轴稳定咬合的检测闸门齿轮组",
+      "堵塞前方轨道的废弃金属残渣"
+    ],
+    "sceneDescriptionZh": "黄昏的工业工坊走廊里，一名校准员俯身调整中央检测闸门的齿轮组，使其与主轴稳定咬合；走廊前方仍有一堆废弃金属残渣堵住部分轨道。背景仅呈现纵深空间与从高窗落下的斜光。",
+    "focalElementsEn": [
+      "industrial mechanic with calibration tools",
+      "engaged inspection-gate gear assembly",
+      "scrap metal blocking the forward rail"
+    ],
+    "imagePromptEn": "An industrial mechanic kneels beside an engaged inspection-gate gear assembly, aligning it precisely with the main drive shaft. The mechanism runs steadily behind him, while a compact heap of scrap metal blocks the rail directly ahead. Dim workshop depth and a single shaft of evening light frame only these three focal elements."
+  }
+}
