@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 34,
+    "pending": 29,
     "readyForReview": 0,
-    "applied": 50,
+    "applied": 55,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -619,62 +619,62 @@
     {
       "index": 51,
       "batch": 11,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-30",
       "title": "治理根扩展与知识库维护：基础设施的沉默进化",
       "postPath": "content/progress/2026-05-30-progress.mdx",
-      "currentCover": "/covers/2026-05-30-progress.jpg",
+      "currentCover": "/covers/2026-05-30-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-30-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 52,
       "batch": 11,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-29",
       "title": "今天的进展，像是把蒙在眼前的纱布摘掉了",
       "postPath": "content/progress/2026-05-29-progress.mdx",
-      "currentCover": "/covers/2026-05-29-progress.jpg",
+      "currentCover": "/covers/2026-05-29-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-29-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 53,
       "batch": 11,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-28",
       "title": "我们的进展 | 2026-05-28",
       "postPath": "content/progress/2026-05-28-progress.mdx",
-      "currentCover": "/covers/2026-05-28-progress.jpg",
+      "currentCover": "/covers/2026-05-28-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-28-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 54,
       "batch": 11,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-27",
       "title": "我们的进展 | 2026-05-27",
       "postPath": "content/progress/2026-05-27-progress.mdx",
-      "currentCover": "/covers/2026-05-27-agent-iteration-governance.jpg",
+      "currentCover": "/covers/2026-05-27-agent-iteration-governance-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-27-agent-iteration-governance-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 55,
       "batch": 11,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-26",
       "title": "我们的进展 | 2026-05-26",
       "postPath": "content/progress/2026-05-26-progress.mdx",
-      "currentCover": "/covers/2026-05-26-progress.jpg",
+      "currentCover": "/covers/2026-05-26-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-26-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 56,
