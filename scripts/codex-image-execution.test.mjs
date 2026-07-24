@@ -36,6 +36,39 @@ test('内置生图遇到网络中断时切换节点并仅重试一次', async ()
   assert.equal(recoveries, 1)
 })
 
+test('generations 网络错误优先于外层 error marker 并触发恢复', async () => {
+  let attempts = 0
+  let recoveries = 0
+  const networkError =
+    'image generation failed: network error: error sending request for url (https://chatgpt.com/backend-api/codex/images/generations)'
+
+  const result = await runCodexImageWithRecovery({
+    backoffMilliseconds: 0,
+    isSuccessfulResult: (attemptResult) =>
+      attemptResult.stdout.includes('CODEX_IMAGE_RESULT status=ok'),
+    recover: async ({ failure }) => {
+      recoveries += 1
+      assert.equal(failure, networkError)
+      return { status: 'ok', action: 'switched' }
+    },
+    runAttempt: async () => {
+      attempts += 1
+      if (attempts === 1) {
+        return {
+          status: 1,
+          stderr: networkError,
+          stdout: 'CODEX_IMAGE_RESULT status=error output=none',
+        }
+      }
+      return { status: 0, stderr: '', stdout: 'CODEX_IMAGE_RESULT status=ok' }
+    },
+  })
+
+  assert.equal(result.status, 'ok')
+  assert.equal(attempts, 2)
+  assert.equal(recoveries, 1)
+})
+
 test('非网络错误立即停止且保留首次原始错误', async () => {
   let attempts = 0
   let recoveries = 0

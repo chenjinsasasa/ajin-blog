@@ -13,10 +13,10 @@ function rawFailure(result) {
     .trim()
   const lines = combined.split(/\r?\n/).map((line) => line.trim()).filter(Boolean)
   const preferredPatterns = [
-    /image generation failed:.*images\/edits/i,
-    /network error:.*images\/edits/i,
-    /CODEX_IMAGE_RESULT status=error/i,
+    /image generation failed:.*images\/(?:edits|generations)/i,
+    /network error:.*images\/(?:edits|generations)/i,
     RETRYABLE_NETWORK_ERROR,
+    /CODEX_IMAGE_RESULT status=error/i,
   ]
   for (const pattern of preferredPatterns) {
     const line = lines.find((candidate) => pattern.test(candidate))
