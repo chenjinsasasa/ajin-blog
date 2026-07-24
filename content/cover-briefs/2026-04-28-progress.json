@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-04-28-progress.mdx",
+  "postSha256": "16b9e0cc5d02fb12683fc53878e8fe5cac3d6fe0df7bbc0e74e04e8c924e2c6f",
+  "bodySha256": "e85f9c86d54b75dfbb20f93fb42350289d362012694c187c3b957a9b8d0f712e",
+  "bodyCharacters": 979,
+  "generatedAt": "2026-07-24T12:38:27.000Z",
+  "visualBrief": {
+    "coreEventZh": "将日更博客的封面交付从依赖人工记忆，推进为由固定流程持续保障。",
+    "primarySubjectZh": "一名正在校准封面生产线的工坊技师。",
+    "keyActionZh": "技师检查并锁定印刷、装配与验收环节，使已有流程稳定连续运转。",
+    "resultZh": "封面交付由零散的人工作业转为可重复执行的稳定生产机制。",
+    "tensionZh": "生产线已经能够稳定出品，但重复版面与风格偏差仍缺少自动识别关卡。",
+    "industrialMetaphorZh": "以十九世纪印刷工坊的机械生产线隐喻博客封面工作流：技师代表流程维护者，稳定运转的印刷机代表已固化的交付机制，堵在检验闸口的相似印版代表尚未解决的去重与一致性验收。",
+    "supportingSymbolsZh": [
+      "校准机械的工坊技师",
+      "连续吐出合格纸张的印刷机",
+      "卡在检验闸口的两块相似印版"
+    ],
+    "sceneDescriptionZh": "单帧场景中，工坊技师位于画面中央俯身校准印刷机；机器在其一侧连续送出整齐纸张，另一侧的检验闸口被两块相似印版卡住。背景仅呈现昏暗工坊空间与斜射光线。",
+    "focalElementsEn": [
+      "mechanic calibrating machinery",
+      "printing press producing orderly sheets",
+      "two similar plates jammed at an inspection gate"
+    ],
+    "imagePromptEn": "A mechanic at center calibrates a printing press that steadily feeds orderly sheets to one side, while two nearly identical printing plates are jammed at an inspection gate on the opposite side; the mechanic turns toward the blockage, linking the stable production line with the unresolved checkpoint."
+  }
+}

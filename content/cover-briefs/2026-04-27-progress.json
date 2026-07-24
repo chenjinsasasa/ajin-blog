@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-04-27-progress.mdx",
+  "postSha256": "15b7338dafad36ed9ed3b1934fd7daf5051e691835df4397b49466f6181af5b2",
+  "bodySha256": "672382693a70748a81643d26cf8ad764f5b59d55b171944283c4933c56ff2343",
+  "bodyCharacters": 893,
+  "generatedAt": "2026-07-24T12:38:53.743Z",
+  "visualBrief": {
+    "coreEventZh": "为日更博客补齐封面、校验与触发缓冲之间的流程缺口，使发布链条形成可验收的闭环。",
+    "primarySubjectZh": "一名负责收紧生产流程的工坊监工。",
+    "keyActionZh": "监工合上最后一道联锁闸门，检查整条传送机构是否能够连续运转。",
+    "resultZh": "原本依赖临时兜底的生产线被改造成具有明确完工标准的稳定闭环。",
+    "tensionZh": "流程机制已经搭好，但能否在日复一日的实际执行中持续可靠，仍待验证。",
+    "industrialMetaphorZh": "将博客日更流程转译为十九世纪印刷工坊中的联锁生产线：封面、校验与提交如同依次咬合的机械工序。",
+    "supportingSymbolsZh": [
+      "正在合拢联锁闸门的工坊监工",
+      "已经连续咬合运转的印刷传送机构",
+      "传送线末端尚未通过负载检验的沉重阻力轮"
+    ],
+    "sceneDescriptionZh": "一座十九世纪印刷工坊内，监工站在近景合拢联锁闸门；中景的印刷传送机构已依次咬合运转，并朝远处尚未通过负载检验的阻力轮推进。背景仅呈现深长厂房空间与侧窗斜光。",
+    "focalElementsEn": [
+      "foreman closing an interlocking gate",
+      "engaged printing conveyor mechanism",
+      "unyielding resistance wheel at the line's end"
+    ],
+    "imagePromptEn": "A foreman in the foreground closes an interlocking gate onto an engaged printing conveyor mechanism running through the middle of the workshop. The mechanism drives toward an unyielding resistance wheel at the far end, testing whether the completed line can sustain continuous operation."
+  }
+}

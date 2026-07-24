@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-04-29-progress.mdx",
+  "postSha256": "8758eee7f37531087c117944121b81650e73945f74a273bcc3ae6df8df2c5853",
+  "bodySha256": "32f8cfd62972ba207c01e74de40a6da081457a6391f3c69dcc20975f8577026f",
+  "bodyCharacters": 667,
+  "generatedAt": "2026-07-24T12:37:55.049Z",
+  "visualBrief": {
+    "coreEventZh": "在持续日更的链条中，主动记录一个没有新增产出的停顿日。",
+    "primarySubjectZh": "一名印刷工守在尚未落墨的纸张前，观察空白本身。",
+    "keyActionZh": "他停下印刷动作，让已完成的印页静置沉淀，并为下一次书写保留空间。",
+    "resultZh": "日更链条没有中断，空白被诚实地保存为一天的记录。",
+    "tensionZh": "持续输出的惯性与休息、等待同样具有价值之间的矛盾。",
+    "industrialMetaphorZh": "一座暂停运转的十九世纪印刷工坊：空白纸张不是故障废料，而是机器节奏中的休止与下一轮生产的准备。",
+    "supportingSymbolsZh": [
+      "停在空白纸张前的印刷工",
+      "整齐静置的一叠已印纸页",
+      "悬在纸面上方但尚未落下的墨辊"
+    ],
+    "sceneDescriptionZh": "印刷工站在工作台中央，双手扶着一张空白纸；一侧整齐静置着已经完成的印页，另一侧的墨辊悬停在纸面上方。工坊背景仅呈现昏暗空间与斜照进来的柔光。",
+    "focalElementsEn": [
+      "printer holding a blank sheet",
+      "neatly resting stack of printed pages",
+      "suspended ink roller above the paper"
+    ],
+    "imagePromptEn": "A printer stands at the center holding a blank sheet in both hands. A neatly resting stack of printed pages sits to one side, while a suspended ink roller hangs above the untouched paper on the other, paused just before contact."
+  }
+}
