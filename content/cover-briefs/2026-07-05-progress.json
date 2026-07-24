@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-05-progress.mdx",
+  "postSha256": "1016afa25a3b583a4ee65babd28a9d65503065e68ba960619cc457423879a30b",
+  "bodySha256": "f3b8ce957a57925436bced6654c7c56730326dd3443e65271e6d5d083006c490",
+  "bodyCharacters": 2241,
+  "generatedAt": "2026-07-24T11:58:28.840Z",
+  "visualBrief": {
+    "coreEventZh": "把分散的每日产出、项目阶段与只读数据统一纳入可验证的时间和状态秩序。",
+    "primarySubjectZh": "一名工业审计员在总检验台前核对实际传送的材料，而非旁路留存的证明。",
+    "keyActionZh": "审计员沿着输送路径检查已完成归档的批次，并将检验关口对准真正进入系统的载荷。",
+    "resultZh": "每日新增来源已经汇入稳定的晚间归档链路，阶段边界也得到明确记录。",
+    "tensionZh": "现有检验可能只验证旁路证据，尚不能证明实际传送的材料新鲜、可信且无副作用。",
+    "industrialMetaphorZh": "以十九世纪工厂的输送线、归档货箱与错位检验闸门，转译每日收口、状态管理和只读护栏审核。",
+    "supportingSymbolsZh": [
+      "在总检验台前追踪输送路径的工业审计员",
+      "已封存并进入统一归档轨道的货箱",
+      "偏离主输送线、只检查旁路样本的检验闸门"
+    ],
+    "sceneDescriptionZh": "一名工业审计员站在总检验台中央，俯身追踪主输送轨道；一只已封存的货箱正沿轨道进入归档区；近处的检验闸门却错误地朝向旁路样本，形成实际载荷与验证对象错位的单帧场景，背景仅保留昏暗厂房纵深与侧窗光线。",
+    "focalElementsEn": [
+      "industrial auditor tracing the main conveyor",
+      "sealed crate entering the archive track",
+      "inspection gate aimed at a bypass sample"
+    ],
+    "imagePromptEn": "An industrial auditor at a central inspection bench traces the main conveyor with one hand. A sealed crate moves past him into the archive track. Beside the conveyor, an inspection gate is visibly misaligned toward a bypass sample instead of the moving crate, creating a clear tension between stable daily archiving and an unresolved verification mismatch."
+  }
+}

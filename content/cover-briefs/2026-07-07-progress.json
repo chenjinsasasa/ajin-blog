@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-07-progress.mdx",
+  "postSha256": "593739df404d81c728fc3f781d08000a2bd5e4f9696e7f1aa0d79f496b99d40c",
+  "bodySha256": "e1cb8ba47e08c20fc3a4c87985e087e1a1bc12f36ca8110c3cd7cbb5085d09b4",
+  "bodyCharacters": 1866,
+  "generatedAt": "2026-07-24T11:57:40.873Z",
+  "visualBrief": {
+    "coreEventZh": "一项关于模型内部“全局广播通道”的研究，为多智能体系统建立共享判断空间的治理方向提供验证，并推动过程记录从结果流水账转向中间判断的外化。",
+    "primarySubjectZh": "负责治理协作系统的工程师，将分散作业中的关键判断汇入一个可检查的中央调度机制。",
+    "keyActionZh": "工程师观察并调校中央传动台，使各工位未显露的中间判断能够被集中传递和审查。",
+    "resultZh": "共享信息通道的架构价值获得支持，过程可见性与隐性检查成为近期可试点的治理方向。",
+    "tensionZh": "中央通道能够提升协作与审计能力，但内部状态仍无法被完全可靠地读取，且过度依赖过程可见性可能削弱对最终结果的验收。",
+    "industrialMetaphorZh": "多智能体治理被转译为一座十九世纪工厂的中央传动室：总工程师借助主轴协调分散工位，同时面对一处仍被卡住、无法彻底显露内部运动的检修闸门。",
+    "supportingSymbolsZh": [
+      "守在中央传动台前调校主轴的总工程师",
+      "已稳定带动各工位运转的主传动轴",
+      "卡住并遮蔽内部运动的检修闸门"
+    ],
+    "sceneDescriptionZh": "单帧场景中，总工程师站在中央传动台前调校主轴；主轴横贯车间并稳定传递动力；一侧检修闸门卡在半开位置，阻挡他看清内部运动。背景仅呈现高挑厂房空间与侧窗斜光。",
+    "focalElementsEn": [
+      "chief engineer adjusting a central transmission console",
+      "main drive shaft steadily powering the workshop",
+      "jammed inspection gate concealing inner motion"
+    ],
+    "imagePromptEn": "A chief engineer adjusts a central transmission console at the center. A main drive shaft extends from it across the workshop, steadily transmitting power. Beside the shaft, a jammed inspection gate remains half-open, concealing the mechanism within as the engineer turns toward the obstruction."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-08-progress.mdx",
+  "postSha256": "08ed6d03770ca72b9933af009db114e67ce6e654e320a34e9f61de6eea0e97a3",
+  "bodySha256": "4f24b4a50b35d23f8f6c877075687cd4a720b4eae1b4f85eb0af8743913d771b",
+  "bodyCharacters": 1283,
+  "generatedAt": "2026-07-24T11:57:17.693Z",
+  "visualBrief": {
+    "coreEventZh": "自动化治理链路在无人干预下安静运行，最后一道工序仍在自主推进。",
+    "primarySubjectZh": "站在高处观察整套机械运转的值守工程师。",
+    "keyActionZh": "工程师不再亲手救火，只通过仪表观察动力沿传动链稳定传递。",
+    "resultZh": "主体机械持续平稳运转，安静本身成为系统开始自主工作的证据。",
+    "tensionZh": "整条链路已趋于稳定，但末端尚未闭合的最后一道工序仍可能拖慢或卡住运行。",
+    "industrialMetaphorZh": "将自动化治理转译为一座无需工人持续干预的十九世纪传动工坊，以平稳运转的主轴象征已稳定的链路，以末端待咬合的齿轮象征尚未完成的最终环节。",
+    "supportingSymbolsZh": [
+      "克制旁观、不再救火的值守工程师",
+      "安静而连续运转的主轴传动机构",
+      "末端尚未完全咬合的最后一枚齿轮"
+    ],
+    "sceneDescriptionZh": "一座安静的工业工坊内，值守工程师站在侧上方观察；中央主轴与传动机构平稳连续地运转；远端最后一枚齿轮正缓慢靠近接口却尚未完全咬合。背景仅呈现宽阔厂房空间与斜射进来的柔和天光。",
+    "focalElementsEn": [
+      "watchful engineer standing aside",
+      "quietly running central transmission",
+      "final gear not yet engaged"
+    ],
+    "imagePromptEn": "A watchful engineer stands aside above a quietly running central transmission, observing rather than intervening. At the far end of the same mechanism, a final gear inches toward its matching teeth but has not yet engaged. The three focal elements form one continuous line from observer to stable machinery to unresolved endpoint."
+  }
+}

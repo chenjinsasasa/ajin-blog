@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-04-progress.mdx",
+  "postSha256": "b29ed6940737b285e33fa3363cdf201457c83141ade51d5b8cae2da0242172a4",
+  "bodySha256": "c5cecc89938d83ec9b883e0836734cac1d9fa17609419e0d3886139674c4896b",
+  "bodyCharacters": 1770,
+  "generatedAt": "2026-07-24T11:58:53.651Z",
+  "visualBrief": {
+    "coreEventZh": "把表面可用但实际漏失的读取路径修补为可信链路。",
+    "primarySubjectZh": "一名负责校验信息流的工业检验员。",
+    "keyActionZh": "检验员先沿专用管线查找记录，再将缺失部分导向任务级备用管线，同时坚持只读取、不回写的边界。",
+    "resultZh": "原本会被静默丢弃的信息得以进入稳定、可验证的读取链路。",
+    "tensionZh": "系统看似已经连通，内部却仍有不报错的断口，使后续判断建立在虚假的“没有结果”之上。",
+    "industrialMetaphorZh": "将现代系统的聚合读取转译为工厂中的分流管网：主阀优先接收专线来料，备用阀在专线缺失时承接总管来料，而检验机构只观察和归档，不反向驱动机器。",
+    "supportingSymbolsZh": [
+      "在分流阀前检查流向的工业检验员",
+      "已稳定接通并输出记录纸带的双路管线",
+      "藏在接头内部、令来料无声漏失的断口"
+    ],
+    "sceneDescriptionZh": "一座昏暗工业检验室内，检验员站在分流阀前扳动备用通路；双路管线在他身侧汇合并连续吐出记录纸带，而近处一个剖开的接头显露出曾让来料无声漏失的内部断口。背景仅保留厂房纵深与斜入的窗光。",
+    "focalElementsEn": [
+      "inspector operating a fallback valve",
+      "joined pipelines producing a continuous record strip",
+      "cutaway pipe joint revealing a hidden leak"
+    ],
+    "imagePromptEn": "An inspector operates a fallback valve at the center; beside him, two joined pipelines converge and feed a continuous record strip forward; in the foreground, a cutaway pipe joint exposes a hidden leak that had silently diverted the flow. The three elements form one coherent inspection scene, with restrained factory depth and angled window light only."
+  }
+}

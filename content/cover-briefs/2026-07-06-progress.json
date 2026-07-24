@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-06-progress.mdx",
+  "postSha256": "3aca3b09bf7783fc9a5b7d03d0f13ec4e570bf7c6df605aec4036a1ab4d82f63",
+  "bodySha256": "70d65d4ff4d0f2240ce67ccce1730c94d7303b4090feef20ac81fcd57af7529b",
+  "bodyCharacters": 1032,
+  "generatedAt": "2026-07-24T11:58:05.346Z",
+  "visualBrief": {
+    "coreEventZh": "三条工作线依靠预先固化的规则与可独立收口的最小执行单元并行推进，而非依赖持续的人力盯守。",
+    "primarySubjectZh": "一名负责校准生产节奏的十九世纪工坊技师。",
+    "keyActionZh": "技师调节机械节拍，使各工序按自身周期独立运转，并检查暴露出的卡点。",
+    "resultZh": "主要工序按节奏完成收口，执行失败也留下了可追溯的记录。",
+    "tensionZh": "已经稳定的并行节奏，与仍可能再次中断的触发环节之间形成核心矛盾。",
+    "industrialMetaphorZh": "将多线并行转译为由机械调速器统筹的分段生产系统：规则替代蛮力维持运转，卡住的触发机构则暴露闭环尚未真正稳定。",
+    "supportingSymbolsZh": [
+      "正在校准节拍的工坊技师",
+      "三条同步运转并分别收口的传动带",
+      "一处卡住且等待修复的触发机构"
+    ],
+    "sceneDescriptionZh": "单帧画面中，工坊技师位于前景中央俯身校准节拍；三条传动带从他身侧向后方平行延伸并各自完成一个生产循环；最远端的一处触发机构停滞卡住，与其余稳定运转的部分形成张力。背景仅呈现宽阔工坊空间与斜射天光。",
+    "focalElementsEn": [
+      "workshop engineer calibrating the rhythm",
+      "three synchronized belts completing separate cycles",
+      "jammed trigger mechanism awaiting repair"
+    ],
+    "imagePromptEn": "A workshop engineer in the foreground calibrates the operating rhythm. Three synchronized belts run parallel behind him, each completing its own cycle. At the far end, one jammed trigger mechanism remains motionless, creating tension against the otherwise orderly flow."
+  }
+}
