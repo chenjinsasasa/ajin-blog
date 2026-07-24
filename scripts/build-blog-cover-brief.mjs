@@ -7,6 +7,8 @@ import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 
+import { resolveCodexCliPath } from './lib/codex-cli-path.mjs'
+
 const projectRoot = process.cwd()
 const contentRoot = path.join(projectRoot, 'content')
 const config = JSON.parse(
@@ -129,6 +131,7 @@ ${body}
 }
 
 function runCodex(prompt, outputPath) {
+  const codexCliPath = resolveCodexCliPath()
   const args = [
     '-a',
     'never',
@@ -147,7 +150,7 @@ function runCodex(prompt, outputPath) {
     outputPath,
     '-',
   ]
-  const result = spawnSync('codex', args, {
+  const result = spawnSync(codexCliPath, args, {
     cwd: projectRoot,
     env: Object.fromEntries(
       Object.entries(process.env).filter(([key]) => key !== 'OPENAI_API_KEY'),

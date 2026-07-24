@@ -5,6 +5,20 @@ function nonEmptyString(value, field) {
   return value.trim()
 }
 
+function compactAtSentenceBoundary(value, maxCharacters) {
+  if (value.length <= maxCharacters) return value
+  const sentences = value.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [value]
+  let compact = ''
+  for (const sentence of sentences) {
+    const candidate = `${compact}${compact ? ' ' : ''}${sentence.trim()}`
+    if (candidate.length > maxCharacters) break
+    compact = candidate
+  }
+  if (compact) return compact
+  const clipped = value.slice(0, maxCharacters + 1).replace(/\s+\S*$/, '').trim()
+  return clipped || value.slice(0, maxCharacters).trim()
+}
+
 export function buildCodexImageArgs(projectRoot) {
   return [
     '-a',
@@ -40,13 +54,30 @@ export function buildCodexImagePrompt({ briefArtifact, config, outputPath }) {
   }
 
   const scene = nonEmptyString(visualBrief.imagePromptEn, 'imagePromptEn')
-  const style = nonEmptyString(config.motherPrompt, 'config.motherPrompt')
-  const constraints = nonEmptyString(config.constraints, 'config.constraints')
-  const avoid = nonEmptyString(config.negativePrompt, 'config.negativePrompt')
+  const style = nonEmptyString(config.generationStylePrompt, 'config.generationStylePrompt')
+  const avoid = nonEmptyString(
+    config.generationNegativePrompt,
+    'config.generationNegativePrompt',
+  )
+  const maxCharacters = Number(config.generationPromptMaxCharacters)
+  if (!Number.isInteger(maxCharacters) || maxCharacters < 1) {
+    throw new Error('config.generationPromptMaxCharacters 必须是正整数')
+  }
+  const sceneMaxCharacters = Number(config.generationSceneMaxCharacters)
+  if (!Number.isInteger(sceneMaxCharacters) || sceneMaxCharacters < 1) {
+    throw new Error('config.generationSceneMaxCharacters 必须是正整数')
+  }
 
-  const numberedElements = focalElements
-    .map((element, index) => `${index + 1}. ${element.trim()}`)
-    .join('\n')
+  const elements = focalElements.map((element) => element.trim()).join('; ')
+  const cleanStyle = style.replace(/[.]+$/, '')
+  const cleanAvoid = avoid.replace(/[.]+$/, '')
+  const compactScene = compactAtSentenceBoundary(scene, sceneMaxCharacters)
+  const imagePrompt = `16:9 editorial blog cover. ${cleanStyle}. Exactly three focal elements only: ${elements}. Scene: ${compactScene} No other narrative objects. No ${cleanAvoid}.`
+  if (imagePrompt.length > maxCharacters) {
+    throw new Error(
+      `Image 2 生成提示词超过 ${maxCharacters} 字符：${imagePrompt.length}；请缩短 visual brief`,
+    )
+  }
 
   return `Use the imagegen skill and Codex built-in image_gen to create exactly one project-bound blog cover.
 
@@ -61,22 +92,7 @@ Execution contract:
 - Save one PNG and do not modify any other project file.
 
 IMAGE GENERATION PROMPT
-Create one horizontal 16:9 editorial blog cover.
-
-Locked visual style:
-${style}
-
-Content abstracted from the complete article. Show exactly three focal elements:
-${numberedElements}
-
-Their single-scene relationship:
-${scene}
-
-Composition and constraints:
-${constraints}
-
-Avoid:
-${avoid}
+${imagePrompt}
 END IMAGE GENERATION PROMPT
 
 Before finishing, verify that the exact output path exists and is a readable PNG. Final response must end with:

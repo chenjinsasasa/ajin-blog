@@ -11,6 +11,7 @@ import {
   buildCodexImageArgs,
   buildCodexImagePrompt,
 } from './lib/blog-cover-image-prompt.mjs'
+import { resolveCodexCliPath } from './lib/codex-cli-path.mjs'
 import { runCodexImageWithRecovery } from './lib/codex-image-execution.mjs'
 import {
   ensureCodexImageRoute,
@@ -252,6 +253,8 @@ async function main() {
     return
   }
   const codexArgs = buildCodexImageArgs(projectRoot)
+  const codexCliPath = resolveCodexCliPath()
+  console.error(`[cover:image2] codex-cli ${JSON.stringify({ path: codexCliPath })}`)
 
   const routeOptions = imageRouteOptions()
   const route = await ensureCodexImageRoute(routeOptions)
@@ -279,7 +282,7 @@ async function main() {
       console.error(
         `[cover:image2] builtin-imagegen attempt=${attempt}/${config.routeGuard?.maxGenerationAttempts || 2}`,
       )
-      return runStreamingCommand('codex', codexArgs, {
+      return runStreamingCommand(codexCliPath, codexArgs, {
         env: codexEnvironment,
         input: prompt,
       })

@@ -48,6 +48,10 @@
     }
   ],
   "motherPrompt": "The steam industrial age in a late-nineteenth-century workshop, archive, printing house, or inventor laboratory. Render a dense black-ink copperplate engraving and etched editorial plate on warm ivory paper, with intricate cross-hatching, realistic cast-iron mechanisms, serious documentary mood, strong depth, and restrained negative space. Match the canonical homepage covers through this locked textual style contract; do not imitate a different medium.",
+  "generationPromptMaxCharacters": 700,
+  "generationSceneMaxCharacters": 175,
+  "generationStylePrompt": "Late-19th-century industrial archive; dense black-ink copperplate engraving on warm ivory paper; fine cross-hatching, realistic machinery, strong depth, sober mood",
+  "generationNegativePrompt": "text, logos, borders, collage, modern devices, color, photos, anime, or fantasy costume",
   "constraints": "Translate the article theme into one coherent period scene. Preserve the reference set's black-ink density, warm ivory paper, fine engraved linework, realistic industrial mechanisms, and sober editorial tone. No text in the image, no letters, no logo, no watermark, no border, and no collage.",
   "negativePrompt": "modern computer, laptop, smartphone, modern screen, glossy SaaS illustration, colorful 3D render, neon gradient, stock photo, flat vector art, anime, comic style, cyberpunk, fantasy steampunk costume, brass-orange color cast, photorealistic photography, typography, caption, logo, watermark"
 }
