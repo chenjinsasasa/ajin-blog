@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-10-progress.mdx",
+  "postSha256": "a5a0dc781c4349a8fafda3d2b34b8e758db62157b38b00b3aa45a129836ed09f",
+  "bodySha256": "09a46fa93f21d5dd685cfcace73d9d10045cb62a446502e6a688220961bc6b30",
+  "bodyCharacters": 1982,
+  "generatedAt": "2026-07-24T11:55:27.328Z",
+  "visualBrief": {
+    "coreEventZh": "在真实系统约束下拆解并验证输入法最小交互闭环的可行路径。",
+    "primarySubjectZh": "一名受限于既有建筑规则、正在勘察线路的工业时代布线工程师。",
+    "keyActionZh": "工程师依据已查明的管道布局，谨慎规划从输入、候选、选择到上屏的连续通路。",
+    "resultZh": "尚未完成整条线路，但已看懂系统蓝图，明确最小模块、完成判据与可行绕行方式。",
+    "tensionZh": "完整闭环必须穿过既有框架，而安全禁令、隐式规则与依赖故障不断封堵直接路径。",
+    "industrialMetaphorZh": "如同在不能拆墙、不能断电的旧工坊里重新布线，只能沿预留管道逐段穿行。",
+    "supportingSymbolsZh": [
+      "手持探线工具的布线工程师",
+      "标出连续线路的展开蓝图",
+      "封闭墙体中的狭窄受阻管道"
+    ],
+    "sceneDescriptionZh": "昏暗旧工坊内，布线工程师俯身面对展开的线路蓝图，将探线工具伸向墙中狭窄管道；蓝图展示已厘清的连续路径，管道入口的阻塞迫使他谨慎寻找可通行的缝隙，背景仅以高窗侧光和深色室内空间衬托动作。",
+    "focalElementsEn": [
+      "wiring engineer with a probing tool",
+      "unfolded blueprint showing a continuous route",
+      "narrow obstructed conduit inside the wall"
+    ],
+    "imagePromptEn": "A wiring engineer bends over an unfolded blueprint showing one continuous route, guiding a probing tool from the plan toward a narrow obstructed conduit inside the wall. The blueprint lies between the engineer and the conduit, visually linking understood structure to the blocked passage; restrained side light isolates only these three focal elements."
+  }
+}

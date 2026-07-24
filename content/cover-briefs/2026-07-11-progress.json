@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-11-progress.mdx",
+  "postSha256": "e49f94344c8d7114e9f9c76cd3f7e54fa8b46e63a88c3aa1537ab7752c816d8e",
+  "bodySha256": "616672ef6d6b917d52da4d130b33fb864ad1f0daf299a4aeea574494dd017e10",
+  "bodyCharacters": 3146,
+  "generatedAt": "2026-07-24T11:54:47.075Z",
+  "visualBrief": {
+    "coreEventZh": "修复输入法候选窗因垂直坐标系相反而被镜像到错误位置的事故。",
+    "primarySubjectZh": "一名工程师在工业制图台前校正传动定位机构。",
+    "keyActionZh": "工程师翻转纵向刻度的传动方向，使定位托盘回到操作点下方。",
+    "resultZh": "定位托盘已稳定停在制图笔尖正下方，表明修正完成并通过验证。",
+    "tensionZh": "一套以上缘为起点、另一套以下缘为起点的刻度机制彼此冲突，导致同一位置被垂直镜像。",
+    "industrialMetaphorZh": "用两套原点相反的垂直标尺与换向齿轮，转译现代坐标系解释冲突及其定向修复。",
+    "supportingSymbolsZh": [
+      "正在调节换向齿轮的工业制图工程师",
+      "稳定停在制图笔尖下方的金属定位托盘",
+      "上下刻度相反且仍彼此牵制的双轨垂直标尺"
+    ],
+    "sceneDescriptionZh": "一名工程师站在工业制图台旁扳动换向齿轮；金属定位托盘已停在笔尖正下方，而台侧两条原点相反的垂直标尺仍以绷紧连杆形成阻力。背景仅为昏暗厂房空间与侧窗光线。",
+    "focalElementsEn": [
+      "engineer adjusting a reversing gear",
+      "metal positioning tray aligned beneath a drafting pen",
+      "opposed vertical scales linked under tension"
+    ],
+    "imagePromptEn": "An engineer adjusts a reversing gear beside a drafting table. A metal positioning tray settles directly beneath the drafting pen. Behind the mechanism, two opposed vertical scales remain linked under tension, revealing the inverted coordinate conflict in one coherent workshop scene."
+  }
+}

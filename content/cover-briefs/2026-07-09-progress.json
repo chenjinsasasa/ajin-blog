@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-09-progress.mdx",
+  "postSha256": "ba1c336ea70af495298a283b50d06a6675229e22d668b177bbf0f86eee49237b",
+  "bodySha256": "4242bbd2b60aff66e205797445115abd40fb2bcb3e294c02ec1d8e408da47ea1",
+  "bodyCharacters": 1997,
+  "generatedAt": "2026-07-24T11:55:57.560Z",
+  "visualBrief": {
+    "coreEventZh": "自动化数据管道独立完成采集、处理、发布与记录，巡检机制同时确认系统仍在正常运转。",
+    "primarySubjectZh": "一名站在控制台旁进行最终核验的工业巡检员。",
+    "keyActionZh": "巡检员观察自主运转的机械流水线，并核对其稳定产出的记录。",
+    "resultZh": "数据更新形成无需人工介入的完整闭环，证明系统已进入稳定的自动巡航状态。",
+    "tensionZh": "机器持续正确运行，但一项反复报警、尚未处理的回顾欠账正在把有效信号变成潜在噪音。",
+    "industrialMetaphorZh": "将自动化系统转译为自行运转的十九世纪数据印制流水线，将心跳巡检转译为巡检员的外部核验，将过期回顾转译为持续鸣响却未被处理的警铃。",
+    "supportingSymbolsZh": [
+      "在控制台旁核验机器状态的工业巡检员",
+      "持续吐出整齐封存记录的自动机械流水线",
+      "悬在流水线末端、持续鸣响却无人处理的警铃"
+    ],
+    "sceneDescriptionZh": "一座昏暗工业车间内，巡检员立于近景控制台旁核验运行状态；中景机械流水线自行运转并输出整齐封存的记录；远端同一条流水线上方，一只未被处理的警铃持续摆动。背景仅呈现车间纵深与侧窗光线。",
+    "focalElementsEn": [
+      "an inspector verifying the machinery",
+      "an autonomous line producing sealed records",
+      "an unattended warning bell swinging"
+    ],
+    "imagePromptEn": "An inspector stands beside the controls, verifying an autonomous mechanical line as it produces orderly sealed records. At the far end of the same line, an unattended warning bell swings continuously, creating tension between reliable operation and an unresolved alert."
+  }
+}
