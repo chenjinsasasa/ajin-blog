@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-26-progress.mdx",
+  "postSha256": "da98becd131674a0dd84af9ec98321235180ea88eff2fed2d16b5f1439387a7a",
+  "bodySha256": "740c23ffc092a10083fb447c8d0c67230aa1dc6bd1769e037391fb6cfdc34642",
+  "bodyCharacters": 916,
+  "generatedAt": "2026-07-24T12:20:46.397Z",
+  "visualBrief": {
+    "coreEventZh": "团队通过显性化平台边界与外部依赖，持续收敛基础设施风险，为后续业务扩张建立更可靠的底座。",
+    "primarySubjectZh": "一名检修工程师在工业车间中校准基础设施的运行边界。",
+    "keyActionZh": "工程师依据已确认的机械状态调整捕获方式，并将外部供给路线的差异整理为可追踪的接驳规则。",
+    "resultZh": "已稳定形成规避不可靠捕获条件的替代路径，同时增强了外部供应接口变化时的定位与适配能力。",
+    "tensionZh": "已知边界可以被规避和记录，但平台状态与外部供应路线仍可能变化，稳定性必须依靠持续收敛而非一次修复。",
+    "industrialMetaphorZh": "将现代基础设施治理转译为蒸汽工厂的持续检修：工程师不强行修正不可控的外部机械，而是确认失效边界、启用可靠旁路，并为变化中的供给管线建立清晰接驳规程。",
+    "supportingSymbolsZh": [
+      "检修工程师正在调整旁路阀门",
+      "已稳定运转的备用传动轴",
+      "尚未接通且位置易变的外部供给管"
+    ],
+    "sceneDescriptionZh": "一座昏暗工业车间内，检修工程师位于画面中央俯身调整旁路阀门；一侧的备用传动轴已经平稳运转，另一侧的外部供给管仍悬停在错位接口前。背景仅呈现车间纵深与斜射天光。",
+    "focalElementsEn": [
+      "maintenance engineer adjusting a bypass valve",
+      "steadily running auxiliary drive shaft",
+      "disconnected external supply pipe facing a misaligned coupling"
+    ],
+    "imagePromptEn": "A maintenance engineer at the center adjusts a bypass valve, linking it to a steadily running auxiliary drive shaft on the left. On the right, a disconnected external supply pipe stops before a misaligned coupling, creating visible tension between the stable bypass and the unresolved external connection."
+  }
+}

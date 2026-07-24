@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-27-progress.mdx",
+  "postSha256": "28eafef25c6661856b15d984955be958c1141f84ad17304293e7398c850a297b",
+  "bodySha256": "c485247550133c6c843caca755ae721cc7fb099bb1f66c18f7b4c10165588e2b",
+  "bodyCharacters": 1453,
+  "generatedAt": "2026-07-24T12:20:24.139Z",
+  "visualBrief": {
+    "coreEventZh": "集中收口规则审计遗留的治理欠账，将分散的恢复、校验、表达与异常检测机制接入可持续运行的闭环。",
+    "primarySubjectZh": "一名工业总检修师统筹检查并加固整套工厂控制机构。",
+    "keyActionZh": "检修师依据持久账册逐一校准联锁装置，使风险能够被记录、识别并在必要时阻断机器运行。",
+    "resultZh": "治理机制从依赖临时记忆转为可留痕、可检查、可自动防回潮的稳定控制系统。",
+    "tensionZh": "大部分治理欠账已经收口，但通往记忆重建与连续运行的最后一段传动链仍未接通。",
+    "industrialMetaphorZh": "将系统治理转译为十九世纪工厂的总检修：持久账册驱动联锁控制，已校准的机械守卫稳定运转，而断开的末端传动轴阻碍闭环完成。",
+    "supportingSymbolsZh": [
+      "手持检修账册、俯身校准机构的工业总检修师",
+      "已经咬合并稳定运转的联锁齿轮与机械守卫",
+      "末端尚未接通、停在暗处的断裂传动轴"
+    ],
+    "sceneDescriptionZh": "一座工厂控制间内，总检修师位于近景中央，左手展开检修账册，右手校准身旁已经稳定咬合的联锁齿轮；齿轮的传动力指向画面深处，却在末端断裂的传动轴前停止。背景仅呈现高窗投下的斜光与控制间空间。",
+    "focalElementsEn": [
+      "chief mechanic with an open inspection ledger",
+      "engaged interlocking gears running steadily",
+      "disconnected terminal drive shaft in shadow"
+    ],
+    "imagePromptEn": "A chief mechanic stands at the center, reading an open inspection ledger while adjusting engaged interlocking gears beside him. The gears run steadily and lead the eye toward a disconnected terminal drive shaft in shadow, where the transmission stops. High window light defines the workshop space without adding other narrative objects."
+  }
+}

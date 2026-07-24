@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-30-progress.mdx",
+  "postSha256": "fd8d0354c9539461bab53573ea7d592747a11c73b8469d35bc45c3e08e36a71b",
+  "bodySha256": "e65bfded804aef933a62710278103559323cf31198443880cd1af21acc73339c",
+  "bodyCharacters": 1258,
+  "generatedAt": "2026-07-24T12:18:55.397Z",
+  "visualBrief": {
+    "coreEventZh": "基础设施通过扩展治理范围与整理知识存量，在例行维护中悄然增强。",
+    "primarySubjectZh": "负责维护系统秩序的工业管线管理员。",
+    "keyActionZh": "管理员将原本只通向一处的治理管线接入多个分支，并维持归档流程运转。",
+    "resultZh": "治理范围获得扩展，既有知识完成一轮稳定归档，系统的长期可维护性得到提升。",
+    "tensionZh": "眼前维护已稳定完成，但潜藏的硬编码技术债仍缺少持续追踪，未来可能再次造成被动修补。",
+    "industrialMetaphorZh": "将基础设施治理转译为十九世纪工坊中的蒸汽分流总管，将稳定成果转译为封存整齐的档案柜，将未解技术债转译为墙后受阻的旧阀门。",
+    "supportingSymbolsZh": [
+      "正在调节蒸汽分流总管的工坊管理员",
+      "已经封存并排列整齐的档案柜",
+      "墙后卡滞且尚未检修的旧阀门"
+    ],
+    "sceneDescriptionZh": "一名工坊管理员站在中央调节多路蒸汽分流总管，侧后方的档案柜已经封存整齐，另一侧墙后露出一只卡滞的旧阀门；昏暗工坊与斜射天光只用于界定空间和光线。",
+    "focalElementsEn": [
+      "workshop keeper adjusting a branched steam manifold",
+      "orderly sealed archive cabinet",
+      "jammed old valve protruding from the wall"
+    ],
+    "imagePromptEn": "A workshop keeper at center adjusts a branched steam manifold feeding several pipes. Behind him, an orderly sealed archive cabinet stands complete and stable. Across the scene, a jammed old valve protrudes from the wall, still unrepaired, creating tension between quiet progress and hidden maintenance debt."
+  }
+}

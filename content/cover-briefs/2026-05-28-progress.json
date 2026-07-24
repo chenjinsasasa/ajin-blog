@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-28-progress.mdx",
+  "postSha256": "d562a35d1585c2f545168b9174358b5ae6ac1404e7c75d5cfe1fb0790d628c69",
+  "bodySha256": "69bad684f4bd6d70e20ce6b1eb515e9a88bea7cd354baae9030337e4bea8e54a",
+  "bodyCharacters": 1003,
+  "generatedAt": "2026-07-24T12:19:59.062Z",
+  "visualBrief": {
+    "coreEventZh": "创作工作台完成从临时搭建到正式可扩展结构的核心重构。",
+    "primarySubjectZh": "一名工程师在工业制图台前重新组织整座创作工坊的控制结构。",
+    "keyActionZh": "他将零散的临时部件整合进边界清晰、可继续扩展的机械框架。",
+    "resultZh": "新的工作台结构已经稳定运转并通过基础检验，为后续功能接入留出位置。",
+    "tensionZh": "眼前的核心结构已经稳固，但面向后续产出的评估准则仍未完全定型。",
+    "industrialMetaphorZh": "把界面重构转译为十九世纪工坊中对中央控制台与传动结构的重新装配，把待收敛的评估规范转译为尚未校准的检验闸门。",
+    "supportingSymbolsZh": [
+      "在中央制图台操作机械结构的工程师",
+      "已经平稳啮合并持续运转的模块化齿轮机架",
+      "远端尚未完成校准的检验闸门"
+    ],
+    "sceneDescriptionZh": "一名工程师站在中央制图台前，将最后一个机械模块接入已平稳运转的齿轮机架，同时望向远端半明半暗、仍待校准的检验闸门；背景仅呈现宽阔工坊空间与侧窗斜光。",
+    "focalElementsEn": [
+      "engineer at a central drafting console",
+      "stable modular gear framework",
+      "uncalibrated inspection gate"
+    ],
+    "imagePromptEn": "An engineer at a central drafting console locks the final mechanism into a stable modular gear framework beside him, then turns toward an uncalibrated inspection gate at the far end. The framework runs smoothly in the foreground while the gate remains partly closed in distant side light."
+  }
+}

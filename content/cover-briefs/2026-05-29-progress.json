@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-29-progress.mdx",
+  "postSha256": "9f595921317422c98dae17b52ff979140e11eb4eef83775e5c1802b5d94207d2",
+  "bodySha256": "6d182246eed5f4e27e698e8293c2d1e403edf9d377df5d9e2144ca1051a31119",
+  "bodyCharacters": 1125,
+  "generatedAt": "2026-07-24T12:19:30.282Z",
+  "visualBrief": {
+    "coreEventZh": "一天的工作从遮蔽与混乱中恢复可见性：已完成的体验清理让核心主体显露，同时故障根因被看清，自动恢复方向也已明确。",
+    "primarySubjectZh": "一名揭开遮布、检查整套机械运行状态的工坊技师。",
+    "keyActionZh": "技师拉开检视窗前的厚重遮布，让光线直接照亮已经整理稳定的核心机械。",
+    "resultZh": "核心机械不再被杂物与阴影干扰，结构清楚、状态可辨，象征体验已经获得稳定改善。",
+    "tensionZh": "清晰度已经恢复，但远端传动机构仍会因轻微扰动停转，自动复位装置尚待完成。",
+    "industrialMetaphorZh": "把产品体验与系统治理转译为一座工业工坊的复明与检修：揭去遮蔽、确认成果，同时面对尚不能自行复位的传动阻碍。",
+    "supportingSymbolsZh": [
+      "正在拉开遮布并检视机械的工坊技师",
+      "被光线完整照亮、排列清楚的核心机械台",
+      "卡在断续传动处、尚待自动复位的机械障碍"
+    ],
+    "sceneDescriptionZh": "单帧呈现技师站在工坊检视窗旁拉开遮布，中央核心机械台在直射光中清晰显露；画面深处同一传动轴末端仍卡着一处未能自行复位的机械障碍，背景仅保留昏暗厂房空间与斜射光线。",
+    "focalElementsEn": [
+      "technician pulling aside an inspection curtain",
+      "clearly illuminated central machinery",
+      "jammed self-resetting transmission mechanism"
+    ],
+    "imagePromptEn": "A technician at the left pulls aside an inspection curtain and looks toward clearly illuminated central machinery. The machinery occupies the center in unobstructed light, while its transmission extends into the depth and ends at a jammed self-resetting mechanism on the right, creating a clear line from restored visibility to unresolved recovery."
+  }
+}
