@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 49,
+    "pending": 44,
     "readyForReview": 0,
-    "applied": 35,
+    "applied": 40,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -439,62 +439,62 @@
     {
       "index": 36,
       "batch": 8,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-17",
       "title": "领域专家的回报——从Anthropic 40万次会话看我们的Agent策略",
       "postPath": "content/progress/2026-06-17-progress.mdx",
-      "currentCover": "/covers/2026-06-17-progress.png",
+      "currentCover": "/covers/2026-06-17-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-17-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 37,
       "batch": 8,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-16",
       "title": "巡检不是目的，发现问题才是——6月16日进展",
       "postPath": "content/progress/2026-06-16-progress.mdx",
-      "currentCover": "/covers/2026-06-16-progress.jpg",
+      "currentCover": "/covers/2026-06-16-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-16-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 38,
       "batch": 8,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-15",
       "title": "从记忆碎片到治理框架：OpenClaw 工作区的系统性重构",
       "postPath": "content/progress/2026-06-15-progress.mdx",
-      "currentCover": "/covers/2026-06-15-progress.png",
+      "currentCover": "/covers/2026-06-15-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-15-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 39,
       "batch": 8,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-14",
       "title": "全线收工日：审计、LangGraph 接管、EAVK 生产就绪",
       "postPath": "content/progress/2026-06-14-progress.mdx",
-      "currentCover": "/covers/2026-06-14-progress.png",
+      "currentCover": "/covers/2026-06-14-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-14-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 40,
       "batch": 8,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-13",
       "title": "Task Insight Hook 批量执行，但素材质量在退化",
       "postPath": "content/progress/2026-06-13-progress.mdx",
-      "currentCover": "/covers/2026-06-13-progress.jpg",
+      "currentCover": "/covers/2026-06-13-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-13-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 41,
