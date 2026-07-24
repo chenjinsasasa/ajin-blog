@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 44,
+    "pending": 39,
     "readyForReview": 0,
-    "applied": 40,
+    "applied": 45,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -499,62 +499,62 @@
     {
       "index": 41,
       "batch": 9,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-12",
       "title": "Agent Loop 核心链路收口，但 Retrospective 已过期 7 天",
       "postPath": "content/progress/2026-06-12-progress.mdx",
-      "currentCover": "/covers/2026-06-12-progress.jpg",
+      "currentCover": "/covers/2026-06-12-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-12-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 42,
       "batch": 9,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-11",
       "title": "界面之下，秩序之上",
       "postPath": "content/progress/2026-06-11-progress.mdx",
-      "currentCover": "/covers/2026-06-11-progress.png",
+      "currentCover": "/covers/2026-06-11-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-11-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 43,
       "batch": 9,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-10",
       "title": "三条线并进：Agent 平台的系统性推进日",
       "postPath": "content/progress/2026-06-10-progress.mdx",
-      "currentCover": "/covers/2026-06-10-progress.jpg",
+      "currentCover": "/covers/2026-06-10-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-10-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 44,
       "batch": 9,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-09",
       "title": "技能整合与项目推进的一天",
       "postPath": "content/progress/2026-06-09-progress.mdx",
-      "currentCover": "/covers/2026-06-09-progress.jpg",
+      "currentCover": "/covers/2026-06-09-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-09-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 45,
       "batch": 9,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-08",
       "title": "把治理从动作清单推进成系统能力的一天",
       "postPath": "content/progress/2026-06-08-progress.mdx",
-      "currentCover": "/covers/2026-06-08-progress.jpg",
+      "currentCover": "/covers/2026-06-08-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-08-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 46,
