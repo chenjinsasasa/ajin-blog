@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-17-progress.mdx",
+  "postSha256": "a051aae5a9c4ae1e1e8a9f59ba6e69a745a9499c8164c6efd8366f6ab69a74c7",
+  "bodySha256": "b1725c3c07afefa1d8dd3a291cdeaa9d59237dbbffed1295c61dd2892f247ca6",
+  "bodyCharacters": 1403,
+  "generatedAt": "2026-07-24T10:29:38.111Z",
+  "visualBrief": {
+    "coreEventZh": "三条产品线在同一天并行收口，情报服务、本地知识流转与自动观测分别形成可用闭环。",
+    "primarySubjectZh": "统筹多条生产线的工坊总工程师。",
+    "keyActionZh": "总工程师站在中央控制台前，协调已经接通的生产装置，同时检查仍需验证的高速机组。",
+    "resultZh": "多条工作链互不干扰地稳定运转，关键闭环与信任基线已经建立。",
+    "tensionZh": "快速推进带来稳定节奏，但新建机组的边界可靠性仍待充分检验。",
+    "industrialMetaphorZh": "将三条现代技术产品线转译为同一座十九世纪工坊中的联动生产系统，以稳定传动代表已收口成果，以承压测试代表尚未消除的验证风险。",
+    "supportingSymbolsZh": [
+      "统筹联动生产线的总工程师",
+      "平稳咬合并持续运转的传动轮组",
+      "正在承压测试、接缝微颤的高速机组"
+    ],
+    "sceneDescriptionZh": "一座挑高工业工坊内，总工程师居中俯身调节控制台；其一侧的传动轮组平稳咬合、持续运行，另一侧的高速机组正在承压测试，接缝轻微颤动。背景仅呈现纵深厂房与高窗斜光。",
+    "focalElementsEn": [
+      "chief engineer coordinating linked production lines",
+      "smoothly meshing transmission wheel assembly",
+      "high-speed machine under pressure testing"
+    ],
+    "imagePromptEn": "A chief engineer stands at the center coordinating linked production lines. Beside him, a transmission wheel assembly meshes smoothly in steady motion. Opposite it, a high-speed machine undergoes pressure testing, its joints trembling slightly as the engineer watches the tension between stable output and unproven reliability."
+  }
+}

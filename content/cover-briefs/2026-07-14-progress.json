@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-14-progress.mdx",
+  "postSha256": "762fab695499513c46a0fe38fa61b9ea2ba0d1c80a9360deebcfb2d717218de3",
+  "bodySha256": "9eb28df175aa405f1b39d5a0414dbfcb1b95168e0af0425a50a7502debf7c162",
+  "bodyCharacters": 2068,
+  "generatedAt": "2026-07-24T10:30:47.556Z",
+  "visualBrief": {
+    "coreEventZh": "一次标签校验失败暴露出分类体系将硬约束与软建议混为一谈，继而推动文档、校验、读取与终态验证整条治理链重新对齐。",
+    "primarySubjectZh": "一名正在校准分类机械的十九世纪工坊工程师。",
+    "keyActionZh": "工程师拆除误装在开放标签通道上的刚性卡规，并重新联动整条检验传动链。",
+    "resultZh": "分类机械恢复正确分工：硬约束由闸门严格筛选，开放标签则在满足基本规格后顺利通过。",
+    "tensionZh": "推荐用的参考刻度被机械误当成强制模具，导致本应自由通过的新标签在链路中遭到阻断。",
+    "industrialMetaphorZh": "将全链路治理转译为一台贯穿铸字、分拣与终检的蒸汽传动机械：工程师必须让刚性闸门与柔性导轨各守其责。",
+    "supportingSymbolsZh": [
+      "校准分类机械的工坊工程师",
+      "已经恢复联动的分拣与终检传动链",
+      "卡住开放通道的刚性字模闸门"
+    ],
+    "sceneDescriptionZh": "单一工坊内，工程师俯身调整中央分类机械；一侧恢复联动的分拣与终检传动链平稳运转，另一侧误装的刚性字模闸门仍夹住开放通道。背景仅呈现纵深厂房与斜射天光。",
+    "focalElementsEn": [
+      "engineer calibrating the classification machine",
+      "restored sorting and final-inspection drive chain",
+      "rigid type-mold gate jamming an open passage"
+    ],
+    "imagePromptEn": "An engineer bends over a central classification machine, calibrating its controls. Beside him, a restored sorting and final-inspection drive chain runs smoothly into the depth of the workshop, while a rigid type-mold gate on the opposite side jams an open passage. The three elements form one continuous mechanical system under angled window light."
+  }
+}

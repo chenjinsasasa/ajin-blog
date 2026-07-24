@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-18-progress.mdx",
+  "postSha256": "9a4d6488cb5818c826a8c125354debc93de760a05e0c482faee765c3493f0103",
+  "bodySha256": "b9661bfadd8edf0a7f69bc1383ee6569aeef23bf7ec2e8790726f762f6e85d89",
+  "bodyCharacters": 1182,
+  "generatedAt": "2026-07-24T10:06:44.169Z",
+  "visualBrief": {
+    "coreEventZh": "三条并行工作线在同一天完成证据固化、阶段锁定与例行归档，共同形成可追溯的收口。",
+    "primarySubjectZh": "一名工业档案员将分散的工作记录汇入统一档案。",
+    "keyActionZh": "档案员把即将散失的记录整理、装订并封存。",
+    "resultZh": "已完成的工作从短暂状态转化为稳定、可查验的档案，形成干净收口。",
+    "tensionZh": "可追溯的固化成果与记录随时间、记忆重置而散失的风险之间的对抗。",
+    "industrialMetaphorZh": "把多线工程收口转译为十九世纪工业档案室中的证据归档：档案员将零散记录压入厚重账册，抵御遗忘造成的散失。",
+    "supportingSymbolsZh": [
+      "正在归档的工业档案员",
+      "已经装订封存的厚重账册",
+      "被气流卷向黑暗缝隙的零散纸页"
+    ],
+    "sceneDescriptionZh": "一名工业档案员站在档案台前，将零散纸页压入一本已经装订封存的厚重账册；仍有少量纸页被气流牵向侧面的黑暗缝隙。背景仅呈现昏暗档案室空间与斜射光线。",
+    "focalElementsEn": [
+      "an industrial archivist filing records",
+      "a heavy bound ledger secured shut",
+      "loose papers pulled toward a dark gap"
+    ],
+    "imagePromptEn": "An industrial archivist leans over a filing table, pressing records into a heavy bound ledger secured shut at the center. Beside the archivist, loose papers are pulled toward a dark narrow gap, while the archivist reaches to keep them from vanishing. The ledger remains the stable anchor between the worker and the threatened papers."
+  }
+}

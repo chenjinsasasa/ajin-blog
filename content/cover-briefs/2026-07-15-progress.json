@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-15-progress.mdx",
+  "postSha256": "fd429c9c26f0baca512e431a04b5bc73229aed10a5512a93ababbe69aca17b42",
+  "bodySha256": "01c2426ff2c4334ccf9c43c4da2b470b1d8fa2ae6ddd613e3e79fcead522ebec",
+  "bodyCharacters": 2160,
+  "generatedAt": "2026-07-24T10:30:21.528Z",
+  "visualBrief": {
+    "coreEventZh": "预先写明验收标准的切片化交付，使三条并行工程线在同一天分别抵达可验收里程碑。",
+    "primarySubjectZh": "一名以校准规程统筹多条生产线的工业监工。",
+    "keyActionZh": "监工依据预设规程逐一校准并验收并行运转的机械链路。",
+    "resultZh": "多条原本分散的工程线形成稳定、同步且可检查的交付成果。",
+    "tensionZh": "已经稳定运转的并行交付机制，仍面对一处因状态不同步而未能排除的衔接阻塞。",
+    "industrialMetaphorZh": "把切片化规划转译为预先刻定的校准规程，把并行工程转译为同步生产机械，把宿主兼容问题转译为两套机构咬合失步造成的卡滞。",
+    "supportingSymbolsZh": [
+      "手持校准规程、正在验收机械的工业监工",
+      "三组同步运转并汇入同一验收台的稳定机械链",
+      "两套齿轮失步并在衔接处卡住的联动机构"
+    ],
+    "sceneDescriptionZh": "一座工业车间内，监工站在前景依照手中规程检查中央三组同步机械链；机械链稳定汇入验收台，侧后方一处联动齿轮因失步卡滞。背景仅保留高窗投下的斜光与车间纵深。",
+    "focalElementsEn": [
+      "foreman checking machinery with a calibration rule",
+      "three synchronized mechanical lines converging at an inspection bench",
+      "misaligned interlocking gears jammed at a junction"
+    ],
+    "imagePromptEn": "A foreman checks machinery with a calibration rule in the foreground. Three synchronized mechanical lines run steadily and converge at a central inspection bench. At the side junction, a pair of misaligned interlocking gears remains visibly jammed, creating tension between orderly completion and unresolved coordination."
+  }
+}

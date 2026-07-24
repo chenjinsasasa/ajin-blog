@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-16-progress.mdx",
+  "postSha256": "0ac3d4c249f0355538baeb6b3d7288e5c4f7a636282d1f4a9f6ad0e52cefcd07",
+  "bodySha256": "baa9d6fc774976c28e90ec86ca1a575e708d5fe7dc32bff32febdaae9d62972e",
+  "bodyCharacters": 1530,
+  "generatedAt": "2026-07-24T10:29:55.788Z",
+  "visualBrief": {
+    "coreEventZh": "安全验证完成后，系统从严格门禁阶段切入不干预真实使用的静默观测阶段。",
+    "primarySubjectZh": "一名负责判断放行时机的工业检验官。",
+    "keyActionZh": "检验官确认机械闸门已经可靠闭合与验收，随后将注意力转向闸门后方的日常运行观察。",
+    "resultZh": "工程验证获得明确边界，下一阶段被允许启动，但尚未直接改变使用者可感知的结果。",
+    "tensionZh": "已经稳定到足以放行，与仍需在真实环境中继续观察之间的时序张力。",
+    "industrialMetaphorZh": "把安全收口转译为通过验收的工厂机械闸门，把静默观测转译为闸门后方尚待长期检验的昏暗运行廊道。",
+    "supportingSymbolsZh": [
+      "手持检验记录、站在放行节点前的工业检验官",
+      "锁定到位并亮起验收灯的机械闸门",
+      "闸门后延伸进阴影、状态仍待确认的运行廊道"
+    ],
+    "sceneDescriptionZh": "一名工业检验官站在已锁定并亮起验收灯的机械闸门旁，侧身凝视闸门后延伸进阴影的运行廊道；暖光停留在检验官与闸门上，远处仅保留克制的暗部空间。",
+    "focalElementsEn": [
+      "an industrial inspector holding an inspection ledger",
+      "a locked mechanical gate with a glowing approval lamp",
+      "a shadowed operating corridor beyond the gate"
+    ],
+    "imagePromptEn": "An industrial inspector holding an inspection ledger stands beside a locked mechanical gate with a glowing approval lamp, turning toward a shadowed operating corridor beyond the gate. Warm light isolates the inspector and approved gate while the corridor recedes quietly into darkness, expressing release only after closure and continued observation after approval."
+  }
+}
