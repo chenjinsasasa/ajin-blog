@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-04-progress.mdx",
+  "postSha256": "af1c86ea31e60600ad399d68c2e88fcb53041a69e705b3627a2242d733a0f2e1",
+  "bodySha256": "ea5175e675fe877fd984029bda2b455c684de2ba981821d20ccf44f4102d91d3",
+  "bodyCharacters": 4313,
+  "generatedAt": "2026-07-24T12:16:17.250Z",
+  "visualBrief": {
+    "coreEventZh": "将外部优秀方法拆解、筛选并改写为本地可执行的协作约束，同时推动知识与仓库中的事实保持一致。",
+    "primarySubjectZh": "一名工匠把外来的机械原理重新铸造成适配本地工坊的基础传动机构。",
+    "keyActionZh": "工匠对照图纸调校齿轮与轴承，将验证、诊断和协作方法压入同一套稳定运转的机械底座。",
+    "resultZh": "经过本地化改造的传动底座已经稳定啮合，并开始支撑工坊的日常协作。",
+    "tensionZh": "方法底座已趋于稳定，但一段尚未接通的归档传送链仍阻碍事实在各处完整同步。",
+    "industrialMetaphorZh": "把外部方法论比作异地机械原理，经拆解、重铸和校准后沉入工坊底座；跨系统一致性则化为连接档案与生产线的传送机构。",
+    "supportingSymbolsZh": [
+      "正在调校基础传动机构的工匠",
+      "已经稳定啮合的铸铁齿轮底座",
+      "末端断开并堆积档案的传送链"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工坊内，工匠俯身调校中央的铸铁齿轮底座，已校准的齿轮连续啮合；底座另一端连接的档案传送链却在末端断开，纸卷停滞堆积。背景仅保留高窗斜光与幽暗厂房空间。",
+    "focalElementsEn": [
+      "craftsman tuning the mechanism",
+      "stable interlocking iron gear foundation",
+      "broken archive conveyor with stalled papers"
+    ],
+    "imagePromptEn": "A craftsman bends over and tunes a stable foundation of interlocking iron gears at the center of a workshop. The gear foundation drives toward a broken archive conveyor at one side, where papers have stalled and gathered. Arrange these three focal elements in one continuous mechanical workflow under restrained window light."
+  }
+}

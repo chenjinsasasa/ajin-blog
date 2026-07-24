@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-07-progress.mdx",
+  "postSha256": "994c56327b0183c4cf3720c8870baaebcd8a95416b7f3a42003a090a14c22d7f",
+  "bodySha256": "746759cb253d06af354944a6e559b0d376bffe5666d0374b45660508561208b1",
+  "bodyCharacters": 5786,
+  "generatedAt": "2026-07-24T12:15:33.920Z",
+  "visualBrief": {
+    "coreEventZh": "一套原本只求运转的代理系统，被推进为具有边界、知识传承与审计依据的可治理体系。",
+    "primarySubjectZh": "共同检视并收紧整套系统的工业总管。",
+    "keyActionZh": "总管将权限约束、知识主路径与审计尺度汇入同一套治理机械，并检查尚未闭合的验证链路。",
+    "resultZh": "分散的隐性约束被固化为可追溯、可复用、可审视的稳定治理骨架。",
+    "tensionZh": "治理骨架已经建立，但从发现问题到形成证据并回写知识的传动链仍未完全闭合。",
+    "industrialMetaphorZh": "把代理系统转译为一座从试运行工坊升级中的工业控制室：总管校准已稳定接合的治理机械，同时面对尚未连通的验证传动轴。",
+    "supportingSymbolsZh": [
+      "正在校准系统的工业总管",
+      "已稳定接合的门禁与档案机械",
+      "尚未连通的验证传动轴"
+    ],
+    "sceneDescriptionZh": "一间高窗透入侧光的十九世纪工业控制室内，工业总管站在中央俯身校准已经接合运转的门禁与档案机械；机械另一端朝向一根尚未连通的验证传动轴，形成稳定骨架与未闭合链路之间的单帧张力。",
+    "focalElementsEn": [
+      "industrial superintendent calibrating the system",
+      "interlocked gate-and-archive machinery running steadily",
+      "disconnected validation drive shaft awaiting connection"
+    ],
+    "imagePromptEn": "An industrial superintendent bends over and calibrates interlocked gate-and-archive machinery running steadily at the center. At the far end, the machinery reaches toward a disconnected validation drive shaft, and the superintendent’s attention follows the unfinished connection. The three focal elements form one continuous mechanical chain in a high-windowed control room."
+  }
+}

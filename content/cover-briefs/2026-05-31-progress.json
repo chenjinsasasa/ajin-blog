@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-31-progress.mdx",
+  "postSha256": "7e0b03c9294e02392ad06b78549be0a83c6a4c37555ea4d40e93fb6fe4812dae",
+  "bodySha256": "c185e72adeeb02bb1ae12c8c62234cdf9e400aa99cad25e2b049c3c30b71b20a",
+  "bodyCharacters": 1092,
+  "generatedAt": "2026-07-24T12:17:00.406Z",
+  "visualBrief": {
+    "coreEventZh": "将依赖运气和反复调整的视觉复现，固化为可追溯、可验收、可回滚的实施流程。",
+    "primarySubjectZh": "一名工匠把视觉真值转译成统一的制造规程，并建立后续生产必须遵守的门禁。",
+    "keyActionZh": "工匠依据样板校准并锁定一套精密制版规程，暂缓直接生产成品。",
+    "resultZh": "可复用的视觉规格与流程地基已经稳定建立，为后续逐项审计和修复提供唯一依据。",
+    "tensionZh": "立即交付可见成品的压力，与先固化流程以避免偏差和返工之间的矛盾。",
+    "industrialMetaphorZh": "把前端视觉落地转译为十九世纪印刷工坊的制版工程：先用标准母版校准机械规程，再等待尚未到位的样张进入检验。",
+    "supportingSymbolsZh": [
+      "正在校准制版机的工匠",
+      "已锁定并整齐展开的标准母版",
+      "停在检验台前、等待样张的空夹具"
+    ],
+    "sceneDescriptionZh": "一座十九世纪印刷工坊内，工匠俯身校准制版机，已锁定的标准母版在机器旁整齐展开，前方检验台上的空夹具停滞等待尚未送达的样张；背景仅保留深长厂房空间与侧窗光线。",
+    "focalElementsEn": [
+      "craftsman calibrating a printing press",
+      "locked master plate laid beside the press",
+      "empty inspection clamp awaiting a proof sheet"
+    ],
+    "imagePromptEn": "A craftsman calibrates a printing press at the center. Beside him, a locked master plate lies neatly aligned as the stable production standard. In front, an empty inspection clamp waits for a missing proof sheet, holding the workflow at the threshold of production."
+  }
+}

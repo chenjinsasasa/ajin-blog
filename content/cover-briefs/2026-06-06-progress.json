@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-06-progress.mdx",
+  "postSha256": "412ee577f527ab6cfdffb6d93c12ae3e31ee54b2003fa9d76341c83f4035af16",
+  "bodySha256": "1e4fe71868144dd704c6e06029c7e59263d4a9a5c86237df7317e91684ebe829",
+  "bodyCharacters": 2384,
+  "generatedAt": "2026-07-24T12:15:54.407Z",
+  "visualBrief": {
+    "coreEventZh": "多线并行推进中，工作重心由继续编码转向以文档统一接口、验收标准与外部接入边界。",
+    "primarySubjectZh": "一名工坊总工程师在启动新机器后暂停扩建，转而依据总图纸整顿生产秩序。",
+    "keyActionZh": "工程师展开并校订一张统筹蓝图，使已启动的机械装置与后续施工遵循清晰边界。",
+    "resultZh": "新装置已能运转，工作台建设与外部接入被收敛为可执行、可复用的治理安排。",
+    "tensionZh": "清晰的文档秩序正在形成，但早期整体搬运造成的沉重负载仍阻碍装置走向正式生产。",
+    "industrialMetaphorZh": "以总工程师、运转中的日报印刷机和卡住传动路径的沉重档案箱，隐喻文档先行、稳定起步与尚待清理的数据债。",
+    "supportingSymbolsZh": [
+      "展开总蓝图并校订的工坊总工程师",
+      "稳定吐出单页日报的印刷机",
+      "压住传动轨道的沉重档案箱"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工坊内，总工程师站在运转中的印刷机旁展开总蓝图并俯身校订；机器稳定送出一张日报，而一个沉重档案箱压住通往出口的传动轨道。背景仅呈现昏暗厂房纵深与侧窗光线。",
+    "focalElementsEn": [
+      "chief engineer revising a master blueprint",
+      "working press producing one daily sheet",
+      "heavy archive crate blocking the drive track"
+    ],
+    "imagePromptEn": "A chief engineer revises a master blueprint beside a working press that steadily produces one daily sheet. In the foreground, a heavy archive crate blocks the press's drive track toward the exit, forcing the engineer to reconcile orderly plans with the remaining burden."
+  }
+}

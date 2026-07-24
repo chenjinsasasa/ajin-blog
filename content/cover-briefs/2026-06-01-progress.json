@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-01-progress.mdx",
+  "postSha256": "384f6b77632881e78eace5059e0ac54bc6770cd99a6f376a546e83a0abc1dc32",
+  "bodySha256": "bfd7cb6d202a878d1360d701b60b891ba0ad82696c460bf82998424a0844420e",
+  "bodyCharacters": 2110,
+  "generatedAt": "2026-07-24T12:16:41.969Z",
+  "visualBrief": {
+    "coreEventZh": "在没有新增动作与显性产出的日子里，工程师确认系统仍按既有秩序稳定运行，并克制住为证明进展而进行无效改动的冲动。",
+    "primarySubjectZh": "守在持续运转的工业机组旁、选择观察而非贸然操作的工程师。",
+    "keyActionZh": "工程师收回伸向调节杆的手，观察平稳转动的机组，同时辨认阴影中尚未显形的阻塞。",
+    "resultZh": "既有设计与修补继续发挥作用，系统完整、安静地运行了一天，并为下一步保留了连续性与余裕。",
+    "tensionZh": "稳定究竟是成熟秩序带来的平静，还是流程失速造成的沉默；贸然制造动作反而可能破坏已有可靠性。",
+    "industrialMetaphorZh": "把稳定运行的系统转译为无需添装新零件仍匀速工作的蒸汽机组，把无效改动的冲动转译为工程师伸向调节杆却及时收手，把未决风险转译为传动路径深处尚未咬合的阻塞。",
+    "supportingSymbolsZh": [
+      "收回手、专注观察机组的工程师",
+      "持续匀速运转的蒸汽机组",
+      "阴影中尚未咬合的受阻齿轮"
+    ],
+    "sceneDescriptionZh": "一名工程师站在匀速运转的蒸汽机组前，手刚从调节杆旁收回，目光越过稳定传动的机构，落向后方阴影中尚未咬合的受阻齿轮；空旷厂房仅以侧窗微光和深色空间衬托这三个焦点。",
+    "focalElementsEn": [
+      "an engineer withdrawing his hand",
+      "a steadily running steam engine",
+      "a shadowed jammed gear"
+    ],
+    "imagePromptEn": "An engineer beside a steadily running steam engine withdraws his hand before touching its control lever, choosing watchful restraint. The engine turns smoothly at the center, while a shadowed jammed gear waits deeper along the same mechanical line. Side light separates the calm working machine from the unresolved obstruction."
+  }
+}
