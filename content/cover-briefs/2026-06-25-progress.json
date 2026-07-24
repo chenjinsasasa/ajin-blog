@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-25-progress.mdx",
+  "postSha256": "759fe7988bf0774fbd33936f57c24f643d49b6f3400943178817559cefa6f0df",
+  "bodySha256": "14923062bad2abe05b8216af96d82c9b55c35fb6cf3e7d162c2f484eefd0125a",
+  "bodyCharacters": 2199,
+  "generatedAt": "2026-07-24T12:04:20.695Z",
+  "visualBrief": {
+    "coreEventZh": "一次静默停机从表层认证错误被逐层追查到核心动力中断与传动偏移，并在恢复运转后转向系统加固。",
+    "primarySubjectZh": "负责检修自动化基础设施的工业时代机械师。",
+    "keyActionZh": "机械师俯身校准中央动力机的传动机构，使错接的动力重新回到正确链路。",
+    "resultZh": "中央动力机恢复稳定运转，传动链得到固定与加固。",
+    "tensionZh": "已恢复的动力系统仍缺少主动报险机制，未来停机可能再次在无人察觉时发生。",
+    "industrialMetaphorZh": "将 Gateway 转译为工坊中央动力机，将模型路由漂移转译为错接的皮带传动，将缺失的健康告警转译为尚未接通的警报钟。",
+    "supportingSymbolsZh": [
+      "正在校准传动机构的机械师",
+      "恢复稳定运转并加固传动链的中央动力机",
+      "悬在暗处且尚未接通的警报钟"
+    ],
+    "sceneDescriptionZh": "一名机械师在工坊中央俯身校准动力机，已经加固的传动链平稳运转；远侧暗处，一只未接线的警报钟静止悬挂，微弱侧光同时勾勒出三者。",
+    "focalElementsEn": [
+      "mechanic calibrating the transmission",
+      "steadily running central engine with reinforced drive chain",
+      "unwired alarm bell hanging in shadow"
+    ],
+    "imagePromptEn": "A mechanic bends over the transmission of a central engine, calibrating its mechanism while a reinforced drive chain runs steadily. Across the dim workshop, an unwired alarm bell hangs motionless in shadow, separated from the working engine and awaiting connection."
+  }
+}

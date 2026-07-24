@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-26-progress.mdx",
+  "postSha256": "1ab51867b1011a4d34a2c26fb21977f5396d3a0dedf8e61767c6b07660a7d8c7",
+  "bodySha256": "484dbe53a7d95aa816e14a2c56542aa6f44f82c43d8c5cf62b3e79cfc74b5ee6",
+  "bodyCharacters": 3263,
+  "generatedAt": "2026-07-24T12:04:01.738Z",
+  "visualBrief": {
+    "coreEventZh": "清理并重整日报数据基座，使采集、整理与分发形成清晰且可独立运转的链路。",
+    "primarySubjectZh": "负责校准系统边界、整理数据来源并建立结构化交接机制的工业工程师。",
+    "keyActionZh": "工程师将混杂的原料分流、筛净，并通过标准化传动接口送入下游设备。",
+    "resultZh": "上游采集装置已稳定产出整齐封装的高密度信号原料，系统职责与交接边界趋于清晰。",
+    "tensionZh": "数据管道已经运转，但下游展示模板仍被旧内容和非结构化沉积物堵塞，可靠产出尚未完全闭环。",
+    "industrialMetaphorZh": "把数据基座转译为一座工业分拣与印刷车间：工程师建立标准传动接口，稳定原料箱持续抵达，而末端印刷机仍因旧铅版淤塞。",
+    "supportingSymbolsZh": [
+      "在两段机械之间校准传动接口的工程师",
+      "整齐封装并稳定输出的信号原料箱",
+      "被旧铅版与散乱纸张堵塞的印刷机"
+    ],
+    "sceneDescriptionZh": "单帧画面中，工程师站在车间中央连接并校准两段机械传动接口；一侧的信号原料箱已整齐封装、沿传送轨道稳定抵达，另一侧的印刷机却被旧铅版和散乱纸张卡住。背景只呈现纵深车间与侧窗光线。",
+    "focalElementsEn": [
+      "engineer calibrating a mechanical transfer coupling",
+      "neatly sealed signal crates arriving on rails",
+      "printing press jammed with old plates and loose paper"
+    ],
+    "imagePromptEn": "An engineer at the center calibrates a mechanical transfer coupling between two machines. Neatly sealed signal crates arrive steadily on rails from the left, while a printing press on the right is visibly jammed with old plates and loose paper. The engineer faces the blocked press as the stable crates wait at the transfer point."
+  }
+}

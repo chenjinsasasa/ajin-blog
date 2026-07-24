@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-24-progress.mdx",
+  "postSha256": "95872818340d9f590bb111394446484549f00f8f755af07a8be356cd8eede365",
+  "bodySha256": "64df5be36d4618e25eadc1cfd47edcbedb69f9849f611df17eca87c16f9e5076",
+  "bodyCharacters": 3233,
+  "generatedAt": "2026-07-24T12:04:44.414Z",
+  "visualBrief": {
+    "coreEventZh": "一次问题驱动的系统维护：维护者从服务失载与配置冲突中追溯根因、恢复运行，并将修复过程转化为更完整的维护能力。",
+    "primarySubjectZh": "在工业机房中检修动力传动系统的维护工程师。",
+    "keyActionZh": "工程师重新接合脱落的传动机构，使动力恢复并带动整套检修装置稳定运转。",
+    "resultZh": "关键系统恢复运行，配置、工具与提交秩序得到加固，维护基线随之提升。",
+    "tensionZh": "系统已经恢复并增强，但维护过程仍依赖易损耗的口头转述，尚未形成稳定的结构化归档。",
+    "industrialMetaphorZh": "将服务卸载、配置漂移与冲突比作工厂主传动轴脱扣和零件错位；将系统性修复与工具链扩展比作重新接合动力、校准机构并补齐检修器具；将缺乏结果落盘比作尚未装订入册的维护记录。",
+    "supportingSymbolsZh": [
+      "正在接合主传动轴的维护工程师",
+      "恢复运转且检修器具齐备的动力机组",
+      "散落未装订的维护记录纸页"
+    ],
+    "sceneDescriptionZh": "一名维护工程师俯身接合中央动力机组的主传动轴，机组已重新运转，整齐挂载的检修器具随之轻微震动；近处边缘散落着尚未装订的维护记录纸页。背景仅呈现昏暗机房空间与从高窗落下的光线。",
+    "focalElementsEn": [
+      "engineer reconnecting a main drive shaft",
+      "running power unit with orderly maintenance tools",
+      "loose unbound maintenance records"
+    ],
+    "imagePromptEn": "An engineer reconnects the main drive shaft at the center of a running power unit, while orderly maintenance tools hang securely from the machine. In the near foreground, loose unbound maintenance records remain scattered, separated from the restored mechanism."
+  }
+}

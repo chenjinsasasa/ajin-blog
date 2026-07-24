@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-27-progress.mdx",
+  "postSha256": "b0885019f7f67d3198bbd58e81fa91e22d0eb967245bf2cc263c625d8062f73a",
+  "bodySha256": "80cb534c18462398fe249821abfa3e0f1afbf84c343325e27beb9fb469f5427f",
+  "bodyCharacters": 2233,
+  "generatedAt": "2026-07-24T12:03:39.519Z",
+  "visualBrief": {
+    "coreEventZh": "日报站从“能运行”推进到“可交付”，核心链路与阅读层级已经成形，正在等待完整验收。",
+    "primarySubjectZh": "一名工坊总装师正在组织日报生产线的交付冲刺。",
+    "keyActionZh": "总装师将原始材料经过整理机械加工成可阅读的成品，并对照验收规程检查最后一道工序。",
+    "resultZh": "从采集、整理到成稿的生产链已稳定贯通，成品具备清晰层次和统一样例。",
+    "tensionZh": "已经稳定运转的生产线，仍需通过最终验收才能从“能生产”转为“可交付”。",
+    "industrialMetaphorZh": "把日报站转译为十九世纪印刷工坊：数据流是纸卷穿行的整理印刷机械，交付验收是尚未落槌的检验闸门。",
+    "supportingSymbolsZh": [
+      "守在总装台前检查流程的工坊总装师",
+      "连续吐出装订整齐日报的稳定印刷机械",
+      "阻挡成品出库、等待最终核验的检验闸门"
+    ],
+    "sceneDescriptionZh": "在一座昏暖的十九世纪印刷工坊内，总装师立于画面中央检查运转中的印刷机械，整齐日报沿传送台抵达右侧紧闭的检验闸门；背景仅保留纵深厂房与高窗斜光。",
+    "focalElementsEn": [
+      "workshop foreman inspecting the line",
+      "printing machine producing bound daily sheets",
+      "closed inspection gate awaiting approval"
+    ],
+    "imagePromptEn": "A workshop foreman stands at center inspecting a printing line. To his left, a steady machine feeds paper through its mechanisms and delivers neatly bound daily sheets toward the right. The finished sheets stop before a closed inspection gate, where final approval is still pending."
+  }
+}

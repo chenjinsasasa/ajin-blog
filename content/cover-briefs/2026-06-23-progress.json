@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-23-progress.mdx",
+  "postSha256": "7df79f9a601a55afdd6f4a0d20dedb4c67c7da8ff3e2ab0d29237bb8bd880097",
+  "bodySha256": "387d48b2493a022bd872c9a45075f8f54bfaccb139ce10c4c0cd4e42487abe7e",
+  "bodyCharacters": 1614,
+  "generatedAt": "2026-07-24T12:05:06.724Z",
+  "visualBrief": {
+    "coreEventZh": "在处理批量文档交接时，团队识别出平台规则与既有书写经验的错位，并将分散资料整理为可复用的索引式交接体系。",
+    "primarySubjectZh": "一名负责文档治理与交接整理的工业档案员。",
+    "keyActionZh": "档案员依据机器自身的编排规则，将散乱卷宗分类索引并装入有序档案柜。",
+    "resultZh": "形成了清晰的双层索引和标准化交接结构，使大量资料能够被快速定位与复用。",
+    "tensionZh": "已经运转稳定的交接体系旁，仍有一条被积压任务堵塞的传送轨道等待疏通。",
+    "industrialMetaphorZh": "把平台特有的文档规则转译为印刷归档机械的齿轮秩序，把批量资料整理转译为档案柜中的分层索引，把尚未推进的任务转译为堵塞的工业传送轨道。",
+    "supportingSymbolsZh": [
+      "正在校准归档机械并整理卷宗的档案员",
+      "已经装满分类索引卡与交接卷册的档案柜",
+      "被数只待处理货箱堵塞的传送轨道"
+    ],
+    "sceneDescriptionZh": "档案员站在车间中央校准归档机械，并把卷宗送入身侧已经整理完毕的档案柜；画面另一侧，一条传送轨道被待处理货箱堵住。背景仅呈现昏暗厂房空间与斜射天光。",
+    "focalElementsEn": [
+      "archivist calibrating a filing machine",
+      "organized cabinet of indexed handover ledgers",
+      "conveyor track blocked by pending crates"
+    ],
+    "imagePromptEn": "An archivist calibrates a filing machine at the center while feeding documents toward an organized cabinet of indexed handover ledgers beside him. Across the scene, a conveyor track is blocked by pending crates, creating visible tension between orderly completed records and stalled unfinished work."
+  }
+}
