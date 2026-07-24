@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "enforcementStartDate": "2026-07-24",
+  "provider": "codex",
+  "model": "image-2",
+  "executionMode": "builtin-imagegen",
+  "authMode": "codex",
+  "size": "2048x1152",
+  "outputFormat": "png",
+  "style": "steam-industrial-engraving",
+  "promptVersion": "steam-industrial-v1",
+  "referenceSet": "homepage-entry-cards-v1",
+  "references": [
+    {
+      "path": "public/entry-cards/blog-archive.jpg",
+      "sha256": "5573eef905ac0e0e3460e53368369cdb8f651b8d7477bc4094a7ae53726e22fb",
+      "role": "industrial archive and printing workshop"
+    },
+    {
+      "path": "public/entry-cards/private-diary.jpg",
+      "sha256": "737d0ed6f88f282dc2fdf08f308e86da941f1b12a88ccd9601639174155a1e85",
+      "role": "private diary beside a nocturnal factory window"
+    },
+    {
+      "path": "public/entry-cards/ai-team.jpg",
+      "sha256": "4ae02d29dff7b0caa1e1d20a7acbe539832f34c9f2314d43501212b563c08590",
+      "role": "mechanical assistants collaborating in an engineering room"
+    },
+    {
+      "path": "public/entry-cards/chenjin-official.jpg",
+      "sha256": "beccaef0ebdd21add5d91d6b6b74503790d2bef13109e5fe3de6960fd47106ff",
+      "role": "inventor drafting machinery at a workshop desk"
+    }
+  ],
+  "motherPrompt": "Create a new editorial blog cover that belongs to the exact same visual world as all four reference images: the steam industrial age and a late-nineteenth-century Industrial Revolution workshop, archive, printing house, or inventor laboratory. Render it as a dense black-ink copperplate engraving and etched editorial plate on warm ivory paper, with intricate cross-hatching, cast-iron machinery, gears, belts, pipes, drafting instruments, ledgers, workshop lamps, and period architecture where relevant. Keep the mood serious, restrained, documentary, and intellectually focused. Use a cinematic horizontal 16:9 composition with one clear focal scene, rich environmental detail, strong depth, and balanced negative space.",
+  "constraints": "Translate the article theme into one coherent period scene. Preserve the reference set's black-ink density, warm ivory paper, fine engraved linework, realistic industrial mechanisms, and sober editorial tone. No text in the image, no letters, no logo, no watermark, no border, and no collage.",
+  "negativePrompt": "modern computer, laptop, smartphone, modern screen, glossy SaaS illustration, colorful 3D render, neon gradient, stock photo, flat vector art, anime, comic style, cyberpunk, fantasy steampunk costume, brass-orange color cast, photorealistic photography, typography, caption, logo, watermark"
+}

@@ -10,9 +10,11 @@
     "lint": "next lint",
     "verify": "npm run lint && npm run build",
     "posts:taxonomy": "node scripts/migrate-post-taxonomy.mjs",
-    "posts:validate": "node scripts/validate-post-frontmatter.mjs",
+    "posts:validate": "node scripts/validate-post-frontmatter.mjs && node scripts/validate-blog-cover-image2.mjs",
     "covers:optimize": "node scripts/optimize-covers.mjs",
-    "cover:optimize": "node scripts/optimize-covers.mjs"
+    "cover:optimize": "node scripts/optimize-covers.mjs",
+    "cover:image2:generate": "node scripts/generate-blog-cover-image2.mjs",
+    "cover:image2:validate": "node scripts/validate-blog-cover-image2.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
