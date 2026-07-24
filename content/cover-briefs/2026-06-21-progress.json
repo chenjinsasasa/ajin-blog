@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-21-progress.mdx",
+  "postSha256": "206600f2591d3c6b30d2b977b473ffb8e3dd5159a281650e3e62be0cf5d15ca0",
+  "bodySha256": "1872bbb1ccc4764f044966039344c22ae0563019751f61bf45fa29652b54eefe",
+  "bodyCharacters": 2094,
+  "generatedAt": "2026-07-24T12:06:56.710Z",
+  "visualBrief": {
+    "coreEventZh": "一次周日维护巡检揭示：技能归档虽已完成，但任务记忆与结构化记录仍在持续欠账。",
+    "primarySubjectZh": "在工业档案室核对维护账目的巡检员。",
+    "keyActionZh": "巡检员一手查验已整理的档案柜，一手追查散落且正在褪色的未登记工单。",
+    "resultZh": "散乱技能已被完整归档，基础秩序得到恢复。",
+    "tensionZh": "可见的整理成果掩盖不了尚未补录的信息债务，拖延正使关键记忆逐渐失真。",
+    "industrialMetaphorZh": "将系统维护转译为十九世纪工厂档案室的账目巡检：归档柜代表已稳定的基础设施成果，褪色工单代表仍未解决且会随时间恶化的记录缺口。",
+    "supportingSymbolsZh": [
+      "持账本巡检的档案员",
+      "整齐封存的工业档案柜",
+      "散落并逐渐褪色的未登记工单"
+    ],
+    "sceneDescriptionZh": "一名档案员站在工业档案室中央核对账本，侧身面向已整齐封存的档案柜，同时俯视脚边散落、字迹渐褪的未登记工单；背景仅保留幽深室内空间与斜射窗光。",
+    "focalElementsEn": [
+      "ledger-holding archive inspector",
+      "orderly sealed archive cabinet",
+      "scattered fading unregistered work orders"
+    ],
+    "imagePromptEn": "A ledger-holding archive inspector stands between an orderly sealed archive cabinet and scattered fading unregistered work orders. The inspector verifies the cabinet while looking down at the neglected papers, with the cabinet upright behind one shoulder and the papers spreading across the floor at the opposite side."
+  }
+}

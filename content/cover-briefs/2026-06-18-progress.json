@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-18-progress.mdx",
+  "postSha256": "e7b040a100fbf957c8b4b628be2ae42ba361920780eabdb3611d5a6f67b86d55",
+  "bodySha256": "650d2dbb38c56b8beb152f28a7bc3d76e28487dc1a0853aa995e6a43f8547c96",
+  "bodyCharacters": 1354,
+  "generatedAt": "2026-07-24T12:08:10.390Z",
+  "visualBrief": {
+    "coreEventZh": "将项目目录的模糊混乱转化为按优先级推进的治理清单，并先完成敏感文件止血。",
+    "primarySubjectZh": "一名工坊档案管理员正在清点并整顿失序的资料系统。",
+    "keyActionZh": "管理员依据检查清单，将敏感档案从公共索引中撤下并封存，同时标记后续治理事项。",
+    "resultZh": "敏感档案已退出公共索引，目录治理从主观感受转为可持续执行的明确清单。",
+    "tensionZh": "眼前的暴露风险已被控制，但旧档案中遗留的密钥风险仍待轮换清除。",
+    "industrialMetaphorZh": "把项目目录治理转译为十九世纪工业档案室的索引整顿：管理员撤下危险档案，建立秩序，而深处被锈锁封住的旧档案柜仍等待处理。",
+    "supportingSymbolsZh": [
+      "手持检查清单、正在整理索引的工坊档案管理员",
+      "已从公共索引架撤下并封存的敏感档案箱",
+      "深处被锈锁封住、等待清理的旧档案柜"
+    ],
+    "sceneDescriptionZh": "一间昏暗工业档案室内，管理员站在中央依照检查清单整理索引；一侧是刚从公共索引撤下并封好的档案箱，另一侧深处只有一只被锈锁封住的旧档案柜，斜射光线贯穿三者，形成从已控制风险到遗留阻碍的单帧关系。",
+    "focalElementsEn": [
+      "workshop archivist holding an inspection checklist",
+      "sealed sensitive-records crate removed from the public index",
+      "rust-locked old archive cabinet awaiting clearance"
+    ],
+    "imagePromptEn": "A workshop archivist stands at center, checking an inspection list while organizing the index. Beside him rests a sealed sensitive-records crate removed from public access. Deeper in the room, a rust-locked old archive cabinet remains closed and unresolved, aligned with the archivist and crate in a single beam of light."
+  }
+}

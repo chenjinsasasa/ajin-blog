@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-22-progress.mdx",
+  "postSha256": "e4d2cf363ba62636ab180bfd78f5f5794e543766d62f0bb5f7ffe79dbfc6e22a",
+  "bodySha256": "13054fbd38e7cbf2d9afefeabe8aea5c2e84889840ca574642fed07024ae1084",
+  "bodyCharacters": 848,
+  "generatedAt": "2026-07-24T12:06:36.473Z",
+  "visualBrief": {
+    "coreEventZh": "将模糊的 AI 服务设想收敛为一套可直接投入客户验证的电商内容流程诊断素材包。",
+    "primarySubjectZh": "准备走出工坊、检验新服务模型的流程诊断者。",
+    "keyActionZh": "诊断者携带已校验的工具箱走向客户市场，准备以真实流程检验服务价值。",
+    "resultZh": "服务定位、演示流程、客户画像、验证配图与执行目标已形成完整素材包，工作由筹备阶段进入客户触达阶段。",
+    "tensionZh": "内部交付已经稳定成形，但客户是否愿意为诊断过程及改进方案付费仍未得到验证。",
+    "industrialMetaphorZh": "一名十九世纪工坊检验员带着装配完成的流程诊断工具箱，走向仍然紧闭的客户工厂大门。",
+    "supportingSymbolsZh": [
+      "手持检验仪器、迈步前行的工坊检验员",
+      "封装完毕并贴有检验封印的诊断工具箱",
+      "尚未开启的沉重工厂大门"
+    ],
+    "sceneDescriptionZh": "单帧场景中，工坊检验员位于近景，提着已封装的诊断工具箱走向远处紧闭的工厂大门；门缝透出微光，空旷厂房只提供纵深与明暗关系，不加入其他叙事物件。",
+    "focalElementsEn": [
+      "workshop inspector carrying measuring instruments",
+      "sealed diagnostic tool chest",
+      "closed heavy factory gate"
+    ],
+    "imagePromptEn": "A workshop inspector carrying measuring instruments strides forward with a sealed diagnostic tool chest at his side, approaching a closed heavy factory gate. The inspector and chest occupy the foreground; the gate stands directly ahead in the distance, with a narrow line of light at its seam."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-20-progress.mdx",
+  "postSha256": "c426727d28e0ded048cd77b3f4d74879062da69dc09304f2cb7b4fe80492ac51",
+  "bodySha256": "384e10fd1689d8f735788e9919fa0f67ae702b6a0039a10ca19c30dc09a224d4",
+  "bodyCharacters": 1109,
+  "generatedAt": "2026-07-24T12:07:26.478Z",
+  "visualBrief": {
+    "coreEventZh": "密集交付后，系统进入静默观察期，以等待真实条件成熟。",
+    "primarySubjectZh": "一名克制守候的工业工程师，代表学会暂停、观察并积蓄注意力的团队。",
+    "keyActionZh": "工程师不再继续加速生产，而是守在已经稳定运转的机械旁，观察它经受时间检验。",
+    "resultZh": "经过集中改造的生产机械已完成组装并平稳运行，阶段性成果开始沉淀。",
+    "tensionZh": "系统已经具备生产能力，但外部条件尚未到位；成熟意味着不伪造、不越过，而是耐心等待。",
+    "industrialMetaphorZh": "将现代系统的生产化与静默期转译为一座十九世纪工坊：新机器完成调校后低速稳定运转，工程师守候观察，而通往外部真实条件的闸门仍被锁住。",
+    "supportingSymbolsZh": [
+      "守在机械旁静静观察的工业工程师",
+      "完成调校并平稳运转的生产机械",
+      "阻隔外部条件、仍然紧锁的铁闸门"
+    ],
+    "sceneDescriptionZh": "一间安静的十九世纪工坊内，工程师站在近景守望；完成调校的机械位于画面中央低速运转；远处铁闸门紧闭，三者沿视线纵深连成一个关于稳定与等待的单帧场景，背景仅保留空旷厂房与周末斜光。",
+    "focalElementsEn": [
+      "watchful industrial engineer",
+      "settled production machine",
+      "locked iron gate"
+    ],
+    "imagePromptEn": "A watchful industrial engineer stands beside a settled production machine running calmly at the center of a quiet workshop. In the distance, a locked iron gate blocks the way forward. The engineer faces both machine and gate, holding still in patient observation as soft weekend light crosses the empty space."
+  }
+}

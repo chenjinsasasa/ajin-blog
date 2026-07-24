@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-19-progress.mdx",
+  "postSha256": "4ffea1b45a03987607fbb90831b741ee9a7317751904cbc5b7cae2ccf5a5b783",
+  "bodySha256": "5eb9363d19ee7b8bf272a19b9c562809df52e52d02a29ce6bbcdf2e7ee4ed0b2",
+  "bodyCharacters": 1993,
+  "generatedAt": "2026-07-24T12:07:47.463Z",
+  "visualBrief": {
+    "coreEventZh": "团队研读一项关于智能代理从辅助执行走向独立完成任务的研究，并据此重新审视自身的评估标准与协作阶段。",
+    "primarySubjectZh": "一台已能自主完成整套工序的工业自动机，以及站在终点检验成品的人类验收者。",
+    "keyActionZh": "自动机绕开旧式工序卡独立完成加工，验收者将注意力从逐步监工转向检查最终成品。",
+    "resultZh": "团队确认评估重心应由步骤匹配逐步转向结果可接受性，并开始为更高自主程度建立新的度量基线。",
+    "tensionZh": "机器的自主能力正在快速越过旧规程，而仍以过程服从为核心的评估尺度尚未同步转向成果质量。",
+    "industrialMetaphorZh": "以自主运转的精密加工机象征能力跃迁，以合格成品象征稳定成果，以横在终点前的旧式工序闸门象征滞后的评估框架。",
+    "supportingSymbolsZh": [
+      "独立操纵精密加工机的机械主体",
+      "已经加工完成并等待验收的合格齿轮组件",
+      "阻挡成品通行的旧式工序检验闸门"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工坊内，机械主体在画面左侧独立操纵加工机，将完成的齿轮组件推向右侧验收区；中央的旧式工序检验闸门仍横在传送路径上。背景仅呈现深邃厂房空间与从高窗斜落的光线。",
+    "focalElementsEn": [
+      "autonomous mechanical operator at a precision machine",
+      "finished gear assembly awaiting inspection",
+      "obsolete procedural inspection gate blocking the path"
+    ],
+    "imagePromptEn": "An autonomous mechanical operator runs a precision machine on the left, pushing a finished gear assembly toward inspection on the right. Between them, an obsolete procedural inspection gate blocks the assembly’s path, while the operator continues working without human guidance. A deep workshop and angled window light provide only spatial depth."
+  }
+}
