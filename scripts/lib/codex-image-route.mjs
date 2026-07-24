@@ -181,64 +181,73 @@ export async function recoverCodexImageRoute({
       }
     }),
   )
-  const candidate = measured
+  const healthyCandidates = measured
     .filter(Boolean)
-    .sort((left, right) => left.delay - right.delay)[0]
-  if (!candidate) {
+    .sort((left, right) => left.delay - right.delay)
+  if (healthyCandidates.length === 0) {
     return { status: 'failed', action: 'recovery-failed', reason: 'candidate_unhealthy' }
   }
 
-  const switchResult = await clashRequest({
-    clashSocket,
-    curlPath,
-    data: { name: candidate.name },
-    method: 'PUT',
-    path: `/proxies/${encodeURIComponent(groupName)}`,
-    timeoutSeconds,
-  })
-  if (!switchResult.ok) {
-    return {
-      status: 'failed',
-      action: 'recovery-failed',
-      reason: 'candidate_switch_failed',
-      error: switchResult.error || switchResult.stderr.trim(),
+  const candidatesTried = []
+  let lastFailure = null
+  for (const candidate of healthyCandidates) {
+    const switchResult = await clashRequest({
+      clashSocket,
+      curlPath,
+      data: { name: candidate.name },
+      method: 'PUT',
+      path: `/proxies/${encodeURIComponent(groupName)}`,
+      timeoutSeconds,
+    })
+    if (!switchResult.ok) {
+      lastFailure = {
+        error: switchResult.error || switchResult.stderr.trim(),
+        name: candidate.name,
+        reason: 'candidate_switch_failed',
+      }
+      candidatesTried.push(lastFailure)
+      continue
     }
-  }
 
-  await clashRequest({
-    clashSocket,
-    curlPath,
-    method: 'DELETE',
-    path: '/connections',
-    timeoutSeconds,
-  })
-  await wait(settleMilliseconds)
+    await clashRequest({
+      clashSocket,
+      curlPath,
+      method: 'DELETE',
+      path: '/connections',
+      timeoutSeconds,
+    })
+    await wait(settleMilliseconds)
 
-  const verification = await probeRoute({
-    attempts,
-    curlPath,
-    probeUrl,
-    proxyUrl,
-    timeoutSeconds,
-  })
-  if (verification.passes < requiredPasses) {
-    return {
-      status: 'failed',
-      action: 'switched-but-unhealthy',
-      from: current,
-      to: candidate.name,
-      ...verification,
+    const verification = await probeRoute({
+      attempts,
+      curlPath,
+      probeUrl,
+      proxyUrl,
+      timeoutSeconds,
+    })
+    candidatesTried.push({ delay: candidate.delay, name: candidate.name, ...verification })
+    if (verification.passes >= requiredPasses) {
+      return {
+        status: 'ok',
+        action: 'switched',
+        delay: candidate.delay,
+        from: current,
+        group: groupName,
+        to: candidate.name,
+        candidatesTried,
+        ...verification,
+      }
     }
+    lastFailure = { name: candidate.name, ...verification }
   }
 
   return {
-    status: 'ok',
-    action: 'switched',
-    delay: candidate.delay,
+    status: 'failed',
+    action: 'candidates-exhausted',
     from: current,
-    group: groupName,
-    to: candidate.name,
-    ...verification,
+    to: lastFailure?.name || '',
+    candidatesTried,
+    ...(lastFailure || {}),
   }
 }
 
