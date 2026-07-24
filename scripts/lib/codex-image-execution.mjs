@@ -40,6 +40,7 @@ export async function runCodexImageWithRecovery({
   backoffMilliseconds = 3000,
   isSuccessfulResult = (result) => result.status === 0,
   maxAttempts = 2,
+  onAttemptFailure = async () => {},
   recover,
   runAttempt,
 }) {
@@ -53,6 +54,7 @@ export async function runCodexImageWithRecovery({
     }
 
     const failure = rawFailure(result) || `Codex 进程退出（exit=${result.status ?? 'unknown'}）`
+    await onAttemptFailure({ attempt, failure, result })
     if (!firstError) firstError = failure
     const canRetry = attempt < maxAttempts && isRetryableCodexImageNetworkError(failure)
     if (!canRetry) {

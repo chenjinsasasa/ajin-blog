@@ -119,3 +119,33 @@ test('长日志只保留最先命中的生图网络错误行', async () => {
     },
   )
 })
+
+test('每次真实生图失败都会上报给路由冷却逻辑', async () => {
+  const reportedFailures = []
+  let attempts = 0
+
+  await assert.rejects(
+    runCodexImageWithRecovery({
+      backoffMilliseconds: 0,
+      maxAttempts: 2,
+      onAttemptFailure: async ({ attempt, failure }) => {
+        reportedFailures.push({ attempt, failure })
+      },
+      recover: async () => ({ status: 'ok', action: 'switched' }),
+      runAttempt: async () => {
+        attempts += 1
+        return {
+          status: 1,
+          stderr: `image generation failed: network error attempt ${attempts}`,
+          stdout: '',
+        }
+      },
+    }),
+    /已 fail-closed/,
+  )
+
+  assert.deepEqual(reportedFailures, [
+    { attempt: 1, failure: 'image generation failed: network error attempt 1' },
+    { attempt: 2, failure: 'image generation failed: network error attempt 2' },
+  ])
+})

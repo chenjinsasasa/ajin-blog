@@ -12,9 +12,14 @@ import {
   buildCodexImagePrompt,
 } from './lib/blog-cover-image-prompt.mjs'
 import { resolveCodexCliPath } from './lib/codex-cli-path.mjs'
-import { runCodexImageWithRecovery } from './lib/codex-image-execution.mjs'
+import {
+  isRetryableCodexImageNetworkError,
+  runCodexImageWithRecovery,
+} from './lib/codex-image-execution.mjs'
 import {
   ensureCodexImageRoute,
+  readCodexImageRouteFailures,
+  recordCodexImageRouteFailure,
   recoverCodexImageRoute,
 } from './lib/codex-image-route.mjs'
 
@@ -170,13 +175,14 @@ function runStreamingCommand(command, args, options = {}) {
   })
 }
 
-function imageRouteOptions() {
+function imageRouteOptions(excludedCandidates = []) {
   const routeGuard = config.routeGuard || {}
   return {
     attempts: routeGuard.attempts,
     candidateLimit: routeGuard.candidateLimit,
     clashSocket: routeGuard.clashSocket,
     curlPath: routeGuard.curlPath,
+    excludedCandidates,
     probeUrl: routeGuard.probeUrl,
     proxyUrl: routeGuard.proxyUrl,
     requiredPasses: routeGuard.requiredPasses,
@@ -256,12 +262,24 @@ async function main() {
   const codexCliPath = resolveCodexCliPath()
   console.error(`[cover:image2] codex-cli ${JSON.stringify({ path: codexCliPath })}`)
 
-  const routeOptions = imageRouteOptions()
+  const failureStatePath = path.resolve(
+    projectRoot,
+    config.routeGuard?.failureStatePath || '.codex-image-route-failures.json',
+  )
+  const failureCooldownMilliseconds =
+    config.routeGuard?.failureCooldownMilliseconds || 6 * 60 * 60 * 1000
+  const quarantinedRoutes = () =>
+    readCodexImageRouteFailures({
+      cooldownMilliseconds: failureCooldownMilliseconds,
+      failureStatePath,
+    })
+  const routeOptions = imageRouteOptions(quarantinedRoutes())
   const route = await ensureCodexImageRoute(routeOptions)
   console.error(`[cover:image2] route-preflight ${JSON.stringify(route)}`)
   if (route.status !== 'ok') {
     throw new Error(`Codex Image 2 路由预检失败：${JSON.stringify(route)}`)
   }
+  let activeRouteName = route.to || route.current || ''
 
   const codexEnvironment = Object.fromEntries(
     Object.entries(process.env).filter(([key]) => key !== 'OPENAI_API_KEY'),
@@ -274,9 +292,26 @@ async function main() {
       fs.existsSync(outputPath),
     maxAttempts: config.routeGuard?.maxGenerationAttempts,
     recover: async () => {
-      const recovery = await recoverCodexImageRoute(routeOptions)
+      const recovery = await recoverCodexImageRoute(
+        imageRouteOptions(quarantinedRoutes()),
+      )
+      if (recovery.status === 'ok') activeRouteName = recovery.to || activeRouteName
       console.error(`[cover:image2] route-recovery ${JSON.stringify(recovery)}`)
       return recovery
+    },
+    onAttemptFailure: async ({ failure }) => {
+      if (!activeRouteName || !isRetryableCodexImageNetworkError(failure)) return
+      recordCodexImageRouteFailure({
+        failure,
+        failureStatePath,
+        name: activeRouteName,
+      })
+      console.error(
+        `[cover:image2] route-quarantine ${JSON.stringify({
+          cooldownMilliseconds: failureCooldownMilliseconds,
+          name: activeRouteName,
+        })}`,
+      )
     },
     runAttempt: async (attempt) => {
       console.error(

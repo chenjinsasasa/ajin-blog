@@ -16,6 +16,8 @@
     "settleMilliseconds": 1000,
     "retryBackoffMilliseconds": 3000,
     "maxGenerationAttempts": 2,
+    "failureCooldownMilliseconds": 21600000,
+    "failureStatePath": ".codex-image-route-failures.json",
     "curlPath": "/usr/bin/curl",
     "clashSocket": "/tmp/verge/verge-mihomo.sock",
     "proxyUrl": "http://127.0.0.1:7897",

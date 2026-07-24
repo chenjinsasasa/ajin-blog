@@ -1,8 +1,64 @@
 import { execFile } from 'node:child_process'
 import fs from 'node:fs'
+import path from 'node:path'
 import { promisify } from 'node:util'
 
 const execFileAsync = promisify(execFile)
+
+function readFailureState(failureStatePath) {
+  if (!failureStatePath || !fs.existsSync(failureStatePath)) {
+    return { schemaVersion: 1, failures: {} }
+  }
+  try {
+    const parsed = JSON.parse(fs.readFileSync(failureStatePath, 'utf8'))
+    return {
+      schemaVersion: 1,
+      failures:
+        parsed && typeof parsed.failures === 'object' && parsed.failures !== null
+          ? parsed.failures
+          : {},
+    }
+  } catch {
+    return { schemaVersion: 1, failures: {} }
+  }
+}
+
+function writeFailureState(failureStatePath, state) {
+  fs.mkdirSync(path.dirname(failureStatePath), { recursive: true })
+  const tempPath = `${failureStatePath}.${process.pid}.${Date.now()}.tmp`
+  fs.writeFileSync(tempPath, `${JSON.stringify(state, null, 2)}\n`, 'utf8')
+  fs.renameSync(tempPath, failureStatePath)
+}
+
+export function readCodexImageRouteFailures({
+  cooldownMilliseconds,
+  failureStatePath,
+  now = Date.now(),
+}) {
+  if (!Number.isFinite(cooldownMilliseconds) || cooldownMilliseconds <= 0) return []
+  const state = readFailureState(failureStatePath)
+  return Object.entries(state.failures)
+    .filter(([, failure]) => {
+      const failedAt = Number(failure?.failedAt)
+      return Number.isFinite(failedAt) && now - failedAt <= cooldownMilliseconds
+    })
+    .map(([name]) => name)
+}
+
+export function recordCodexImageRouteFailure({
+  failure = '',
+  failureStatePath,
+  name,
+  now = Date.now(),
+}) {
+  if (!failureStatePath || !name) return
+  const state = readFailureState(failureStatePath)
+  state.failures[name] = {
+    failedAt: now,
+    failure: String(failure).slice(0, 1000),
+  }
+  writeFailureState(failureStatePath, state)
+}
 
 async function runCurl(curlPath, args) {
   try {
@@ -92,6 +148,44 @@ function chooseGroup(proxies) {
   )
 }
 
+async function readCurrentRoute({ clashSocket, curlPath, timeoutSeconds }) {
+  if (!fs.existsSync(clashSocket)) {
+    return { current: '', group: '', reason: 'clash_socket_missing', status: 'unavailable' }
+  }
+  const proxyResult = await clashRequest({
+    clashSocket,
+    curlPath,
+    path: '/proxies',
+    timeoutSeconds,
+  })
+  if (!proxyResult.ok) {
+    return {
+      current: '',
+      error: proxyResult.error || proxyResult.stderr.trim(),
+      group: '',
+      reason: 'clash_proxies_unavailable',
+      status: 'unavailable',
+    }
+  }
+  try {
+    const proxies = JSON.parse(proxyResult.stdout).proxies || {}
+    const [groupName, group] = chooseGroup(proxies)
+    return {
+      current: typeof group?.now === 'string' ? group.now : '',
+      group: groupName || '',
+      status: groupName && group ? 'ok' : 'unavailable',
+    }
+  } catch (error) {
+    return {
+      current: '',
+      error: error instanceof Error ? error.message : String(error),
+      group: '',
+      reason: 'clash_proxies_invalid_json',
+      status: 'unavailable',
+    }
+  }
+}
+
 async function wait(milliseconds) {
   if (milliseconds <= 0) return
   await new Promise((resolve) => setTimeout(resolve, milliseconds))
@@ -102,6 +196,7 @@ export async function recoverCodexImageRoute({
   candidateLimit = 6,
   clashSocket = '/tmp/verge/verge-mihomo.sock',
   curlPath = '/usr/bin/curl',
+  excludedCandidates = [],
   probeUrl = 'https://chatgpt.com/',
   proxyUrl = 'http://127.0.0.1:7897',
   requiredPasses = 3,
@@ -156,6 +251,7 @@ export async function recoverCodexImageRoute({
       (name) =>
         typeof name === 'string' &&
         name !== current &&
+        !excludedCandidates.includes(name) &&
         /ChatGPT专用|ChatGPT|OpenAI/i.test(name),
     )
     .slice(0, candidateLimit)
@@ -256,6 +352,7 @@ export async function ensureCodexImageRoute({
   candidateLimit = 6,
   clashSocket = '/tmp/verge/verge-mihomo.sock',
   curlPath = '/usr/bin/curl',
+  excludedCandidates = [],
   probeUrl = 'https://chatgpt.com/',
   proxyUrl = 'http://127.0.0.1:7897',
   requiredPasses = 3,
@@ -263,11 +360,29 @@ export async function ensureCodexImageRoute({
   timeoutSeconds = 8,
 } = {}) {
   const probe = await probeRoute({ attempts, curlPath, probeUrl, proxyUrl, timeoutSeconds })
+  const currentRoute = await readCurrentRoute({ clashSocket, curlPath, timeoutSeconds })
 
   if (probe.passes >= requiredPasses) {
+    if (currentRoute.current && excludedCandidates.includes(currentRoute.current)) {
+      return recoverCodexImageRoute({
+        attempts,
+        candidateLimit,
+        clashSocket,
+        curlPath,
+        excludedCandidates,
+        probeUrl,
+        proxyUrl,
+        requiredPasses,
+        settleMilliseconds,
+        timeoutSeconds,
+      })
+    }
     return {
       status: 'ok',
       action: 'none',
+      current: currentRoute.current,
+      group: currentRoute.group,
+      routeInspection: currentRoute.status === 'ok' ? undefined : currentRoute,
       ...probe,
     }
   }
@@ -277,6 +392,7 @@ export async function ensureCodexImageRoute({
     candidateLimit,
     clashSocket,
     curlPath,
+    excludedCandidates,
     probeUrl,
     proxyUrl,
     requiredPasses,
