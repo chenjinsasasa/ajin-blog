@@ -3,9 +3,15 @@
 import crypto from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
-import { spawnSync } from 'node:child_process'
+import { spawn, spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 import sharp from 'sharp'
+
+import { runCodexImageWithRecovery } from './lib/codex-image-execution.mjs'
+import {
+  ensureCodexImageRoute,
+  recoverCodexImageRoute,
+} from './lib/codex-image-route.mjs'
 
 const projectRoot = process.cwd()
 const configPath = path.join(projectRoot, 'config', 'blog-cover-image2.json')
@@ -153,6 +159,60 @@ function runCommand(command, args, options = {}) {
   if (result.status !== 0) throw new Error(`${command} 执行失败（exit=${result.status}）`)
 }
 
+function runStreamingCommand(command, args, options = {}) {
+  return new Promise((resolve) => {
+    const child = spawn(command, args, {
+      cwd: projectRoot,
+      env: options.env,
+      stdio: ['pipe', 'pipe', 'pipe'],
+    })
+    let settled = false
+    let stderr = ''
+    let stdout = ''
+
+    child.stdout.on('data', (chunk) => {
+      const text = chunk.toString()
+      stdout += text
+      process.stdout.write(text)
+    })
+    child.stderr.on('data', (chunk) => {
+      const text = chunk.toString()
+      stderr += text
+      process.stderr.write(text)
+    })
+    child.once('error', (error) => {
+      if (settled) return
+      settled = true
+      resolve({ status: 1, stderr: `${stderr}${error.message}`, stdout })
+    })
+    child.once('close', (status, signal) => {
+      if (settled) return
+      settled = true
+      resolve({
+        status: status ?? 1,
+        stderr: signal ? `${stderr}\nCodex 进程被信号终止：${signal}` : stderr,
+        stdout,
+      })
+    })
+    child.stdin.end(options.input || '')
+  })
+}
+
+function imageRouteOptions() {
+  const routeGuard = config.routeGuard || {}
+  return {
+    attempts: routeGuard.attempts,
+    candidateLimit: routeGuard.candidateLimit,
+    clashSocket: routeGuard.clashSocket,
+    curlPath: routeGuard.curlPath,
+    probeUrl: routeGuard.probeUrl,
+    proxyUrl: routeGuard.proxyUrl,
+    requiredPasses: routeGuard.requiredPasses,
+    settleMilliseconds: routeGuard.settleMilliseconds,
+    timeoutSeconds: routeGuard.timeoutSeconds,
+  }
+}
+
 async function normalizeOutput(outputPath) {
   const tempPath = `${outputPath}.normalized.png`
   await sharp(outputPath)
@@ -233,13 +293,45 @@ async function main() {
   }
   codexArgs.push('-')
 
-  runCommand('codex', codexArgs, {
-    env: Object.fromEntries(
-      Object.entries(process.env).filter(([key]) => key !== 'OPENAI_API_KEY'),
-    ),
-    input: prompt,
-    stdio: ['pipe', 'inherit', 'inherit'],
+  const routeOptions = imageRouteOptions()
+  const route = await ensureCodexImageRoute(routeOptions)
+  console.error(`[cover:image2] route-preflight ${JSON.stringify(route)}`)
+  if (route.status !== 'ok') {
+    throw new Error(`Codex Image 2 路由预检失败：${JSON.stringify(route)}`)
+  }
+
+  const codexEnvironment = Object.fromEntries(
+    Object.entries(process.env).filter(([key]) => key !== 'OPENAI_API_KEY'),
+  )
+  const execution = await runCodexImageWithRecovery({
+    backoffMilliseconds: config.routeGuard?.retryBackoffMilliseconds,
+    isSuccessfulResult: (attemptResult) =>
+      attemptResult.status === 0 &&
+      attemptResult.stdout.includes(`CODEX_IMAGE_RESULT status=ok output=${outputPath}`) &&
+      fs.existsSync(outputPath),
+    maxAttempts: config.routeGuard?.maxGenerationAttempts,
+    recover: async () => {
+      const recovery = await recoverCodexImageRoute(routeOptions)
+      console.error(`[cover:image2] route-recovery ${JSON.stringify(recovery)}`)
+      return recovery
+    },
+    runAttempt: async (attempt) => {
+      console.error(
+        `[cover:image2] builtin-imagegen attempt=${attempt}/${config.routeGuard?.maxGenerationAttempts || 2}`,
+      )
+      return runStreamingCommand('codex', codexArgs, {
+        env: codexEnvironment,
+        input: prompt,
+      })
+    },
   })
+  console.error(
+    `[cover:image2] builtin-imagegen ${JSON.stringify({
+      attempts: execution.attempts,
+      recovered: execution.recovered,
+      status: execution.status,
+    })}`,
+  )
 
   if (!fs.existsSync(outputPath)) {
     throw new Error('Codex 返回成功但未生成目标文件；已 fail-closed')

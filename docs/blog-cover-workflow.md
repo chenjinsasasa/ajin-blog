@@ -85,11 +85,21 @@ The command:
 
 1. creates or refreshes the full-article visual brief;
 2. verifies all four reference hashes;
-3. starts a bounded `codex exec` task with all four references and uses Codex's built-in `image_gen` tool;
-4. injects the visual brief as the content blueprint and the mother prompt as the fixed style blueprint;
-5. removes `OPENAI_API_KEY` from the child environment and uses the Codex login state only;
-6. saves a local PNG under `public/covers/`;
-7. optimizes it and updates the optimization manifest.
+3. requires three consecutive transport-level probes to `chatgpt.com` before starting the long image request;
+4. starts a bounded `codex exec` task with all four references and uses Codex's built-in `image_gen` tool;
+5. injects the visual brief as the content blueprint and the mother prompt as the fixed style blueprint;
+6. removes `OPENAI_API_KEY` from the child environment and uses the Codex login state only;
+7. saves a local PNG under `public/covers/`;
+8. optimizes it and updates the optimization manifest.
+
+### Route stability
+
+The route guard is configured in `config/blog-cover-image2.json` and is part of the only supported generation path:
+
+- An HTTP response such as `403` proves transport reachability; only DNS, connection, TLS, timeout, or reset failures fail the probe.
+- If the active Clash route fails the preflight, the guard checks ChatGPT-dedicated candidates through the local Mihomo Unix socket, selects the lowest-latency healthy candidate, clears stale connections, and requires the route probe to pass again.
+- If the long built-in image request later fails with `network error`, `error sending request`, `i/o timeout`, `context deadline exceeded`, connection reset/close, or timeout, the guard performs one forced route recovery and retries generation once after a short backoff.
+- Non-network failures are never retried. If recovery or the second attempt fails, publishing remains fail-closed and the first raw generation error is retained.
 
 If Codex Image 2, the four references, or the output step fails, stop publishing. Do not switch source or model, and do not use an API key fallback.
 
