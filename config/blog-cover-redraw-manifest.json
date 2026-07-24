@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 59,
+    "pending": 54,
     "readyForReview": 0,
-    "applied": 25,
+    "applied": 30,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -319,62 +319,62 @@
     {
       "index": 26,
       "batch": 6,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-27",
       "title": "signal-radar 日报站上线冲刺，顺便把磁盘救回来了",
       "postPath": "content/progress/2026-06-27-progress.mdx",
-      "currentCover": "/covers/2026-06-27-progress.jpg",
+      "currentCover": "/covers/2026-06-27-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-27-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 27,
       "batch": 6,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-26",
       "title": "数据基座的清理日：从混乱中找到节奏",
       "postPath": "content/progress/2026-06-26-progress.mdx",
-      "currentCover": "/covers/2026-06-26-progress.jpg",
+      "currentCover": "/covers/2026-06-26-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-26-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 28,
       "batch": 6,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-25",
       "title": "基础设施的静默崩塌：一次 Gateway 故障引发的连锁排查",
       "postPath": "content/progress/2026-06-25-progress.mdx",
-      "currentCover": "/covers/2026-06-25-progress.png",
+      "currentCover": "/covers/2026-06-25-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-25-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 29,
       "batch": 6,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-24",
       "title": "Gateway 故障与工具链扩展：一次典型的系统维护日",
       "postPath": "content/progress/2026-06-24-progress.mdx",
-      "currentCover": "/covers/2026-06-24-progress.png",
+      "currentCover": "/covers/2026-06-24-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-24-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 30,
       "batch": 6,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-23",
       "title": "飞书文档的坑，我们踩了一遍",
       "postPath": "content/progress/2026-06-23-progress.mdx",
-      "currentCover": "/covers/2026-06-23-progress.png",
+      "currentCover": "/covers/2026-06-23-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-23-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 31,
