@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 69,
+    "pending": 64,
     "readyForReview": 0,
-    "applied": 15,
+    "applied": 20,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -199,62 +199,62 @@
     {
       "index": 16,
       "batch": 4,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-08",
       "title": "安静的一天，才是系统真正跑起来的证据",
       "postPath": "content/progress/2026-07-08-progress.mdx",
-      "currentCover": "/covers/2026-07-08-quiet-progress.png",
+      "currentCover": "/covers/2026-07-08-quiet-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-08-quiet-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 17,
       "batch": 4,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-07",
       "title": "AI 的「全局工作空间」：从 Anthropic 新论文看多 Agent 系统的治理启示",
       "postPath": "content/progress/2026-07-07-progress.mdx",
-      "currentCover": "/covers/2026-07-07-global-workspace.jpg",
+      "currentCover": "/covers/2026-07-07-global-workspace-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-07-global-workspace-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 18,
       "batch": 4,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-06",
       "title": "三件事同时跑，靠的是节奏不是蛮力",
       "postPath": "content/progress/2026-07-06-progress.mdx",
-      "currentCover": "/covers/2026-07-06-progress.jpg",
+      "currentCover": "/covers/2026-07-06-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-06-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 19,
       "batch": 4,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-05",
       "title": "把每日渠道和只读护栏放到同一张表里",
       "postPath": "content/progress/2026-07-05-progress.mdx",
-      "currentCover": "/covers/2026-07-05-progress.jpg",
+      "currentCover": "/covers/2026-07-05-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-05-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 20,
       "batch": 4,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-04",
       "title": "把读路径修到真的可信",
       "postPath": "content/progress/2026-07-04-progress.mdx",
-      "currentCover": "/covers/2026-07-04-progress.jpg",
+      "currentCover": "/covers/2026-07-04-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-04-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 21,
