@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-15-progress.mdx",
+  "postSha256": "b25d5e8fab5cda83d548949651b70a781a26f26106a8fe82401c68d8654ce88d",
+  "bodySha256": "0dd6e8f8070bbbfe5190a8e30565cbf9815f22251941532840614fc7a4d55ff0",
+  "bodyCharacters": 2940,
+  "generatedAt": "2026-07-24T12:10:25.226Z",
+  "visualBrief": {
+    "coreEventZh": "工作区从分散的记忆与零散约定，重构为可归档、可审计、可评估的系统治理框架。",
+    "primarySubjectZh": "一名档案工程师在工业档案室中操控治理机械，将散乱记录纳入统一秩序。",
+    "keyActionZh": "档案工程师把记忆卷页送入分层整理机构，并使其汇入相互衔接的治理链条。",
+    "resultZh": "整理后的档案被装订为结构清晰、彼此关联的治理总册，基础设施由零散约定转为稳定体系。",
+    "tensionZh": "治理框架已经成形，但自动化巡检仍停留在只读验证阶段，尚未完全接入持续运转的实际流程。",
+    "industrialMetaphorZh": "将工作区治理重构比作一座蒸汽档案工厂的整编：散页经过分拣与校验，最终装订成可追溯的制度总册，而末端传动闸门仍待接通。",
+    "supportingSymbolsZh": [
+      "操控分层归档机械的档案工程师",
+      "置于中央台座上的厚重治理总册",
+      "尚未接合主传动轴的巡检闸门"
+    ],
+    "sceneDescriptionZh": "档案工程师站在档案工厂中央，将散页送入分层归档机械；机械另一端托起一本已经装订完成的治理总册，远端同轴线上仍有一道未接合传动轴的巡检闸门。背景仅为高窗投下的斜光与幽深厂房空间。",
+    "focalElementsEn": [
+      "archivist operating a layered filing machine",
+      "bound governance ledger on a central stand",
+      "inspection gate disconnected from the drive shaft"
+    ],
+    "imagePromptEn": "An archivist feeds loose records into a layered filing machine at the left. At the center, the machine presents a heavy bound governance ledger on a raised stand. Along the same axis at the right, an inspection gate remains visibly disconnected from the main drive shaft, showing a system organized but not yet fully operational."
+  }
+}

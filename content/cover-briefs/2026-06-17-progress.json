@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-17-progress.mdx",
+  "postSha256": "40866b7275c9a80e0f4de796ee23c2f44b922d0ad0daeea975a4cec0c42a6425",
+  "bodySha256": "1206f21f29d2c43218e99ab498d0d340f578780bf00b17041df10767f3b72ccb",
+  "bodyCharacters": 2669,
+  "generatedAt": "2026-07-24T12:09:36.622Z",
+  "visualBrief": {
+    "coreEventZh": "基于大规模真实会话研究，重新判断 Agent 系统应以放大领域专家的业务判断为核心，而非单纯追求执行速度。",
+    "primarySubjectZh": "一位掌握业务方向的工业总工程师，正在指挥自动化机械完成复杂生产。",
+    "keyActionZh": "总工程师校准机械的任务方向，并把验收重心从固定步骤转向最终产物是否可用。",
+    "resultZh": "人负责判断、机器负责执行的协作链已被验证能够稳定放大专家产出。",
+    "tensionZh": "强大的执行能力若接收了模糊或错误的任务定义，只会更高效地制造无用结果。",
+    "industrialMetaphorZh": "领域判断被转译为总工程师设定生产目标，Agent 系统被转译为高功率自动机械，未解决的系统风险被转译为卡在错误方向上的轨道转辙器。",
+    "supportingSymbolsZh": [
+      "俯身校准方向的总工程师",
+      "持续产出合格部件的自动机械",
+      "卡在错误岔道上的轨道转辙器"
+    ],
+    "sceneDescriptionZh": "一座工业车间内，总工程师站在前景校准生产方向，中景的自动机械持续输出合格部件，侧前方一只卡住的轨道转辙器正把后续执行引向错误岔道；背景仅保留昏暗厂房空间与斜射天光。",
+    "focalElementsEn": [
+      "master engineer aligning production",
+      "automated machine producing sound parts",
+      "jammed railway switch pointing astray"
+    ],
+    "imagePromptEn": "A master engineer leans forward to align production, facing an automated machine that steadily produces sound parts. Beside them, a jammed railway switch points the continuing workflow toward a wrong track, creating tension between expert direction, proven productive execution, and unresolved misalignment."
+  }
+}

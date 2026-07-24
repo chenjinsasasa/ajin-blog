@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-16-progress.mdx",
+  "postSha256": "9853676d866b264a37e378e2b82071fa5d256db168c79022bb6424f4803aca74",
+  "bodySha256": "785b358006dac611d1a87a2288d406bcd11d4744b9f9abc2b5e70b5741aa515f",
+  "bodyCharacters": 1801,
+  "generatedAt": "2026-07-24T12:10:02.170Z",
+  "visualBrief": {
+    "coreEventZh": "持续巡检没有发现系统崩溃，却照出了长期无人处理的复盘断档，并把“发现问题后是否有人跟进”推到台前。",
+    "primarySubjectZh": "一名巡检员在工业档案室中检查持续运转的记录系统。",
+    "keyActionZh": "巡检员借提灯查验账册与机械记录，揭开被长期搁置的空白档案。",
+    "resultZh": "近期交付仍稳定运转，但缺失的复盘记录被明确暴露，成为下一步必须处理的旧债。",
+    "tensionZh": "机器仍能稳定运行，与关键记录长期断档之间形成矛盾；巡检已经发现缺口，却尚未完成补救。",
+    "industrialMetaphorZh": "将系统巡检转译为工厂档案室的夜间查验，将稳定成果转译为持续运转的记录机械，将复盘断档转译为阻塞在归档轨道上的空白账册。",
+    "supportingSymbolsZh": [
+      "手持提灯查验账册的巡检员",
+      "持续运转并吐出完整记录的机械记录仪",
+      "卡在归档轨道上的空白厚账册"
+    ],
+    "sceneDescriptionZh": "夜间工业档案室内，巡检员俯身举灯检查一台仍在稳定运转的机械记录仪；机器送出的完整记录延伸至桌面，而一本空白厚账册卡在通往档案架的轨道上。背景仅呈现昏暗纵深与侧窗冷光。",
+    "focalElementsEn": [
+      "inspector examining ledgers with a lantern",
+      "working mechanical recorder producing complete records",
+      "blank heavy ledger jammed on the archive track"
+    ],
+    "imagePromptEn": "An inspector leans forward with a lantern, examining ledgers beside a working mechanical recorder that steadily produces complete records. In front of the machine, a blank heavy ledger is jammed on the archive track, blocking the path forward. The three elements form a tight triangular composition in a dim archive room with restrained side light."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-13-progress.mdx",
+  "postSha256": "bc1bde81e49c0d05806abfcd60a9ee9a692c57d7aa4aa46133e371f959332392",
+  "bodySha256": "4ba4219c9f58ec124dcf1daa358d34f5b033afa1c852c2a513a7fd20db1eaf7d",
+  "bodyCharacters": 2021,
+  "generatedAt": "2026-07-24T12:11:15.259Z",
+  "visualBrief": {
+    "coreEventZh": "自动记录机制持续批量运转，却只生产出高度重复的空洞记录，暴露出系统活跃与实际推进之间的断裂。",
+    "primarySubjectZh": "一名负责检视生产质量的工坊监督员。",
+    "keyActionZh": "监督员在运转正常的自动印刷机前抽查成批纸张，辨认其中是否承载真实成果。",
+    "resultZh": "机器完成了例行生产，但有价值的工作成果没有随之产生，积压问题仍未得到处理。",
+    "tensionZh": "稳定而高频的自动化运转，正在用形式完整的重复记录遮蔽实质产出的缺失。",
+    "industrialMetaphorZh": "将自动记录系统转译为不停印制工单的蒸汽印刷机，将已经稳定的自动化能力转译为整齐输出的纸卷，将未解决的价值缺口转译为堵塞出口的空白纸堆。",
+    "supportingSymbolsZh": [
+      "俯身检查印件的工坊监督员",
+      "持续运转并整齐出纸的蒸汽印刷机",
+      "堵在机器出口处的重复空白纸堆"
+    ],
+    "sceneDescriptionZh": "一座昏暗工坊内，监督员站在蒸汽印刷机旁，从机器稳定送出的纸张中抽起一页仔细检查；大量近乎空白且彼此相同的纸页已在出口处堆积成阻塞。背景只呈现纵深厂房与侧窗冷光。",
+    "focalElementsEn": [
+      "workshop inspector examining a sheet",
+      "steadily running steam printing press",
+      "jammed pile of repetitive blank pages"
+    ],
+    "imagePromptEn": "A workshop inspector bends beside a steadily running steam printing press, holding one freshly printed sheet up for close examination. The press continues feeding pages in orderly succession, while a jammed pile of repetitive nearly blank sheets blocks its outlet. Arrange the inspector at left, the press at center, and the obstructing paper pile in the foreground."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-14-progress.mdx",
+  "postSha256": "fba08c1cb8cfc259952d64edd3895b3eb82f9075ad54bfda33713f6b30a10ad8",
+  "bodySha256": "863153a21f9d75e2304df861b59154145cc8fd1364c891d1880e740d6a0e89e1",
+  "bodyCharacters": 2314,
+  "generatedAt": "2026-07-24T12:10:50.097Z",
+  "visualBrief": {
+    "coreEventZh": "在一次全线收工式复盘中，维护者确认审计、主线接管与生产准备已整体闭环，系统从边运行边修补转入可控、可回退的稳定运营阶段。",
+    "primarySubjectZh": "完成生产体系收口与验收的工业系统维护者。",
+    "keyActionZh": "维护者在中央动力机构前完成接管、检查保护装置，并确认整条传动链稳定运转。",
+    "resultZh": "主动力链完成安全接管，既有成果稳定投入运行，基础设施整体站稳。",
+    "tensionZh": "全线已经稳定收工，但少量追踪断点与待补事项仍卡在边缘，提醒维护者绿灯并不等于绝对无缺口。",
+    "industrialMetaphorZh": "将复杂系统的全链路接管与生产就绪转译为十九世纪工厂中央传动轴的交接验收：主机构持续运转，保护闸门允许随时回退，而一处未闭合的检修接口保留着治理压力。",
+    "supportingSymbolsZh": [
+      "站在中央传动机构前执行最终验收的维护者",
+      "已平稳啮合并持续运转的主动力齿轮组",
+      "边缘处尚未闭合、垂着断裂标签绳的检修接口"
+    ],
+    "sceneDescriptionZh": "一名维护者站在工厂中央传动机构前，一手扶住控制闸杆，注视已经平稳啮合的主动力齿轮组；画面边缘仅留一处尚未闭合的检修接口，断裂的标签绳垂落其旁。背景只呈现高窗投下的斜光与昏暗厂房纵深。",
+    "focalElementsEn": [
+      "engineer at the central control lever",
+      "fully engaged main gear assembly",
+      "unsealed maintenance hatch with a broken tag cord"
+    ],
+    "imagePromptEn": "A lone engineer stands at the central control lever, watching a fully engaged main gear assembly turn steadily before him. At the far edge, an unsealed maintenance hatch remains slightly open with a broken tag cord hanging beside it. The three elements form a clear triangle: engineer in the foreground, stable machinery at center, unresolved hatch in the distance."
+  }
+}
