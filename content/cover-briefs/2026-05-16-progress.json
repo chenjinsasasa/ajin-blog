@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-16-progress.mdx",
+  "postSha256": "fa49d22feb5175d5b0e9e074b6cd04bbae2483f834a8bffe41f81c57ce3a0780",
+  "bodySha256": "fe0f2c3b7b7f27b342a5e6ddb6d830f137c5420a7605137ed7662b2b1393f98c",
+  "bodyCharacters": 1694,
+  "generatedAt": "2026-07-24T12:28:13.792Z",
+  "visualBrief": {
+    "coreEventZh": "修复已发布内容的封面缺口，让既有承诺重新达到完整交付状态。",
+    "primarySubjectZh": "一名工匠正在修补已经投入使用的印刷内容链路。",
+    "keyActionZh": "工匠校正并补牢交付链条中暴露的缺口，而不是继续扩建新设施。",
+    "resultZh": "已完成的内容资产恢复完整、统一且可信的交付状态。",
+    "tensionZh": "追逐显眼的新建设，与耐心补平细小但持续损耗信任的旧缺口之间的冲突。",
+    "industrialMetaphorZh": "将博客内容链转译为十九世纪印刷工坊的传送机构，把封面修复表现为工匠为成品传送带补装并校准缺失的印版。",
+    "supportingSymbolsZh": [
+      "俯身校准印刷机构的工匠",
+      "重新整齐装入传送机构的完整印版",
+      "阻塞后续传送的破损齿轮缺口"
+    ],
+    "sceneDescriptionZh": "一座十九世纪印刷工坊内，工匠俯身在传送机构中央，将一块修复完整的印版重新嵌入链路；前方的成品已恢复整齐，而机构末端仍有一处破损齿轮缺口等待处理。背景仅呈现昏暗厂房空间与斜射工作光。",
+    "focalElementsEn": [
+      "craftsman aligning the press mechanism",
+      "restored printing plate seated in the conveyor",
+      "broken gear gap obstructing the line"
+    ],
+    "imagePromptEn": "A craftsman bends over the center of a printing mechanism, carefully aligning it as a restored printing plate locks neatly into the conveyor before him. At the far end of the same line, a broken gear gap still obstructs the mechanism, forming a clear path from repair to stable output to unfinished obstruction."
+  }
+}

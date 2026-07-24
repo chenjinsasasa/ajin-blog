@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-17-progress.mdx",
+  "postSha256": "4da179957d238d165675896edf573e843838880d51a2033390c5f5e0eb05376a",
+  "bodySha256": "1db636b16de0d76189eac5c5d9b4d7c089ac037e471cfbbb3c23a3347a653e4e",
+  "bodyCharacters": 1392,
+  "generatedAt": "2026-07-24T12:27:53.155Z",
+  "visualBrief": {
+    "coreEventZh": "聊天页汉化达到基本可用后，阿锦主动停止继续打磨，并将混杂的后续问题划出本轮验收范围。",
+    "primarySubjectZh": "一名在验收线前举手叫停的工坊监工。",
+    "keyActionZh": "监工确认主机已稳定运转，随即拉下止动杆，把精力从无限完善中收回。",
+    "resultZh": "汉化链路完成收尾并达到可交付的基本可用状态。",
+    "tensionZh": "已经足够交付的成果，与仍可继续细化但应留待单独验证的阻碍之间的克制取舍。",
+    "industrialMetaphorZh": "在十九世纪印刷工坊中，监工让调校完成的双轨排字机停在验收刻线前，不再被旁侧尚未排除的传动阻力拖入无休止调试。",
+    "supportingSymbolsZh": [
+      "举手拉下止动杆的工坊监工",
+      "停在验收刻线上的双轨排字机",
+      "被隔离闸门挡住的纠结传动齿轮"
+    ],
+    "sceneDescriptionZh": "一座印刷工坊内，监工站在画面中央拉下止动杆；已平稳运转的双轨排字机停在他面前的验收刻线处；远侧一组纠结齿轮被隔离闸门留在本轮工作之外。背景仅呈现纵深厂房与斜射天光。",
+    "focalElementsEn": [
+      "foreman pulling a stop lever",
+      "calibrated twin-track typesetting press at an acceptance line",
+      "tangled gears behind a closed isolation gate"
+    ],
+    "imagePromptEn": "A foreman at center pulls a stop lever beside a calibrated twin-track typesetting press halted exactly at an acceptance line. Farther back, tangled gears remain behind a closed isolation gate, visibly separated from the finished machine. The three focal elements align in a clear foreground-to-background sequence under angled workshop light."
+  }
+}

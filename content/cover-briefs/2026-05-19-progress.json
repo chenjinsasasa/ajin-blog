@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-19-progress.mdx",
+  "postSha256": "146d36e2877ed5e8b032809591e25496b22588b5494ac31b5da126f1377c07c9",
+  "bodySha256": "a3cc5e3efc4967a453193999cfa9136559870d9088cf0f12560ce712a4a8e5c8",
+  "bodyCharacters": 1534,
+  "generatedAt": "2026-07-24T12:27:10.036Z",
+  "visualBrief": {
+    "coreEventZh": "博客素材链路修正了记忆偏差，将真实推进的召回与终态确认变成可验证流程。",
+    "primarySubjectZh": "负责核验生产记录的工业档案员。",
+    "keyActionZh": "档案员逐页核对生产账本，并将确认无误的记录压入归档机。",
+    "resultZh": "原本可能被遗漏的工作记录得到稳定归档，内部记账的可信度随之提升。",
+    "tensionZh": "已经加固的归档机制仍可能受不稳定记录来源影响，未被机器捕获的关键信息依然存在遗漏风险。",
+    "industrialMetaphorZh": "将博客素材链路转译为十九世纪工厂的生产记账系统：事实召回是收集工单，终态校验是归档前的机械验印。",
+    "supportingSymbolsZh": [
+      "伏案核验生产记录的工业档案员",
+      "持续吐出完整归档页的铸铁验印机",
+      "卡在阴影中、仍未接入机器的散落口述纸条"
+    ],
+    "sceneDescriptionZh": "一名工业档案员站在铸铁验印机前，将核对后的生产记录送入机器；完整归档页从另一端整齐输出，而几张尚未接入流程的口述纸条停在侧后方阴影中。背景仅为昏暗档案工坊与斜射天光。",
+    "focalElementsEn": [
+      "industrial archivist verifying production records",
+      "cast-iron validation press producing complete archive sheets",
+      "loose testimony slips stranded in shadow"
+    ],
+    "imagePromptEn": "An industrial archivist verifies production records and feeds them into a cast-iron validation press. Complete archive sheets emerge in an orderly stack beside the machine, while a few loose testimony slips remain stranded in shadow behind the archivist. A dim archive workshop and angled daylight provide only space and illumination."
+  }
+}

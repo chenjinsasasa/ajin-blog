@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-18-progress.mdx",
+  "postSha256": "7cf44e09ab249414e0ab7d74a2b574e83a8eebe636672f8e209ef149fb180997",
+  "bodySha256": "40dd8478310c47827e69e06148c7fa792510d7b6766452d222cad829bc3b777b",
+  "bodyCharacters": 1526,
+  "generatedAt": "2026-07-24T12:27:32.691Z",
+  "visualBrief": {
+    "coreEventZh": "创作工具完成空间重构，从线性填表流程转变为分区明确、内容有序的工作空间。",
+    "primarySubjectZh": "亲手重构空间的工匠",
+    "keyActionZh": "工匠在新建的工作室中调整各区域之间的组织与流转。",
+    "resultZh": "分区空间与内容书架已经稳定成形，工具由功能原型迈向有秩序的产品。",
+    "tensionZh": "整体空间已经搭好，但房间之间的流转机制仍待进一步打磨。",
+    "industrialMetaphorZh": "把前端重构转译为十九世纪工匠改造一座创作工坊：原本单线运转的长台被拆分成有层次的房间，内容被归入可检索的档案书架。",
+    "supportingSymbolsZh": [
+      "正在校准空间结构的工匠",
+      "分区清晰且书册归位的工坊",
+      "尚未顺畅联动的房间连接机构"
+    ],
+    "sceneDescriptionZh": "一名工匠站在新近重构的工坊中央，面向已经分区并收纳整齐的工作空间，伸手调试两间房之间仍显生涩的连接机构；背景仅呈现纵深空间与从侧窗落入的柔和光线。",
+    "focalElementsEn": [
+      "a craftsman calibrating the workspace",
+      "an orderly partitioned workshop with shelved volumes",
+      "an unfinished linkage between two rooms"
+    ],
+    "imagePromptEn": "A craftsman stands at the center, calibrating an orderly partitioned workshop where volumes rest neatly on shelves. He reaches toward an unfinished mechanical linkage connecting two adjacent rooms, testing whether the newly organized spaces can operate as one continuous environment."
+  }
+}

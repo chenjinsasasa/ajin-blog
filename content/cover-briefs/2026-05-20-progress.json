@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-20-progress.mdx",
+  "postSha256": "5ea534af1293eae75ee4d58936734f2fe469fc25f76d7204ef75ac9d7d5ababa",
+  "bodySha256": "1fcf7540a23b1677e4869bf7af538180582cb5984f91214678efa902a46bcaf3",
+  "bodyCharacters": 2195,
+  "generatedAt": "2026-07-24T12:26:43.424Z",
+  "visualBrief": {
+    "coreEventZh": "补齐素材后，对一天内分散推进的工作进行重新校准与统一判断。",
+    "primarySubjectZh": "在工业校准台前统筹全局的检验员。",
+    "keyActionZh": "检验员依据完整记录调整多路传动，使分散进展进入同一套可复盘秩序。",
+    "resultZh": "原本被视为半成品的工作显露出已经稳定推进的主体成果。",
+    "tensionZh": "多线进展真实存在，但闭环证据强弱不一，仍有环节被卡在未完成的验证中。",
+    "industrialMetaphorZh": "一座十九世纪工坊中的总传动校准：检验员把散乱动力重新对齐，已稳定运转的主轴与受阻的末端阀门同时显现。",
+    "supportingSymbolsZh": [
+      "在总传动台前操作校准杆的检验员",
+      "平稳咬合并持续运转的主传动轮组",
+      "被阻塞阀门卡住的末端传动杆"
+    ],
+    "sceneDescriptionZh": "单帧场景中，检验员立于工坊中央的总传动台前，将校准杆推向右侧；左后方主传动轮组已经平稳咬合，右前方末端传动杆却停在闭合阀门前。背景仅保留高窗投下的斜光与朦胧厂房空间。",
+    "focalElementsEn": [
+      "inspector operating a master calibration lever",
+      "smoothly meshing main gear assembly",
+      "terminal drive rod blocked by a closed valve"
+    ],
+    "imagePromptEn": "An inspector at the center operates a master calibration lever toward the right. Behind him on the left, a main gear assembly meshes and runs smoothly. In the right foreground, a terminal drive rod remains halted against a closed valve, creating visible tension between coordinated progress and incomplete closure."
+  }
+}
