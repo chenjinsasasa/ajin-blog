@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-14-progress.mdx",
+  "postSha256": "6178fad097bf20cfdb4e5b75777de0651ea0c8ffd64e0c8d44794a5f93c9626d",
+  "bodySha256": "bf6c0c445c8bf968ec1d94efd7e89dd3bb54cf8b95c4c683cdf4b9ad0b68aed8",
+  "bodyCharacters": 4351,
+  "generatedAt": "2026-07-24T12:29:46.097Z",
+  "visualBrief": {
+    "coreEventZh": "一天没有新增完成项与关键提交，被重新识别为推进结构需要调整的信号。",
+    "primarySubjectZh": "一名工坊领班面对仍在运转却没有成品落地的生产线，开始检查任务如何被切分和记录。",
+    "keyActionZh": "领班俯身重新划分一张过于庞大的机械蓝图，试图把长期工程拆成可验收的小段。",
+    "resultZh": "既有工程基础仍然稳定，但停滞被看清，下一步从催促产出转向重建可完成单元。",
+    "tensionZh": "宏大的方向已经确立，但任务过重、依赖交织且记录滞后，使持续投入迟迟无法凝结为可见成果。",
+    "industrialMetaphorZh": "把复杂产品推进比作一座进入骨架搭建期的十九世纪机械工坊：机器并未停转，却因总图过大、工序未切分而无法交付新的成品。",
+    "supportingSymbolsZh": [
+      "俯身切分巨型机械蓝图的工坊领班",
+      "已经稳固咬合并持续运转的齿轮骨架",
+      "缠住未完工传动轴的多股粗重链条"
+    ],
+    "sceneDescriptionZh": "一座昏暗工业工坊内，领班站在工作台前，用直尺把巨型机械蓝图划成较小区段；其身后是一副稳定运转的齿轮骨架，前方未完工的传动轴则被多股链条缠住。背景只呈现高窗射入的斜光与深暗空间。",
+    "focalElementsEn": [
+      "foreman dividing a giant mechanical blueprint",
+      "stable interlocking gear framework",
+      "unfinished drive shaft bound by heavy chains"
+    ],
+    "imagePromptEn": "A foreman at a workbench divides a giant mechanical blueprint into smaller sections. Behind him, a stable framework of interlocking gears turns steadily. In front, an unfinished drive shaft remains bound by several heavy chains, linking stalled output to an oversized plan."
+  }
+}

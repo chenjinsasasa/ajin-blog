@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-11-progress.mdx",
+  "postSha256": "39a3bd8f49242aa0ae5716c0c01a02ce51213910f7c7bce81f2c83624e50cd38",
+  "bodySha256": "f58fc8355ffe2b5c56c0306b82e0ef5aeaecd0c070b0c9940c3e915f1a8144e2",
+  "bodyCharacters": 3770,
+  "generatedAt": "2026-07-24T12:31:00.637Z",
+  "visualBrief": {
+    "coreEventZh": "在没有代码提交的一天里，谷子通过规划、归类与边界收束完成了一次关键“整地”，让后续执行的骨架和隐患同时显现。",
+    "primarySubjectZh": "一名站在工业工坊中央、统筹机械流程的工程师。",
+    "keyActionZh": "工程师启动并校准一套已能稳定运转的监测机械，同时直面仍堵塞生产链路的断裂档案管道。",
+    "resultZh": "稳定成果开始持续揭示问题，后续工作从依赖猜测转向围绕已命名阻碍进行治理和验证。",
+    "tensionZh": "规划与监测已经把执行基础铺平，但缺失产物和断档流程仍等待成批治理，继续扩张可能让多条工作线再次分散。",
+    "industrialMetaphorZh": "把当天的系统整地转译为工坊总工程师校准中央监测机：机器已能稳定吐出诊断卷纸，而一条塞满残缺档案的输送管仍卡住整座工坊。",
+    "supportingSymbolsZh": [
+      "统筹机械流程的工坊总工程师",
+      "稳定吐出诊断卷纸的中央监测机",
+      "被残缺档案堵塞的断裂输送管"
+    ],
+    "sceneDescriptionZh": "单帧场景中，总工程师站在中央监测机旁，一手校准机械、一手转向右侧堵塞的输送管；监测机持续送出整齐卷纸，断管内则卡着残缺档案。背景仅保留昏暗工坊空间与斜射天光。",
+    "focalElementsEn": [
+      "workshop chief engineer",
+      "monitoring machine producing orderly diagnostic scrolls",
+      "broken conduit clogged with incomplete records"
+    ],
+    "imagePromptEn": "A workshop chief engineer stands beside a monitoring machine, calibrating it while turning toward a broken conduit. The machine steadily produces orderly diagnostic scrolls across the center, while the conduit at the right remains clogged with incomplete records, creating a clear tension between stable insight and unresolved obstruction."
+  }
+}

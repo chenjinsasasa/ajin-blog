@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-13-progress.mdx",
+  "postSha256": "214b6c27ae20d4a647f6068e4c2ad53c14b9a6ddafb7882e6adb44e1ba8e26c7",
+  "bodySha256": "d7bf48ff25cd18760824b5f67bacc3a1aa2089d4b97a2208d35380366e83e57c",
+  "bodyCharacters": 3951,
+  "generatedAt": "2026-07-24T12:30:11.182Z",
+  "visualBrief": {
+    "coreEventZh": "将外部方法论筛选、裁剪并纳入本地执行体系，使分散能力形成可复用、可验证、可交接的组织骨架。",
+    "primarySubjectZh": "一名负责校准与装配的工匠，代表对能力进行本地化筛选和路由治理的核心推动者。",
+    "keyActionZh": "工匠把经过检验的机械构件装入统一龙骨，并在投入执行前校准各构件的衔接顺序。",
+    "resultZh": "零散经验被组织成稳定的内部骨架，真实任务已证明这套秩序能够约束执行入口。",
+    "tensionZh": "已经成形的执行骨架开始提升稳定性，但沉重的高优先级工作仍堵在前方，尚未被真正消化。",
+    "industrialMetaphorZh": "把能力本地化比作在十九世纪工场中筛选外来零件、制定装配秩序，并铆接成一副能够承重的机器龙骨。",
+    "supportingSymbolsZh": [
+      "正在校准构件的工匠",
+      "已经铆接成形的机器龙骨",
+      "压在封闭闸门后的沉重货箱"
+    ],
+    "sceneDescriptionZh": "一座昏暗工场内，工匠俯身校准机器龙骨最后一处接合点；成形的龙骨横贯画面并指向深处，一只沉重货箱压在前方封闭闸门后。背景仅呈现工场纵深与侧窗光线。",
+    "focalElementsEn": [
+      "craftsman calibrating a joint",
+      "riveted machine skeleton",
+      "heavy crate behind a closed gate"
+    ],
+    "imagePromptEn": "A craftsman bends over and calibrates the final joint of a riveted machine skeleton stretching across the workshop. The skeleton points toward a heavy crate blocked behind a closed gate. Side light defines the craftsman, the completed framework, and the unresolved obstruction in one coherent scene."
+  }
+}

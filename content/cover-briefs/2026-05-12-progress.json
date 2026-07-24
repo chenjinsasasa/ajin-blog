@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-12-progress.mdx",
+  "postSha256": "1439cba23c7262269cc69dc6f1b70f32e7200c06d230cec0653e7f3348c7e227",
+  "bodySha256": "25fc792bc27124be95c1c55a6e373f9b5258a2905c9c5ad9367de5482d4c971c",
+  "bodyCharacters": 1729,
+  "generatedAt": "2026-07-24T12:30:34.825Z",
+  "visualBrief": {
+    "coreEventZh": "执行体系把分散的编排、交接、拆解与诊断经验压缩成可重复运转的系统骨架。",
+    "primarySubjectZh": "一名机械工程师正在调校一座承担任务分流与协作承接的工业编排机。",
+    "keyActionZh": "工程师将控制杆接入已经咬合的传动骨架，同时阻止一团未经拆解的沉重原料进入机器。",
+    "resultZh": "编排规则与结构化交接已形成可承接后续工作的稳定机械链路。",
+    "tensionZh": "系统已能依靠规则组织执行，但过大、模糊且难以验证的任务仍堵在入口。",
+    "industrialMetaphorZh": "把执行系统转译为一座十九世纪工厂中的任务编排机：规则是控制杆，交接是连续传动，拆解门禁则筛除无法直接加工的粗重原料。",
+    "supportingSymbolsZh": [
+      "调校控制杆的机械工程师",
+      "稳定咬合并持续传动的钢铁骨架",
+      "卡在入口闸门外的纠结粗重原料"
+    ],
+    "sceneDescriptionZh": "一座昏暗工厂内，机械工程师站在编排机侧面调校控制杆；机器中央的钢铁骨架已经稳定咬合并向前传动，而一团纠结的粗重原料被挡在入口闸门外。背景仅保留高窗投下的斜光与深暗厂房空间。",
+    "focalElementsEn": [
+      "engineer adjusting control levers",
+      "stable interlocking iron framework",
+      "tangled heavy material blocked at the gate"
+    ],
+    "imagePromptEn": "An engineer adjusts control levers beside a large organizing machine. At the center, a stable interlocking iron framework turns in a continuous chain. At the entrance, tangled heavy material remains blocked by a closed gate, unable to enter the mechanism. The three focal elements form a clear left-to-right sequence in a dim workshop lit by a single high window."
+  }
+}
