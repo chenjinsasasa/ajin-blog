@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-01-progress.mdx",
+  "postSha256": "769b95c9296d4e43dc14ff04e33baa61a2328d822d9d14ebe5d02ba7aa876481",
+  "bodySha256": "f26f1b7c9b2fcc664a7afa32de9bcf4817dac6967bcb5d77a60ad456d240d341",
+  "bodyCharacters": 2303,
+  "generatedAt": "2026-07-24T12:01:15.067Z",
+  "visualBrief": {
+    "coreEventZh": "持续数日的系统治理工程进入收尾阶段：规则与校验闭环已经建立，但团队坚持在运行路径可被观测之前，不改动真实系统。",
+    "primarySubjectZh": "一名负责建立秩序的工业工程师，正在审视并约束整套管线系统。",
+    "keyActionZh": "工程师依据已经锁定的管线图与阀门结构暂停改造，转而检查通往黑暗区域的不可见路径。",
+    "resultZh": "静态规则、治理结构与校验闭环已稳定成形，为系统提供了可信骨架。",
+    "tensionZh": "治理骨架已经稳固，但运行中的真实流向仍不可观测；贸然改动如同蒙眼检修。",
+    "industrialMetaphorZh": "将系统治理转译为十九世纪工坊中的管线工程：透明规则是固定管线的骨架，运行时观测缺口是没有检修口的幽暗管段。",
+    "supportingSymbolsZh": [
+      "手持检视镜、克制停手的工业工程师",
+      "结构清晰、阀门锁定的稳定管线骨架",
+      "没入阴影且缺少检修口的封闭管段"
+    ],
+    "sceneDescriptionZh": "在一座十九世纪工业工坊内，工程师站在画面中央，面对已固定成形的管线骨架，举起检视镜观察一段延伸进阴影、没有检修口的封闭管道，并克制地停下改造动作；背景仅呈现高墙工坊空间与侧窗冷光。",
+    "focalElementsEn": [
+      "an engineer holding an inspection mirror",
+      "a stable framework of locked pipes and valves",
+      "a sealed pipe section disappearing into shadow"
+    ],
+    "imagePromptEn": "An engineer stands at the center, holding an inspection mirror toward a sealed pipe section that disappears into shadow. Beside the engineer, a stable framework of locked pipes and valves forms an orderly structure. The engineer pauses without altering it, studying the hidden route from a cautious distance."
+  }
+}

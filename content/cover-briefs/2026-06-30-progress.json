@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-30-progress.mdx",
+  "postSha256": "4ae3a5f0096b45e580560c382dc95afce0ca533f6247dd3a1d70738e2b7c6cb6",
+  "bodySha256": "d32ad8d05850b0405c3ca07b12e384024623ae1ef5d281d1b8f152e36619a880",
+  "bodyCharacters": 837,
+  "generatedAt": "2026-07-24T12:01:43.254Z",
+  "visualBrief": {
+    "coreEventZh": "在没有显性任务与交付记录的一天里，日常巡检与底层链路仍持续运转，显现出系统稳定而健康的节律。",
+    "primarySubjectZh": "提灯巡视工业机房的夜巡守卫，代表默默确认链路与边界的维护者。",
+    "keyActionZh": "守卫沿机房通道巡查，在静默中观察持续转动的机械是否平稳。",
+    "resultZh": "核心机械无需额外干预便稳定运行，证明静默并非停滞，而是系统成熟的自然状态。",
+    "tensionZh": "系统真实而持续的运转，与外界只能通过显性成果判断进展之间的矛盾。",
+    "industrialMetaphorZh": "将底层系统转译为夜间自行运转的十九世纪动力机房：巡守、飞轮与遮蔽机械的隔墙共同表现维护、稳定和不可见性。",
+    "supportingSymbolsZh": [
+      "提灯巡视机房的夜巡守卫",
+      "平稳持续转动的巨大飞轮",
+      "遮住底层传动机构的厚重隔墙"
+    ],
+    "sceneDescriptionZh": "一名夜巡守卫提灯站在机房通道前景，侧身观察中景里平稳转动的巨大飞轮；飞轮后方的厚重隔墙遮住其余传动机构，只让微弱暖光沿墙缘泄出，形成静默运转却难以被看见的单帧场景。",
+    "focalElementsEn": [
+      "night watchman holding a lantern",
+      "large flywheel turning steadily",
+      "heavy partition hiding the lower machinery"
+    ],
+    "imagePromptEn": "A night watchman holds a lantern in the foreground and quietly inspects a large flywheel turning steadily at center. Behind it, a heavy partition hides the lower machinery, with a thin line of warm light escaping along its edge. The watchman faces the flywheel while the barrier emphasizes that the stable motion continues beyond sight."
+  }
+}

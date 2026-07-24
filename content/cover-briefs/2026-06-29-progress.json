@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-29-progress.mdx",
+  "postSha256": "749d9b3f5c132ccd7d74be31541e00687a69f59434cee350862d14941c448091",
+  "bodySha256": "d9b4525ee86f65ed77871ac23ea3fd77d711874362a012a50343e938cfcb37ed",
+  "bodyCharacters": 1735,
+  "generatedAt": "2026-07-24T12:02:08.852Z",
+  "visualBrief": {
+    "coreEventZh": "系统在零提交、零交付的静默日仍保持稳定运转，并通过例行巡检暴露出等待决策的关键阻塞。",
+    "primarySubjectZh": "在维护态中持续观察机器状态、辨认下一步行动信号的值守者。",
+    "keyActionZh": "值守者巡检稳定运行的动力机，同时注视被锁止的控制闸门。",
+    "resultZh": "基础设施保持健康运转，积压与知识债务被识别，但尚未转化为推进动作。",
+    "tensionZh": "系统具备继续运行的能力，却因关键方向尚未决断而停留在健康空转状态。",
+    "industrialMetaphorZh": "将静默运维转译为值守者照看持续运转的工厂动力机，将已稳定的基础设施表现为平稳转动的飞轮，将战略阻塞与待补债务合并为尚未解除的锁止闸门。",
+    "supportingSymbolsZh": [
+      "巡检机器的工厂值守者",
+      "平稳转动的巨大飞轮",
+      "被锁链卡住的控制闸门"
+    ],
+    "sceneDescriptionZh": "一名工厂值守者站在持续运转的巨大飞轮旁进行巡检，身体转向前方被锁链卡住的控制闸门；背景仅呈现昏暗厂房空间与侧窗光线，使稳定运行与无法推进的张力集中在同一单帧中。",
+    "focalElementsEn": [
+      "factory attendant inspecting machinery",
+      "steadily turning giant flywheel",
+      "chain-locked control gate"
+    ],
+    "imagePromptEn": "A factory attendant inspects a steadily turning giant flywheel, then looks toward a chain-locked control gate directly ahead. The flywheel occupies one side in continuous motion, the attendant stands between stable machinery and the blocked gate, and dim workshop space with side light frames the unresolved pause."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-03-progress.mdx",
+  "postSha256": "8f56abfea7f268780d06ecfc4d0fb4f50a53f01e9ab68e32f1c10c881cf767c5",
+  "bodySha256": "f6847f657e0445241b7738dd78d405f74a4481f9e8db56820ea3a438fe6b68ab",
+  "bodyCharacters": 1470,
+  "generatedAt": "2026-07-24T12:00:33.393Z",
+  "visualBrief": {
+    "coreEventZh": "把提交、推送与忽略规则从临场判断固化为可追踪的系统制度。",
+    "primarySubjectZh": "一名负责校准协作流程的工业档案管理员。",
+    "keyActionZh": "管理员将本地完成的工作记录送入远端总账，并把不应归档的杂物隔离在外。",
+    "resultZh": "提交与远端同步形成完整闭环，相关改动被分批、安全地收口。",
+    "tensionZh": "本地看似完成但远端仍停留在旧状态，形成“假完成”与真实对齐之间的缝隙。",
+    "industrialMetaphorZh": "将协作系统比作一座依靠传送、归档与隔离规程维持秩序的十九世纪工业档案工场。",
+    "supportingSymbolsZh": [
+      "正在操作传送机构的工业档案管理员",
+      "已经盖章并送达远端总账的整齐档案箱",
+      "卡在本地与远端之间、尚未通过的孤立档案箱"
+    ],
+    "sceneDescriptionZh": "单帧场景中，工业档案管理员站在工场中央操作传送机构；一侧整齐档案箱已抵达远端总账并盖章，另一只孤立档案箱卡在两端之间。背景仅呈现昏暗厂房空间与斜射光线。",
+    "focalElementsEn": [
+      "industrial archivist operating a transfer mechanism",
+      "sealed archive crates delivered to a remote ledger",
+      "isolated archive crate stuck between both ends"
+    ],
+    "imagePromptEn": "An industrial archivist operates a transfer mechanism at the center. To one side, sealed archive crates have reached a remote ledger in orderly alignment; between the two ends, one isolated archive crate remains stuck, visibly separating apparent completion from true synchronization."
+  }
+}

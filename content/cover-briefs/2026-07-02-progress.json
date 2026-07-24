@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-02-progress.mdx",
+  "postSha256": "a7f3b7260102aea4c1d699c7003bf019504a59912d907ccb66d3f49125000a7a",
+  "bodySha256": "9bee3016e50e26ab89ec1729c93a2a199ad0d0e9d60687e217c085b9c434223a",
+  "bodyCharacters": 2361,
+  "generatedAt": "2026-07-24T12:00:55.090Z",
+  "visualBrief": {
+    "coreEventZh": "一次完整运转后的质量复核揭示：系统虽已完成流程并产出成果，却仍缺少对失败根因与真实行为的验证。",
+    "primarySubjectZh": "在首轮完整运行后坚持检查证据、追问稳定性的质量审查者。",
+    "keyActionZh": "审查者俯身核验持续运转的工业管线，并追查被重试掩盖的故障。",
+    "resultZh": "整条管线已经完成一轮生产，基础机制与克制的治理方向得到确认。",
+    "tensionZh": "表面完成与真实稳定之间存在裂缝：失败被兜底遮住，规格与规范也尚未经过现实验证和自动守卫。",
+    "industrialMetaphorZh": "把当天工作转译为一座刚完成首轮生产的十九世纪工厂：成品已经下线，但检验员仍在追查管线深处未被定位的卡滞。",
+    "supportingSymbolsZh": [
+      "手持检验灯、俯身查验管线的工厂审查员",
+      "稳定驶出机器的完整成品卷轴",
+      "管线深处冒出暗烟的卡滞阀门"
+    ],
+    "sceneDescriptionZh": "一名工厂审查员站在刚完成首轮生产的机械管线旁，用检验灯照向深处；完整成品卷轴已从机器末端稳定送出，而远端卡滞阀门正渗出暗烟。背景仅保留高挑厂房空间与斜射天光。",
+    "focalElementsEn": [
+      "factory inspector with inspection lamp",
+      "completed roll emerging from machinery",
+      "jammed valve leaking dark smoke"
+    ],
+    "imagePromptEn": "A factory inspector leans beside a working production line, aiming an inspection lamp toward a jammed valve leaking dark smoke in the distance, while a completed roll emerges steadily from the machinery in the foreground."
+  }
+}
