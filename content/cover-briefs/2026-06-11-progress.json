@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-11-progress.mdx",
+  "postSha256": "36e8dca1318a9fdf3f9b64ca387058880a531821254501002ede2d218349d340",
+  "bodySha256": "9ff14a6cc5d0dc964e7772ef495e5b30efb0ba1c1c2ab8130caa73aa5a29fb7d",
+  "bodyCharacters": 2208,
+  "generatedAt": "2026-07-24T12:13:19.818Z",
+  "visualBrief": {
+    "coreEventZh": "在多项修复与体验优化逐步稳定之后，团队把推进重心收束到移动中继的安全边界，确定主机只主动向外连接，并准备先封闭本机暴露面。",
+    "primarySubjectZh": "一名在界面背后整顿系统秩序、谨慎划定连接边界的工业工程师。",
+    "keyActionZh": "工程师一边确认已经校准的传动机构稳定运转，一边关闭向内开启的阀门，为尚未接通的外向通路做准备。",
+    "resultZh": "系统内部的检索、状态呈现与知识展示趋于稳定，移动控制方案也形成了以主动外连和强认证为核心的清晰原则。",
+    "tensionZh": "内部秩序已经逐渐建立，但安全的外向连接仍未真正落地，开放通路与避免外部侵入之间的矛盾尚待解决。",
+    "industrialMetaphorZh": "一座工厂在精密机器恢复平稳后，必须先封死危险的回流阀，再铺设一条只能向外输送动力的安全管线。",
+    "supportingSymbolsZh": [
+      "守在边界阀门前的工业工程师",
+      "平稳咬合并持续运转的校准齿轮组",
+      "止于封闭墙面的未接通外向管道"
+    ],
+    "sceneDescriptionZh": "单帧画面中，工程师站在工坊中央的边界阀门前，将阀门旋向关闭；他身后一组校准齿轮平稳运转，身侧一根外向管道延伸到封闭墙面后中断。背景仅呈现深窄厂房空间与从高窗落下的冷静光线。",
+    "focalElementsEn": [
+      "engineer closing a boundary valve",
+      "smoothly running calibrated gear assembly",
+      "unfinished outward pipe ending at a sealed wall"
+    ],
+    "imagePromptEn": "An engineer closes a boundary valve in the center foreground. Behind him, a calibrated gear assembly runs smoothly in precise alignment. Beside him, an unfinished outward pipe leads toward a sealed wall and stops before connecting, placing stable internal order in tension with the unresolved external passage."
+  }
+}

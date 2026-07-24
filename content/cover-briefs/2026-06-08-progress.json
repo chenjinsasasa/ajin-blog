@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-08-progress.mdx",
+  "postSha256": "40f740f96c5813e6554a561371944d84f5c0abf1b2d4ca196d2172cd0bca0517",
+  "bodySha256": "c781dad39a809878ca98b2ea2de95897028d03713c9a401ec0ff909be5815cc6",
+  "bodyCharacters": 3464,
+  "generatedAt": "2026-07-24T12:14:21.013Z",
+  "visualBrief": {
+    "coreEventZh": "将只读验证与治理沉淀汇入同一条可判断、可继承的治理闭环。",
+    "primarySubjectZh": "一名负责校验工业系统的工坊监察员。",
+    "keyActionZh": "监察员在不触动正式生产装置的前提下检验整条传动链，并将验证结果归入可继承的记录体系。",
+    "resultZh": "系统从依赖零散动作与人工警觉，开始转向先验证、再推进、可复盘的稳定秩序。",
+    "tensionZh": "治理闭环已显出雏形，但尚未完全消化持续增长的系统复杂度与未解决阻碍。",
+    "industrialMetaphorZh": "把多智能体治理转译为十九世纪工坊中的只读试车：监察员隔离检验机械链路，已封存的检验档案证明成果稳定，而卡住出口的沉重闸门象征治理仍未覆盖的复杂阻碍。",
+    "supportingSymbolsZh": [
+      "手持检验杆观察传动链的工坊监察员",
+      "整齐封存并加盖检验印记的档案柜",
+      "卡住工坊出口、尚未开启的沉重铁闸"
+    ],
+    "sceneDescriptionZh": "单帧场景中，监察员站在工坊中央，以检验杆隔离观察传动链；其身后是整齐封存的档案柜，前方出口则被沉重铁闸阻挡。背景仅呈现纵深工坊空间与侧窗斜光。",
+    "focalElementsEn": [
+      "workshop inspector testing an isolated transmission",
+      "sealed archive cabinet with inspection marks",
+      "heavy iron gate blocking the workshop exit"
+    ],
+    "imagePromptEn": "A workshop inspector tests an isolated transmission at the center without engaging production. Behind the inspector stands a sealed archive cabinet bearing inspection marks. Ahead, a heavy iron gate blocks the workshop exit, placing the verified mechanism and preserved record between present control and the unresolved barrier."
+  }
+}

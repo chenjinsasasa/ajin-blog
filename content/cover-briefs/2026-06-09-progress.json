@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-09-progress.mdx",
+  "postSha256": "2cd5346df1fa11b5d097f72bda86b3bc5870f1f36285a9a93647ad77c0b016fc",
+  "bodySha256": "354c34e9e8d2c5b95318f9b0ebcb321d3b5963ce66019b2a81c91f6e859c7e55",
+  "bodyCharacters": 1164,
+  "generatedAt": "2026-07-24T12:13:59.127Z",
+  "visualBrief": {
+    "coreEventZh": "将分散的技能入口整合为统一主链路，并同步校验既有能力，同时推进日报系统的接入与阅读界面。",
+    "primarySubjectZh": "一名工坊总工程师正在统合分散的传动系统。",
+    "keyActionZh": "工程师将多条旧传动带接入一台中央控制机，并检查既有线路能否继续运转。",
+    "resultZh": "中央机器已稳定带动一条完成校准的生产线，象征统一入口、同步校验与主要接入链路已经落定。",
+    "tensionZh": "统一后的主链路已经运转，但末端一段折叠式输送轨道仍然卡涩，稳定性和操作体验尚待验证。",
+    "industrialMetaphorZh": "把技能治理与项目推进转译为十九世纪工坊中的动力归并：分散传动被收束到中央机器，已校准的生产线持续运行，而末端折叠轨道仍需修整。",
+    "supportingSymbolsZh": [
+      "正在操纵中央控制机的工坊总工程师",
+      "持续运转且完成校准的统一生产线",
+      "末端卡涩的折叠式输送轨道"
+    ],
+    "sceneDescriptionZh": "单帧场景中，总工程师站在中央控制机前，将汇聚而来的传动带压入主轴；机器另一侧，一条完成校准的生产线平稳运转；画面末端，折叠式输送轨道在转折处卡住。背景仅为昏暗工坊空间与侧窗光线。",
+    "focalElementsEn": [
+      "engineer operating a central control machine",
+      "calibrated unified production line running steadily",
+      "folding conveyor track jammed at its final bend"
+    ],
+    "imagePromptEn": "An engineer at the center feeds converging drive belts into a central control machine. To one side, a calibrated unified production line runs steadily from the machine. At the far end, a folding conveyor track is visibly jammed at its final bend, while the engineer turns toward the obstruction."
+  }
+}

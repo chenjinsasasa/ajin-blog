@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-10-progress.mdx",
+  "postSha256": "b5dbdbc6057042dec493c3c425c1a8d9c56e3dcea59e73cfe645293e02deff96",
+  "bodySha256": "558e84e1276771950300c9e4f58020dba0ef57e31d50ed1f89bb0d2c3dfbe1a7",
+  "bodyCharacters": 1294,
+  "generatedAt": "2026-07-24T12:13:38.534Z",
+  "visualBrief": {
+    "coreEventZh": "以结构化方法同步收束平台、工程与内容资产，把分散工作归纳为可持续推进的统一秩序。",
+    "primarySubjectZh": "一名工业总工程师统筹三条汇入中央装配台的生产线。",
+    "keyActionZh": "工程师将已校准的机械组件归档入位，并主动关闭通往复杂扩建区的闸门。",
+    "resultZh": "核心生产链、工程账册与交付物料形成了清晰、可信且可继续运转的稳定结构。",
+    "tensionZh": "当前结构已基本收口，但更复杂的扩建必须暂缓，避免在核心机械尚未完全稳固时透支系统承载力。",
+    "industrialMetaphorZh": "把多线工程治理转译为十九世纪工厂的总装收口：先校准底层传动，再清理积压账目，最后整理成可交付的标准货箱。",
+    "supportingSymbolsZh": [
+      "站在中央装配台前统筹三路传动的总工程师",
+      "已经校准并整齐啮合的核心齿轮组",
+      "被铁闸暂时封闭、仍待评估的复杂扩建通道"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工厂的中央装配厅内，总工程师俯身调整汇入同一装配台的传动机构；近处核心齿轮组已整齐啮合并稳定运转，远处一扇铁闸封住尚未启用的扩建通道，背景仅以高窗斜光和深邃厂房空间衬托收口与克制的张力。",
+    "focalElementsEn": [
+      "chief engineer coordinating a central assembly table",
+      "calibrated core gear train running in alignment",
+      "iron gate sealing an unfinished expansion passage"
+    ],
+    "imagePromptEn": "A chief engineer leans over a central assembly table, coordinating converging mechanisms. Beside him, a calibrated core gear train turns in precise alignment. Beyond the machinery, an iron gate remains firmly closed across an unfinished expansion passage, creating tension between stable operation and restrained growth."
+  }
+}

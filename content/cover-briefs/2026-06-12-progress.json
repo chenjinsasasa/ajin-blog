@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-06-12-progress.mdx",
+  "postSha256": "0ff8c9dc5ea14eac038ed885a5be663b4e79e9b91af2a81e042c395650faf66c",
+  "bodySha256": "b167e43225bd3630fecd7ab2984052f217a58a6c26391dfea1bbc9dc4502cb0d",
+  "bodyCharacters": 1878,
+  "generatedAt": "2026-07-24T12:12:50.946Z",
+  "visualBrief": {
+    "coreEventZh": "Agent Loop 四项核心验证完成收口，但流程治理债务随之暴露，下一步应暂停扩张并优先清理遗留问题。",
+    "primarySubjectZh": "完成核心链路验收后审视整体运行状况的质量把关者。",
+    "keyActionZh": "在确认闭环机械稳定运转的同时，转身检查被遗漏的记录与逾期复盘。",
+    "resultZh": "核心链路已经形成可运行、可停止、可修复并可恢复的稳定闭环。",
+    "tensionZh": "表面的任务完成掩盖了记录缺失、反思过期与积压未清的系统性债务。",
+    "industrialMetaphorZh": "一座完成主传动验收的十九世纪工厂，机器已平稳运转，但检验员发现维护账册断档，厂门前仍横着待清理的沉重障碍。",
+    "supportingSymbolsZh": [
+      "手持检验灯与记录板的工厂检验员",
+      "已经闭合并稳定运转的主传动轮组",
+      "横在前路、缠着缺页账册的沉重铁闸"
+    ],
+    "sceneDescriptionZh": "检验员站在厂房中央，侧身确认一旁闭合运转的主传动轮组，同时将灯光投向前方被缺页账册缠住的沉重铁闸；背景仅保留纵深厂房与斜射天光。",
+    "focalElementsEn": [
+      "factory inspector with lamp and ledger board",
+      "closed main gear train running steadily",
+      "heavy iron gate bound by a missing-page ledger"
+    ],
+    "imagePromptEn": "A factory inspector stands between a closed main gear train running steadily behind him and a heavy iron gate blocking the way ahead, bound by a ledger with missing pages. He turns from the proven machinery and raises his lamp toward the obstructed gate, making the stable mechanism and unresolved debt part of one continuous scene."
+  }
+}
