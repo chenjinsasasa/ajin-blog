@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-24-progress.mdx",
+  "postSha256": "5020c24ab9e6dad6bc314ee81e21b20e74aa383b7fa64c4e67db0ef48e60caeb",
+  "bodySha256": "2984a3ed34c7f42ae57f4cdcdcfe68a99699af5e480aa29e837c81dc4f267225",
+  "bodyCharacters": 3258,
+  "generatedAt": "2026-07-24T12:24:44.546Z",
+  "visualBrief": {
+    "coreEventZh": "博客素材链从漏洞识别进入系统性修复，通过前置覆盖检查保障并行项目线不再被内容展开环节静默遗漏。",
+    "primarySubjectZh": "一名工业档案检查员正在整顿素材输送流程。",
+    "keyActionZh": "检查员依据完整覆盖清单逐项核对进入加工环节的工作记录，并追查狭窄入口后的堵塞。",
+    "resultZh": "覆盖清单机制已经建立，素材遗漏从偶然补救转为前置防范。",
+    "tensionZh": "上游素材收集完整，但中段处理入口容量受限，后续项目记录仍可能被阻断，其实际运行稳定性尚待验证。",
+    "industrialMetaphorZh": "将博客素材链转译为十九世纪工坊的工单输送系统：检查员代表治理者，覆盖清单代表已落地的保障机制，堵塞的窄闸代表仍需持续验证的展开瓶颈。",
+    "supportingSymbolsZh": [
+      "核对工单的工业档案检查员",
+      "悬挂并已逐项勾验的完整覆盖清单",
+      "被过量工单堵塞的狭窄输送闸口"
+    ],
+    "sceneDescriptionZh": "一座昏暗工业档案工坊内，检查员站在悬挂的完整覆盖清单前逐项核对，身体转向一侧被工单堵塞的狭窄输送闸口；背景仅呈现深邃厂房空间与斜射天光。",
+    "focalElementsEn": [
+      "industrial archive inspector checking work orders",
+      "complete coverage checklist with verified marks",
+      "narrow feed gate jammed with work orders"
+    ],
+    "imagePromptEn": "An industrial archive inspector checks work orders against a complete coverage checklist hanging beside him, then turns toward a narrow feed gate jammed with excess work orders. The inspector and checklist occupy the foreground, while the blocked gate recedes to one side, revealing the tension between verified coverage and a constrained processing passage."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-25-progress.mdx",
+  "postSha256": "716f4f7cbd68d834290530716eccdba4bf621f00c503390dc8ad2be2fb17b538",
+  "bodySha256": "cde0b00677bd00ea4fe15cae265a485397f0800b417e65592167a44781ea5042",
+  "bodyCharacters": 1286,
+  "generatedAt": "2026-07-24T12:24:15.806Z",
+  "visualBrief": {
+    "coreEventZh": "将分散的系统能力收拢为可追溯、可判断、可复用的基础设施。",
+    "primarySubjectZh": "一名负责系统治理的工业检验员。",
+    "keyActionZh": "检验员把来源、处理过程与运行状态汇入统一的检查枢纽。",
+    "resultZh": "素材加工链已经贯通，稳定成果能够沿传动路径追溯来源与处理过程。",
+    "tensionZh": "已贯通的追溯机制与仍被黑暗遮蔽的观察盲区并存，系统可以运转，但尚未完全可见。",
+    "industrialMetaphorZh": "把系统治理转译为十九世纪工坊中的中央检验机制：分散工序经由传动链汇入可复用的检查枢纽。",
+    "supportingSymbolsZh": [
+      "中央检验台前正在校准机构的工业检验员",
+      "连接各道工序并带有追溯标记的稳定传动链",
+      "遮蔽观察视野的漆黑检视窗"
+    ],
+    "sceneDescriptionZh": "单帧场景中，工业检验员立于中央检验台前，伸手校准一条已经稳定运转、带有连续追溯标记的传动链；链条通向侧面的漆黑检视窗，却在窗口前失去可见反馈。背景仅为昏暗工坊空间与斜向天光。",
+    "focalElementsEn": [
+      "inspector at a central inspection bench",
+      "stable traceable transmission chain",
+      "blackened observation window"
+    ],
+    "imagePromptEn": "An inspector calibrates a central inspection bench as a stable transmission chain with clear provenance markers runs past him toward a blackened observation window. The chain remains orderly and connected, but its visible feedback disappears at the dark glass. Arrange the inspector in the foreground, the chain across the middle, and the obstructed window at the far end."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-21-progress.mdx",
+  "postSha256": "6add80ff5f0bf00174175c8032de99551758ec0c617ccfe03d5e8029a24ee003",
+  "bodySha256": "4abfedf82da7118123260a06b889a313beae387e43e7cb39cb1f7964de5ec6cc",
+  "bodyCharacters": 932,
+  "generatedAt": "2026-07-24T12:25:52.546Z",
+  "visualBrief": {
+    "coreEventZh": "在确认所有信号源均无变化后，记录并守住系统的一日静默。",
+    "primarySubjectZh": "连续高压运转后负责观察系统的守夜人。",
+    "keyActionZh": "守夜人检查稳定运行的机械装置，却选择暂不干预。",
+    "resultZh": "系统在没有新增产出的情况下平稳度过空闲周期，静默本身成为可被记录的信号。",
+    "tensionZh": "安静可能代表必要的恢复与等待，也可能遮蔽仍待处理的阻碍；此刻必须在介入和克制之间做出判断。",
+    "industrialMetaphorZh": "将系统静默转译为十九世纪工厂的停机观察窗：机器暂歇但秩序仍在，守夜人通过稳定迹象判断是否继续等待。",
+    "supportingSymbolsZh": [
+      "站在观察窗前克制等待的工厂守夜人",
+      "停转却保持完整有序的主传动轮",
+      "卡在远端轨道接头处的检修扳手"
+    ],
+    "sceneDescriptionZh": "单帧场景中，守夜人位于近景观察窗前，注视中央安静停转但结构完好的主传动轮；远端轨道接头处，一把卡住的检修扳手暗示尚未解除的阻碍。背景仅为昏暗厂房空间与从高窗落下的柔光。",
+    "focalElementsEn": [
+      "a restrained factory watchman at an inspection window",
+      "an intact silent main drive wheel",
+      "a maintenance wrench jammed at a distant rail joint"
+    ],
+    "imagePromptEn": "A restrained factory watchman stands at an inspection window, watching an intact silent main drive wheel at the center. Far behind it, a maintenance wrench remains jammed at a rail joint. The watchman holds back from intervening as soft high-window light separates the calm machinery from the unresolved obstruction."
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-23-progress.mdx",
+  "postSha256": "97fad533f443761ca9b67d95209d8b2b10acf7593193bd7428801a5d108aa8ce",
+  "bodySha256": "84b6ace1ab46c8f9fc3f1eff11e121047208e32d58c43ba3c76626f5f242d174",
+  "bodyCharacters": 3651,
+  "generatedAt": "2026-07-24T12:25:07.511Z",
+  "visualBrief": {
+    "coreEventZh": "一次系统性的结构纠偏：把知识边界、交接判断、会话链路与素材来源从混杂漂移拉回可控、可持续的真实工作状态。",
+    "primarySubjectZh": "一名工坊总工程师，代表正在梳理边界、固化判断并校准多条工作链的治理者。",
+    "keyActionZh": "总工程师俯身校准贯穿工坊的传动机构，使原本相互牵扯的动力链重新获得清晰边界与稳定秩序。",
+    "resultZh": "靠近工程师的一组传动轴已经对齐并平稳运转，象征边界、交接与会话治理开始形成可持续的稳定成果。",
+    "tensionZh": "已经校准的秩序与远端仍然纠缠、可能继续引发漂移和中断的传动带之间形成核心矛盾。",
+    "industrialMetaphorZh": "将多条现代系统链路转译为同一座十九世纪工坊中的传动系统：治理不是增添机器，而是校正动力边界，让成果能够稳定传递。",
+    "supportingSymbolsZh": [
+      "正在校准机构的工坊总工程师",
+      "已经对齐并平稳运转的传动轴组",
+      "远端仍纠缠卡滞的传动带"
+    ],
+    "sceneDescriptionZh": "一座纵深工坊内，总工程师位于前景中央，俯身校准一组已经对齐运转的传动轴；同一机构向画面深处延伸，末端传动带仍纠缠卡滞。背景只呈现昏暗厂房空间与从高窗落下的侧光。",
+    "focalElementsEn": [
+      "chief engineer calibrating the mechanism",
+      "aligned transmission shafts running steadily",
+      "tangled drive belts jammed at the far end"
+    ],
+    "imagePromptEn": "A chief engineer bends over and calibrates a central mechanism in the foreground. Beside him, aligned transmission shafts run steadily and extend into the workshop depth. At the far end of the same system, tangled drive belts remain jammed in shadow, creating tension between restored order and unresolved obstruction."
+  }
+}
