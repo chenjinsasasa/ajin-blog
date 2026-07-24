@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-13-progress.mdx",
+  "postSha256": "777bcb655d98245553408542688426a010306b87b5eddf9e9e312df2f92d98c1",
+  "bodySha256": "6d73eb392cf857271182ebee14da89886ad0913b028bec47ee15c7a355c9e5b6",
+  "bodyCharacters": 1686,
+  "generatedAt": "2026-07-24T11:38:07.233Z",
+  "visualBrief": {
+    "coreEventZh": "六个项目在既定约束与验收标准下集中收口，系统治理由事后修补转向事前锁定边界。",
+    "primarySubjectZh": "一名总工程师统筹多条生产线的最终验收，将分散的收口缝隙纳入统一、可审计的流程。",
+    "keyActionZh": "总工程师依照预设规程检查并锁闭总控机构，使已经完成的工作形成连续证据链。",
+    "resultZh": "多项工作进入可验收状态，收口开始成为可重复、可预期且可追溯的常规机制。",
+    "tensionZh": "大部分机构已经稳定闭环，但一处停滞的传动连接仍未接入总控体系，且稳定性还需持续运行验证。",
+    "industrialMetaphorZh": "将跨项目系统治理转译为十九世纪工厂的总控验收：工程师通过带封印的机械总控台锁定生产边界，已校准的齿轮组持续运转，而断开的传动轴暴露尚未解决的治理缺口。",
+    "supportingSymbolsZh": [
+      "站在总控台前执行锁闭验收的总工程师",
+      "已校准并由检验封印固定的联动齿轮组",
+      "停在总控机构之外的断开传动轴"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工厂的验收间内，总工程师位于前景中央，双手锁闭总控台；其一侧的联动齿轮组已加盖检验封印并平稳运转，另一侧断开的传动轴停在接口之前。背景仅呈现高窗投下的斜光与深暗厂房空间。",
+    "focalElementsEn": [
+      "chief engineer locking the master control console",
+      "sealed calibrated gear assembly running steadily",
+      "disconnected drive shaft halted before the coupling"
+    ],
+    "imagePromptEn": "A chief engineer stands at the center, locking the master control console with both hands. Beside him, a sealed calibrated gear assembly turns steadily under inspection seals. On the opposite side, a disconnected drive shaft remains motionless just before the coupling, separated from the working mechanism."
+  }
+}

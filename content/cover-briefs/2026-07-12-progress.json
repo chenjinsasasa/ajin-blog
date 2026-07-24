@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-12-progress.mdx",
+  "postSha256": "f125df6982396e377a8134b232aa35f583466192ad30476608819a143cdd5131",
+  "bodySha256": "7ca9d1026435a0ccd6cc6b824630d48e5b5a4c61ad4068f8c1b3b5aa77a3bc53",
+  "bodyCharacters": 2074,
+  "generatedAt": "2026-07-24T11:38:49.332Z",
+  "visualBrief": {
+    "coreEventZh": "在长期只读探索打牢边界后，执行港口于一天内密集收拢多阶段治理门禁，并开始迈向真实场景验证。",
+    "primarySubjectZh": "一名独自操作整套治理机械的总工程师。",
+    "keyActionZh": "总工程师依次合拢经过预演、回退与隔离验证的多重闸门，将长期铺设的基础转化为密集收口。",
+    "resultZh": "多阶段治理链被连成稳定运转的工业装置，但真实场景中的协作运行仍待验证。",
+    "tensionZh": "密集收口究竟证明了扎实地基带来的效率，还是暴露了本应多方协作的系统仍由一人驱动。",
+    "industrialMetaphorZh": "把长期只读验证转译为深埋地下的稳固轨道与管线，把连续里程碑收口转译为依次闭合的铸铁安全闸门，把尚未跑通的多方协作转译为停在远端、尚未接入主轴的传动联轴器。",
+    "supportingSymbolsZh": [
+      "独自扳动总控制杆的工坊总工程师",
+      "沿稳固轨道依次闭合并稳定运转的铸铁安全闸门组",
+      "远端尚未接入主轴的传动联轴器"
+    ],
+    "sceneDescriptionZh": "一座纵深工业工坊内，总工程师站在前景扳下总控制杆，中景的铸铁安全闸门沿稳固轨道依次闭合并开始运转，远端一只脱离主轴的联轴器停在昏暗处；背景仅以高窗斜光和厂房纵深界定空间。",
+    "focalElementsEn": [
+      "lone chief engineer pulling a master lever",
+      "iron safety gates closing along a stable track",
+      "disconnected drive coupling at the far end"
+    ],
+    "imagePromptEn": "A lone chief engineer pulls a master lever in the foreground. Along a stable track, a sequence of iron safety gates closes and runs in alignment through the middle ground. At the far end, a disconnected drive coupling remains motionless, separated from the main shaft. High window light reveals the depth between the working mechanism and the unresolved connection."
+  }
+}
