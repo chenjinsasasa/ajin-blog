@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-02-progress.mdx",
+  "postSha256": "22729829a73f4bddfbe117908f2ee82e251f2fd31a674f63b7bcaeb1d27084fb",
+  "bodySha256": "1b54c8367775ab0ac3ad2f6f7e0fe243a21adf07f555c4d0f46fad2220726452",
+  "bodyCharacters": 1547,
+  "generatedAt": "2026-07-24T12:36:04.175Z",
+  "visualBrief": {
+    "coreEventZh": "补齐观测并清除构建链路中的脏状态，让发布与验证过程更加稳定可控。",
+    "primarySubjectZh": "一名检修发布链路的工业时代工程师。",
+    "keyActionZh": "工程师一边校准观测仪表，一边移除轨道接缝处损坏的连接件。",
+    "resultZh": "通往交付端的轨道恢复平顺，已完成的维护成果可以稳定承载后续运行。",
+    "tensionZh": "已经修平的发布路径仍面对前方未排除的隐蔽障碍，稳定性提升与潜在复发风险并存。",
+    "industrialMetaphorZh": "把多站点发布链路转译为工厂运输轨道，把可观测性转译为校准后的机械仪表，把软链接、扫描边界与构建上下文隐患转译为卡在轨道前方的断裂构件。",
+    "supportingSymbolsZh": [
+      "检修轨道与仪表的工程师",
+      "已经校准并恢复平顺的运输轨道",
+      "前方阴影中尚未清除的断裂构件"
+    ],
+    "sceneDescriptionZh": "一名工程师跪在工厂运输轨道旁校准仪表，身后的轨道已经修复并平稳延伸，前方昏暗处仍有一截断裂构件横在轨面上；背景仅呈现宽阔车间的纵深与斜射天光。",
+    "focalElementsEn": [
+      "engineer inspecting the track gauge",
+      "calibrated railway running smoothly behind",
+      "broken component blocking the track ahead"
+    ],
+    "imagePromptEn": "An engineer kneels beside a track gauge, inspecting and calibrating it. Behind him, a repaired railway runs smoothly into the distance. Ahead, a broken component lies across the rails, partially hidden in shadow, forcing his attention toward the remaining obstruction."
+  }
+}

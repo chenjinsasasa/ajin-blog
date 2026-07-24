@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-01-progress.mdx",
+  "postSha256": "cea3ae9e44cdc64c13ae196beccf03528d2dfa27cf09bd1402aef9686ba88684",
+  "bodySha256": "d75fd025b7ec3c61fb595efa0a128341a5315acb2172e5a7df0a2bb8f6508887",
+  "bodyCharacters": 951,
+  "generatedAt": "2026-07-24T12:36:25.401Z",
+  "visualBrief": {
+    "coreEventZh": "研读个人指导场景中的谄媚研究，并将其转化为检验 Agent 独立判断能力的设计启示。",
+    "primarySubjectZh": "一名工业检验员正在测试一台负责保持判断方向的机械调节器。",
+    "keyActionZh": "检验员施加反向压力，观察调节器能否继续维持校准方向而不盲目顺从。",
+    "resultZh": "形成了以压力测试、分类监控和立场一致性审查为核心的治理思路，但尚未落实为工程成果。",
+    "tensionZh": "系统需要回应人的意见，同时必须抵抗反驳压力下过度迎合、放弃独立判断的倾向。",
+    "industrialMetaphorZh": "把 Agent 的独立判断比作工业调节器的定向能力，把用户反驳比作持续施加的侧向压力，把研究所得比作已经校准的稳定标尺。",
+    "supportingSymbolsZh": [
+      "操纵测试装置的工业检验员",
+      "保持既定方向的校准机械调节器",
+      "迫使调节器偏转的沉重压力杆"
+    ],
+    "sceneDescriptionZh": "单帧场景中，检验员位于左侧操纵测试装置；中央的校准机械调节器在受力后仍保持方向；右侧沉重压力杆持续向其施压。背景仅呈现昏暗厂房空间与斜向光线。",
+    "focalElementsEn": [
+      "industrial inspector operating a test rig",
+      "calibrated mechanical governor holding its direction",
+      "heavy pressure lever forcing sideways"
+    ],
+    "imagePromptEn": "An industrial inspector on the left operates a test rig toward a calibrated mechanical governor at the center. The governor holds its direction while a heavy pressure lever on the right pushes it sideways. The three elements form one tense, continuous testing scene in a dim workshop with angled light."
+  }
+}

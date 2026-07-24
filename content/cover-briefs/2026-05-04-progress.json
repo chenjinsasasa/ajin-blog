@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-04-progress.mdx",
+  "postSha256": "b6d4ca98597c421f39154f9af8183ba26ce817cf34db1a78791a6c8cba7d8f23",
+  "bodySha256": "28c638a234064a7568cc4b16a765a53ff0bd64820cf7ba8663135830fb605f70",
+  "bodyCharacters": 4262,
+  "generatedAt": "2026-07-24T12:35:14.257Z",
+  "visualBrief": {
+    "coreEventZh": "团队把一天的推进重心从扩充功能转向收敛主链路，以更清晰的边界、稳定的状态和可复验的机制提升系统可信度。",
+    "primarySubjectZh": "一组工匠共同整顿横跨工坊的主传动链，使执行与翻译两类工作汇入同一条可靠生产线。",
+    "keyActionZh": "工匠关闭冗余入口、校准传动节点，并通过检验装置确认成品能够稳定进入持续生产。",
+    "resultZh": "主传动链更短、更一致，已有能力从一次性演示向可验证、可迭代、可持续使用迈进。",
+    "tensionZh": "链路已经加固，但最后的压力检验尚未完成，可信度仍需经完整复验才能最终确认。",
+    "industrialMetaphorZh": "将现代系统治理与产品稳定性转译为十九世纪工坊对复杂传动系统的裁撤、校准和压力验收。",
+    "supportingSymbolsZh": [
+      "正在校准总控轮组的工匠团队",
+      "已稳定咬合并带动生产的中央传动轴",
+      "被封闭检验阀阻住、等待压力复验的末端管线"
+    ],
+    "sceneDescriptionZh": "一座工业工坊内，工匠团队围绕中央传动轴调整总控轮组；传动轴已经平稳运转并把动力送向前方，却在末端被尚未开启的检验阀截住。背景仅呈现纵深厂房与从高窗落下的光线。",
+    "focalElementsEn": [
+      "craftsmen calibrating the master wheel assembly",
+      "a stable central drive shaft in motion",
+      "a terminal pipeline blocked by a sealed test valve"
+    ],
+    "imagePromptEn": "Craftsmen calibrate a master wheel assembly at the left, meshing it with a stable central drive shaft turning through the middle. The shaft carries motion toward a terminal pipeline on the right, where a sealed test valve blocks the final passage and awaits pressure verification."
+  }
+}

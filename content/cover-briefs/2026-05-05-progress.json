@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-05-05-progress.mdx",
+  "postSha256": "8c0aee4df7bdb2b35c4392a96fb20e65edde2215f2885da29a6426d4225b5296",
+  "bodySha256": "14ffda731a211fde786077d7dabf8eeefc3be69133fb8f4a867ba3ca0a1e43cf",
+  "bodyCharacters": 2474,
+  "generatedAt": "2026-07-24T12:34:48.186Z",
+  "visualBrief": {
+    "coreEventZh": "团队把一次性的内容获取与生成输出，转化为可复用、可审计、可扩展的长期能力。",
+    "primarySubjectZh": "一名工业档案工匠正在推动知识资产与标准化生产机制合流。",
+    "keyActionZh": "工匠将散落材料整理进统一的生产装置，并按固定规程驱动其持续运转。",
+    "resultZh": "原本依赖临时人工处理的工作开始形成能够反复调用、稳定产出的系统能力。",
+    "tensionZh": "系统已经积累起复用势能，但来源授权、版本更新、平台变化与执行一致性仍可能让标准失效。",
+    "industrialMetaphorZh": "把内容沉淀与输出标准化转译为一座由档案匣供料、按统一模具持续生产的工业机器。",
+    "supportingSymbolsZh": [
+      "操纵整套机制的工业档案工匠",
+      "由整齐档案匣供料并稳定运转的标准化生产机",
+      "卡在传动末端、尚未校准的磨损调节阀"
+    ],
+    "sceneDescriptionZh": "单帧场景中，工业档案工匠位于中央，将整理好的档案匣推入稳定运转的生产机；机器另一端的磨损调节阀卡住传动，工匠伸手准备校准。背景仅呈现昏暗厂房空间与侧向天光。",
+    "focalElementsEn": [
+      "industrial archivist operating the mechanism",
+      "standardized production machine fed by ordered archive drawers",
+      "worn uncalibrated regulator jamming the final drive"
+    ],
+    "imagePromptEn": "An industrial archivist stands at the center, feeding ordered archive drawers into a standardized production machine that turns steadily beside him. At the machine’s far end, a worn uncalibrated regulator jams the final drive; the archivist reaches toward it while keeping the main mechanism running."
+  }
+}
