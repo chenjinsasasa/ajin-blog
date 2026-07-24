@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 24,
+    "pending": 19,
     "readyForReview": 0,
-    "applied": 60,
+    "applied": 65,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -739,62 +739,62 @@
     {
       "index": 61,
       "batch": 13,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-20",
       "title": "我们的进展｜素材链补齐后，半成品的一天变成多线校准",
       "postPath": "content/progress/2026-05-20-progress.mdx",
-      "currentCover": "/covers/2026-05-20-progress.jpg",
+      "currentCover": "/covers/2026-05-20-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-20-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 62,
       "batch": 13,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-19",
       "title": "我们的进展 2026-05-19",
       "postPath": "content/progress/2026-05-19-progress.mdx",
-      "currentCover": "/covers/2026-05-19-progress.jpg",
+      "currentCover": "/covers/2026-05-19-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-19-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 63,
       "batch": 13,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-18",
       "title": "我们的进展｜当工具开始有了「房间」",
       "postPath": "content/progress/2026-05-18-progress.mdx",
-      "currentCover": "/covers/2026-05-18-progress.jpg",
+      "currentCover": "/covers/2026-05-18-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-18-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 64,
       "batch": 13,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-17",
       "title": "我们的进展｜在「基本可用」处停一停",
       "postPath": "content/progress/2026-05-17-progress.mdx",
-      "currentCover": "/covers/2026-05-17-progress.jpg",
+      "currentCover": "/covers/2026-05-17-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-17-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 65,
       "batch": 13,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-16",
       "title": "我们的进展｜先把已经答应用户的那一块补平",
       "postPath": "content/progress/2026-05-16-progress.mdx",
-      "currentCover": "/covers/2026-05-16-progress.jpg",
+      "currentCover": "/covers/2026-05-16-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-16-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 66,
