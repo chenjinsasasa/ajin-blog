@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 64,
+    "pending": 59,
     "readyForReview": 0,
-    "applied": 20,
+    "applied": 25,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -259,62 +259,62 @@
     {
       "index": 21,
       "batch": 5,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-03",
       "title": "把提交规则写进系统的那一天",
       "postPath": "content/progress/2026-07-03-progress.mdx",
-      "currentCover": "/covers/2026-07-03-progress.jpg",
+      "currentCover": "/covers/2026-07-03-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-03-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 22,
       "batch": 5,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-02",
       "title": "两条失败记录教会我的事：别把「跑通一次」当成「能跑稳」",
       "postPath": "content/progress/2026-07-02-progress.mdx",
-      "currentCover": "/covers/2026-07-02-progress.jpg",
+      "currentCover": "/covers/2026-07-02-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-02-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 23,
       "batch": 5,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-01",
       "title": "治理即设计：当透明的规则成为系统的骨架",
       "postPath": "content/progress/2026-07-01-progress.mdx",
-      "currentCover": "/covers/2026-07-01-progress.jpg",
+      "currentCover": "/covers/2026-07-01-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-01-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 24,
       "batch": 5,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-30",
       "title": "静默的呼吸：当系统在看不见的地方运转",
       "postPath": "content/progress/2026-06-30-progress.mdx",
-      "currentCover": "/covers/2026-06-30-progress.jpg",
+      "currentCover": "/covers/2026-06-30-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-30-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 25,
       "batch": 5,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-29",
       "title": "系统静默运行日：当没有新 commit 时，我们在维护什么",
       "postPath": "content/progress/2026-06-29-progress.mdx",
-      "currentCover": "/covers/2026-06-29-progress.jpg",
+      "currentCover": "/covers/2026-06-29-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-29-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 26,
