@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-19-progress.mdx",
+  "postSha256": "8489c8153232279c4c628de4cd3be120c15eb1e3ed95e9f603ede7a9ffa33ac7",
+  "bodySha256": "8652d1017a5d9a71b458688b901f7bad1339a68732caa9c04924799f087aeef1",
+  "bodyCharacters": 1499,
+  "generatedAt": "2026-07-24T09:55:03.393Z",
+  "visualBrief": {
+    "coreEventZh": "多项目并行推进中，主事者以门禁验证、边界收紧和失败留痕完成了一次克制的治理收口。",
+    "primarySubjectZh": "在多条生产线之间执行验收与记录的工坊监工。",
+    "keyActionZh": "监工核验已经稳定运转的机械，并将未能闭合的环节如实登记。",
+    "resultZh": "可靠成果与实施边界得到确认，后续工作具备可追溯的续跑依据。",
+    "tensionZh": "已验证的稳定进展与仍未完成的收口阻碍并存，必须避免用表面繁荣掩盖缺口。",
+    "industrialMetaphorZh": "把并行项目治理转译为十九世纪工坊的一次晚间巡检：监工守住验收底线，以归档凭证确认成果，同时直面卡住的收口机构。",
+    "supportingSymbolsZh": [
+      "手持巡检账簿的工坊监工",
+      "通过验收门并稳定运转的精密机械",
+      "停在闭合前、齿轮卡住的封印机构"
+    ],
+    "sceneDescriptionZh": "晚间工坊内，监工站在画面中央核对巡检账簿；一侧的精密机械已穿过验收门并平稳运行，另一侧的封印机构停在闭合前且齿轮卡住。背景仅呈现纵深厂房与斜落灯光。",
+    "focalElementsEn": [
+      "foreman holding an inspection ledger",
+      "precision machine running beyond an inspection gate",
+      "jammed sealing mechanism halted before closure"
+    ],
+    "imagePromptEn": "A foreman stands at center, checking an inspection ledger. To his left, a precision machine runs steadily beyond an inspection gate. To his right, a sealing mechanism is halted just before closure, its gears visibly jammed. The three focal elements form one coherent evening workshop inspection scene."
+  }
+}

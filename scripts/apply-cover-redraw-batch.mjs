@@ -97,18 +97,22 @@ async function main() {
     const rawPost = fs.readFileSync(postPath, 'utf8')
     const post = matter(rawPost)
     const { brief, briefPath, briefRelativePath } = await verifyCandidate(entry, post)
-    const nextPost = upsertCoverProvenance(rawPost, {
-      coverImage: entry.targetCover,
-      coverSourceType: 'generated',
-      coverProvider: config.provider,
-      coverModel: config.model,
-      coverExecutionMode: config.executionMode,
-      coverStyle: config.style,
-      coverPromptVersion: config.promptVersion,
-      coverBriefVersion: config.briefVersion,
-      coverBriefPath: briefRelativePath,
-      coverReferenceSet: config.referenceSet,
-    })
+    const nextPost = upsertCoverProvenance(
+      rawPost,
+      {
+        coverImage: entry.targetCover,
+        coverSourceType: 'generated',
+        coverProvider: config.provider,
+        coverModel: config.model,
+        coverExecutionMode: config.executionMode,
+        coverStyle: config.style,
+        coverPromptVersion: config.promptVersion,
+        coverBriefVersion: config.briefVersion,
+        coverBriefPath: briefRelativePath,
+        coverReferenceSet: config.referenceSet,
+      },
+      ['coverSourceUrl', 'coverLicense', 'coverAttribution'],
+    )
     const nextBrief = { ...brief, postSha256: hashText(nextPost) }
     fs.writeFileSync(briefPath, `${JSON.stringify(nextBrief, null, 2)}\n`, 'utf8')
     fs.writeFileSync(postPath, nextPost, 'utf8')

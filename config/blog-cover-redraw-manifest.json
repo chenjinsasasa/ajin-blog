@@ -9,9 +9,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 83,
+    "pending": 79,
     "readyForReview": 0,
-    "applied": 1,
+    "applied": 5,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -30,50 +30,50 @@
     {
       "index": 2,
       "batch": 1,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-22",
       "title": "四条流水线同时推进——LoopHarbor 进入自治扩展期",
       "postPath": "content/progress/2026-07-22-progress.mdx",
-      "currentCover": "/covers/2026-07-22-four-pipelines-advance.jpg",
+      "currentCover": "/covers/2026-07-22-four-pipelines-advance-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-22-four-pipelines-advance-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 3,
       "batch": 1,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-21",
       "title": "全部搬回家——一天之内把五个项目从 GitHub 迁到 GitLab",
       "postPath": "content/progress/2026-07-21-progress.mdx",
-      "currentCover": "/covers/2026-07-21-migration-to-gitlab.jpg",
+      "currentCover": "/covers/2026-07-21-migration-to-gitlab-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-21-migration-to-gitlab-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 4,
       "batch": 1,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-20",
       "title": "打磨每一个齿轮——Signal Radar 生产稳定性与前端焕新",
       "postPath": "content/progress/2026-07-20-progress.mdx",
-      "currentCover": "/covers/2026-07-20-gear-polishing.jpg",
+      "currentCover": "/covers/2026-07-20-gear-polishing-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-20-gear-polishing-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 5,
       "batch": 1,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-07-19",
       "title": "门禁全绿、方案落地、收口留痕——多项目并行的一天",
       "postPath": "content/progress/2026-07-19-progress.mdx",
-      "currentCover": "/covers/2026-07-19-progress.jpg",
+      "currentCover": "/covers/2026-07-19-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-07-19-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 6,

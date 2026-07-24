@@ -52,6 +52,26 @@ function normalizeDate(value) {
   return typeof value === 'string' ? value.trim() : ''
 }
 
+function hasExactCoverContract(data) {
+  const exactFields = {
+    coverSourceType: 'generated',
+    coverProvider: config.provider,
+    coverModel: config.model,
+    coverExecutionMode: config.executionMode,
+    coverStyle: config.style,
+    coverPromptVersion: config.promptVersion,
+    coverBriefVersion: config.briefVersion,
+    coverReferenceSet: config.referenceSet,
+  }
+  const forbidden = ['coverSourceUrl', 'coverLicense', 'coverAttribution']
+  return (
+    Object.entries(exactFields).every(([field, expected]) => data[field] === expected) &&
+    forbidden.every((field) => !Object.prototype.hasOwnProperty.call(data, field)) &&
+    typeof data.coverBriefPath === 'string' &&
+    data.coverBriefPath.startsWith('content/cover-briefs/')
+  )
+}
+
 function main() {
   const options = parseArgs(process.argv.slice(2))
   const posts = getPostFiles(path.join(projectRoot, 'content'))
@@ -64,6 +84,7 @@ function main() {
         coverImage: typeof data.coverImage === 'string' ? data.coverImage.trim() : '',
         coverPromptVersion:
           typeof data.coverPromptVersion === 'string' ? data.coverPromptVersion.trim() : '',
+        coverContractValid: hasExactCoverContract(data),
       }
     })
     .filter((post) => post.coverImage)

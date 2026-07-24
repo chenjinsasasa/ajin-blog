@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-22-progress.mdx",
+  "postSha256": "5ef9f2bfcac9e118485e55bdba2464abe5eb4306ce2a4349c11fdf808314ffff",
+  "bodySha256": "e192f6b1c89b40613b7315fb57c969bb21982bbb150a7e410de1356a2fa58f32",
+  "bodyCharacters": 1919,
+  "generatedAt": "2026-07-24T09:09:31.943Z",
+  "visualBrief": {
+    "coreEventZh": "LoopHarbor 按照证据收口、预发布验证、结构迁移、受控自动化的顺序完成连续推进，进入可靠扩展阶段。",
+    "primarySubjectZh": "一名负责扩展自动机械系统的工坊工程师。",
+    "keyActionZh": "工程师在已稳定运转的验证台旁，为即将扩展的自动传动机构谨慎调节控制阀。",
+    "resultZh": "自动化扩展建立在可追溯、可验证、可回退的稳定基础上。",
+    "tensionZh": "扩大自动运行能力与防止系统失控之间的矛盾。",
+    "industrialMetaphorZh": "把受控自动化转译为蒸汽工坊中的动力扩展：稳定的验证台承托新机构，工程师通过控制阀约束尚未完全驯服的传动阻力。",
+    "supportingSymbolsZh": [
+      "调节控制阀的工坊工程师",
+      "稳定运转并留有检验记录的机械验证台",
+      "被卡阻的自动传动机构"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工坊内，工程师站在稳定运转的机械验证台前，一手调节连接右侧自动传动机构的控制阀；验证台保持平稳，传动机构却在扩展方向上出现卡阻。背景仅呈现深阔厂房空间与侧窗光线。",
+    "focalElementsEn": [
+      "engineer adjusting a control valve",
+      "steadily running mechanical test bench",
+      "jammed automatic transmission mechanism"
+    ],
+    "imagePromptEn": "An engineer adjusts a control valve beside a steadily running mechanical test bench, while a jammed automatic transmission mechanism strains to extend on the opposite side. The test bench anchors the scene between the engineer and the obstructed mechanism, emphasizing controlled expansion under tension."
+  }
+}

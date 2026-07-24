@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-20-progress.mdx",
+  "postSha256": "c4b6fa2478fa4090617e8875b5e3a13aad0a3d0ef6b3f06d0b1bb46389aedf9f",
+  "bodySha256": "a2d99915de1725636d403c36bf22a9a4aeb0f55acae59c038ba32a1ab17ba15a",
+  "bodyCharacters": 1665,
+  "generatedAt": "2026-07-24T09:32:53.374Z",
+  "visualBrief": {
+    "coreEventZh": "围绕生产链路进行齿轮级校准，使系统从“能跑”进一步走向“跑稳”。",
+    "primarySubjectZh": "一名在精密传动机前持续校准的十九世纪钟表匠。",
+    "keyActionZh": "钟表匠俯身调节关键齿轮的啮合与停启顺序，并观察整套机构能否稳定运转。",
+    "resultZh": "主要齿轮已经同步咬合，传动链呈现连续、可控的运行状态。",
+    "tensionZh": "已建立的稳定秩序仍需抵御边缘条件与偶发扰动带来的再次失准。",
+    "industrialMetaphorZh": "将生产稳定性打磨转译为钟表匠对大型工业钟机进行逐齿校准：稳定成果是同步运转的传动链，残余风险是边缘处尚待处理的松动齿轮。",
+    "supportingSymbolsZh": [
+      "俯身校准机构的钟表匠",
+      "同步咬合并稳定传动的主齿轮组",
+      "机构边缘一枚仍在轻微摆动的松动齿轮"
+    ],
+    "sceneDescriptionZh": "一座昏暗工业钟表工坊内，钟表匠站在大型机械钟机前，用工具校准中央主齿轮组；主齿轮已经同步转动，而机构边缘的一枚松动齿轮仍轻微摆动。背景仅呈现深邃工坊空间与侧窗光线。",
+    "focalElementsEn": [
+      "watchmaker calibrating the mechanism",
+      "synchronized main gear assembly",
+      "loosely wobbling edge gear"
+    ],
+    "imagePromptEn": "A watchmaker leans toward a large clockwork mechanism, carefully calibrating its synchronized main gear assembly. The central gears engage in steady motion, while one loose gear at the outer edge wobbles slightly beyond his immediate reach. A dim workshop and narrow side light frame only these three focal elements."
+  }
+}

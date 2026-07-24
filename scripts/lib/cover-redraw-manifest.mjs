@@ -24,6 +24,7 @@ export function createCoverRedrawManifest({ batchSize, config, exists, posts }) 
     const applied =
       post.coverImage === targetCover &&
       post.coverPromptVersion === config.promptVersion &&
+      post.coverContractValid === true &&
       targetCoverExists
 
     return {

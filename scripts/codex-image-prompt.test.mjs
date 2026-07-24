@@ -42,6 +42,8 @@ test('生图命令不附加参考图输入', () => {
     args.slice(args.indexOf('-c'), args.indexOf('-c') + 2),
     ['-c', 'model_reasoning_effort="low"'],
   )
+  assert.equal(args.includes('--ignore-user-config'), true)
+  assert.equal(args.includes('--ignore-rules'), true)
   assert.equal(args.at(-1), '-')
 })
 

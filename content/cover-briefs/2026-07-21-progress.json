@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-21-progress.mdx",
+  "postSha256": "798cedb8f7dd126fa085f81732399f9503be0d6168c9782e683450d25b57b639",
+  "bodySha256": "a3629d9cab6448e67c37cb0153d0d76bc43a9b0e43b391110f0ca7228bfd2208",
+  "bodyCharacters": 2825,
+  "generatedAt": "2026-07-24T09:30:16.536Z",
+  "visualBrief": {
+    "coreEventZh": "在一天内将核心工程资产从外部托管体系整体迁入本地基础设施，并完成持续验证闭环。",
+    "primarySubjectZh": "一名工坊总管正在把关键生产体系的控制权收回自有厂房。",
+    "keyActionZh": "总管拉动总控杆，将新接入的传动系统纳入本地动力中枢并现场验收。",
+    "resultZh": "迁入后的生产线已经连续运转，表明资产转移与基础验证均已完成。",
+    "tensionZh": "高速完成的迁移仍缺少稳固的回退路径与环境固化，集中控制带来了新的单点脆弱性。",
+    "industrialMetaphorZh": "把仓库迁移与持续集成转译为将外部工厂的生产体系接回自有车间，并由统一动力装置持续驱动和检验。",
+    "supportingSymbolsZh": [
+      "操纵总控杆的工坊总管",
+      "平稳运转的联动传动轴",
+      "横在备用退路前的断裂铁轨"
+    ],
+    "sceneDescriptionZh": "自有厂房内，工坊总管站在近景拉下总控杆，中景的联动传动轴已稳定转动，远处一段断裂铁轨横亘在备用退路上；背景仅保留高窗投下的斜光与深邃厂房空间。",
+    "focalElementsEn": [
+      "foreman pulling a master control lever",
+      "interconnected drive shaft running steadily",
+      "broken rail blocking the fallback route"
+    ],
+    "imagePromptEn": "A foreman in the foreground pulls a master control lever toward himself. Behind him, an interconnected drive shaft runs steadily through the workshop. In the distance, a broken rail blocks the only fallback route. The three elements align on one visual axis, moving from regained control to stable operation and unresolved fragility."
+  }
+}

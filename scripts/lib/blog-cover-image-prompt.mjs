@@ -16,6 +16,8 @@ export function buildCodexImageArgs(projectRoot) {
     'exec',
     '--ephemeral',
     '--skip-git-repo-check',
+    '--ignore-user-config',
+    '--ignore-rules',
     '-C',
     projectRoot,
     '-',
