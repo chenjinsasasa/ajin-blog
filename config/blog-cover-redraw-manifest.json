@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 39,
+    "pending": 34,
     "readyForReview": 0,
-    "applied": 45,
+    "applied": 50,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -559,62 +559,62 @@
     {
       "index": 46,
       "batch": 10,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-07",
       "title": "从能跑到可治理：Harness、Vault 与审计表的同一天",
       "postPath": "content/progress/2026-06-07-progress.mdx",
-      "currentCover": "/covers/2026-06-07-progress.jpg",
+      "currentCover": "/covers/2026-06-07-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-07-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 47,
       "batch": 10,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-06",
       "title": "Signal Radar 启动与 Agent 工作台的治理转向",
       "postPath": "content/progress/2026-06-06-progress.mdx",
-      "currentCover": "/covers/2026-06-06-progress.jpg",
+      "currentCover": "/covers/2026-06-06-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-06-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 48,
       "batch": 10,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-04",
       "title": "把方法吸收成底座，而不是把 skill 名单搬进来",
       "postPath": "content/progress/2026-06-04-progress.mdx",
-      "currentCover": "/covers/2026-06-04-progress.jpg",
+      "currentCover": "/covers/2026-06-04-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-04-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 49,
       "batch": 10,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-01",
       "title": "没有新代码的一天，也不是没有进展",
       "postPath": "content/progress/2026-06-01-progress.mdx",
-      "currentCover": "/covers/2026-06-01-progress.jpg",
+      "currentCover": "/covers/2026-06-01-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-01-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 50,
       "batch": 10,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-31",
       "title": "视觉真值与流程沉淀：Nexora 前端规范的地基",
       "postPath": "content/progress/2026-05-31-progress.mdx",
-      "currentCover": "/covers/2026-05-31-visual-workflow.jpg",
+      "currentCover": "/covers/2026-05-31-visual-workflow-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-31-visual-workflow-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 51,
