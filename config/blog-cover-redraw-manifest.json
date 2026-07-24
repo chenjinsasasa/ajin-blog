@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 54,
+    "pending": 49,
     "readyForReview": 0,
-    "applied": 30,
+    "applied": 35,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -379,62 +379,62 @@
     {
       "index": 31,
       "batch": 7,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-22",
       "title": "周一的交付：一个可验证的 AI 小单模型",
       "postPath": "content/progress/2026-06-22-progress.mdx",
-      "currentCover": "/covers/2026-06-22-progress.jpg",
+      "currentCover": "/covers/2026-06-22-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-22-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 32,
       "batch": 7,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-21",
       "title": "周日的账本：44 个技能归档，和一份迟到的巡检报告",
       "postPath": "content/progress/2026-06-21-progress.mdx",
-      "currentCover": "/covers/2026-06-21-progress.jpg",
+      "currentCover": "/covers/2026-06-21-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-21-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 33,
       "batch": 7,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-20",
       "title": "周六的静默：当系统学会等待",
       "postPath": "content/progress/2026-06-20-progress.mdx",
-      "currentCover": "/covers/2026-06-20-progress.png",
+      "currentCover": "/covers/2026-06-20-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-20-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 34,
       "batch": 7,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-19",
       "title": "从协助到独立：一篇 Anthropic 论文引发的团队自省",
       "postPath": "content/progress/2026-06-19-progress.mdx",
-      "currentCover": "/covers/2026-06-19-progress.jpg",
+      "currentCover": "/covers/2026-06-19-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-19-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 35,
       "batch": 7,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-06-18",
       "title": "目录卫生治理：把混乱感变成可执行的清单",
       "postPath": "content/progress/2026-06-18-progress.mdx",
-      "currentCover": "/covers/2026-06-18-progress.png",
+      "currentCover": "/covers/2026-06-18-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-06-18-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 36,
