@@ -1,11 +1,17 @@
 import assert from 'node:assert/strict'
+import fs from 'node:fs'
+import os from 'node:os'
+import path from 'node:path'
 import test from 'node:test'
 
 import {
   createCoverRedrawManifest,
   targetCoverFor,
 } from './lib/cover-redraw-manifest.mjs'
-import { upsertCoverProvenance } from './lib/cover-redraw-apply.mjs'
+import {
+  commitCoverRedrawBatch,
+  upsertCoverProvenance,
+} from './lib/cover-redraw-apply.mjs'
 
 test('历史封面候选始终使用独立的 Image 2 v2 PNG 路径', () => {
   assert.equal(
@@ -97,4 +103,31 @@ coverAttribution: "Old Source"
   assert.match(next, /coverPromptVersion: "steam-industrial-v2"/)
   assert.doesNotMatch(next, /coverSourceUrl:|coverLicense:|coverAttribution:/)
   assert.equal(next.slice(next.indexOf('\n---\n') + 5), raw.slice(raw.indexOf('\n---\n') + 5))
+})
+
+test('批次验证失败时恢复本批所有已写文件', async (t) => {
+  const root = fs.mkdtempSync(path.join(os.tmpdir(), 'ajin-cover-apply-'))
+  t.after(() => fs.rmSync(root, { recursive: true, force: true }))
+  const firstPath = path.join(root, 'first.mdx')
+  const secondPath = path.join(root, 'second.json')
+  fs.writeFileSync(firstPath, 'first-before')
+  fs.writeFileSync(secondPath, 'second-before')
+
+  await assert.rejects(
+    commitCoverRedrawBatch({
+      changes: [
+        { filePath: firstPath, contents: 'first-after' },
+        { filePath: secondPath, contents: 'second-after' },
+      ],
+      validate: async () => {
+        assert.equal(fs.readFileSync(firstPath, 'utf8'), 'first-after')
+        assert.equal(fs.readFileSync(secondPath, 'utf8'), 'second-after')
+        throw new Error('整批验证失败')
+      },
+    }),
+    /整批验证失败/,
+  )
+
+  assert.equal(fs.readFileSync(firstPath, 'utf8'), 'first-before')
+  assert.equal(fs.readFileSync(secondPath, 'utf8'), 'second-before')
 })

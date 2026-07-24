@@ -7,7 +7,10 @@ import { spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 import sharp from 'sharp'
 
-import { upsertCoverProvenance } from './lib/cover-redraw-apply.mjs'
+import {
+  commitCoverRedrawBatch,
+  upsertCoverProvenance,
+} from './lib/cover-redraw-apply.mjs'
 
 const projectRoot = process.cwd()
 const manifestPath = path.join(projectRoot, 'config', 'blog-cover-redraw-manifest.json')
@@ -92,6 +95,13 @@ async function main() {
     throw new Error(`${scope} 仍有未生成封面，停止应用`)
   }
 
+  const prepared = []
+  const changes = [
+    {
+      filePath: manifestPath,
+      contents: fs.readFileSync(manifestPath),
+    },
+  ]
   for (const entry of ready) {
     const postPath = path.join(projectRoot, entry.postPath)
     const rawPost = fs.readFileSync(postPath, 'utf8')
@@ -114,12 +124,32 @@ async function main() {
       ['coverSourceUrl', 'coverLicense', 'coverAttribution'],
     )
     const nextBrief = { ...brief, postSha256: hashText(nextPost) }
-    fs.writeFileSync(briefPath, `${JSON.stringify(nextBrief, null, 2)}\n`, 'utf8')
-    fs.writeFileSync(postPath, nextPost, 'utf8')
-    runNode('validate-blog-cover-image2.mjs', ['--post', entry.postPath])
+    changes.push(
+      { filePath: briefPath, contents: `${JSON.stringify(nextBrief, null, 2)}\n` },
+      { filePath: postPath, contents: nextPost },
+    )
+    prepared.push({ entry, postPath })
   }
 
-  runNode('build-cover-redraw-manifest.mjs')
+  await commitCoverRedrawBatch({
+    changes,
+    validate: async () => {
+      for (const { entry } of prepared) {
+        runNode('validate-blog-cover-image2.mjs', ['--post', entry.postPath])
+      }
+      runNode('build-cover-redraw-manifest.mjs')
+      const appliedManifest = JSON.parse(fs.readFileSync(manifestPath, 'utf8'))
+      const unapplied = prepared.filter(({ entry }) => {
+        const current = appliedManifest.entries.find(
+          (candidate) => candidate.postPath === entry.postPath,
+        )
+        return current?.status !== 'applied'
+      })
+      if (unapplied.length > 0) {
+        throw new Error(`整批应用验证失败：仍有 ${unapplied.length} 篇未进入 applied 状态`)
+      }
+    },
+  })
   console.log(
     JSON.stringify(
       { status: 'ok', batch: options.batch || null, post: options.post || null, applied: ready.length },
