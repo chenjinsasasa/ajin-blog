@@ -11,6 +11,7 @@
     "industrialMetaphorZh",
     "supportingSymbolsZh",
     "sceneDescriptionZh",
+    "focalElementsEn",
     "imagePromptEn"
   ],
   "properties": {
@@ -40,8 +41,8 @@
     },
     "supportingSymbolsZh": {
       "type": "array",
-      "minItems": 2,
-      "maxItems": 5,
+      "minItems": 3,
+      "maxItems": 3,
       "items": {
         "type": "string",
         "minLength": 1
@@ -51,9 +52,20 @@
       "type": "string",
       "minLength": 1
     },
+    "focalElementsEn": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 140
+      }
+    },
     "imagePromptEn": {
       "type": "string",
-      "minLength": 1
+      "minLength": 1,
+      "maxLength": 500
     }
   }
 }

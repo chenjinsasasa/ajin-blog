@@ -21,9 +21,10 @@
     "probeUrl": "https://chatgpt.com/"
   },
   "style": "steam-industrial-engraving",
-  "promptVersion": "steam-industrial-v1",
-  "briefVersion": "full-article-v1",
+  "promptVersion": "steam-industrial-v2",
+  "briefVersion": "full-article-v2",
   "referenceSet": "homepage-entry-cards-v1",
+  "referenceMode": "verified-text-contract-only",
   "references": [
     {
       "path": "public/entry-cards/blog-archive.jpg",
@@ -46,7 +47,7 @@
       "role": "inventor drafting machinery at a workshop desk"
     }
   ],
-  "motherPrompt": "Create a new editorial blog cover that belongs to the exact same visual world as all four reference images: the steam industrial age and a late-nineteenth-century Industrial Revolution workshop, archive, printing house, or inventor laboratory. Render it as a dense black-ink copperplate engraving and etched editorial plate on warm ivory paper, with intricate cross-hatching, cast-iron machinery, gears, belts, pipes, drafting instruments, ledgers, workshop lamps, and period architecture where relevant. Keep the mood serious, restrained, documentary, and intellectually focused. Use a cinematic horizontal 16:9 composition with one clear focal scene, rich environmental detail, strong depth, and balanced negative space.",
+  "motherPrompt": "The steam industrial age in a late-nineteenth-century workshop, archive, printing house, or inventor laboratory. Render a dense black-ink copperplate engraving and etched editorial plate on warm ivory paper, with intricate cross-hatching, realistic cast-iron mechanisms, serious documentary mood, strong depth, and restrained negative space. Match the canonical homepage covers through this locked textual style contract; do not imitate a different medium.",
   "constraints": "Translate the article theme into one coherent period scene. Preserve the reference set's black-ink density, warm ivory paper, fine engraved linework, realistic industrial mechanisms, and sober editorial tone. No text in the image, no letters, no logo, no watermark, no border, and no collage.",
   "negativePrompt": "modern computer, laptop, smartphone, modern screen, glossy SaaS illustration, colorful 3D render, neon gradient, stock photo, flat vector art, anime, comic style, cyberpunk, fantasy steampunk costume, brass-orange color cast, photorealistic photography, typography, caption, logo, watermark"
 }

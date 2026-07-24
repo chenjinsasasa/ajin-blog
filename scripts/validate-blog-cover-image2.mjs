@@ -143,14 +143,15 @@ async function validatePost(filePath, force, errors) {
           addError(`visual brief 缺少非空字段 ${field}`)
         }
       }
-      const symbols = brief.visualBrief?.supportingSymbolsZh
-      if (
-        !Array.isArray(symbols) ||
-        symbols.length < 2 ||
-        symbols.length > 5 ||
-        !symbols.every((item) => typeof item === 'string' && item.trim())
-      ) {
-        addError('visual brief supportingSymbolsZh 必须包含 2-5 个非空字符串')
+      for (const field of ['supportingSymbolsZh', 'focalElementsEn']) {
+        const values = brief.visualBrief?.[field]
+        if (
+          !Array.isArray(values) ||
+          values.length !== 3 ||
+          !values.every((item) => typeof item === 'string' && item.trim())
+        ) {
+          addError(`visual brief ${field} 必须包含恰好 3 个非空字符串`)
+        }
       }
     } catch (error) {
       addError(`visual brief 无法读取：${error.message}`)

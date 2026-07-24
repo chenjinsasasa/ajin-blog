@@ -87,13 +87,14 @@ function validateVisualBrief(brief) {
       throw new Error(`Codex visual brief 缺少非空字段 ${field}`)
     }
   }
-  if (
-    !Array.isArray(brief.supportingSymbolsZh) ||
-    brief.supportingSymbolsZh.length < 2 ||
-    brief.supportingSymbolsZh.length > 5 ||
-    !brief.supportingSymbolsZh.every((item) => typeof item === 'string' && item.trim())
-  ) {
-    throw new Error('supportingSymbolsZh 必须包含 2-5 个非空字符串')
+  for (const field of ['supportingSymbolsZh', 'focalElementsEn']) {
+    if (
+      !Array.isArray(brief[field]) ||
+      brief[field].length !== 3 ||
+      !brief[field].every((item) => typeof item === 'string' && item.trim())
+    ) {
+      throw new Error(`${field} 必须包含恰好 3 个非空字符串`)
+    }
   }
 }
 
@@ -103,16 +104,18 @@ function buildPrompt({ title, excerpt, body, relativePostPath }) {
 【工作范围】只分析下方提供的单篇文章；不要读取其他文件，不要修改任何文件。
 【禁止扩展】不要生成图片，不要讨论风格方案，不要调用工具，不要补写文章内容。
 【本轮停点】返回符合 JSON Schema 的一个 JSON object 后立即停止。
-【验收证据】九个字段全部非空；supportingSymbolsZh 为 2-5 项；imagePromptEn 可直接描述单一画面。
+【验收证据】所有字段非空；supportingSymbolsZh 与 focalElementsEn 都恰好为 3 项；imagePromptEn 不超过 500 字符且可直接描述单一画面。
 【止损规则】正文不足以支持某个细节时使用克制概括，不得编造具体成果、人物或数字。
 
 抽象规则：
 1. 必须综合完整正文，不得只依据标题或摘要。
-2. 先识别当天最重要的一条主线；其他内容只作为 2-5 个辅助符号，禁止拼贴。
+2. 只保留当天最重要的一条主线和一个核心矛盾；禁止把多条工程线逐项塞进画面。
 3. 把现代技术、项目和故障转译成 19 世纪工业机制、人物动作和空间关系；不要把产品名、代码、数字或 UI 文字放进画面。
-4. sceneDescriptionZh 必须说明一个可拍成单帧的连贯场景。
-5. imagePromptEn 只描述当天“画什么”，不要重复固定画风；固定画风由下一阶段母提示词注入。
-6. 输出内容使用简体中文，只有 imagePromptEn 使用英文。
+4. supportingSymbolsZh 必须恰好 3 项，分别对应主角或主体、已经稳定的成果、尚未解决的阻碍。
+5. focalElementsEn 必须用英文给出与上述三项一一对应的三个短语；生图阶段只允许使用这三个视觉焦点。
+6. sceneDescriptionZh 必须说明一个可拍成单帧的连贯场景；背景只能提供空间与光线，不得增加第四个叙事物件。
+7. imagePromptEn 使用英文，在 500 字符内只描述三个视觉焦点的空间关系和动作，不要重复固定画风。
+8. 输出内容使用简体中文，只有 focalElementsEn 与 imagePromptEn 使用英文。
 
 文章路径：${relativePostPath}
 标题：${title}

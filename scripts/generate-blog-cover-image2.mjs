@@ -7,6 +7,10 @@ import { spawn, spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 import sharp from 'sharp'
 
+import {
+  buildCodexImageArgs,
+  buildCodexImagePrompt,
+} from './lib/blog-cover-image-prompt.mjs'
 import { runCodexImageWithRecovery } from './lib/codex-image-execution.mjs'
 import {
   ensureCodexImageRoute,
@@ -18,7 +22,7 @@ const configPath = path.join(projectRoot, 'config', 'blog-cover-image2.json')
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'))
 
 function printHelp() {
-  console.log(`Generate one blog cover with Codex built-in Image 2 and four homepage references.
+  console.log(`Generate one blog cover with Codex built-in Image 2 and the locked homepage style contract.
 
 Usage:
   npm run cover:image2:generate -- --post content/progress/YYYY-MM-DD-progress.mdx
@@ -109,44 +113,11 @@ function readVisualBrief(briefPath, postPath) {
   return artifact
 }
 
-function buildPrompt(data, outputPath, briefArtifact) {
+function validatePostIdentity(data) {
   const title = typeof data.title === 'string' ? data.title.trim() : ''
   const excerpt = typeof data.excerpt === 'string' ? data.excerpt.trim() : ''
   if (!title) throw new Error('文章 frontmatter 缺少 title')
   if (!excerpt) throw new Error('文章 frontmatter 缺少 excerpt')
-
-  const referenceList = config.references
-    .map((reference, index) => `- Image ${index + 1}: ${reference.role}; file=${reference.path}`)
-    .join('\n')
-
-  return `Use the imagegen skill and the built-in image_gen tool to create exactly one project-bound blog cover.
-
-Execution contract:
-- Use Codex built-in image_gen only. It does not require OPENAI_API_KEY.
-- Do not call scripts/image_gen.py, the OpenAI API, curl, or any external image source.
-- Do not read, inspect, export, or use OPENAI_API_KEY.
-- Treat all four attached images as visual references, not edit targets.
-- Treat the full-article visual brief below as the sole content blueprint. Do not reduce it back to the title alone.
-- If built-in image_gen is unavailable or fails, stop. Do not fall back to another model or source.
-- Generate exactly one image, then copy the selected built-in result from the Codex generated-images location to this exact project path: ${outputPath}
-- Save a PNG. Do not modify any other project file.
-
-Use case: historical-scene
-Asset type: editorial blog cover
-Reference images:
-${referenceList}
-Primary request: ${config.motherPrompt}
-Article identity only: ${title}
-Article excerpt for cross-checking only: ${excerpt}
-Full-article visual brief version: ${briefArtifact.briefVersion}
-Full-article visual brief:
-${JSON.stringify(briefArtifact.visualBrief, null, 2)}
-Composition: horizontal 16:9, one coherent period scene, strong depth and focal hierarchy; no collage.
-Constraints: ${config.constraints}
-Avoid: ${config.negativePrompt}.
-
-Before finishing, verify that the exact output path exists and is a readable PNG. Final response must end with:
-CODEX_IMAGE_RESULT status=ok output=${outputPath}`
 }
 
 function runCommand(command, args, options = {}) {
@@ -234,6 +205,7 @@ async function main() {
 
   const postPath = resolveInsideProject(options.post, 'content')
   const post = matter(fs.readFileSync(postPath, 'utf8'))
+  validatePostIdentity(post.data)
   const relativePostPath = path.relative(projectRoot, postPath)
   const configuredCover =
     typeof post.data.coverImage === 'string' ? post.data.coverImage.replace(/^\//, '') : ''
@@ -257,7 +229,7 @@ async function main() {
   ])
   const relativeBriefPath = briefRelativePath(postPath)
   const briefArtifact = readVisualBrief(path.join(projectRoot, relativeBriefPath), postPath)
-  const prompt = buildPrompt(post.data, outputPath, briefArtifact)
+  const prompt = buildCodexImagePrompt({ briefArtifact, config, outputPath })
   if (options.dryRun) {
     console.log(
       JSON.stringify(
@@ -267,6 +239,8 @@ async function main() {
           post: relativePostPath,
           brief: relativeBriefPath,
           postSha256: briefArtifact.postSha256,
+          inputImages: [],
+          referenceMode: config.referenceMode,
           visualBrief: briefArtifact.visualBrief,
           imagePrompt: prompt,
           output: path.relative(projectRoot, outputPath),
@@ -277,21 +251,7 @@ async function main() {
     )
     return
   }
-  const codexArgs = [
-    '-a',
-    'never',
-    '-s',
-    'workspace-write',
-    'exec',
-    '--ephemeral',
-    '--skip-git-repo-check',
-    '-C',
-    projectRoot,
-  ]
-  for (const reference of config.references) {
-    codexArgs.push('-i', path.join(projectRoot, reference.path))
-  }
-  codexArgs.push('-')
+  const codexArgs = buildCodexImageArgs(projectRoot)
 
   const routeOptions = imageRouteOptions()
   const route = await ensureCodexImageRoute(routeOptions)
@@ -358,7 +318,9 @@ async function main() {
         brief: relativeBriefPath,
         postSha256: briefArtifact.postSha256,
         referenceSet: config.referenceSet,
-        references: config.references.map((reference) => reference.path),
+        inputImages: [],
+        referenceMode: config.referenceMode,
+        referenceStandards: config.references.map((reference) => reference.path),
         output: path.relative(projectRoot, outputPath),
       },
       null,

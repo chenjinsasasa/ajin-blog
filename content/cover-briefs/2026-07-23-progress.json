@@ -1,29 +1,32 @@
 {
   "schemaVersion": 1,
-  "briefVersion": "full-article-v1",
-  "promptVersion": "steam-industrial-v1",
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
   "generatedBy": "codex",
   "executionMode": "full-article-analysis",
   "postPath": "content/progress/2026-07-23-progress.mdx",
-  "postSha256": "b9ae29bbacfc8a8c2c7dddcd5e3dcf6753036b1c8eba80f6a4098cf30c036f7e",
+  "postSha256": "5a6daf31430016ced53097b9e1ec15c35b9ab37917b210fc294165d1a54a0794",
   "bodySha256": "36eb2aa430c0c7be9f1d0c21e9b26f46bcdf324bc9d6fdcad5ed8d3ef0b811a5",
   "bodyCharacters": 1924,
-  "generatedAt": "2026-07-24T05:09:20.454Z",
+  "generatedAt": "2026-07-24T08:47:26.944Z",
   "visualBrief": {
-    "coreEventZh": "四条工程线并行收口，核心生产与恢复验证顺利通过，但通往外部的连接关口仍被未知故障阻断。",
-    "primarySubjectZh": "一名负责总验收的工坊工程师与一套多线并行的工业生产系统。",
-    "keyActionZh": "工程师封闭已完成的主生产线、确认备用恢复装置可用，同时沿管路排查外部连接闸门的异常。",
-    "resultZh": "主生产线完成收口，恢复机制通过实测，输送流程得到加固；外部入口仍亮着故障信号，等待次日查明根因。",
-    "tensionZh": "大部分机械已经稳定归位，超时停机也已解除，唯独出口闸门持续拒绝开启，使完整收口停在最后一道关卡。",
-    "industrialMetaphorZh": "将输入法收口转译为完成校准并封印的排字机生产线，将恢复验证转译为通过负载试验的备用动力机组，将 CI 超时转译为过早落下的总停机闸，将 503 转译为因下游启动失序而闭锁的外部压力阀。",
+    "coreEventZh": "多线收口取得稳定成果后，工程师转向排查阻断下一阶段入口的未解故障。",
+    "primarySubjectZh": "站在总控机械前检查系统的十九世纪工程师。",
+    "keyActionZh": "工程师一手确认已稳定运转的主传动机构，一手举灯检查被堵塞的入口阀门。",
+    "resultZh": "核心系统与恢复链条已完成验证并稳定运转，后续推进集中到单一阻碍。",
+    "tensionZh": "已经闭环的可靠成果，与仍阻断公网入口的未知故障形成冲突。",
+    "industrialMetaphorZh": "将多项工程收口转译为大型工坊主传动系统恢复稳定，将未解的服务就绪故障转译为卡死并冒出冷雾的入口阀门。",
     "supportingSymbolsZh": [
-      "盖有验收印章的排字机",
-      "恢复运转并显示正常压力的备用蒸汽机",
-      "被重新调校的定时停机闸",
-      "持续泄压并拒绝开启的出口阀门",
-      "稳定输送记录纸带的自动行情装置"
+      "持检修灯的总控工程师",
+      "平稳啮合并持续运转的主传动齿轮组",
+      "卡死且渗出冷雾的入口阀门"
     ],
-    "sceneDescriptionZh": "夜晚的工业总装工坊内，一名工程师站在中央控制台前，左侧刚完成校准的排字机已被验收封印，后方备用蒸汽机平稳运转，头顶的停机闸刚被重新调校；他的注意力集中在右侧通往厂外的粗大管道上，那里的出口阀门仍在泄出白汽并亮着故障灯，几条已经稳定运行的生产线共同汇向这道尚未打开的最后关口。",
-    "imagePromptEn": "A single coherent nighttime scene inside a nineteenth-century industrial assembly workshop: a chief engineer stands at a central control desk after sealing and approving a calibrated typesetting production line; a backup steam engine runs steadily behind him, and an overhead shutdown governor has just been readjusted. His attention is fixed on a large pipe leading outside the factory, where the final outlet valve remains locked and vents white steam under a warning lamp. Several orderly production lines converge toward this unresolved gateway, while a small automatic ticker mechanism continues feeding paper quietly in the background. No text, numbers, logos, screens, or modern devices."
+    "sceneDescriptionZh": "一名工程师立于工业工坊的总控机械旁，侧身确认身后平稳啮合的主传动齿轮组，同时把检修灯探向前方卡死、渗出冷雾的入口阀门；背景仅保留昏暗厂房空间与斜落光线。",
+    "focalElementsEn": [
+      "engineer holding an inspection lamp",
+      "smoothly running main gear assembly",
+      "jammed entrance valve leaking cold vapor"
+    ],
+    "imagePromptEn": "An engineer holding an inspection lamp stands between a smoothly running main gear assembly behind him and a jammed entrance valve ahead. He turns from the stable gears and directs the lamp into the valve as cold vapor leaks from its sealed joint."
   }
 }

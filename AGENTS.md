@@ -71,7 +71,8 @@ This file defines project-level working rules for agents operating in `ajin-blog
 
 - The only cover theme is **蒸汽工业时代**: a late-nineteenth-century Industrial Revolution workshop, archive, printing house, or inventor laboratory.
 - Render as dense black-ink copperplate engraving / etched editorial plate on warm ivory paper, with intricate cross-hatching, serious documentary mood, and a cinematic 16:9 scene.
-- Use the exact four references, hashes, model, size, prompt, and negative prompt in `config/blog-cover-image2.json`.
+- Use the exact four reference hashes as canonical style standards, and use the locked textual style contract, model, size, prompt, and negative prompt in `config/blog-cover-image2.json`.
+- Do not attach the four reference files to routine generation. They are verified for drift, then distilled into the text-only style contract so every request stays on the more stable pure-generation path.
 - Avoid modern devices, glossy SaaS art, colorful 3D, neon, stock photography, flat vectors, anime, cyberpunk, fantasy steampunk costumes, typography, logos, and watermarks.
 
 ## Cover Sources
@@ -113,8 +114,8 @@ coverProvider: "codex"
 coverModel: "image-2"
 coverExecutionMode: "builtin-imagegen"
 coverStyle: "steam-industrial-engraving"
-coverPromptVersion: "steam-industrial-v1"
-coverBriefVersion: "full-article-v1"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
 coverBriefPath: "content/cover-briefs/2026-07-24-example-post.json"
 coverReferenceSet: "homepage-entry-cards-v1"
 ---
@@ -130,4 +131,10 @@ coverReferenceSet: "homepage-entry-cards-v1"
   5. Run `npm run cover:image2:validate -- --post <post-path>`.
   6. Run `npm run verify` before commit/push.
 - For historical posts, follow the user’s separate backfill process; this file’s hard requirement applies to newly created posts going forward.
+- Historical backfill is resumable and newest-first in five-cover batches:
+  1. Refresh the 84-cover inventory with `npm run cover:image2:backfill:inventory`.
+  2. Generate one batch with `npm run cover:image2:backfill:generate -- --batch <n>`; this creates sibling `*-image2-v2.png` candidates without changing published frontmatter.
+  3. Visually inspect every candidate against the locked style and its v2 full-article brief.
+  4. Only after visual approval, apply the whole batch with `npm run cover:image2:backfill:apply -- --batch <n> --approved`, or one approved post with `--post <post-path> --approved`.
+  5. Keep the previous cover file until the replacement has passed build and deployment verification; the apply step changes references but does not delete the previous asset.
 - Never substitute another source or model when Image 2 fails.

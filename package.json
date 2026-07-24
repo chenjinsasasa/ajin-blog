@@ -16,7 +16,10 @@
     "cover:optimize": "node scripts/optimize-covers.mjs",
     "cover:image2:brief": "node scripts/build-blog-cover-brief.mjs",
     "cover:image2:generate": "node scripts/generate-blog-cover-image2.mjs",
-    "cover:image2:validate": "node scripts/validate-blog-cover-image2.mjs"
+    "cover:image2:validate": "node scripts/validate-blog-cover-image2.mjs",
+    "cover:image2:backfill:inventory": "node scripts/build-cover-redraw-manifest.mjs",
+    "cover:image2:backfill:generate": "node scripts/generate-cover-redraw-batch.mjs",
+    "cover:image2:backfill:apply": "node scripts/apply-cover-redraw-batch.mjs"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
