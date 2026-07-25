@@ -55,7 +55,7 @@ deploy_preview:
     - git_dir="/tmp/vercel-git-$CI_JOB_ID"
     - mv .git "$git_dir"
     - trap 'if [ -d "$git_dir" ] && [ ! -e .git ]; then mv "$git_dir" .git; fi' EXIT
-    - deployment_url=$(vercel deploy --prebuilt --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - deployment_url=$(vercel deploy --prebuilt --archive=tgz --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
     - mv "$git_dir" .git
     - trap - EXIT
     - case "$deployment_url" in https://*.vercel.app) ;; *) echo "invalid Vercel deployment URL" >&2; exit 1 ;; esac
@@ -82,7 +82,7 @@ deploy_production:
     - git_dir="/tmp/vercel-git-$CI_JOB_ID"
     - mv .git "$git_dir"
     - trap 'if [ -d "$git_dir" ] && [ ! -e .git ]; then mv "$git_dir" .git; fi' EXIT
-    - deployment_url=$(vercel deploy --prebuilt --prod --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
+    - deployment_url=$(vercel deploy --prebuilt --archive=tgz --prod --yes --token="$VERCEL_TOKEN" --meta gitlabDeployment=1 --meta gitlabCommitSha="$CI_COMMIT_SHA" --meta gitlabCommitRef="$CI_COMMIT_REF_NAME" --meta gitlabProjectPath="$CI_PROJECT_PATH" --meta gitlabPipelineId="$CI_PIPELINE_ID" | tail -n 1)
     - mv "$git_dir" .git
     - trap - EXIT
     - case "$deployment_url" in https://*.vercel.app) ;; *) echo "invalid Vercel deployment URL" >&2; exit 1 ;; esac
