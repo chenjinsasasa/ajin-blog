@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 9,
+    "pending": 7,
     "readyForReview": 0,
-    "applied": 75,
+    "applied": 77,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -919,26 +919,26 @@
     {
       "index": 76,
       "batch": 16,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-05",
       "title": "2026-05-05 我们的进展",
       "postPath": "content/progress/2026-05-05-progress.mdx",
-      "currentCover": "/covers/2026-05-05-progress.jpg",
+      "currentCover": "/covers/2026-05-05-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-05-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 77,
       "batch": 16,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-04",
       "title": "2026-05-04 我们的进展",
       "postPath": "content/progress/2026-05-04-progress.mdx",
-      "currentCover": "/covers/2026-05-04-progress.jpg",
+      "currentCover": "/covers/2026-05-04-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-04-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 78,
