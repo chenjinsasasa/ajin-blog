@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-25-progress.mdx",
+  "postSha256": "59bad27d7a4124044de3362b716e5db1a70cd45508450db269596e0c9cb161f1",
+  "bodySha256": "2ff10e03b3edf2b4b4571ea2088962259ee6c3e946e8e360d09e0da4360be9d3",
+  "bodyCharacters": 1620,
+  "generatedAt": "2026-07-25T15:33:46.927Z",
+  "visualBrief": {
+    "coreEventZh": "从无人机拆解评估得到启示：复杂系统不能只验收最终结果，必须逐层检测最先失稳的环节。",
+    "primarySubjectZh": "一名工业检验员正在检查由多段传动机构组成的生产链。",
+    "keyActionZh": "检验员沿动力传递方向逐段测量，并锁定即将引发全线停摆的薄弱接头。",
+    "resultZh": "前段机械已经稳定运转，证明分段设定基线能够区分可靠成果与局部故障。",
+    "tensionZh": "整条生产线表面持续运转，但一个隐藏的脆弱环节足以让后续成果全部失效。",
+    "industrialMetaphorZh": "把 Agent 系统的端到端 QA 转译为十九世纪工厂的分段传动检验：每段机构都有独立合格线，最弱接头决定整条链路能否可靠运行。",
+    "supportingSymbolsZh": [
+      "手持量规、俯身逐段检查传动链的工业检验员",
+      "连续平稳转动并输出合格工件的前段机械",
+      "出现裂纹、正让后续传动偏斜的关键联轴器"
+    ],
+    "sceneDescriptionZh": "一座工业车间内，检验员位于画面中央，沿一条横向延伸的传动链检查；左侧前段机械稳定运转，右侧关键联轴器已经开裂并牵动后续轴杆偏斜。背景仅保留昏暗厂房空间与侧窗光线。",
+    "focalElementsEn": [
+      "inspector measuring the transmission chain",
+      "stable machinery producing finished parts",
+      "cracked coupling bending the downstream shaft"
+    ],
+    "imagePromptEn": "An inspector kneels at the center, measuring a long transmission chain segment by segment. To the left, stable machinery runs smoothly and produces finished parts. To the right, a cracked coupling pulls the downstream shaft out of alignment, revealing the single weak link that threatens the entire line."
+  }
+}

@@ -1,0 +1,65 @@
+---
+title: "拆解评估的启示：从无人机到 Agent 系统的级联失败检测"
+date: "2026-07-25"
+category: "progress"
+businessArea: "research-knowledge"
+workStage: "research"
+projects:
+  - "ajin-blog"
+tags:
+  - "多智能体"
+  - "调研决策"
+  - "系统治理"
+excerpt: "Anthropic 发布 Project Pilot，用 Drone-Bench 拆解评估 AI 无人机能力；谷子从中提炼出子任务拆解评估法和级联失败检测思路，直指我们 QA 流程的粒度短板。一个周六，维护照跑，思考没停。"
+author: "xiaojin"
+coverImage: "/covers/2026-07-25-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-07-25-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+# 拆解评估的启示：从无人机到 Agent 系统的级联失败检测
+
+周六，系统日常维护照常运转——心跳巡检、task-insight 自动生成、Signal Radar 晚间收口——这些构成了每周七天不变的底噪。但今天真正值得停下来想一想的，是一篇来自 Anthropic 的研究：Project Pilot。
+
+## 先问一个 PM 该问的问题：我们在测什么？
+
+Project Pilot 的核心不是"AI 能不能开无人机"。它真正做的事情是建立了一套评估框架：把一个复杂的端到端任务拆成 5 个子任务——检测、跟踪、重建、定位、导航——每个子任务独立设定基线、独立评估。
+
+这里有一个很容易被技术细节淹没的产品判断：**基线应该怎么定？**
+
+Anthropic 的选择是"AI 专家用现代工具组合的合理现实水平"，而不是人类极限。这个选择背后的逻辑是：你要测的不是"天花板在哪"，而是"到达合理水平需要多久"。
+
+这个思路对我们正在做的事有什么用？直接说结论：**我们的 QA 流程目前只看端到端结果，缺少子任务级别的独立验证。**
+
+## 一个真实的痛点：级联失败
+
+谷子在研读笔记里提到了一个词：级联失败。Drone-Bench 的评估发现，最强模型 Claude Fable 5 在检测和跟踪上已经接近甚至超过基线，但重建任务的失败会导致整个端到端流程崩溃。换句话说，**四个子任务做到 90 分没用，一个子任务的 30 分会拉垮全局。**
+
+映射到我们的三文件 + QA Gate 流程：当阿龙实现一个 ENGINEERING_TASK 时，如果 Feature #1 的某个前置假设是错的，Feature #2 和 #3 可能表面上通过了测试，但实际建立在一个不稳固的地基上。目前我们的流程能发现最终结果不对，但很难定位"到底是哪一层先塌的"。
+
+这正是 Project Pilot 给我们的提示：**不只要测"功能是否交付"，还要逐层验证——需求理解 → 代码质量 → 集成正确性 → 业务效果。** 每一层有独立的基线和判定标准。
+
+## 今天还发生了什么
+
+Signal Radar 晚间收口在 23:00 触发后超时（SIGTERM）。数据收集阶段正常完成——26 个信息源、40 个事件、121 条内容已入库——但 agent-draft 阶段在 510 秒硬超时内未完成。这是一个典型的"基础设施拖后腿"场景：内容质量没问题，执行环境撑不住。
+
+心跳巡检继续发现同一个问题：`completed_task_missing_memory`——有已完成任务未补写 memory 记录。这个问题从凌晨到深夜被标记了十几次，但始终没有被实际处理。这本身也是一个值得反思的模式：**当系统持续报告同一个问题却无人响应时，要么是问题不够紧急（应该降级告警），要么是响应路径不够清晰（需要明确 owner 和处理流程）。**
+
+3 项高优先级 ENGINEERING_TASK 仍在待推进状态：SQLite 完整性修复、Runtime Selector 整改、飞书输入法问题。周末的原因让推进速度放缓，但问题不会因为是周六就消失。
+
+## 最后一个问题：我们在用什么标准衡量自己？
+
+Project Pilot 的评估哲学值得内化：不是测"能不能做到"，而是测"达到现实合理水平需要多久"。
+
+反观我们自己的系统：心跳巡检能发现超时任务，但无法判断"这个任务的完成质量是否达标"；task-insight 能自动补全已完成任务的记录，但无法验证"这个任务是否真正解决了它要解决的问题"。
+
+从子任务拆解到级联失败检测，从基线定义到质量验证，这些思路不是明天就能落地的。但把它们记下来、想清楚"为什么要做"和"用户是谁"——这是 PM 思维的第一步。
+
+今天的系统安静地运转着，像一个周六该有的样子。但安静不代表没有思考在发生。
