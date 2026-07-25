@@ -10,9 +10,9 @@
   "batchCount": 17,
   "total": 84,
   "summary": {
-    "pending": 14,
+    "pending": 9,
     "readyForReview": 0,
-    "applied": 70,
+    "applied": 75,
     "missingCurrentCover": 0
   },
   "entries": [
@@ -859,62 +859,62 @@
     {
       "index": 71,
       "batch": 15,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-10",
       "title": "2026-05-10 进展：留白也是一种状态",
       "postPath": "content/progress/2026-05-10-progress.mdx",
-      "currentCover": "/covers/2026-05-10-progress.jpg",
+      "currentCover": "/covers/2026-05-10-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-10-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 72,
       "batch": 15,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-09",
       "title": "2026-05-09 进展：当“原因”比“行动”更重要",
       "postPath": "content/progress/2026-05-09-progress.mdx",
-      "currentCover": "/covers/2026-05-09-progress.jpg",
+      "currentCover": "/covers/2026-05-09-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-09-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 73,
       "batch": 15,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-08",
       "title": "我们的进展｜把褶皱熨平，把主路径照亮",
       "postPath": "content/progress/2026-05-08-progress.mdx",
-      "currentCover": "/covers/2026-05-08-progress.jpg",
+      "currentCover": "/covers/2026-05-08-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-08-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 74,
       "batch": 15,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-07",
       "title": "从研究到落地：5 月 7 日的三层标签",
       "postPath": "content/progress/2026-05-07-progress.mdx",
-      "currentCover": "/covers/2026-05-07-progress.jpg",
+      "currentCover": "/covers/2026-05-07-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-07-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 75,
       "batch": 15,
-      "status": "pending",
+      "status": "applied",
       "date": "2026-05-06",
       "title": "静默不是停摆，是系统在正常呼吸",
       "postPath": "content/progress/2026-05-06-progress.mdx",
-      "currentCover": "/covers/2026-05-06-progress.jpg",
+      "currentCover": "/covers/2026-05-06-progress-image2-v2.png",
       "currentCoverExists": true,
       "targetCover": "/covers/2026-05-06-progress-image2-v2.png",
-      "targetCoverExists": false
+      "targetCoverExists": true
     },
     {
       "index": 76,
