@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-26-progress.mdx",
+  "postSha256": "b033476415fa6feaac61a41741d606cfb7dd0633f5b8cf8a5f250d4462388e9b",
+  "bodySha256": "d4184653231eea63be4f4033e7c09da36a52e612d5260b2c109601aa247c3738",
+  "bodyCharacters": 1447,
+  "generatedAt": "2026-07-26T15:32:50.673Z",
+  "visualBrief": {
+    "coreEventZh": "全球地图从数据契约与技术验证推进到交互上线，完成关键交付闭环，同时暴露出收口验证仍不稳定的问题。",
+    "primarySubjectZh": "一名负责整套世界测绘装置落地的工业制图工程师。",
+    "keyActionZh": "工程师将经过校准的世界边界铜版装入大型机械地图台，并在上线前启动最后一道检验闸门。",
+    "resultZh": "世界测绘装置已经稳定运转并投入使用，前期的数据与工程决策经受住了密集实施的压力。",
+    "tensionZh": "快速交付已经跨过上线门槛，但末端收口曾出现失灵，持续价值仍取决于后续监控与严谨验证。",
+    "industrialMetaphorZh": "把全球地图系统转译为大型机械测绘台，把已验证的数据与交互成果转译为稳定转动的世界边界铜版，把收口失败转译为尚未完全闭合的检验闸门。",
+    "supportingSymbolsZh": [
+      "正在操作机械测绘台的制图工程师",
+      "稳定转动并清晰呈现世界边界的铜版地图盘",
+      "卡在半闭状态的末端检验闸门"
+    ],
+    "sceneDescriptionZh": "一座昏暗测绘工坊内，制图工程师俯身操纵中央机械地图台，已校准的世界边界铜版在台面稳定转动；装置末端的检验闸门却停在半闭位置，工程师一手维持地图运行，一手伸向闸门准备完成最后收口。背景仅保留纵深空间与侧窗光线。",
+    "focalElementsEn": [
+      "cartographic engineer operating a mechanical map table",
+      "stable rotating copper world map plate",
+      "jammed half-closed inspection gate"
+    ],
+    "imagePromptEn": "A cartographic engineer operates a central mechanical map table while a stable copper world map plate rotates beneath his hands. At the far end of the same mechanism, a jammed inspection gate remains half-closed; the engineer reaches toward it with one hand while keeping the map running with the other. A dim workshop and narrow side light provide only spatial depth."
+  }
+}
