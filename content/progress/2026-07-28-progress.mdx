@@ -1,0 +1,65 @@
+---
+title: "输入法 M5.1 验收加固与 M8 性能门禁固化，Signal Radar 地图首屏重构"
+date: "2026-07-28"
+category: "progress"
+businessArea: "product-experience"
+workStage: "build"
+projects:
+  - "macos-input-method"
+  - "signal-radar"
+tags:
+  - "输入法"
+  - "前端体验"
+  - "多智能体"
+excerpt: "Ajin 拼音输入法一天内推进 M5.1 AI 提示词模式合并与隔离验收加固，M8 性能门禁同步固化；Signal Radar 全球地图按 mapcn 官方底图重构首屏，OpenFreeMap 冷启动链路压缩。两条产品线同时进入密集交付期。"
+author: "lizi"
+coverImage: "/covers/2026-07-28-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-07-28-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## 输入法 M5.1 验收加固与 M8 性能门禁固化，Signal Radar 地图首屏重构
+
+如果用一句话概括今天的工作：两条产品线同时进入了密集交付的窗口期，各自完成了阶段性的结构加固。
+
+### 输入法：从功能交付到验收闭环
+
+今天 Ajin 拼音输入法推进了七个 commit，覆盖三个里程碑。我来梳理一下脉络。
+
+**M5.1 AI 提示词模式**是本轮的核心功能。它不只是「加了一个提示词」这么简单——从合并（`c4f7ab4`）到隔离验收加固（`ece623f`），中间经历了一轮完整的验证闭环。隔离验收的意义在于：确认 AI 提示词模式不会干扰已有的候选词逻辑，两个系统在同一个输入框里各走各的路径。这种「共存而不耦合」的设计，是输入法架构里最容易被忽视、也最容易出问题的环节。
+
+**M8 性能与隔离门禁**的固化（`065177c`）则是一个典型的「把经验变成规则」的动作。前几轮验收中暴露的性能回退和隔离泄漏风险，现在被编码成了可重复执行的门禁检查。这比事后手动排查高效得多。
+
+此外还有四项补丁级工作：开发打包与注册清理加固（`2151846`）、候选完整性与中英混输完善（`0d9b216`）、官网交互原型与视觉方案（`34ef173`）、六项任务解决方案文档（`9e8fb63`）。其中官网交互原型值得注意——它意味着输入法项目开始从「能用」走向「能看」，产品化意识在往前走。
+
+### Signal Radar：地图首屏重构与三连收盘失败
+
+Signal Radar 全球地图今天做了一件重要的事：按 mapcn 官方底图重构首屏地图（`32d8b9f`）。
+
+在此之前，首屏加载依赖 OpenFreeMap 的冷启动串行链，用户需要等底图加载完才能看到任何内容。今天的改动做了两件事：一是提前加载 MapLibre 首屏模块（`e6a4964`），把地图引擎的初始化从串行改为并行；二是缩短 OpenFreeMap 冷启动串行链（`5ff593b`），减少等待时间。同时固定了首屏底图资产（`e9c7c82`），避免每次加载都去拉取远程资源。
+
+这些优化的共同目标很明确：让用户打开页面后尽快看到一张完整的地图。
+
+但收盘端的情况不太乐观。A/H 开盘、港股收盘、A股收盘、晚间收口——四场定时任务全部失败。从 commit 记录来看，问题仍然集中在 `radar:agent-draft` 阶段。这已经是连续第二天出现同类故障，需要单独排查。
+
+### 博客侧：补发与日常维护
+
+ajin-blog 今天补发了 2026-07-27 的输入法验证进展（`f77bd93`），属于常规内容维护。
+
+### 标签化观察
+
+给今天的工作打几个标签：
+
+- **结构加固日**：输入法的 M5.1 验收和 M8 门禁固化，本质上都是在「把松的地方拧紧」
+- **首屏体验**：Signal Radar 地图重构的核心诉求是加载速度，属于前端体验优化
+- **定时任务脆弱性**：收盘四连败不是新问题，但连续两天出现说明根因未解
+- **产品化信号**：输入法官网原型的出现，暗示项目可能进入对外展示阶段
+
+明天需要关注两件事：一是收盘任务的根因排查，二是输入法 M8 门禁在实际运行中的表现。

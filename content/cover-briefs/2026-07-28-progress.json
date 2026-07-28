@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-28-progress.mdx",
+  "postSha256": "6136f402351ad8955fdee3756da907334df0958b884576c72aaa6e10ebdf9556",
+  "bodySha256": "32065d523b462a6803fed3c708a4e935d17f61f3a8046e5948d1f85f8bc68db0",
+  "bodyCharacters": 1360,
+  "generatedAt": "2026-07-28T15:42:55.048Z",
+  "visualBrief": {
+    "coreEventZh": "两条产品线进入密集交付期，团队将已验证的经验固化为可重复执行的结构门禁，同时暴露出连续失败且尚待定位的自动流程故障。",
+    "primarySubjectZh": "在工业系统中负责验收与加固的工程师。",
+    "keyActionZh": "工程师校准并锁定机械门禁，使并行运转的机构彼此隔离、稳定通过验收。",
+    "resultZh": "核心功能、性能检查与首屏加载链路完成阶段性加固，交付结构比此前更稳定。",
+    "tensionZh": "已经固化的验收机制与仍连续卡死的定时收盘流程形成矛盾：局部秩序建立了，系统性故障仍未解除。",
+    "industrialMetaphorZh": "一座十九世纪联合工坊在交付前夜接受总验：工程师守住已校准的安全闸门，而远端定时传动机构仍被卡住。",
+    "supportingSymbolsZh": [
+      "手持校准工具、正在执行总验的工程师",
+      "已锁定并平稳分流两条传动路径的黄铜安全闸门",
+      "远端停滞在传动死点、等待排障的定时齿轮机构"
+    ],
+    "sceneDescriptionZh": "单帧呈现交付前夜的联合工坊：工程师位于近景中央，俯身校准一座已锁定的黄铜安全闸门，两条传动路径在闸门后稳定分流；画面远端，同一轴线上的定时齿轮机构停在死点。背景仅保留高挑厂房空间与斜射工作灯光。",
+    "focalElementsEn": [
+      "engineer performing final calibration",
+      "locked brass safety gate splitting two stable drive paths",
+      "stalled clockwork mechanism at a dead point"
+    ],
+    "imagePromptEn": "An engineer in the foreground performs final calibration on a locked brass safety gate, which splits two stable drive paths behind it. On the same visual axis in the distance, a stalled clockwork mechanism remains caught at a dead point. The engineer and gate are sharply lit, while the unresolved mechanism recedes into dim workshop light."
+  }
+}
