@@ -1,0 +1,57 @@
+---
+title: "输入法词库三宿主验收通过，LXP-10 闭环验证完成"
+date: "2026-07-27"
+category: "progress"
+businessArea: "product-experience"
+workStage: "validate"
+projects:
+  - "macos-input-method"
+tags:
+  - "输入法"
+  - "验收闭环"
+  - "系统运维"
+excerpt: "macOS 输入法 Ajin 拼音完成 LXP-10 第一阶段验收：TextEdit、飞书、Codex 三个宿主全部通过候选词验证，词库撤销与恢复机制确认可靠。Signal Radar A/H 开盘更新再次失败，全球地图 CI 门禁超时预算调整。"
+author: "gugu"
+coverImage: "/covers/2026-07-27-lxp10-verification.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-07-27-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## 输入法词库三宿主验收通过，LXP-10 闭环验证完成
+
+今天的工作密度不高，但有一件事值得记录：Ajin 拼音输入法的 LXP-10 第一阶段验收在三个宿主上全部通过。这不是一个功能上线的节点，而是一个验证闭环的完成——前者让人兴奋，后者让人安心。
+
+### LXP-10：验证词库的撤销与恢复
+
+LXP-10 的核心目标是验证词库包在真实宿主环境中的行为是否符合预期。具体来说，我们需要确认：词库绑定是否正确、候选词是否按预期出现、停用和撤销操作是否只影响测试数据而不污染正式词库。
+
+这个验证链涉及三个宿主：TextEdit、飞书和 Codex。每个宿主的输入法调用方式不同，候选词的渲染和选词逻辑也有差异。能在三个宿主上通过同一套验证标准，说明词库包的实现是宿主无关的——这是一个重要的工程属性。
+
+阿锦完成了三个宿主里的物理输入与候选选词，Codex 负责逐步记录启用、停用、撤销和恢复回执。验证没有绕过真实宿主，也没有用数据库状态代替用户侧结果。
+
+验证过程中遇到了一个问题：撤销操作首次执行时，部分测试候选词未按预期清除。排查发现是测试词库的撤销顺序有误，不是正式词库的问题。修正后重新验证，三个宿主全部通过。这个过程本身也验证了我们的一个重要设计决策：测试词库和正式词库是隔离的，撤销操作不会互相干扰。
+
+数据库层面，每次验证前后都执行了 `quick_check`，确认 SQLite 完整性未受损。四条词库绑定在启用、停用、撤销、恢复的完整生命周期中保持稳定。这些看起来是基本要求，但在输入法这种需要和系统深度集成的场景中，"基本要求"往往是最容易出问题的地方。
+
+### Signal Radar：连续失败的信号
+
+Signal Radar 今天的 A/H 开盘更新再次失败。这不是新问题——从本周的记录看，Signal Radar 的晚间收口和日间更新已经连续多次失败，根因指向 `radar:agent-draft` 阶段的 SIGTERM 超时。
+
+同时，全球地图项目的 CI 浏览器门禁超时预算在凌晨做了调整。这是上周全球地图密集交付后的后续维护——功能上线了，但 CI 的稳定性还需要持续打磨。
+
+连续失败是一个需要认真对待的信号。不是因为单次失败有多严重，而是因为当失败变成常态，团队对告警的敏感度会下降。这是运维中经典的"狼来了"效应。Signal Radar 的超时问题需要一个明确的排查计划，而不是每次失败后记录一下就继续等下一次。
+
+### 系统维护：周复盘与 lint 检查
+
+今天同时完成了周复盘和 lint 检查。周复盘的结论比较直接：本周最大的正向信号是全球地图的密集交付和博客全勤，最大的负向信号是 Signal Radar 的连续失败。lint 检查发现 MEMORY.md 已过期 42 天、22 个 raw/ 文件超期——这些是技术债，不紧急但需要安排清理。
+
+### 观察
+
+今天的两件事——输入法验收通过和 Signal Radar 连续失败——其实指向同一个主题：验证的价值。输入法的验证让我们确认了设计决策的正确性；Signal Radar 缺少有效的验证和根因分析，让同样的失败反复发生。在工程实践中，验证不是流程的末尾装饰，而是发现问题、确认假设、建立信心的核心手段。LXP-10 的闭环验证完成，是一个小但扎实的进步。

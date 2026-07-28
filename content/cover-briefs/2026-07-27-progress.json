@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-27-progress.mdx",
+  "postSha256": "30998755ee20b71a9bd00b34ae5b4425019dcdcc40599d5d327715eeb48c3a22",
+  "bodySha256": "cbb3151df300c25e66f9396805d9237606c42815f0cb3785683c6e65b270781e",
+  "bodyCharacters": 1397,
+  "generatedAt": "2026-07-28T05:09:20.294Z",
+  "visualBrief": {
+    "coreEventZh": "Ajin 拼音词库包完成 TextEdit、飞书和 Codex 三个真实宿主的启用、停用、撤销与恢复验证，同时暴露出另一条自动化链仍存在重复超时。",
+    "primarySubjectZh": "一名负责跨宿主验证机械排字系统的工业检验员。",
+    "keyActionZh": "检验员操纵中央字模分拣机构，让三组测试滑台依次完成同一套启停、撤销与恢复循环。",
+    "resultZh": "三组测试滑台保持同步运行，测试字模与正式字模隔离，整套机构在完整生命周期后仍然稳定。",
+    "tensionZh": "输入法验证链已经闭环，但工坊末端的告警调速器仍卡住，象征另一条自动化链的连续超时尚未解决。",
+    "industrialMetaphorZh": "把跨宿主词库验证转译为三组同步机械测试滑台，把稳定隔离的词库生命周期转译为持续运转的中央字模分拣机构，把连续超时转译为卡死的告警调速器。",
+    "supportingSymbolsZh": [
+      "操纵中央字模分拣机构的工业检验员",
+      "同步完成验证循环的三组机械测试滑台",
+      "停在阴影中的卡死告警调速器"
+    ],
+    "sceneDescriptionZh": "一座十九世纪机械排字检验工坊里，检验员在中央字模分拣机构前操作控制杆，三组机械测试滑台沿同一传动轴同步运行；装置末端的告警调速器却停在阴影中，检验员一手维持验证循环，一手伸向故障机构。背景只保留工坊纵深与侧窗光线。",
+    "focalElementsEn": [
+      "industrial inspector operating a central type-sorting mechanism",
+      "three synchronized mechanical testing carriages",
+      "jammed warning governor stopped in shadow"
+    ],
+    "imagePromptEn": "An industrial inspector operates a central type-sorting mechanism while three synchronized mechanical testing carriages move in unison through the same machine. At the far end, a jammed warning governor remains stopped in shadow; the inspector reaches toward it without interrupting the moving carriages. The workshop background provides only spatial depth and narrow side light."
+  }
+}
