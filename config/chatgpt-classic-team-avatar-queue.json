@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "rootDir": "..",
+  "stateFile": ".local/chatgpt-classic-team-avatar-queue-state.json",
+  "parser": {
+    "format": "markdown-numbered-text-fences",
+    "requiredMarkers": [
+      "Primary request:",
+      "Constraints:"
+    ]
+  },
+  "batches": {
+    "team_avatars_v1": {
+      "label": "团队头像·蒸汽工业铜版画 v1",
+      "promptFile": "docs/prompts/team-avatars-image2-v1.md",
+      "expectedCount": 9
+    }
+  }
+}

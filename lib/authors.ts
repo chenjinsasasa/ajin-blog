@@ -11,11 +11,13 @@ const AUTHOR_NAME_MAP: Record<string, string> = {
   dangao: '蛋糕',
 }
 
+const TEAM_AVATAR_VERSION = '20260729-full'
+
 export function getAuthorName(author: string): string {
   return AUTHOR_NAME_MAP[author] ?? author
 }
 
 export function getAuthorAvatar(author: string): string {
-  if (author === 'ajin') return '/avatars/ajin.jpg'
-  return `/avatars/${author}.png`
+  if (author === 'ajin') return '/avatars/ajin-home.png'
+  return `/avatars/${author}.png?v=${TEAM_AVATAR_VERSION}`
 }
