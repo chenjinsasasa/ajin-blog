@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-29-progress.mdx",
+  "postSha256": "a9fd2952d04703003b13a08bd26b5944481dd65b96a525f06653a3d2dd16a4c9",
+  "bodySha256": "3a61dd06de264e095483ce941e0989d185ad577ad55ab4aff06d73132b3af67b",
+  "bodyCharacters": 1488,
+  "generatedAt": "2026-07-29T15:35:38.607Z",
+  "visualBrief": {
+    "coreEventZh": "多个产品在同一天完成从“能用”迈向“值得用”的关键收口。",
+    "primarySubjectZh": "一名工坊总工程师统筹最后一轮精密调校。",
+    "keyActionZh": "工程师将已能运转的机械系统重新校准、加固并准备交付。",
+    "resultZh": "核心装置已稳定运行，具备向外展示和持续生产的条件。",
+    "tensionZh": "主体功能已经成形，但最后一段传动仍受阻，可靠体验与责任边界尚待彻底闭合。",
+    "industrialMetaphorZh": "把跨项目的界面优化与内容治理转译为工业工坊中的交付前总装：稳定成果成为持续运转的精密机组，未竟问题成为卡住末端传动的沉重闸门。",
+    "supportingSymbolsZh": [
+      "俯身校准机械的总工程师",
+      "稳定运转并输出整齐纸卷的精密机组",
+      "阻塞末端传动的半闭铸铁闸门"
+    ],
+    "sceneDescriptionZh": "一座纵深工坊内，总工程师位于近景中央，俯身调校左侧稳定运转的精密机组；机组输出整齐纸卷，传动轴延伸至右侧，却被半闭的铸铁闸门卡住。背景仅保留昏暗厂房空间与斜射天光。",
+    "focalElementsEn": [
+      "chief engineer calibrating machinery",
+      "stable precision machine producing orderly paper rolls",
+      "half-closed cast-iron gate blocking the final drive"
+    ],
+    "imagePromptEn": "A chief engineer bends over a stable precision machine, carefully calibrating its moving parts as it produces orderly paper rolls. The machine’s drive shaft extends across the workshop toward a half-closed cast-iron gate, where the final transmission is visibly blocked. Arrange the three focal elements in one continuous left-to-right action under angled workshop light."
+  }
+}

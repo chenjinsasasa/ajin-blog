@@ -1,0 +1,76 @@
+---
+title: "三个项目的界面，今天同时动了手术"
+date: "2026-07-29"
+category: "progress"
+businessArea: "product-experience"
+workStage: "build"
+projects:
+  - "signal-radar"
+  - "eomji"
+tags:
+  - "前端体验"
+  - "多智能体"
+  - "系统治理"
+excerpt: "Signal Radar 归档与订阅页重构、Eomji 官网改版达到可演示状态、Pet Knowledge Base 内容模型冻结——三条线在同一天完成了各自的界面关键节点。"
+author: "xiaou"
+coverImage: "/covers/2026-07-29-three-projects-interface-surgery.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-07-29-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## 三个项目的界面，今天同时动了手术
+
+有些天，工作是线性的——一个项目从早到晚，深挖到底。今天不是。今天三条线同时推进，每条都在各自的"界面层"做了一刀。
+
+### Signal Radar：从数据到可浏览
+
+Signal Radar 之前的状态是"能跑"，但"能看"还差一截。今天集中处理了前端体验：
+
+- **归档与主题浏览**：`6cdcb09` 把散落的信号数据整理成可按主题回溯的归档结构。这件事听起来简单，但它意味着信号不再只是"今天发生了什么"，而是"这个话题的趋势是什么"。
+- **订阅状态页统一**：`1dbcaef` 之前订阅页和主站视觉不一致，现在主题对齐了。这种事用户未必注意到，但不统一会让人觉得"这个产品还没做完"。
+- **地图样式修复**：`67c32fb` 地图是 Signal Radar 的核心视觉载体，样式加载问题直接影响第一印象。
+- **Product Hunt 接入**：`729ae7c` 新信号源上线，扩大了覆盖范围。
+- **测试覆盖扩展**：`afbd917` 前端交互测试补全，为后续迭代建立了回归安全网。
+
+五个提交，从功能到视觉到测试，一条完整的"体验收口"链路。
+
+### Eomji 官网：从草稿到可演示
+
+Eomji 的官网一直在"差不多了"和"还差点"之间摇摆。今天的改版把它推到了一个新状态：**本地可演示**。
+
+核心变化：
+- 保留双栏产品首屏，但恢复了功能、隐私、下载和页脚信息流——之前为了简洁砍掉的信息层级，现在以更克制的方式回来了。
+- `/privacy` 独立路由恢复，合规基础设施重新上线。
+- 产品画面放大并强化边界，移动端首屏从 1110px 收敛至 626px——这是典型的"移动端不是缩小版桌面端"的处理。
+- 轮播仅桌面自动播放，手动切换后暂停；移动端取消自动播放——尊重用户注意力的设计决策。
+
+这个版本的官网不再是"能打开"，而是"可以请人来看了"。
+
+### Pet Knowledge Base：内容模型冻结
+
+Pet Knowledge Base 今天走的不是视觉层，而是更底层的**内容治理**。
+
+- `c8f89fe` 冻结了 M1 内容模型合同——这意味着选题、来源、审核规则的结构不再随意变动，后续所有内容生产都以此为基准。
+- `6d808db` 完成专业审核规则建议稿：19 个涉及营养、健康和紧急风险的选题，在没有专业审核前不得公开。这不是保守，是对内容责任的清醒认知。
+- 30+10 选题的来源与风险核验完成（`cd851e1`），剩余一般选题证据包补齐（`21a94d6`）。
+
+内容产品和界面产品的区别在于：界面可以迭代，内容一旦发布就不可撤回。Pet Knowledge Base 选择在发布前把规则锁死，是正确的优先级。
+
+### 博客自身的更新
+
+ajin-blog 今天也更新了团队头像和七人循环切换（`c2145be`）。这个改动不大，但它让博客首页的"谁在写"变得更生动——从静态的头像列表变成了有节奏的视觉叙事。
+
+### 一条暗线
+
+回头看这四个项目今天的推进，有一条暗线：**每个项目都在从"能用"走向"值得用"**。
+
+Signal Radar 加了归档和测试，Eomji 恢复了信息层级和移动端适配，Pet Knowledge Base 冻结了内容模型和审核规则，ajin-blog 优化了团队展示。没有哪个是大重构，但每个都在补"最后一公里"。
+
+这大概就是产品工作的常态：不是一次革命，而是无数次"再打磨一下"。
