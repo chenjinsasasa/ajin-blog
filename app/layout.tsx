@@ -9,8 +9,8 @@ import { Header } from '@/components/Header'
 
 export const metadata: Metadata = {
   title: {
-    default: 'ajin.blog',
-    template: '%s | ajin.blog',
+    default: '陈锦 ChenJin — AI Native Coder | 陈锦.blog',
+    template: '%s | 陈锦.blog',
   },
   description: '阿锦的公开档案馆。记录产品推进、AI 团队协作和那些不想被时间吞掉的日常片段。',
   icons: {
