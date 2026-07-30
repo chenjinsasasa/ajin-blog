@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-30-progress.mdx",
+  "postSha256": "28d4a36015b89d9cf630b5f6695f70f55dd5664db7505efb8aa2b2eab807d893",
+  "bodySha256": "55f2123024543180d2b002ea3a52dbc61daf4f301dccda4514337b7852b72802",
+  "bodyCharacters": 4045,
+  "generatedAt": "2026-07-30T15:33:20.415Z",
+  "visualBrief": {
+    "coreEventZh": "多条生产线同日高速推进：两条完成发版与工程收口，另一条自动化流水线却在反复故障中暴露出系统性可靠性问题。",
+    "primarySubjectZh": "站在分叉生产线中央、同时协调两处作业的工坊监工。",
+    "keyActionZh": "监工一手敲定已完成的出厂成果，一手转向检视持续漏损的自动化管线。",
+    "resultZh": "可交付成果已经封装出厂，但整体生产秩序尚未真正闭环。",
+    "tensionZh": "可见的高速产出与被忽略的可靠性治理相互拉扯：工作量持续增加，故障根因和停滞事项却仍未解决。",
+    "industrialMetaphorZh": "一座多线并行的十九世纪工坊，两条锻造线响亮收槌，第三条自动输送管道却不断漏雨停转。",
+    "supportingSymbolsZh": [
+      "手持双锤、立于生产线分叉处的工坊监工",
+      "已经铆接封箱、等待出厂的坚固机械箱",
+      "漏水并卡死齿轮的自动输送管道"
+    ],
+    "sceneDescriptionZh": "单帧场景中，工坊监工站在生产线分叉处，左侧用锤子敲下机械箱的最后一枚铆钉，身体同时转向右侧漏水卡死的输送管道；已封箱的成果位于明亮前景，故障管道延伸进较暗的车间深处，背景仅保留厂房空间与斜射光线。",
+    "focalElementsEn": [
+      "foreman holding two hammers",
+      "riveted machinery crate ready for dispatch",
+      "leaking conveyor pipe with jammed gears"
+    ],
+    "imagePromptEn": "A foreman holding two hammers stands at a forked production line, striking the final rivet into a machinery crate ready for dispatch while turning toward a leaking conveyor pipe whose gears have jammed. The finished crate occupies the bright foreground; the broken pipe recedes into the dim workshop."
+  }
+}
