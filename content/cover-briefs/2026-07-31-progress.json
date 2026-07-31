@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-07-31-progress.mdx",
+  "postSha256": "6a466e01907bf65a22e5a006c1b754cf91f592d3da8b8b5b3c803b4564564287",
+  "bodySha256": "4a1ef8a44d9c2bd54d0624103896c20cdc3ea819e6fc7eced72bf583db8399a2",
+  "bodyCharacters": 1488,
+  "generatedAt": "2026-07-31T15:32:24.263Z",
+  "visualBrief": {
+    "coreEventZh": "将散落在实现与口头沟通中的设计知识提炼为独立、可维护的设计真相，并据此校准已有实现。",
+    "primarySubjectZh": "一名工坊制图师在既有机器旁建立统一的设计档案。",
+    "keyActionZh": "制图师把机器中隐含的尺寸、结构与操作规律整理进一册可供所有工匠查阅的总图谱。",
+    "resultZh": "原本依赖个人记忆和零散实现的设计决策获得了稳定、可追溯的共识锚点。",
+    "tensionZh": "统一图谱已经建立，但机器边缘仍有一处细小错位，说明实现尚未完全服从设计真相。",
+    "industrialMetaphorZh": "把已有网站视作一台先建成、后补总图的复杂工业机器：设计文档是中央工程图册，代码对齐是依图校准机械结构。",
+    "supportingSymbolsZh": [
+      "在机器旁执笔校准的工坊制图师",
+      "摊开并固定在绘图台上的完整工程图册",
+      "机器翻转构件边缘尚未消除的细小错位"
+    ],
+    "sceneDescriptionZh": "一座十九世纪工坊内，制图师站在绘图台与大型机械之间，一手按住已经完成的总图册，一手比照并校准机械；机械翻转构件的边缘仍露出一处细小错位。背景仅保留昏暗厂房空间与侧窗光线。",
+    "focalElementsEn": [
+      "draftsman calibrating a machine",
+      "completed master blueprint on a drafting table",
+      "slightly misaligned edge on a rotating mechanism"
+    ],
+    "imagePromptEn": "A draftsman stands between a drafting table and a large workshop machine, comparing and calibrating its structure. A completed master blueprint lies secured on the table as the shared reference. On the machine, one rotating mechanism retains a subtly misaligned edge, visible as the final unresolved flaw. Dim workshop space and side-window light only."
+  }
+}
