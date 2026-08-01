@@ -45,12 +45,15 @@ Do not add `coverSourceUrl`, `coverLicense`, or `coverAttribution` to Image 2 co
 
 ## Generate
 
-Finish the complete article body and all cover frontmatter first. Then build the content brief:
+Finish the complete article body and all cover frontmatter first. In a Codex task, read the full article yourself, save the raw schema-compatible visual brief object under `.local/blog-automation/`, and let the repository attach current hashes:
 
 ```bash
 npm run cover:image2:brief -- \
-  --post content/progress/YYYY-MM-DD-progress.mdx
+  --post content/progress/YYYY-MM-DD-progress.mdx \
+  --visual-brief-json .local/blog-automation/YYYY-MM-DD-visual-brief-input.json
 ```
+
+The preserved non-Codex/OpenClaw fallback may omit `--visual-brief-json`; that legacy mode starts an ephemeral Codex analysis process.
 
 The brief stage reads the complete article, not only `title` and `excerpt`. Codex must select one main line and persist these auditable fields under `content/cover-briefs/`:
 
@@ -66,31 +69,43 @@ The brief stage reads the complete article, not only `title` and `excerpt`. Code
 
 The artifact records hashes for both the complete post and body. Any later article edit invalidates the brief and forces regeneration.
 
-After the brief exists, generate the cover:
-
-```bash
-npm run cover:image2:generate -- \
-  --post content/progress/YYYY-MM-DD-progress.mdx
-```
-
-To audit the complete visual brief and exact composed image prompt without calling the image endpoint:
+After the brief exists, prepare the exact prompt without starting another Codex process:
 
 ```bash
 npm run cover:image2:generate -- \
   --post content/progress/YYYY-MM-DD-progress.mdx \
-  --dry-run
+  --prepare-built-in
 ```
 
-The command:
+Pass only the returned `imagePrompt` value to the current task's built-in `image_gen`. Inspect the result, then adopt the generated file:
 
-1. creates or refreshes the full-article visual brief;
-2. verifies all four reference hashes;
-3. requires three consecutive transport-level probes to `chatgpt.com` before starting the long image request;
-4. starts a bounded `codex exec` task that uses Codex's built-in `image_gen` tool without attaching input images;
-5. injects the visual brief as the content blueprint and the mother prompt as the fixed style blueprint;
-6. removes `OPENAI_API_KEY` from the child environment and uses the Codex login state only;
-7. saves a local PNG under `public/covers/`;
-8. optimizes it and updates the optimization manifest.
+```bash
+npm run cover:image2:generate -- \
+  --post content/progress/YYYY-MM-DD-progress.mdx \
+  --built-in-source "$CODEX_HOME/generated_images/<run>/<image>.png"
+```
+
+If the built-in call returns an explicit network error, quarantine the `route.current` or `route.to` value returned by preparation and prepare once more before one final built-in retry:
+
+```bash
+npm run cover:image2:generate -- \
+  --post content/progress/YYYY-MM-DD-progress.mdx \
+  --prepare-built-in \
+  --failed-route "<failed route>"
+```
+
+Do not retry non-network failures or make more than two built-in image calls.
+
+The direct Codex workflow:
+
+1. validates a fresh full-article brief and all four reference hashes;
+2. exposes the brief-derived three-focus prompt without network access;
+3. calls the current Codex task's built-in `image_gen` exactly once without input images;
+4. accepts sources only from `$CODEX_HOME/generated_images/`;
+5. saves a normalized local PNG under `public/covers/`;
+6. optimizes it and updates the optimization manifest.
+
+The default command without `--prepare-built-in` or `--built-in-source` is retained only for the preserved non-Codex/OpenClaw fallback. It uses the bounded route guard and nested `codex exec` behavior described below.
 
 ### Route stability
 

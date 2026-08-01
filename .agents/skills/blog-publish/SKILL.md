@@ -77,17 +77,39 @@ frontmatter 必须满足 `AGENTS.md` 与运行时 taxonomy，并包含：
 
 ## 5. 生成并检查封面
 
-按顺序运行：
+Codex 自动任务必须直接使用当前任务可用的内置 `image_gen`，不得从 Codex 内再启动 `codex exec`。
+
+1. 完整阅读正文并生成 visual brief object，将它写入 `.local/blog-automation/$TARGET_DATE-visual-brief-input.json`。对象必须包含 brief schema 要求的全部字段、一个场景和恰好三个视觉焦点。
+2. 让仓库脚本补齐并校验 post/body 哈希：
 
 ```bash
-npm run cover:image2:brief -- --post "content/progress/$TARGET_DATE-progress.mdx"
-npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx"
+npm run cover:image2:brief -- --post "content/progress/$TARGET_DATE-progress.mdx" --visual-brief-json ".local/blog-automation/$TARGET_DATE-visual-brief-input.json"
+```
+
+若已有 fresh brief，可直接复用，不要重写正文或 brief。
+
+3. 生成锁定提示词：
+
+```bash
+npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --prepare-built-in
+```
+
+只把 JSON 中 `imagePrompt` 的值传给当前任务的内置 `image_gen`。不附加参考图，不添加或删除叙事物件。生成后读取工具返回的 `$CODEX_HOME/generated_images/...` 本地路径，并目视确认恰好三个焦点、蒸汽工业时代铜版蚀刻风格、无文字和无现代设备。
+
+若内置工具明确返回 `network error`，只允许一次线路恢复：读取准备 JSON 的 `route.current` 或 `route.to`，运行下列命令后，用新返回的同一 `imagePrompt` 重试一次。非网络错误不重试；第二次失败立即停止。
+
+```bash
+npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --prepare-built-in --failed-route "<失败 route>"
+```
+
+4. 让仓库接收并规范化内置结果，再校验单篇合同：
+
+```bash
+npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --built-in-source "<image_gen 返回的本地路径>"
 npm run cover:image2:validate -- --post "content/progress/$TARGET_DATE-progress.mdx"
 ```
 
-brief 必须由完整正文生成，包含最新 post/body 哈希、一个场景和恰好三个视觉焦点。正文在 brief 后发生修改时，重新执行三条命令。
-
-只允许仓库锁定的 Codex 内置 `image_gen` 和 Image 2 路径。不得使用 API key、外部图片、旧封面、截图、其他模型或 fallback。生成失败就停止并保留最先失败的错误。
+正文在 brief 后发生修改时，从 visual brief 重新开始。只允许当前 Codex 的内置 `image_gen` 和 Image 2 路径；不得使用 API key、外部图片、旧封面、截图、其他模型或 fallback。生成失败就停止并保留最先失败的错误。
 
 ## 6. 发布前门禁
 
@@ -133,7 +155,11 @@ npm run blog:terminal:repair -- "$TARGET_DATE" "$AUTHOR_ID" --json
 
 ## 8. 安全网与只读复验
 
-01:15 自动安全网允许执行既有的有限 push/轮值修复，运行：
+01:15 自动安全网先检查北京时间昨天的失败残留：
+
+- 文章与 fresh brief 存在但封面缺失时，不重写正文或 brief；按第 5 节的 `--prepare-built-in` → 当前任务 `image_gen` → `--built-in-source` 续跑封面，然后执行单篇校验、发布前门禁、commit/push 和终态。
+- 文章、fresh brief、素材或作者证据缺失时只报告，不补写或猜测。
+- 封面已存在时不重新生成，直接执行既有的有限 push/轮值修复：
 
 ```bash
 npm run blog:terminal:repair -- --json

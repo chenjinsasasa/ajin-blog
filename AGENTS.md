@@ -77,8 +77,9 @@ This file defines project-level working rules for agents operating in `ajin-blog
 
 ## Cover Sources
 
-- New post covers must be generated through `npm run cover:image2:generate`.
+- New post covers must pass through the repository's `cover:image2:brief`, `cover:image2:generate --prepare-built-in`, current-task built-in `image_gen`, `cover:image2:generate --built-in-source`, and `cover:image2:validate` gates.
 - The generator is exactly Codex built-in `image_gen`, recorded as `coverProvider: codex`, `coverModel: image-2`, and `coverExecutionMode: builtin-imagegen`; do not downgrade to another model or API path.
+- When the outer runner is already Codex, call its built-in `image_gen` directly; do not spawn nested `codex exec`. The default generator command remains only for a non-Codex legacy runner such as the preserved OpenClaw fallback.
 - Public-domain collections, copied web images, old local covers, and other image generators are not permitted for new post covers.
 - If Image 2 generation fails, stop publishing and retain the error. Do not substitute another source.
 
@@ -125,8 +126,8 @@ coverReferenceSet: "homepage-entry-cards-v1"
 
 - When creating or updating a post:
   1. Finish the complete article body, then fill in Image 2 provenance fields, the derived `coverBriefPath`, and a `.png` `coverImage` path.
-  2. Run `npm run cover:image2:brief -- --post <post-path>`; Codex must read the full article and persist an auditable brief with post/body hashes.
-  3. Run `npm run cover:image2:generate -- --post <post-path>`; the generator automatically reuses a fresh brief or rebuilds a stale one.
+  2. In a Codex task, read the full article, write the raw visual brief under `.local/blog-automation/`, then run `npm run cover:image2:brief -- --post <post-path> --visual-brief-json <private-brief-input>` so deterministic code adds fresh post/body hashes. A non-Codex legacy runner may use the command without `--visual-brief-json`.
+  3. Run `npm run cover:image2:generate -- --post <post-path> --prepare-built-in`, pass only its `imagePrompt` value to the current task's built-in `image_gen`, then run the generator again with `--built-in-source <generated-image-path>`.
   4. Visually compare the result with all four locked references; reject anything outside the steam industrial age engraving world or inconsistent with the brief.
   5. Run `npm run cover:image2:validate -- --post <post-path>`.
   6. Run `npm run verify` before commit/push.

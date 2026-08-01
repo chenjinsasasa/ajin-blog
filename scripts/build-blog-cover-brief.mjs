@@ -8,6 +8,7 @@ import { spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 
 import { resolveCodexCliPath } from './lib/codex-cli-path.mjs'
+import { resolveVisualBriefInput } from './lib/blog-cover-direct.mjs'
 
 const projectRoot = process.cwd()
 const contentRoot = path.join(projectRoot, 'content')
@@ -33,14 +34,15 @@ Usage:
   npm run cover:image2:brief -- --post content/progress/YYYY-MM-DD-progress.mdx
 
 Options:
-  --post <path>  Complete article to abstract (required)
-  --force        Rebuild even when the article hash is unchanged
-  -h, --help     Show this help
+  --post <path>               Complete article to abstract (required)
+  --visual-brief-json <path>  Use analysis produced by the current Codex task
+  --force                     Rebuild even when the article hash is unchanged
+  -h, --help                  Show this help
 `)
 }
 
 function parseArgs(argv) {
-  const options = { force: false, post: '' }
+  const options = { force: false, post: '', visualBriefJson: '' }
   const args = [...argv]
   while (args.length > 0) {
     const arg = args.shift()
@@ -49,10 +51,11 @@ function parseArgs(argv) {
       process.exit(0)
     }
     if (arg === '--force') options.force = true
-    else if (arg === '--post') {
+    else if (arg === '--post' || arg === '--visual-brief-json') {
       const value = args.shift()
-      if (!value) throw new Error('--post 缺少参数')
-      options.post = value
+      if (!value) throw new Error(`${arg} 缺少参数`)
+      if (arg === '--post') options.post = value
+      else options.visualBriefJson = value
     } else {
       throw new Error(`未知参数：${arg}`)
     }
@@ -206,11 +209,19 @@ function main() {
     }
   }
 
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ajin-blog-cover-brief-'))
-  const codexOutputPath = path.join(tempDir, 'visual-brief.json')
+  const tempDir = options.visualBriefJson
+    ? ''
+    : fs.mkdtempSync(path.join(os.tmpdir(), 'ajin-blog-cover-brief-'))
+  const codexOutputPath = tempDir ? path.join(tempDir, 'visual-brief.json') : ''
   try {
-    runCodex(buildPrompt({ title, excerpt, body, relativePostPath }), codexOutputPath)
-    const visualBrief = JSON.parse(fs.readFileSync(codexOutputPath, 'utf8'))
+    let visualBrief
+    if (options.visualBriefJson) {
+      const inputPath = resolveVisualBriefInput(projectRoot, options.visualBriefJson)
+      visualBrief = JSON.parse(fs.readFileSync(inputPath, 'utf8'))
+    } else {
+      runCodex(buildPrompt({ title, excerpt, body, relativePostPath }), codexOutputPath)
+      visualBrief = JSON.parse(fs.readFileSync(codexOutputPath, 'utf8'))
+    }
     validateVisualBrief(visualBrief)
 
     const artifact = {
@@ -233,7 +244,7 @@ function main() {
       JSON.stringify(
         {
           status: 'ok',
-          action: 'generated',
+          action: options.visualBriefJson ? 'generated-from-current-codex' : 'generated',
           post: relativePostPath,
           brief: relativeBriefPath,
           postSha256,
@@ -244,7 +255,7 @@ function main() {
       ),
     )
   } finally {
-    fs.rmSync(tempDir, { recursive: true, force: true })
+    if (tempDir) fs.rmSync(tempDir, { recursive: true, force: true })
   }
 }
 
