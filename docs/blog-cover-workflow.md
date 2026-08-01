@@ -74,7 +74,8 @@ After the brief exists, prepare the exact prompt without starting another Codex 
 ```bash
 npm run cover:image2:generate -- \
   --post content/progress/YYYY-MM-DD-progress.mdx \
-  --prepare-built-in
+  --prepare-built-in \
+  --attempt 1
 ```
 
 Pass only the returned `imagePrompt` value to the current task's built-in `image_gen`. Inspect the result, then adopt the generated file:
@@ -91,15 +92,16 @@ If the built-in call returns an explicit network error, quarantine the `route.cu
 npm run cover:image2:generate -- \
   --post content/progress/YYYY-MM-DD-progress.mdx \
   --prepare-built-in \
+  --attempt 2 \
   --failed-route "<failed route>"
 ```
 
-Do not retry non-network failures or make more than two built-in image calls.
+`--attempt` accepts only `1` or `2`; attempt 2 requires the failed route from attempt 1. Do not retry non-network failures, repeat an attempt number, or make more than two built-in image calls.
 
 The direct Codex workflow:
 
 1. validates a fresh full-article brief and all four reference hashes;
-2. exposes the brief-derived three-focus prompt without network access;
+2. exposes the brief-derived three-focus prompt without generating an image or starting nested Codex; route preflight may access `chatgpt.com` and switch the local Clash route;
 3. calls the current Codex task's built-in `image_gen` exactly once without input images;
 4. accepts sources only from `$CODEX_HOME/generated_images/`;
 5. saves a normalized local PNG under `public/covers/`;

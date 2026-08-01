@@ -91,7 +91,7 @@ npm run cover:image2:brief -- --post "content/progress/$TARGET_DATE-progress.mdx
 3. 生成锁定提示词：
 
 ```bash
-npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --prepare-built-in
+npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --prepare-built-in --attempt 1
 ```
 
 只把 JSON 中 `imagePrompt` 的值传给当前任务的内置 `image_gen`。不附加参考图，不添加或删除叙事物件。生成后读取工具返回的 `$CODEX_HOME/generated_images/...` 本地路径，并目视确认恰好三个焦点、蒸汽工业时代铜版蚀刻风格、无文字和无现代设备。
@@ -99,8 +99,10 @@ npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.
 若内置工具明确返回 `network error`，只允许一次线路恢复：读取准备 JSON 的 `route.current` 或 `route.to`，运行下列命令后，用新返回的同一 `imagePrompt` 重试一次。非网络错误不重试；第二次失败立即停止。
 
 ```bash
-npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --prepare-built-in --failed-route "<失败 route>"
+npm run cover:image2:generate -- --post "content/progress/$TARGET_DATE-progress.mdx" --prepare-built-in --attempt 2 --failed-route "<失败 route>"
 ```
+
+`--attempt` 只允许 `1` 或 `2`；不得重复调用同一 attempt 或开始第三次当前任务生图。
 
 4. 让仓库接收并规范化内置结果，再校验单篇合同：
 

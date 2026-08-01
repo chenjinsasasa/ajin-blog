@@ -127,7 +127,7 @@ coverReferenceSet: "homepage-entry-cards-v1"
 - When creating or updating a post:
   1. Finish the complete article body, then fill in Image 2 provenance fields, the derived `coverBriefPath`, and a `.png` `coverImage` path.
   2. In a Codex task, read the full article, write the raw visual brief under `.local/blog-automation/`, then run `npm run cover:image2:brief -- --post <post-path> --visual-brief-json <private-brief-input>` so deterministic code adds fresh post/body hashes. A non-Codex legacy runner may use the command without `--visual-brief-json`.
-  3. Run `npm run cover:image2:generate -- --post <post-path> --prepare-built-in`, pass only its `imagePrompt` value to the current task's built-in `image_gen`, then run the generator again with `--built-in-source <generated-image-path>`.
+  3. Run `npm run cover:image2:generate -- --post <post-path> --prepare-built-in --attempt 1`, pass only its `imagePrompt` value to the current task's built-in `image_gen`, then run the generator again with `--built-in-source <generated-image-path>`. Only an explicit network error permits `--attempt 2 --failed-route <route>`; never make a third call.
   4. Visually compare the result with all four locked references; reject anything outside the steam industrial age engraving world or inconsistent with the brief.
   5. Run `npm run cover:image2:validate -- --post <post-path>`.
   6. Run `npm run verify` before commit/push.

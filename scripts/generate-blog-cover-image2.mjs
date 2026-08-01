@@ -43,6 +43,7 @@ Options:
   --post <path>               Complete post whose visual brief defines the scene (required)
   --out <path>                Override the coverImage output path
   --prepare-built-in          Print the prompt for this Codex task's image_gen tool
+  --attempt <1|2>             Direct built-in attempt number (required with prepare)
   --failed-route <name>       Quarantine one failed direct-image route before preparing
   --built-in-source <path>    Adopt an image from $CODEX_HOME/generated_images
   --dry-run                   Legacy nested-Codex prompt audit
@@ -54,6 +55,7 @@ Options:
 
 function parseArgs(argv) {
   const options = {
+    attempt: 0,
     builtInSource: '',
     dryRun: false,
     failedRoute: '',
@@ -75,6 +77,13 @@ function parseArgs(argv) {
     else if (arg === '--prepare-built-in') options.prepareBuiltIn = true
     else if (arg === '--force') options.force = true
     else if (arg === '--skip-optimize') options.skipOptimize = true
+    else if (arg === '--attempt') {
+      const value = Number(args.shift())
+      if (!Number.isInteger(value) || ![1, 2].includes(value)) {
+        throw new Error('--attempt 只允许 1 或 2')
+      }
+      options.attempt = value
+    }
     else if (
       arg === '--post' ||
       arg === '--out' ||
@@ -98,8 +107,20 @@ function parseArgs(argv) {
   if (options.prepareBuiltIn && options.builtInSource) {
     throw new Error('--prepare-built-in 不能与 --built-in-source 同时使用')
   }
+  if (options.prepareBuiltIn && !options.attempt) {
+    throw new Error('--prepare-built-in 必须显式提供 --attempt 1 或 --attempt 2')
+  }
+  if (options.attempt && !options.prepareBuiltIn) {
+    throw new Error('--attempt 只能与 --prepare-built-in 同时使用')
+  }
   if (options.failedRoute && !options.prepareBuiltIn) {
     throw new Error('--failed-route 只能与 --prepare-built-in 同时使用')
+  }
+  if (options.failedRoute && options.attempt !== 2) {
+    throw new Error('--failed-route 只允许用于 --attempt 2')
+  }
+  if (options.attempt === 2 && !options.failedRoute) {
+    throw new Error('--attempt 2 必须提供 --failed-route')
   }
   return options
 }
@@ -307,6 +328,7 @@ async function main() {
         {
           status: 'ok',
           action: 'prepare-built-in',
+          attempt: options.attempt,
           post: relativePostPath,
           brief: relativeBriefPath,
           postSha256: briefArtifact.postSha256,
