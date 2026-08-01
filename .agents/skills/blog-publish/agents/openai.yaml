@@ -1,0 +1,4 @@
+interface:
+  display_name: "博客自动发布"
+  short_description: "整理每日工作素材，生成正文和封面并完成博客发布终态校验"
+  default_prompt: "Use $blog-publish to generate and publish the target-date progress post with terminal validation."
