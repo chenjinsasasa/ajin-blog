@@ -45,15 +45,14 @@ Do not add `coverSourceUrl`, `coverLicense`, or `coverAttribution` to Image 2 co
 
 ## Generate
 
-Finish the complete article body and all cover frontmatter first. In a Codex task, read the full article yourself, save the raw schema-compatible visual brief object under `.local/blog-automation/`, and let the repository attach current hashes:
+Finish the complete article body and all cover frontmatter first. Use the repository default command:
 
 ```bash
 npm run cover:image2:brief -- \
-  --post content/progress/YYYY-MM-DD-progress.mdx \
-  --visual-brief-json .local/blog-automation/YYYY-MM-DD-visual-brief-input.json
+  --post content/progress/YYYY-MM-DD-progress.mdx
 ```
 
-The preserved non-Codex/OpenClaw fallback may omit `--visual-brief-json`; that legacy mode starts an ephemeral Codex analysis process.
+The command starts an isolated ephemeral bundled Codex CLI process that reads the complete article. It reuses the local Codex login and does not depend on OpenClaw. A fresh existing brief is reused without rewriting the article or brief.
 
 The brief stage reads the complete article, not only `title` and `excerpt`. Codex must select one main line and persist these auditable fields under `content/cover-briefs/`:
 
@@ -69,7 +68,20 @@ The brief stage reads the complete article, not only `title` and `excerpt`. Code
 
 The artifact records hashes for both the complete post and body. Any later article edit invalidates the brief and forces regeneration.
 
-After the brief exists, prepare the exact prompt without starting another Codex process:
+After the brief exists, generate and normalize the cover with the default command:
+
+```bash
+npm run cover:image2:generate -- \
+  --post content/progress/YYYY-MM-DD-progress.mdx
+```
+
+This OpenClaw-proven path is now the primary Codex automation path: the script verifies the locked references, runs route preflight, starts an isolated ephemeral bundled Codex CLI, calls its built-in `image_gen`, accepts the generated output, normalizes it under `public/covers/`, optimizes it, and updates the manifest.
+
+The route guard owns one bounded network recovery. Scheduled automations must not construct route shell arguments, repeat direct attempts, or start a third generation. Non-network failures are never retried.
+
+### Manual direct mode
+
+Only when a user explicitly requests a manual current-task generation, prepare the exact prompt:
 
 ```bash
 npm run cover:image2:generate -- \
@@ -96,18 +108,16 @@ npm run cover:image2:generate -- \
   --failed-route "<failed route>"
 ```
 
-`--attempt` accepts only `1` or `2`; attempt 2 requires the failed route from attempt 1. Do not retry non-network failures, repeat an attempt number, or make more than two built-in image calls.
+`--attempt` accepts only `1` or `2`; attempt 2 requires the failed route from attempt 1. Do not retry non-network failures, repeat an attempt number, or make more than two built-in image calls. This manual path is not allowed in scheduled automations.
 
-The direct Codex workflow:
+Both generation modes enforce the same output contract:
 
 1. validates a fresh full-article brief and all four reference hashes;
-2. exposes the brief-derived three-focus prompt without generating an image or starting nested Codex; route preflight may access `chatgpt.com` and switch the local Clash route;
-3. calls the current Codex task's built-in `image_gen` exactly once without input images;
+2. derives a locked three-focus prompt; route preflight may access `chatgpt.com` and switch the local Clash route;
+3. calls Codex built-in `image_gen` without input images;
 4. accepts sources only from `$CODEX_HOME/generated_images/`;
 5. saves a normalized local PNG under `public/covers/`;
 6. optimizes it and updates the optimization manifest.
-
-The default command without `--prepare-built-in` or `--built-in-source` is retained only for the preserved non-Codex/OpenClaw fallback. It uses the bounded route guard and nested `codex exec` behavior described below.
 
 ### Route stability
 
