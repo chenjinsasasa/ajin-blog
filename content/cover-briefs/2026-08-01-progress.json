@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-01-progress.mdx",
+  "postSha256": "1a82d112d99febd52bad32ee7311113cc1e3bd456e7782c6b478ea722ef3b0e9",
+  "bodySha256": "a3646c9eeb12d1b79994be7564699a6e4a2e50b93a9299d90872c65111b31adc",
+  "bodyCharacters": 1476,
+  "generatedAt": "2026-08-02T02:47:31.841Z",
+  "visualBrief": {
+    "coreEventZh": "新发布链尚未完成首次终态验收，旧调度链便被提前停用，导致一次正确的封闭失败转化为实际缺更。",
+    "primarySubjectZh": "负责迁移的工业调度工程师。",
+    "keyActionZh": "工程师在新传动链停转后试图重新接合已被切断的旧动力链。",
+    "resultZh": "发布门禁正确拦住了证据不完整的产物，但整条发布路径未能抵达线上终点。",
+    "tensionZh": "局部安全机制已经生效，系统级退路却因过早切换而消失。",
+    "industrialMetaphorZh": "一座印刷工坊在新传动机构尚未带动印刷机完成首轮成品前，便拆除了旧动力皮带；安全闸锁住半成品，工坊因此停摆。",
+    "supportingSymbolsZh": [
+      "扳动切换杆并回望动力链的工坊工程师",
+      "被安全闸稳稳锁住的印刷机与完整校验封条",
+      "新机构停转后已经脱开的旧动力皮带"
+    ],
+    "sceneDescriptionZh": "单帧呈现昏暗印刷工坊内，工程师站在中央切换杆旁，一侧是被安全闸锁住且挂有完整封条的印刷机，另一侧是从传动轮脱开的旧动力皮带；背景仅保留纵深厂房与侧窗光线。",
+    "focalElementsEn": [
+      "engineer at the switching lever",
+      "safety-locked printing press with an intact verification seal",
+      "disengaged old drive belt beside the stalled mechanism"
+    ],
+    "imagePromptEn": "An engineer stands at the central switching lever, turning back toward a disengaged old drive belt beside the stalled mechanism. On the opposite side, a printing press remains firmly safety-locked with an intact verification seal. The three elements form a tense triangular composition inside a dim workshop lit from one side."
+  }
+}
