@@ -38,7 +38,7 @@ export function buildCodexImageArgs(projectRoot) {
   ]
 }
 
-export function buildImageGenerationPrompt({ briefArtifact, config }) {
+export function buildCodexImagePrompt({ briefArtifact, config, outputPath }) {
   const visualBrief = briefArtifact?.visualBrief
   if (!visualBrief || typeof visualBrief !== 'object') {
     throw new Error('visual brief 缺少 visualBrief object')
@@ -78,12 +78,6 @@ export function buildImageGenerationPrompt({ briefArtifact, config }) {
       `Image 2 生成提示词超过 ${maxCharacters} 字符：${imagePrompt.length}；请缩短 visual brief`,
     )
   }
-
-  return imagePrompt
-}
-
-export function buildCodexImagePrompt({ briefArtifact, config, outputPath }) {
-  const imagePrompt = buildImageGenerationPrompt({ briefArtifact, config })
 
   return `Use the imagegen skill and Codex built-in image_gen to create exactly one project-bound blog cover.
 

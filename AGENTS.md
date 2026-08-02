@@ -77,9 +77,8 @@ This file defines project-level working rules for agents operating in `ajin-blog
 
 ## Cover Sources
 
-- New post covers must pass through the repository's default `cover:image2:brief`, default `cover:image2:generate`, and `cover:image2:validate` gates.
+- New post covers must be generated through `npm run cover:image2:generate`.
 - The generator is exactly Codex built-in `image_gen`, recorded as `coverProvider: codex`, `coverModel: image-2`, and `coverExecutionMode: builtin-imagegen`; do not downgrade to another model or API path.
-- The default commands start isolated ephemeral bundled Codex CLI processes, reuse the local Codex login, and do not depend on OpenClaw. Direct current-task `image_gen` mode is an explicit manual fallback only and must not be used by scheduled automations.
 - Public-domain collections, copied web images, old local covers, and other image generators are not permitted for new post covers.
 - If Image 2 generation fails, stop publishing and retain the error. Do not substitute another source.
 
@@ -126,8 +125,8 @@ coverReferenceSet: "homepage-entry-cards-v1"
 
 - When creating or updating a post:
   1. Finish the complete article body, then fill in Image 2 provenance fields, the derived `coverBriefPath`, and a `.png` `coverImage` path.
-  2. Run `npm run cover:image2:brief -- --post <post-path>`; its isolated Codex process reads the full article and deterministic code adds fresh post/body hashes. Reuse a fresh existing brief.
-  3. Run `npm run cover:image2:generate -- --post <post-path>`; its isolated Codex process calls built-in Image 2, while the route guard owns bounded recovery. Scheduled automations must not build route shell arguments or use direct-mode flags.
+  2. Run `npm run cover:image2:brief -- --post <post-path>`; Codex must read the full article and persist an auditable brief with post/body hashes.
+  3. Run `npm run cover:image2:generate -- --post <post-path>`; the generator automatically reuses a fresh brief or rebuilds a stale one.
   4. Visually compare the result with all four locked references; reject anything outside the steam industrial age engraving world or inconsistent with the brief.
   5. Run `npm run cover:image2:validate -- --post <post-path>`.
   6. Run `npm run verify` before commit/push.
