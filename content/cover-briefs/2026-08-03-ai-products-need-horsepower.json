@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-03-ai-products-need-horsepower.mdx",
+  "postSha256": "64ce4852c76711a020c5cf49309f578e496debef41b5b1ae6052374767758603",
+  "bodySha256": "4b4aaefa53c059f1395ea6d0ea7b1d8fcdd785095e25535f169176ef28247d6d",
+  "bodyCharacters": 2529,
+  "generatedAt": "2026-08-02T17:33:43.122Z",
+  "visualBrief": {
+    "coreEventZh": "一位工业发明者把难懂的蒸汽机性能转译为矿主能够感知和计算的“马力”，让技术价值从抽象参数落到具体负担的减少。",
+    "primarySubjectZh": "站在蒸汽机与矿场经营者之间、负责翻译技术价值的工业发明者。",
+    "keyActionZh": "发明者用马匹牵引力校准蒸汽机的输出，并将两者建立直观对应。",
+    "resultZh": "原本抽象的机器能力变成可衡量、可比较、可选择的生活与经营改善。",
+    "tensionZh": "工程师习惯展示更强、更复杂的性能，用户真正关心的却是技术能替自己拿掉多少具体负担。",
+    "industrialMetaphorZh": "以蒸汽机替代役马的校准实验，隐喻 AI 产品必须为复杂能力找到用户听得懂的价值单位。",
+    "supportingSymbolsZh": [
+      "正在校准动力的工业发明者",
+      "与蒸汽机输出形成清晰对应的一组役马",
+      "挡在双方之间的纠结仪表与传动阻力"
+    ],
+    "sceneDescriptionZh": "工业发明者站在画面中央调整测力机构，左侧役马稳定拉动负载，右侧蒸汽机通过传动装置与之形成明确对应；纠结的仪表和卡滞齿轮横在连接处，发明者正将复杂读数归并为可理解的动力尺度。背景仅为昏暗矿场工坊与侧窗光线。",
+    "focalElementsEn": [
+      "an inventor calibrating power",
+      "workhorses matched to a steam engine",
+      "tangled gauges and jammed gears"
+    ],
+    "imagePromptEn": "At the center, an inventor calibrates a power linkage. On one side, workhorses pull a load in clear balance with a steam engine on the other. Between them, tangled gauges and jammed gears obstruct the connection as the inventor works to resolve the mechanism into one understandable measure."
+  }
+}
