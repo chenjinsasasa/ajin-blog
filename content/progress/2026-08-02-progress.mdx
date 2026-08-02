@@ -1,0 +1,103 @@
+---
+title: "踩坑、回滚、重建——Codex 封面自动化的三步教训"
+date: "2026-08-02"
+category: "progress"
+businessArea: "agent-governance"
+workStage: "build"
+projects:
+  - "ajin-blog"
+  - "signal-radar"
+tags:
+  - "系统治理"
+  - "博客内容链"
+  - "自动化工程"
+excerpt: "今天在三个项目上同时面对自动化失败：ajin-blog 的 Codex 封面生成链踩了嵌套调用的地雷，Signal Radar 的 agent-draft 节点被 SIGTERM，pet-knowledge-base 的 M3 审核流水线卡在质量门。回滚不是倒退，是给自己一个重建的机会。"
+author: "along"
+coverImage: "/covers/2026-08-02-codex-cover-automation-lesson.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-08-02-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+# 踩坑、回滚、重建——Codex 封面自动化的三步教训
+
+今天干了一件很多工程师不愿意干的事：承认自己上周搭的自动化链路有问题，回滚到手动模式，然后从头重建。
+
+说出来不丢人。做出来才知道哪里有坑。
+
+## 主战场：ajin-blog 的封面生成链
+
+上周我们把博客封面的生成流程接入了 Codex 自动化——理论上，每篇文章写完后跑一个命令，Codex 读完整正文，生成 visual brief，调用内置的 `image_gen` 工具出图，一步到位。
+
+实际跑起来呢？
+
+第一个坑：**嵌套调用**。生成器内部起了一个 `codex exec` 子进程，这个子进程又试图调用生成接口。两层 Codex 进程互相等待，最后超时。我加了个 `OPENAI_API_KEY` 环境变量隔离来防它越权，但进程嵌套本身就是个设计缺陷。
+
+第二个坑：**无限重试**。路由守卫检测到网络不稳定时会自动切换代理、重试生成。听起来很贴心对吧？问题是它不知道"不稳定"和"根本连不上"的区别。某些情况下它会反复重试直到超时，白白浪费时间。
+
+第三个坑：**回滚后遗症**。我 revert 了自动化接入的 commit，但忘记同时恢复独立的生图主链配置。结果封面生成命令直接找不到对的脚本路径。
+
+三个 commit 解决三个问题：
+
+```bash
+6036ade fix: 避免 Codex 博客生图嵌套调用
+90e0fd7 fix: 限制博客直接生图重试次数
+f679502 fix: 恢复博客独立 Codex 生图主链
+```
+
+最后还有一个 revert (`ccb6a92`)，把整个自动化接入回滚。不是放弃，是先让手动链路恢复正常，再一步步加自动化。
+
+**教训**：自动化不是"能跑"就行，得先确认"跑错了怎么办"。回滚路径、进程隔离、重试上限，这三个东西应该在第一版就写进去，而不是等踩了坑才补。
+
+## Signal Radar：凌晨的 SIGTERM
+
+Signal Radar 的每日自动化收口也在今天出了问题。`agent-draft` 阶段执行超时，被系统直接 SIGTERM 杀掉了。
+
+好消息是数据采集阶段完全正常——26 个源、40 个条目都拿到了。坏消息是最后一步"把数据写成日报稿"没跑完。
+
+排查下来是两个原因叠加：一是 Node 22 子进程的兼容性问题，二是自动任务没有自己的独立工作目录，跟主进程共享了文件锁。
+
+修了四个 commit：
+
+```bash
+3b75f4c fix: 兼容自动任务 Node 运行时
+0a8b838 fix: 隔离自动任务运行工作树
+c79ca05 fix: 补全自动任务成功回执
+a30e3d7 fix: 为自动任务安装独立依赖
+```
+
+最关键的改动是 `隔离自动任务运行工作树`——给每个自动化任务一个独立的临时目录，不再跟主进程抢文件。这本来是第一天就应该做的。
+
+## pet-knowledge-base：M3 审核管线的收口
+
+pet-knowledge-base 今天密集提交了五个 commit，集中在 M3 内容审核与 SEO 闭环：
+
+```bash
+f5739c7 feat: 完成 M2 前端工程与设计探针
+cd3f504 feat: 建立 M3 内容系统与发布门
+43543ad ci: 增加 M3 GitLab 质量门
+29747ed feat: 收紧 M3 审核回执与审阅包
+ffdfe1c feat: 完成 M3 内容审核与 SEO 闭环
+```
+
+这条线比前两个顺利。M3 的质量门和审核回执是从 M2 的设计探针自然延伸出来的，没有出现"先做再推翻"的情况。
+
+不过，`收紧审核回执与审阅包` 这个 commit 名字就说明了问题——第一版太松了，审核通过率太高，结果 SEO 元数据有遗漏。收紧不是功能回退，是质量提升。
+
+## 阿龙视角：今天到底学到了什么
+
+三件事，同一个教训：**自动化的第一版永远不是最终版，但你得先有第一版。**
+
+ajin-blog 的封面链路回滚了，但回滚过程中搞清楚了嵌套调用、重试上限和进程隔离三个边界条件。Signal Radar 的收口失败了，但失败过程中发现了工作目录隔离这个根本性缺陷。pet-knowledge-base 的审核门收紧了，但收紧的前提是第一版已经跑通了整个管线。
+
+工程师不是不犯错。工程师是犯了错之后，能把犯错的过程记录下来，让下一次不犯同样的错。
+
+明天周一。Signal Radar 的 agent-draft 需要在生产环境验证修复效果，ajin-blog 的封面自动化重建需要在独立分支上跑通完整链路，pet-knowledge-base 的 M3 需要看线上 SEO 指标。
+
+坑挖了，得填。

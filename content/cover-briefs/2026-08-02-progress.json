@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-02-progress.mdx",
+  "postSha256": "529bd8213463c5216e9f5b28a3c0eefce1e2c81c88d3ddad1bf0c07267450289",
+  "bodySha256": "d0f09ccb69cf1a15f1f1a0e088ce98358cfe2bb5b0960094d5928cba24e2bdd8",
+  "bodyCharacters": 1986,
+  "generatedAt": "2026-08-02T15:36:43.033Z",
+  "visualBrief": {
+    "coreEventZh": "自动化链路在连续暴露嵌套、重试与隔离缺陷后被主动回滚，并以可控边界重新搭建。",
+    "primarySubjectZh": "一名工程师检修自己搭建的自动化生产线。",
+    "keyActionZh": "他切断失控传动，将作业退回可靠的手动主链，再按隔离、限次与可回退原则重接机构。",
+    "resultZh": "手动链路恢复稳定，失败暴露出的边界条件成为下一轮重建的基础。",
+    "tensionZh": "追求一步到位的自动化效率，与故障发生时必须可停止、可隔离、可回滚之间的冲突。",
+    "industrialMetaphorZh": "把自动化系统转译为一条蒸汽工坊传动线：回滚是脱开失控齿轮，稳定成果是重新运转的手动主轴，未解阻碍是仍待拆解的缠死传动机构。",
+    "supportingSymbolsZh": [
+      "正在扳动离合杆的工坊工程师",
+      "平稳运转的手动主轴与传送带",
+      "被链条缠死并冒出蒸汽的嵌套齿轮组"
+    ],
+    "sceneDescriptionZh": "单帧呈现一座十九世纪工坊：工程师立于中央扳下离合杆，左侧手动主轴与传送带已恢复平稳运行，右侧被链条缠死的齿轮组脱离动力并泄出余汽；背景仅保留昏暗厂房纵深与侧窗光线。",
+    "focalElementsEn": [
+      "engineer pulling a clutch lever",
+      "steadily running manual driveshaft and conveyor",
+      "chain-jammed nested gears venting steam"
+    ],
+    "imagePromptEn": "An engineer at center pulls a heavy clutch lever, disconnecting chain-jammed nested gears on the right as they vent residual steam. On the left, a manual driveshaft and conveyor run steadily under his control. The three elements form one continuous workshop mechanism, with the engineer positioned between restored operation and the disabled obstruction."
+  }
+}
