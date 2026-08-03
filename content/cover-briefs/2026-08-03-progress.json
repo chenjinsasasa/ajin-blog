@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-03-progress.mdx",
+  "postSha256": "79edef40f5ed035d7245ab0df4dd9e41de93ddc4a2fbc0009398192e84d17bf2",
+  "bodySha256": "64b775b2ff0568d9eb63b837a14ab22ce5717e3a63c7e43d7520ea3c02f96cd5",
+  "bodyCharacters": 1646,
+  "generatedAt": "2026-08-03T15:33:49.133Z",
+  "visualBrief": {
+    "coreEventZh": "自动化连续失败、改进洞察长期停滞之际，一名工人试图以一次最小而完整的执行，重新启动从输入到成果的转化链条。",
+    "primarySubjectZh": "站在传动链断点处、亲手推动单件任务进入下一工序的工业时代工人。",
+    "keyActionZh": "工人从堆积的待加工工单中取出一件，将其送上已对准基线的传送机构，尝试完成闭环。",
+    "resultZh": "工程基线已经稳固落成，为恢复持续执行提供了可承重的起点。",
+    "tensionZh": "记录、洞察与触发不断进入系统，却在转化端被卡住；系统能证明自己失败，却不能主动完成修复。",
+    "industrialMetaphorZh": "一座输入充足却因传动断裂而停摆的十九世纪工坊，象征自动化与知识积累无法转化为实际行动。",
+    "supportingSymbolsZh": [
+      "推动单件工单的工坊工人",
+      "立于传送机构起点的坚固铸铁基座",
+      "堵塞在断裂齿轮前的工单堆"
+    ],
+    "sceneDescriptionZh": "单帧场景位于昏暗工坊内：工人居中俯身，把一件工单推向左侧稳固的铸铁基座；右前方，断裂齿轮前的工单堆形成明确阻塞。背景仅保留深邃厂房空间与斜射天窗光。",
+    "focalElementsEn": [
+      "workshop worker pushing one work order",
+      "solid cast-iron machinery foundation",
+      "pile of work orders blocked by a broken gear"
+    ],
+    "imagePromptEn": "A workshop worker at center pushes one work order toward a solid cast-iron machinery foundation on the left. In the right foreground, a pile of work orders is jammed before a broken gear, opposing his motion. A dim factory interior and a single slant of window light frame the three focal elements."
+  }
+}
