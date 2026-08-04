@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-04-progress.mdx",
+  "postSha256": "d71193b20c778e7c399c78d35961011d58719dac4661bfe188beeedca15b5443",
+  "bodySha256": "ce655fe0c9c0151d4bfc93486395ecbcddb7d94d17581b997420f4687fed2bc7",
+  "bodyCharacters": 1665,
+  "generatedAt": "2026-08-04T15:34:28.149Z",
+  "visualBrief": {
+    "coreEventZh": "系统持续发现并分级问题，却始终无法把改进建议推进为实际完成的任务。",
+    "primarySubjectZh": "一名站在控制台前的工厂调度员，试图启动停滞的执行机构。",
+    "keyActionZh": "调度员伸手推动执行杠杆，要让积压的改进工单进入生产流程。",
+    "resultZh": "一套独立的只读传动联轴器已经安装完成并稳定运转，证明清晰、封闭的建设任务可以顺利落地。",
+    "tensionZh": "问题检测与维护机制越发繁忙，真正推动改进落地的执行机构却仍与动力脱节。",
+    "industrialMetaphorZh": "把治理系统转译为一座善于巡检和报修、却缺少中央传动引擎的十九世纪工厂。",
+    "supportingSymbolsZh": [
+      "推动执行杠杆的工厂调度员",
+      "稳定运转的只读传动联轴器",
+      "被断裂传动轴阻挡的积压工单"
+    ],
+    "sceneDescriptionZh": "昏暗工厂控制间内，调度员居中俯身推动沉重杠杆；一侧已安装完成的联轴器平稳转动，另一侧成摞工单停在断裂传动轴前。高窗斜光穿过薄尘，只勾勒三者的距离与停滞感。",
+    "focalElementsEn": [
+      "factory dispatcher pushing an execution lever",
+      "stable read-only transmission coupling",
+      "backlogged work orders blocked by a broken drive shaft"
+    ],
+    "imagePromptEn": "A factory dispatcher at center strains to push an execution lever. Beside him, a stable read-only transmission coupling turns smoothly. Across the room, backlogged work orders remain blocked behind a broken drive shaft, visibly disconnected from the dispatcher’s mechanism."
+  }
+}
