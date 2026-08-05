@@ -1,0 +1,81 @@
+---
+title: "学习闭环的账本：从落地率 0% 到 56.5% 的审计之路"
+date: "2026-08-05"
+category: "progress"
+businessArea: "operations"
+workStage: "validate"
+projects:
+  - "ajin-blog"
+tags:
+  - "系统治理"
+  - "知识沉淀"
+  - "Anthropic 学习"
+excerpt: "今天完成了 Anthropic Learning Loop 三个里程碑阶段的收口，把月度学习落地率从虚报的 0% 修正为可审计的 56.5%。本文从商业合规视角审视这次数据治理修正的必要性、Signal Radar 自动化运行的稳定性，以及团队在系统治理上的持续投入。"
+author: "ashang"
+coverImage: "/covers/2026-08-05-learning-loop-audit.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-08-05-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## 一笔迟来的账：学习落地率的真相
+
+今天最重要的事情，不是做了多少新功能，而是**把一笔糊涂账算清楚了**。
+
+10:30 的月度学习摘要显示：8 月第 5 天 0 篇新文章，19 条改进点执行率 0%。这个数字如果直接报送，管理层会得出一个结论：三个月的学习投入全部打了水漂。
+
+但事实并非如此。经过谷子对历史来源去重后，实际的 canonical items 是 23 个，而非 19 个。更关键的是：**verified 13 个、implemented 2 个、in_progress 1 个、proposed 7 个**，真实落地率 56.5%。
+
+这不是一个微不足道的修正。从合规角度看，**0% 和 56.5% 之间的差距，就是"数据源未经审计直接汇报"和"经过验证的可信度量"之间的差距**。今天的工作核心，就是把这个差距填上。
+
+## 三阶段收口：M0.1 → M0.2 → M0.3
+
+Anthropic Learning Loop 的三个里程碑今天全部完成收口：
+
+**M0.1 Schema v2**（#518）：把 4-7 月的 44 个 refs 去重收敛到 23 个 items，建立了 fragment gate 来防止重复条目污染。6/6 测试通过，20/pass。这是数据治理的地基——没有干净的数据结构，所有后续的分析都是空中楼阁。
+
+**M0.2 真实 Lifecycle**（#516）：建立了 `task → run → evidence → verdict → projection` 的完整链路。3/3 测试通过，20/pass。从此每一条改进点都有据可查，不再依赖模糊的"感觉做了"。
+
+**M0.3 周循环与历史回归**（#519）：实现了周检机制、WIP=1 约束、历史回放能力、fail-closed 策略，以及 65 个测试用例覆盖。5/5 测试通过，20/pass。这是把一次性整理变成可持续运行的关键一步。
+
+三个阶段全部达到 20/pass 的质量标准，Codex Automation `anthropic-learning-loop` 已设为 ACTIVE，每周一 10:00 自动执行。
+
+## 风险评估：哪些账还没平
+
+**已知风险**：
+
+1. **12 个旧 verified lifecycle 缺口**：历史数据中有些条目标记为 verified 但缺少完整的 lifecycle 证据链。这不是今天能一次性解决的，需要在后续周循环中逐步补齐。
+
+2. **2 个 implemented 待验**：标记为已落地的改进点，需要实际运行证据来确认是否真的生效。这是"声称做了"和"证明做了"之间的最后一公里。
+
+3. **36 个历史任务缺 memory**：集中在 7/14-7/23 区间，属于历史遗留批量缺口。从审计角度看，这些缺口不影响当前决策，但如果未来需要回溯这段时间的工作，会遇到信息断裂。
+
+**已排除风险**：
+
+- Heartbeat 巡检全天无超时任务
+- Dashboard 待办稳定在 3 项，无新增阻塞
+- 信号雷达自动化正常运行（A/H 开盘、港股收盘更新均成功）
+
+## Signal Radar：自动化运行的稳定信号
+
+今天 Signal Radar 的自动化表现值得关注：A/H 开盘更新和港股收盘更新均按时完成，仅有一次晚间收口失败记录。
+
+从运营角度看，**自动化系统能稳定运行本身就是一种价值**。每次成功的更新都意味着团队不需要人工介入，可以专注于更高价值的工作。晚间收口的失败记录被完整捕获，这也说明系统的可观测性在正常工作——失败不可怕，可怕的是失败了不知道。
+
+## 我的判断
+
+今天的三阶段收口，本质上是一次**数据治理的合规修正**。它不华丽，不性感，但它做到了三件事：
+
+1. **修正了一个会误导决策的数据指标**（0% → 56.5%）
+2. **建立了可审计的 lifecycle 链路**（每条改进点有据可查）
+3. **把一次性整理变成了自动化周循环**（不再依赖人工记忆）
+
+**结论**：学习投入的价值不在于"看了多少文章"，而在于"从文章中提炼了多少可执行的改进，以及这些改进是否真的落地了"。今天把账算清楚了，明天才能基于真实数据做决策。
+
+这是一笔迟来的账，但好在今天把它平了。

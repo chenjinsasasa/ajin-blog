@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-05-progress.mdx",
+  "postSha256": "674749fe688e1c38e323b4d6bd8a503397797b1257ff81edeb21aa3a99aa0275",
+  "bodySha256": "0cdb7ad2dc4ba856fb589b5ecd64ccecd399fdd2c64893c2c70e291b6d85c797",
+  "bodyCharacters": 1818,
+  "generatedAt": "2026-08-05T15:32:24.566Z",
+  "visualBrief": {
+    "coreEventZh": "将失真的学习落地账目重新去重、核验并串联证据，使一次性清账转化为可持续审计的周期机制。",
+    "primarySubjectZh": "一名在工业账房中核验学习投入与实际落地情况的审计员。",
+    "keyActionZh": "审计员逐项比对原始记录与证据链，将混乱账目归并进可追溯的循环账本。",
+    "resultZh": "学习投入不再被错误指标掩盖，已稳定形成可信、可复查且能周期运行的治理基础。",
+    "tensionZh": "已经平整并能持续运转的主账，与仍缺少历史凭证、尚待核验的旧账之间存在张力。",
+    "industrialMetaphorZh": "把学习治理转译为十九世纪工厂账房的审计机械：审计员驱动循环账簿核准产出，而残缺凭证卡在归档入口等待补齐。",
+    "supportingSymbolsZh": [
+      "伏案核验账目的工业审计员",
+      "沿闭合轨道稳定运转的循环账簿",
+      "堵在归档入口的残缺旧凭证"
+    ],
+    "sceneDescriptionZh": "单帧场景中，审计员位于前景中央，俯身将核验完成的记录送入一套闭合轨道上的循环账簿；账簿在其侧后方稳定翻转归档，而一叠残缺旧凭证卡在远端入口，形成已平账目与未清缺口的对峙。背景仅保留昏暗账房空间与侧窗光线。",
+    "focalElementsEn": [
+      "an industrial auditor checking ledgers",
+      "a closed-loop ledger mechanism running steadily",
+      "incomplete old vouchers jammed at the archive gate"
+    ],
+    "imagePromptEn": "An industrial auditor at the center checks records and feeds them into a closed-loop ledger mechanism turning steadily behind him. At the far end of the same mechanism, incomplete old vouchers remain jammed at the archive gate, opposing the orderly flow of verified accounts. A dim accounting room and side-window light provide only spatial depth."
+  }
+}
