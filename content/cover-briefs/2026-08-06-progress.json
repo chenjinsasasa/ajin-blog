@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-06-progress.mdx",
+  "postSha256": "f8d638022782b20aeece649f08688530ae9ace091e9a7739b2678f047610002a",
+  "bodySha256": "4a11f48a584e078cbbf28cf01e40211a2aaa5f5f6865b381c6c13599a74c3ed1",
+  "bodyCharacters": 1290,
+  "generatedAt": "2026-08-06T15:33:54.066Z",
+  "visualBrief": {
+    "coreEventZh": "输入法版本从局部修补迈入真实宿主验收，并以正式版本稳定落地。",
+    "primarySubjectZh": "在真实生产环境中检验新机器的工程师。",
+    "keyActionZh": "工程师将修正并统一装配规则后的精密排字机接入真实工坊，现场观察其连续运转。",
+    "resultZh": "机器通过首次真实工坊验收，成为可正式投入使用的稳定版本。",
+    "tensionZh": "机器已经通过当日验收，但长期运行中的回退与环境边界仍需持续观察。",
+    "industrialMetaphorZh": "把输入法发版比作一台精密排字机从试验台移入真实印刷工坊：修复误动作与长字模输送，统一制造和装配规程，再以连续生产检验可靠性。",
+    "supportingSymbolsZh": [
+      "俯身监听机器运转的验收工程师",
+      "持续吐出整齐纸带的精密排字机",
+      "机器前方尚未跨越的狭窄压力测试轨道"
+    ],
+    "sceneDescriptionZh": "一座十九世纪印刷工坊内，验收工程师站在近景俯身监听精密排字机；机器位于画面中央，连续吐出整齐纸带；其前方连接一段狭窄而未完全跨越的压力测试轨道。背景仅呈现深邃厂房空间与侧窗光线。",
+    "focalElementsEn": [
+      "an engineer listening closely to the mechanism",
+      "a precision typesetting machine producing an orderly paper ribbon",
+      "a narrow unfinished stress-test track ahead"
+    ],
+    "imagePromptEn": "An engineer leans beside a precision typesetting machine, listening closely as it runs at the center and produces one orderly paper ribbon. Directly ahead, the machine's path meets a narrow unfinished stress-test track, suggesting that initial acceptance is complete while sustained reliability remains under observation."
+  }
+}

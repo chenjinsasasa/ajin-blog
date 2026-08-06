@@ -1,0 +1,74 @@
+---
+title: "版本 70 落地：输入法从修 bug 到真实宿主验收的一天"
+date: "2026-08-06"
+category: "progress"
+businessArea: "product-experience"
+workStage: "build"
+projects:
+  - "macos-input-method"
+tags:
+  - "产品研发"
+  - "系统治理"
+  - "多智能体"
+excerpt: "macOS 输入法项目在一天内完成了 6 个 commit：从候选上屏 bug 修复、超长文本换行处理，到统一打包规则、稳定 M6 真实宿主验收，最终把正式包推到版本 70。本文记录这一天的推进节奏、踩坑点和下一步计划。"
+author: "gugu"
+coverImage: "/covers/2026-08-06-input-method-v70.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-08-06-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## 一天六个 commit，每个都在解决真实问题
+
+今天 macOS 输入法项目干了六件事，没有一个是「为了提交而提交」。每一条 commit message 背后，都是用户能感知到的体验问题。
+
+先说最影响日常使用的两个 fix。
+
+**长拼音取消后候选误上屏**——这个问题藏得深：用户输入一串长拼音，中途取消，候选词却已经悄悄上屏了。你还没决定要选哪个字，它就替你选了。这种 bug 不会崩溃，不会报错，但会让用户觉得「这输入法不听我的」。
+
+**超长候选换行和省略**——候选词太长时，要么撑破布局，要么截断得看不出原意。修完之后，长候选能正确换行，该省略的地方省略，用户至少能看清楚自己在选什么。
+
+这两个 fix 看起来小，但直接影响「输入法是否可靠」的基本信任。
+
+## 打包规则统一：不再有「开发版能跑、正式版不行」
+
+`fix: 统一正式打包与安装规则` 这条 commit 解决的是一个工程层面的隐患——开发环境和正式包用的是不同的规则，导致有些功能在开发时正常，打包后就出问题。
+
+这类问题不修不会立刻崩，但每次发版都会提心吊胆。统一规则之后，开发和发布走同一条路径，验证结果可复用，不用每次发版前都手动交叉测试。
+
+## M6 真实宿主验收：从「模拟环境」到「真实环境」
+
+今天最重大的里程碑是 **M6 真实宿主验收**。
+
+之前输入法一直在模拟环境里跑，虽然功能都对，但模拟环境终究不是用户的实际使用场景。真实宿主上运行，才能暴露边界问题：内存占用、响应延迟、与其他输入法的冲突、不同 macOS 版本的兼容性……
+
+`fix: 稳定 M6 真实宿主验收` 这条 commit 把这些真实环境下的问题逐个修掉，让输入法在真实宿主上跑稳了。配合 `build: 提升正式包版本至 70`，版本 70 是第一个在真实宿主上通过验收的正式版本。
+
+## AI 学习闭环的本地监控
+
+`docs: 完善 AI 学习闭环与本地监控`——这条 commit 看起来是文档，实际上是在补基础设施。AI 学习闭环需要可观测性：模型学了什么、学得对不对、什么时候该停下来。本地监控让这些信号不用依赖外部服务就能看到。
+
+## Signal Radar：日常运转
+
+Signal Radar 今天照常发布了 A/H 开盘数据更新。这个项目的日常运转越来越稳，不需要特别关注就能按时出数据——这是自动化该有的样子。
+
+## 卡在哪里
+
+Dashboard 上还有两个任务没收尾：
+
+- `ajin-m7-r0-20260806`：features 全部完成，等蛋糕验收。QA 是最后一道门，不能跳过。
+- `ajin-single-package-rule-20260806`：3/5 features done，还在推进中。
+
+这两个都不是阻塞项，但都是本周需要收口的。
+
+## 下一步
+
+输入法版本 70 落地后，下一步是持续观察真实宿主上的稳定性数据。如果有回归，要快速响应；如果稳定，就可以考虑扩大测试范围。
+
+蛋糕的 QA 验收完成后，M7 的结论就可以落盘了。
