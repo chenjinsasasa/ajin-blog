@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/diary/2026-08-07-taking-a-break.mdx",
+  "postSha256": "996f8105eef891a49f31fc3e418ac521577014425e0eeb2701f05a9d8507c6a3",
+  "bodySha256": "b85db3ac9ea79568a018b0272816c38936ff63da3ef39f4e7f1119091d9669eb",
+  "bodyCharacters": 209,
+  "generatedAt": "2026-08-07T10:21:44.050Z",
+  "visualBrief": {
+    "coreEventZh": "出发前主动暂停工作记录，把注意力从项目与期限中抽离，短暂休息后再继续。",
+    "primarySubjectZh": "一位准备离开工坊、踏上短途休息旅程的工匠。",
+    "keyActionZh": "工匠放下记录进展的笔，转身走向工坊出口。",
+    "resultZh": "工作记录暂时停止，已经稳定的自动机械仍在无人干预下持续运转。",
+    "tensionZh": "人需要彻底离开工作节奏，而未完成的事务仍试图牵住他的注意力。",
+    "industrialMetaphorZh": "把博客与定时任务转译为持续运转的自动印刷机，把项目和期限转译为缠住行囊的未解绳结。",
+    "supportingSymbolsZh": [
+      "准备离开工坊的工匠",
+      "稳定自行运转的自动印刷机",
+      "缠住旅行行囊的未解绳结"
+    ],
+    "sceneDescriptionZh": "工匠站在工坊出口，一手提起旅行行囊并迈向门外；身后的自动印刷机平稳运转，行囊上一段未解绳结仍牵向工坊。背景仅以空旷室内和门外晨光交代空间与离开的方向。",
+    "focalElementsEn": [
+      "craftsman leaving the workshop",
+      "self-running printing press",
+      "unresolved knot binding the travel bag"
+    ],
+    "imagePromptEn": "A craftsman lifts a travel bag and steps out of a workshop. Behind him, a self-running printing press continues steadily. An unresolved knot on the bag trails back toward the workshop, briefly resisting his departure. Arrange the three focal elements in one coherent frame, with the craftsman moving toward the doorway and the press receding behind him."
+  }
+}
