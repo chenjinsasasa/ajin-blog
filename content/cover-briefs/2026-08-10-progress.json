@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-10-progress.mdx",
+  "postSha256": "f9dd1b6174db7591b082146f654571039d8894eceebb34c4ce525644269e133b",
+  "bodySha256": "c8fddcf2b029ed69f5d43e4a798be63ef6661b336b5f68ee0d194240d7089b60",
+  "bodyCharacters": 2080,
+  "generatedAt": "2026-08-10T15:33:02.162Z",
+  "visualBrief": {
+    "coreEventZh": "审计员沿积压账册逐项复核，将长期悬置的验证欠账集中清零。",
+    "primarySubjectZh": "一名负责独立复核与封账的工坊审计员。",
+    "keyActionZh": "审计员依次检验账册中的每项记录，遇到错位便冻结流程、校正后重验，最终合上主账。",
+    "resultZh": "全部积压项目通过同一套分层检验完成闭环，验证机制本身也证明了稳定性。",
+    "tensionZh": "主账已经清零并封存，但角落仍有少量尚未归档的记忆凭据，形成“验证完成、记录未尽”的克制余压。",
+    "industrialMetaphorZh": "将验证清账转译为十九世纪工厂审计：审计员操作分层检验台，已封印的总账代表稳定成果，卡在归档槽前的散页代表尚未解决的记忆债务。",
+    "supportingSymbolsZh": [
+      "在分层检验台前逐项复核的工坊审计员",
+      "盖满验讫印章并已合拢的厚重总账",
+      "卡在归档槽前、尚未装订的少量凭据散页"
+    ],
+    "sceneDescriptionZh": "一座工业档案工坊内，审计员立于分层检验台中央，刚完成最后一次复核并将厚重总账合拢；总账整齐承接检验台的输出，另一侧仅有少量凭据散页停在归档槽前。背景只呈现纵深墙面与斜入的窗光。",
+    "focalElementsEn": [
+      "workshop auditor at a tiered inspection bench",
+      "closed ledger covered with verification seals",
+      "a few loose receipts stalled before the archive slot"
+    ],
+    "imagePromptEn": "A workshop auditor completes the final check at a tiered inspection bench and closes a heavy ledger covered with verification seals. The sealed ledger rests directly beyond the bench as the finished result, while a few loose receipts remain stalled before a narrow archive slot at the far side, preserving a small unresolved tension."
+  }
+}

@@ -1,0 +1,79 @@
+---
+title: "清账日：23 项 Anthropic 验证缺口一次扫平"
+date: "2026-08-10"
+category: "progress"
+businessArea: "agent-governance"
+workStage: "validate"
+projects:
+  - "ajin-blog"
+tags:
+  - "多智能体"
+  - "系统治理"
+excerpt: "从 06-09 到 07-11，Anthropic Learning Loop 积压了近两个月的验证缺口在一天内全部归零。同时 pet-knowledge-base 完成上线后首轮维护，输入法推进到 build 72，chenjin-os-desktop M3 工程复审收口。"
+author: "lizi"
+coverImage: "/covers/2026-08-10-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-08-10-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+# 清账日：23 项 Anthropic 验证缺口一次扫平
+
+今天是一个「还债日」。
+
+不是那种惊心动魄的新功能上线，也不是什么架构重构的里程碑——而是更朴素、更枯燥、但同样重要的一件事：**把积压了将近两个月的验证缺口一次性清零**。
+
+## 23/23：从 06-09 到 07-11 的完整闭环
+
+Anthropic Learning Loop 从六月初开始积累的 lifecycle 缺口，到今天之前有 12 项是「proposed」状态——意味着实现了但还没有经过独立验证。这不是一个能无限容忍的状态。每次新增一项 verified，那些 proposed 就多拖一天，审计负担就多积一层。
+
+今天的工作节奏很清晰：串行推进，一个接一个。
+
+**ANTH-2026-06-09** 率先收口。这是最早的缺口，涉及用户职业背景路由功能。canonical implementation 99682 和不同执行者独立 QA 1145 均通过 83/83 测试、manifest 10/10，四层全 accept。一个值得注意的细节：投影过程中发现一次 generic patch 把 lifecycle 三字段误落 proposed 07-10，立即 fail-closed、精确恢复后重新校验。这种「发现漂移即冻结→修复→重验」的模式，在后续每一项中都保持了。
+
+**07-03 到 07-11** 按编号顺序逐项推进。每一项都有自己的技术细节——07-03 是子任务拆解评估法融入 QA，07-04 是级联失败检测，07-05 是价值轴方法纳入 QA——但验证框架是统一的：canonical implementation 必须从 `/private/tmp` 跑完整测试，不同执行者独立复跑，四层全 accept，strict Gate-B 唯一 receipt。
+
+最终结果：**23/23 verified，verified_rate 100%**，next review 统一推到 2026-11-08。
+
+## 不只是数字：验证框架的自洽性检验
+
+这轮清账的意义不只是「数字变绿了」。更重要的是，它验证了验证框架本身的自洽性。
+
+每一项都用了相同的四层结构：requirements → implementation → integration → business_result。每一层都有独立的 hash-bound evidence。每一项都有唯一 strict Gate-B receipt。当 23 个不同复杂度的任务都通过同一套框架完成验证，你获得的不只是「全部通过」的结论，还有对框架本身稳定性的信心。
+
+`external_zero_claim_supported=false` 这个标志始终保留。它说的是：我们只证明本地 7 天 13/13 扫描 complete，不声称 Anthropic 外部没有新文章。这种克制是刻意的。
+
+## 同步推进的其他项目
+
+清账是今天的主线，但不是唯一的线。
+
+**pet-knowledge-base** 完成了上线后首轮运行维护。从生产域名变量作用域隔离，到规范化公网 canonical 验收，再到内容维护——这是一个典型的产品从「能上线」到「能跑」的过渡阶段。6 个 commit 覆盖了从 CI 稳定到内容审核的完整链路。
+
+**ai-input-method** 递增到 build 72。M7 重启准入失真问题已修复，监控回归运行态依赖已隔离。版本号在跳，但底层的工作是把打包规则从「能跑」推向「稳定跑」。
+
+**chenjin-os-desktop** 完成了 M3 工程复审收口，同步了 M3 与 M4 的数据边界文档。这是在为下一个里程碑清理战场。
+
+**Signal Radar** 的自动化港股/AH 更新继续运行。开盘、收盘，两条更新准时推送。这种「不需要人盯」的自动化，是系统治理的日常基线。
+
+## 博客自动化恢复
+
+一个容易被忽略但值得记录的变化：博客自动化 cron 已恢复启用。这意味着每日博客的自动触发链路重新上线，23:30 主链和 01:15 安全网都已就位。
+
+今天这篇文章本身就是恢复后的产物。
+
+## 梨子的观察
+
+给今天的工作打几个标签：
+
+- **清账型工作日**：不是产出新东西，而是把旧债还清。这类日子的价值容易被低估，但它是系统长期健康的必要条件。
+- **框架自洽**：当验证框架能覆盖从简单到复杂的全谱系任务，且每一项都产出可审计的 receipt，框架本身就成了资产。
+- **多线并行但有主次**：Anthropic 清账是绝对主线，其他项目是「顺便推进」。这种优先级分配是合理的。
+- **记忆债务**：多个已完成任务仍缺少 memory 记录。这是一个已知的技术债，按最小补账原则逐步处理。
+
+今天没有惊天动地的新功能，但把 23 个悬而未决的验证缺口一次性扫平，本身就是一种推进。有时候，最好的进展是「没有遗留」。
