@@ -5,28 +5,28 @@
   "generatedBy": "codex",
   "executionMode": "full-article-analysis",
   "postPath": "content/diary/2026-08-10-moto-trip-plan.mdx",
-  "postSha256": "a1697ea56ba083374f492403f21885b08f311ae1256c524cb78d9944e3fbd29b",
-  "bodySha256": "41460d9e4e63a01ee60c4c956f3664f5e771eecbdeecd7ea03569da3a9088818",
-  "bodyCharacters": 1845,
-  "generatedAt": "2026-08-10T09:18:45.012Z",
+  "postSha256": "394ad7fc8abbbff39bfaa0722e4f248953d03c339b24863b6f97f44aef624e39",
+  "bodySha256": "94fa48a2d95a8a62362ad351dfbbfb812acac593141f3a8c40ce0332ca4a6b7f",
+  "bodyCharacters": 127,
+  "generatedAt": "2026-08-12T13:16:49.670Z",
   "visualBrief": {
-    "coreEventZh": "临行前夜，独行者完成最后核验，准备在清晨启程穿越漫长山路。",
-    "primarySubjectZh": "一名已整装待发的独行骑手。",
-    "keyActionZh": "骑手收起反复校准的路线卷轴，握住小型机械坐骑的启动杆。",
-    "resultZh": "路线、补给、住宿与安全边界已被整理成可执行的完整计划。",
-    "tensionZh": "周密计划已经穷尽可控之事，但雨季山路与途中变数仍只能在行进中判断。",
-    "industrialMetaphorZh": "一次从精密调度室驶向未知山口的工业时代远征：计划如校准完成的机械系统，真正的考验在车轮离开工坊之后。",
+    "coreEventZh": "暂别日常，启程前往川西，在山川与云雾之间安静休息，待归来后再分享旅途故事。",
+    "primarySubjectZh": "一位准备暂别繁忙日常、前往川西休整的旅行者。",
+    "keyActionZh": "旅行者离开停转的工坊，朝云雾笼罩的川西山川走去。",
+    "resultZh": "为自己留出一段安静的休息时间，并保留归来后讲述旅途见闻的期待。",
+    "tensionZh": "对休整与新鲜见闻的期待，面对尚未展开、结果未知的旅途。",
+    "industrialMetaphorZh": "将暂离日常转译为工坊机器停转后的出发，将川西之行转译为走向被云雾环绕的山川。",
     "supportingSymbolsZh": [
-      "握住启动杆的独行骑手与小型机械坐骑",
-      "卷起并封存的精密路线图",
-      "工坊门外被风雨遮蔽的险峻山口"
+      "离开工坊、走向山川的旅行者",
+      "已经停转并安静冷却的工坊机器",
+      "云雾遮蔽、道路未明的山口"
     ],
-    "sceneDescriptionZh": "清晨将至的调度工坊内，独行骑手站在小型机械坐骑旁，一手握住启动杆，另一手刚把校准完成的路线图卷起封存；敞开的工坊门正对远处被风雨遮蔽的险峻山口，冷光从门外落入，形成出发前最后一刻的单帧场景。",
+    "sceneDescriptionZh": "工坊门口，一位旅行者正离开已经停转冷却的机器，前方道路通向云雾环绕的川西山川；柔和光线从山间照入，不再出现其他叙事物件。",
     "focalElementsEn": [
-      "lone rider gripping the starter lever of a compact mechanical cycle",
-      "sealed and precisely prepared route scroll",
-      "storm-obscured mountain pass beyond the workshop doors"
+      "a traveler walking away from the workshop",
+      "silent workshop machinery cooling behind him",
+      "a cloud-veiled mountain pass ahead"
     ],
-    "imagePromptEn": "A lone rider grips the starter lever of a compact mechanical cycle in the foreground, beside a sealed and precisely prepared route scroll. Through the open workshop doors directly ahead, a storm-obscured mountain pass blocks the brightening horizon, holding the rider between completed preparation and an uncertain departure."
+    "imagePromptEn": "A traveler walks away from silent workshop machinery cooling behind them and toward cloud-veiled mountain scenery ahead. The traveler stands between the resting machines and the open landscape, with soft light entering from the mountains."
   }
 }
