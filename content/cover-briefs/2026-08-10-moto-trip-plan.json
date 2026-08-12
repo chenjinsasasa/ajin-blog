@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/diary/2026-08-10-moto-trip-plan.mdx",
+  "postSha256": "a1697ea56ba083374f492403f21885b08f311ae1256c524cb78d9944e3fbd29b",
+  "bodySha256": "41460d9e4e63a01ee60c4c956f3664f5e771eecbdeecd7ea03569da3a9088818",
+  "bodyCharacters": 1845,
+  "generatedAt": "2026-08-10T09:18:45.012Z",
+  "visualBrief": {
+    "coreEventZh": "临行前夜，独行者完成最后核验，准备在清晨启程穿越漫长山路。",
+    "primarySubjectZh": "一名已整装待发的独行骑手。",
+    "keyActionZh": "骑手收起反复校准的路线卷轴，握住小型机械坐骑的启动杆。",
+    "resultZh": "路线、补给、住宿与安全边界已被整理成可执行的完整计划。",
+    "tensionZh": "周密计划已经穷尽可控之事，但雨季山路与途中变数仍只能在行进中判断。",
+    "industrialMetaphorZh": "一次从精密调度室驶向未知山口的工业时代远征：计划如校准完成的机械系统，真正的考验在车轮离开工坊之后。",
+    "supportingSymbolsZh": [
+      "握住启动杆的独行骑手与小型机械坐骑",
+      "卷起并封存的精密路线图",
+      "工坊门外被风雨遮蔽的险峻山口"
+    ],
+    "sceneDescriptionZh": "清晨将至的调度工坊内，独行骑手站在小型机械坐骑旁，一手握住启动杆，另一手刚把校准完成的路线图卷起封存；敞开的工坊门正对远处被风雨遮蔽的险峻山口，冷光从门外落入，形成出发前最后一刻的单帧场景。",
+    "focalElementsEn": [
+      "lone rider gripping the starter lever of a compact mechanical cycle",
+      "sealed and precisely prepared route scroll",
+      "storm-obscured mountain pass beyond the workshop doors"
+    ],
+    "imagePromptEn": "A lone rider grips the starter lever of a compact mechanical cycle in the foreground, beside a sealed and precisely prepared route scroll. Through the open workshop doors directly ahead, a storm-obscured mountain pass blocks the brightening horizon, holding the rider between completed preparation and an uncertain departure."
+  }
+}
