@@ -1793,6 +1793,66 @@ pre {
   margin: 2.2rem auto;
 }
 
+.prose-custom figure {
+  margin: 2.2rem auto;
+}
+
+.prose-custom figure > img {
+  margin: 0;
+}
+
+.prose-custom .trip-media {
+  display: grid;
+  justify-items: center;
+  max-width: min(100%, 42rem);
+  margin: 2.6rem auto;
+}
+
+.prose-custom .trip-media > img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: min(70svh, 40rem);
+  object-fit: contain;
+}
+
+.prose-custom .trip-media > video {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.prose-custom video {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 18px;
+  background: #0a0a0a;
+}
+
+.prose-custom figcaption {
+  margin-top: 0.8rem;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .prose-custom .trip-media {
+    max-width: 100%;
+    margin: 2.15rem auto;
+  }
+
+  .prose-custom .trip-media > img {
+    max-height: min(66svh, 34rem);
+  }
+}
+
 .prose-custom pre {
   max-width: 100%;
   overflow-x: auto;

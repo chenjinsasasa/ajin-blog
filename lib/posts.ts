@@ -26,6 +26,7 @@ export interface PostMeta {
   tags: PostTag[]
   excerpt: string
   author?: string
+  visibility?: 'public' | 'private'
   coverImage?: string
   fallbackCoverImage?: string
 }
@@ -105,6 +106,9 @@ function getResolvedPosts(): PostMeta[] {
       tags: normalizePostTags(data.tags),
       excerpt: data.excerpt ?? '',
       author: data.author,
+      visibility: data.visibility === 'public' || data.visibility === 'private'
+        ? data.visibility
+        : undefined,
       coverImage: data.coverImage ?? data.cover ?? data.image,
     }
   })

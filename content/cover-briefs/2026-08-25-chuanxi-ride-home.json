@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/diary/2026-08-25-chuanxi-ride-home.mdx",
+  "postSha256": "83312de7425059949a3876268abc2f5fdf381527124ac72212845b9a3938a6a7",
+  "bodySha256": "814d3070d682b7d818c9372a5969162b09b7f28e741654cc4fb2a82150b2bd0e",
+  "bodyCharacters": 4986,
+  "generatedAt": "2026-08-25T10:53:47.816Z",
+  "visualBrief": {
+    "coreEventZh": "骑行者在高山与连日雨水中放弃原定路线、改道返程，最终平安回到家乡。",
+    "primarySubjectZh": "一名推着机械坐骑穿越山地运输线的十九世纪骑行旅人。",
+    "keyActionZh": "旅人在暴雨迫使前方线路中断后扳动道岔，将机械坐骑转向通往归途的稳定轨道。",
+    "resultZh": "改道后的路最终接入温暖明亮的归站，旅程虽未按计划完成，却获得了完整的结束。",
+    "tensionZh": "继续追逐未走完的高山路线，与接受身体、天气和道路限制而转身回家之间的拉扯。",
+    "industrialMetaphorZh": "把摩旅转译为一名工业时代信使驾驭机械坐骑穿越山地运输网，并在风雨中亲手切换返程道岔。",
+    "supportingSymbolsZh": [
+      "雨中扳动道岔的工业时代骑行旅人及机械坐骑",
+      "远处亮着暖光的归站拱门",
+      "被暴雨与落石封住的高山旧轨"
+    ],
+    "sceneDescriptionZh": "暴雨中的山地铁路岔口，骑行旅人站在机械坐骑旁用力扳下道岔；新轨弯向远处唯一亮着暖光的归站拱门，另一侧高山旧轨被雨幕与落石截断。背景仅保留昏暗山谷和雨光，用来衬托转向与归来的瞬间。",
+    "focalElementsEn": [
+      "traveler switching the junction beside a mechanical steed",
+      "warm-lit homecoming station arch",
+      "storm-blocked abandoned mountain track"
+    ],
+    "imagePromptEn": "At a rain-soaked mountain junction, a lone traveler pulls a heavy rail switch beside a mechanical steed. The newly aligned track curves toward a warm-lit homecoming station arch in the distance, while the abandoned mountain track ends behind them beneath storm rain and fallen rock."
+  }
+}

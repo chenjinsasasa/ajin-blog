@@ -67,6 +67,10 @@ export function getPostCategoryAuthorLabel(category: PostMeta['category']) {
   return category === 'progress' ? 'Ajin Team' : 'Ajin'
 }
 
-export function getPostCategoryEyebrow(category: PostMeta['category']) {
-  return category === 'progress' ? 'Build Log' : 'Private Journal'
+export function getPostCategoryEyebrow(
+  category: PostMeta['category'],
+  visibility?: PostMeta['visibility'],
+) {
+  if (category === 'progress') return 'Build Log'
+  return visibility === 'public' ? 'Journey Notes' : 'Private Journal'
 }

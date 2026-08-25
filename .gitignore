@@ -34,5 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-content/diary/
+# 日记默认保留在本地；仅明确标记为公开的文章才单独放行。
+content/diary/*
+!content/diary/2026-08-25-chuanxi-ride-home.mdx
 .local/

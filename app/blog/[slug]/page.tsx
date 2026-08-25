@@ -86,7 +86,9 @@ export default function BlogPost({ params }: Props) {
 
       <div className="detail-page__container">
         <header className="detail-header">
-          <p className="detail-header__eyebrow">{getPostCategoryEyebrow(post.category)}</p>
+          <p className="detail-header__eyebrow">
+            {getPostCategoryEyebrow(post.category, post.visibility)}
+          </p>
 
           <div className="detail-header__meta">
             <time dateTime={post.date} className="detail-header__meta-item">
@@ -172,7 +174,7 @@ export default function BlogPost({ params }: Props) {
     </article>
   )
 
-  if (post.category === 'diary') {
+  if (post.category === 'diary' && post.visibility !== 'public') {
     return <DiaryGuard>{articleContent}</DiaryGuard>
   }
 
