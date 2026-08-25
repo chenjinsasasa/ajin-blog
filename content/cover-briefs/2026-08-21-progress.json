@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-21-progress.mdx",
+  "postSha256": "b9161e0acd6696f9af9b1bcd165231a402237fd3512a73a62f56837e58df3a30",
+  "bodySha256": "29dd395065d2aabf894866b791acc5d32604f4c5be37fe72e3c0cee7cc058985",
+  "bodyCharacters": 1635,
+  "generatedAt": "2026-08-21T15:32:53.870Z",
+  "visualBrief": {
+    "coreEventZh": "无人值守的自动化链路完成数据记录与报告发布，巡检持续确认系统基线稳定。",
+    "primarySubjectZh": "安静运转的自动化主机",
+    "keyActionZh": "主机自行驱动传动机构，将整理完成的记录送入归档装置。",
+    "resultZh": "稳定的成册档案被可靠归位，证明日常链路无需人工看守也能完成职责。",
+    "tensionZh": "主机运转平稳，但一侧未清理的积压记忆卷轴仍提示待决的长期问题。",
+    "industrialMetaphorZh": "一台无需工人守候的蒸汽归档机，以均匀节拍驱动齿轮、传送带和压印机构。",
+    "supportingSymbolsZh": [
+      "无守候运行的蒸汽归档机",
+      "整齐归位的封存档案册",
+      "堆积未收的旧记录卷轴"
+    ],
+    "sceneDescriptionZh": "昏暗的十九世纪工坊档案室内，中央的蒸汽归档机正以均匀节拍把一册整齐封存的档案送入身后的架位；机器旁一卷尚未收整的旧记录静置在阴影里。窗侧暖光照亮黄铜机件与纸页边缘，画面只呈现稳定运转与遗留积压之间的安静张力。",
+    "focalElementsEn": [
+      "an unattended steam archive machine",
+      "a neatly filed sealed ledger",
+      "an uncollected roll of old records"
+    ],
+    "imagePromptEn": "In a quiet nineteenth-century workshop archive, an unattended steam archive machine steadily feeds a neatly filed sealed ledger into a rear shelf. Beside the machine, an uncollected roll of old records rests in shadow. Warm side light separates the smooth mechanical motion and completed ledger from the unresolved roll."
+  }
+}
