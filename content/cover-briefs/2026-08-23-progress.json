@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-23-progress.mdx",
+  "postSha256": "f9090bc34d5082cfeba6e61e1808102efc75ef16c9ae82f40743d2da03f4c0ac",
+  "bodySha256": "b9d2e6e77c6f8a9dabdcab5522bb43929f80a8fd4819085d91c81ffb752a2a7d",
+  "bodyCharacters": 1690,
+  "generatedAt": "2026-08-23T15:32:47.487Z",
+  "visualBrief": {
+    "coreEventZh": "AI 编程助手从个人终端走入团队聊天空间，协作过程开始成为可共同观看的界面。",
+    "primarySubjectZh": "一名工坊协调员站在长桌旁，主持一台同时服务多人协作的自动机械。",
+    "keyActionZh": "协调员让机械记录并公开传动过程，围桌工匠共同观察其运作。",
+    "resultZh": "无人值守的自动流程已能稳定完成日常采集、整理与交付。",
+    "tensionZh": "团队需要看得见的协作过程，个人仍需要安静而专注的独处空间。",
+    "industrialMetaphorZh": "从单人工位上的精密车床，转为会议工坊中央可被众人围观的传动装置。",
+    "supportingSymbolsZh": [
+      "主持协作的工坊协调员",
+      "平稳运转并吐出整齐卷宗的自动传动机",
+      "卡在齿轮间、尚未归档的散乱记事薄页"
+    ],
+    "sceneDescriptionZh": "昏暗的19世纪会议工坊内，一名协调员站在长桌一侧，面向围桌工匠操控中央自动传动机；机器正平稳送出整齐卷宗，而一叠散乱记事薄页卡在近处齿轮间。窗外暮光仅勾勒空间轮廓与铜质机件的反光。",
+    "focalElementsEn": [
+      "workshop coordinator guiding a shared machine",
+      "steady automatic transmission press issuing ordered ledgers",
+      "loose memory pages caught in the gears"
+    ],
+    "imagePromptEn": "In a nineteenth-century meeting workshop, a workshop coordinator guides a shared machine at the center of a long table. The steady automatic transmission press issues ordered ledgers for the gathered workers to observe, while loose memory pages are caught in its near gears. The coordinator faces the visible mechanism, balancing collective oversight with quiet concentration."
+  }
+}
