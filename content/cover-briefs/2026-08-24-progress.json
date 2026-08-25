@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-24-progress.mdx",
+  "postSha256": "ee7360a9a7817dd4e92f18c5d672b774b995089458e77716eee2d95ea264ff6f",
+  "bodySha256": "e1350d05539dbc07665ba32da459dfb76c7fcda708f487a1102bbd3a882ee37c",
+  "bodyCharacters": 2179,
+  "generatedAt": "2026-08-25T04:42:09.502Z",
+  "visualBrief": {
+    "coreEventZh": "自动巡检系统持续如实呈现稳定运行与长期阻塞并存的状态，等待有权限的决策者处理。",
+    "primarySubjectZh": "守在工业控制台前、持续记录真实状态的机械值守员。",
+    "keyActionZh": "机械值守员维持机器运转并将未解决的阻塞持续陈列，不擅自启动新的生产任务。",
+    "resultZh": "自动链路保持稳定，慢性问题未恶化也未被掩盖。",
+    "tensionZh": "齿轮能够持续运转，却无法自行越过权限边界处理积压，系统稳定与决策停滞同时存在。",
+    "industrialMetaphorZh": "一座无人指挥仍能自律运行的十九世纪工厂：值守员守住诚实仪表，稳定传动机构持续转动，而封闭闸门只能等待授权者开启。",
+    "supportingSymbolsZh": [
+      "守在控制台前的机械值守员",
+      "持续平稳转动的传动齿轮组",
+      "挡住生产通道的沉重上锁闸门"
+    ],
+    "sceneDescriptionZh": "机械值守员站在工厂控制台旁观察仪表，身侧的传动齿轮组平稳运转，前方一扇沉重的上锁闸门封住生产通道；空旷厂房仅以高窗冷光勾勒三者的距离与等待感。",
+    "focalElementsEn": [
+      "mechanical keeper at a control console",
+      "steadily turning transmission gears",
+      "heavy locked gate blocking the passage"
+    ],
+    "imagePromptEn": "A mechanical keeper stands at a control console, watching without intervening as transmission gears turn steadily beside him. Directly ahead, a heavy locked gate blocks the production passage, placing the keeper and functioning machinery on one side and the inaccessible workspace on the other."
+  }
+}
