@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-25-progress.mdx",
+  "postSha256": "411336d064c24fe2e9b5d13c301d17f7fdc39f580d2331181524e230142323ad",
+  "bodySha256": "43d876a17489509685a9f6138acd1ab3eef4c51cd1ba238bcc334765cd3722dd",
+  "bodyCharacters": 3679,
+  "generatedAt": "2026-08-25T04:51:13.716Z",
+  "visualBrief": {
+    "coreEventZh": "五天断档完成复位后，系统以三态门禁诚实标记当前仍需人工确认的交付状态。",
+    "primarySubjectZh": "一名守门机械师在恢复运转的传动机构旁操作新装的三态门禁。",
+    "keyActionZh": "机械师让修复后的齿轮持续啮合，同时将门禁停在等待人工复核的中间位置。",
+    "resultZh": "日更与部署链路恢复运转，门禁实现也通过独立检验，但尚未获准放行。",
+    "tensionZh": "已经稳定恢复的运转秩序，与必须等待有权限者确认才能继续交付之间的张力。",
+    "industrialMetaphorZh": "复位的传动齿轮代表恢复正常的内容与部署链路，三位式闸锁代表能够区分放行、复核与失败的诚实边界。",
+    "supportingSymbolsZh": [
+      "操作三位式闸锁的守门机械师",
+      "已经平稳啮合运转的传动齿轮组",
+      "停在中间位置、等待确认的沉重闸门"
+    ],
+    "sceneDescriptionZh": "清晨的工业车间内，一名守门机械师站在画面中央操作三位式闸锁；一侧的传动齿轮组已经平稳运转，另一侧的沉重闸门仍停在中间位置等待确认。背景仅呈现车间纵深与斜射晨光。",
+    "focalElementsEn": [
+      "gatekeeper mechanic operating a three-position lock",
+      "restored gear train turning smoothly",
+      "heavy gate paused halfway for approval"
+    ],
+    "imagePromptEn": "A gatekeeper mechanic operates a three-position lock at the center. Beside him, a restored gear train turns smoothly and drives the mechanism. Opposite it, a heavy gate remains paused halfway, physically held by the lock while awaiting human approval."
+  }
+}
