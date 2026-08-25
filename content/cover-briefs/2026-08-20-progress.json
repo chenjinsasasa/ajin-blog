@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-20-progress.mdx",
+  "postSha256": "97a8fe824210559085554860f8b810afc4cda2e1b3f72216e0e9062a88bbdb49",
+  "bodySha256": "c6ea0505124911013a72554044d2a92274f26d3b9c085d237ca7f9ea91de767e",
+  "bodyCharacters": 2253,
+  "generatedAt": "2026-08-20T15:35:02.055Z",
+  "visualBrief": {
+    "coreEventZh": "一次例行巡检揭露记忆记录长期缺失，并借外部研究重新校准执行系统的设计基线。",
+    "primarySubjectZh": "在安静车间中核查系统基线的巡检员",
+    "keyActionZh": "巡检员对照稳定仪表与缺页日志，辨认持续累积的记录断链。",
+    "resultZh": "问题被明确捕捉并上报，系统是否补录旧账仍待决定。",
+    "tensionZh": "表面运行平稳，与底层记忆持续失血之间的矛盾。",
+    "industrialMetaphorZh": "把执行系统比作一座仍在运转的蒸汽工坊：压力稳定，但值班日志不断漏记，地基的校准正在悄然偏移。",
+    "supportingSymbolsZh": [
+      "伏案核查的巡检员",
+      "读数稳定的蒸汽压力表",
+      "漏墨缺页的工作日志"
+    ],
+    "sceneDescriptionZh": "一名巡检员伏在工坊校准台前，左侧一只蒸汽压力表保持平稳读数，右侧摊开的工作日志漏墨且中段缺页；昏暖侧光穿过安静的车间空气，照出他在两者间审视的动作。",
+    "focalElementsEn": [
+      "an inspector reviewing records",
+      "a steady steam pressure gauge",
+      "a leaking, missing-page logbook"
+    ],
+    "imagePromptEn": "A single inspector reviewing records at a calibration bench, positioned between a steady steam pressure gauge on the left and a leaking, missing-page logbook on the right. The inspector leans forward, comparing the stable gauge with the broken record chain; quiet workshop space and warm side light frame the moment."
+  }
+}
