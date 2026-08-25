@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-22-progress.mdx",
+  "postSha256": "59028257d0fea86c392d7b34009de48f1e4cbee2eed23fb7ea33316235e7afcb",
+  "bodySha256": "6400d2a2bd1364bf6bef059c00039ec88627d0df8a1fb126c22023141a483397",
+  "bodyCharacters": 1651,
+  "generatedAt": "2026-08-22T15:33:14.088Z",
+  "visualBrief": {
+    "coreEventZh": "周末无人值守时，自动化链路持续完成巡检与交付，稳定运行本身成为系统的自证。",
+    "primarySubjectZh": "一台无人看守、持续运转的巡检传动机",
+    "keyActionZh": "传动机借由定时机构驱动，平稳地将检验结果送入归档轨道。",
+    "resultZh": "在没有人工干预的安静环境中，系统基线保持可预测，人的时间被释放。",
+    "tensionZh": "稳定交付已被验证，但两项可见且不恶化的记忆维护积压仍停在等待决策的位置。",
+    "industrialMetaphorZh": "把无人值守的自动化系统转译为由钟表擒纵机构驱动的工厂巡检传动机；可靠运行如持续归档，遗留问题如被安全隔离的未处理工件。",
+    "supportingSymbolsZh": [
+      "无人看守的巡检传动机",
+      "整齐进入归档轨道的检验卷筒",
+      "隔离台上静置的未处理工件"
+    ],
+    "sceneDescriptionZh": "昏静的周末车间里，一台无人看守的巡检传动机正由钟表擒纵机构平稳带动；它前方的检验卷筒已整齐滑入归档轨道，侧方隔离台上仅静置一件未处理工件。暖光从高窗落下，整幅画面没有人物。",
+    "focalElementsEn": [
+      "unattended inspection transmission machine",
+      "inspection scrolls entering an archive track",
+      "an unresolved workpiece on an isolation table"
+    ],
+    "imagePromptEn": "An unattended inspection transmission machine operates steadily at the center. In front, inspection scrolls move in an orderly line into an archive track, showing reliable completed work. To one side, a single unresolved workpiece rests motionless on an isolation table, visible but contained. Quiet workshop interior, warm window light, no people."
+  }
+}
