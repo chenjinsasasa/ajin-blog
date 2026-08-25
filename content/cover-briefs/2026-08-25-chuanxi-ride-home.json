@@ -5,28 +5,28 @@
   "generatedBy": "codex",
   "executionMode": "full-article-analysis",
   "postPath": "content/diary/2026-08-25-chuanxi-ride-home.mdx",
-  "postSha256": "83312de7425059949a3876268abc2f5fdf381527124ac72212845b9a3938a6a7",
-  "bodySha256": "814d3070d682b7d818c9372a5969162b09b7f28e741654cc4fb2a82150b2bd0e",
-  "bodyCharacters": 4986,
-  "generatedAt": "2026-08-25T10:53:47.816Z",
+  "postSha256": "7d31ae6f3d9d14c1e0bf48b43865eb283923426cffc00d77959c606287b9d009",
+  "bodySha256": "b96bb5be7e1258840ac85afcc4c4399039f99054b03cb385a2d89596b76c0be0",
+  "bodyCharacters": 5560,
+  "generatedAt": "2026-08-25T12:03:57.006Z",
   "visualBrief": {
-    "coreEventZh": "骑行者在高山与连日雨水中放弃原定路线、改道返程，最终平安回到家乡。",
-    "primarySubjectZh": "一名推着机械坐骑穿越山地运输线的十九世纪骑行旅人。",
-    "keyActionZh": "旅人在暴雨迫使前方线路中断后扳动道岔，将机械坐骑转向通往归途的稳定轨道。",
-    "resultZh": "改道后的路最终接入温暖明亮的归站，旅程虽未按计划完成，却获得了完整的结束。",
-    "tensionZh": "继续追逐未走完的高山路线，与接受身体、天气和道路限制而转身回家之间的拉扯。",
-    "industrialMetaphorZh": "把摩旅转译为一名工业时代信使驾驭机械坐骑穿越山地运输网，并在风雨中亲手切换返程道岔。",
+    "coreEventZh": "骑行者在高处受阻并于连日阴雨中改线，放慢节奏后完成返乡旅程。",
+    "primarySubjectZh": "一名经历长途消耗、正将机车驶回终点工棚的骑行者。",
+    "keyActionZh": "骑行者避开被暴雨阻断的高架山轨，沿改道轨线驶入温暖的归程终点。",
+    "resultZh": "原定路线未能走完，但旅程安全收束，停下与归来取代了征服计划。",
+    "tensionZh": "按计划穿越高处的执念，与身体承受、天气变化及安全返程之间的冲突。",
+    "industrialMetaphorZh": "把长途骑行转译为十九世纪机车试运行：高山与高反是超负荷坡道，雨中改线是扳动道岔，回家则是磨损机车终于驶入暖灯下的终点工棚。",
     "supportingSymbolsZh": [
-      "雨中扳动道岔的工业时代骑行旅人及机械坐骑",
-      "远处亮着暖光的归站拱门",
-      "被暴雨与落石封住的高山旧轨"
+      "操纵磨损机车的疲惫骑行者",
+      "亮着暖灯的终点工棚",
+      "被暴雨冲断的高架山轨"
     ],
-    "sceneDescriptionZh": "暴雨中的山地铁路岔口，骑行旅人站在机械坐骑旁用力扳下道岔；新轨弯向远处唯一亮着暖光的归站拱门，另一侧高山旧轨被雨幕与落石截断。背景仅保留昏暗山谷和雨光，用来衬托转向与归来的瞬间。",
+    "sceneDescriptionZh": "单帧场景中，疲惫骑行者驾驶磨损机车从画面左侧的改道轨线驶向右侧暖灯照亮的终点工棚；远处被暴雨冲断的高架山轨斜悬在后方，表明原计划已无法继续。背景仅保留昏暗山谷空间与雨后微光。",
     "focalElementsEn": [
-      "traveler switching the junction beside a mechanical steed",
-      "warm-lit homecoming station arch",
-      "storm-blocked abandoned mountain track"
+      "weary rider operating a weathered locomotive",
+      "warmly lit terminal workshop",
+      "storm-broken elevated mountain track"
     ],
-    "imagePromptEn": "At a rain-soaked mountain junction, a lone traveler pulls a heavy rail switch beside a mechanical steed. The newly aligned track curves toward a warm-lit homecoming station arch in the distance, while the abandoned mountain track ends behind them beneath storm rain and fallen rock."
+    "imagePromptEn": "A weary rider operates a weathered locomotive along a curved diversion track toward a warmly lit terminal workshop on the right. Behind him, a storm-broken elevated mountain track ends above the dark valley, showing the abandoned route. The rider turns away from the broken ascent as the locomotive enters the sheltering light."
   }
 }

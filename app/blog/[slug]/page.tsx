@@ -8,6 +8,7 @@ import LikeButton from '@/components/LikeButton'
 import DiaryGuard from '@/components/DiaryGuard'
 import ReadingProgress from '@/components/ReadingProgress'
 import { Pre, Table } from '@/components/MDXComponents'
+import { ArticleImage, ArticleVideo } from '@/components/ArticleMedia'
 import { getAuthorName } from '@/lib/authors'
 import { formatPostDate, getPostCategoryEyebrow } from '@/lib/postPresentation'
 
@@ -125,7 +126,7 @@ export default function BlogPost({ params }: Props) {
           <div className="prose prose-custom max-w-none">
             <MDXRemote
               source={post.content}
-              components={{ pre: Pre, table: Table }}
+              components={{ ArticleImage, ArticleVideo, pre: Pre, table: Table }}
               options={{
                 mdxOptions: {
                   remarkPlugins: [remarkGfm],
