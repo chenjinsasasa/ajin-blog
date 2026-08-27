@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-26-progress.mdx",
+  "postSha256": "6c9c9ca02556784bb263e209da18c57c2eac7fefd1b6bcdee49c3a2eab6ef496",
+  "bodySha256": "c6c76bcfd3c2a50260a0d2d91391be18dad978703c7f78067430ae37cb826425",
+  "bodyCharacters": 3616,
+  "generatedAt": "2026-08-27T15:18:59.095Z",
+  "visualBrief": {
+    "coreEventZh": "一次本应自动完成的日常轮值完全停摆，失败证据被保留下来，随后经授权补跑，使缺失的一天重新进入可审计的连续序列。",
+    "primarySubjectZh": "一名负责轮值的工匠，在停转的传动机构前手动恢复缺失的一环。",
+    "keyActionZh": "工匠将脱开的轮值齿轮重新推入传动链，使中断的运行恢复衔接。",
+    "resultZh": "断档被明确记录并完成补接，连续序列不再从前一天虚假跳到后一天。",
+    "tensionZh": "已经重新咬合并恢复运转的轮值链条，与仍清晰暴露、不可被掩盖的断裂痕迹之间的张力。",
+    "industrialMetaphorZh": "将自动发布链转译为十九世纪工坊里的轮值传动机：缺失产物是脱开的齿轮，失败告警是暴露的断口，人工补跑是工匠重新啮合传动机构。",
+    "supportingSymbolsZh": [
+      "正在徒手复位轮值齿轮的工匠",
+      "已经重新咬合并稳定转动的传动链",
+      "仍留有明显断裂痕迹的空缺齿位"
+    ],
+    "sceneDescriptionZh": "单帧画面中，工匠位于近景中央，双手把一枚脱开的轮值齿轮推回传动链；一侧已啮合的链条恢复稳定转动，另一侧的空缺齿位仍保留清晰断痕。背景仅为昏暗工业工坊的纵深与斜射晨光。",
+    "focalElementsEn": [
+      "worker reseating a duty gear",
+      "re-engaged moving gear train",
+      "scarred empty gear gap"
+    ],
+    "imagePromptEn": "A worker at center pushes a duty gear back into place. Beside him, a re-engaged gear train turns steadily, while a scarred empty gear gap remains visibly exposed on the opposite side, preserving the evidence of the interruption."
+  }
+}
