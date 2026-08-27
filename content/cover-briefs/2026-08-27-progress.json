@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-27-progress.mdx",
+  "postSha256": "4c22dd587314b75ff2f9d4243db2e3ad12ba5b2adb96b7e3726cb2802befc0a3",
+  "bodySha256": "dcbc6c8f984ab0c6da7299f0802082cdf091a2e76390893754edb11abfc1fac7",
+  "bodyCharacters": 5351,
+  "generatedAt": "2026-08-27T15:34:38.144Z",
+  "visualBrief": {
+    "coreEventZh": "断档被人工接回后的第一个无事故日，以正常轮值收口证明主链已重新咬合。",
+    "primarySubjectZh": "一名值班机械师在交班时确认修复后的传动机构持续运转。",
+    "keyActionZh": "机械师将接力杆稳稳推向下一工位，同时观察重新啮合的齿轮。",
+    "resultZh": "主传动轮平稳转动，安静运行本身成为修复有效的证据。",
+    "tensionZh": "主链已经恢复，但上游积欠仍使传动阻力偏大，后续稳定性尚待持续验证。",
+    "industrialMetaphorZh": "将自动轮值链转译为工厂传动系统：重新啮合的主齿轮代表恢复运行，持续旋转的飞轮代表无事故日，锈滞的上游链条代表尚未清偿的治理债。",
+    "supportingSymbolsZh": [
+      "交班中的值班机械师与重新啮合的主齿轮",
+      "平稳持续旋转的巨大飞轮",
+      "牵制传动的锈滞上游链条"
+    ],
+    "sceneDescriptionZh": "一座昏暗工坊内，值班机械师站在重新啮合的主齿轮旁，把接力杆推向下一工位；巨大飞轮在其后平稳旋转，而一条锈滞的上游链条从侧上方绷紧并拖住传动。背景仅保留纵深空间与斜入晨光。",
+    "focalElementsEn": [
+      "duty mechanic beside re-engaged main gears",
+      "steadily turning flywheel",
+      "taut rusted upstream chain"
+    ],
+    "imagePromptEn": "A duty mechanic stands beside re-engaged main gears and pushes a handoff lever toward the next station. Behind him, a massive flywheel turns steadily, showing uninterrupted operation. Above and to one side, a taut rusted upstream chain pulls against the mechanism, adding visible strain while the gears remain engaged."
+  }
+}
