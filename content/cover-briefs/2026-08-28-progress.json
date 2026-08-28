@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-28-progress.mdx",
+  "postSha256": "b1b5f5e9ce61a5d8fb290b5b489703542aa6fbc82a323c1ac4bb803966efbaf4",
+  "bodySha256": "64cfef073c527f216c1706a99e89aa6dfbf609ad786f9b048fab072bb7e872a2",
+  "bodyCharacters": 7343,
+  "generatedAt": "2026-08-28T15:37:01.096Z",
+  "visualBrief": {
+    "coreEventZh": "调研者把连续多日的运行记录并排核对，确认反复拦截并非孤立故障，而是上游契约缺口在不同条件下持续显现。",
+    "primarySubjectZh": "一名负责记录与归纳的十九世纪工坊调查员。",
+    "keyActionZh": "调查员在长桌前对照多日档案，将已经稳定交付的产物与反复错位的上游传动关卡归入同一条因果链。",
+    "resultZh": "契约缺口被整理成可审计、可复现的诊断证据，留待下一位决策者确定修复方向。",
+    "tensionZh": "实体产物已经稳定完成，但负责确认收口的上游传动机构因时序与责任标记错位，连续阻断放行。",
+    "industrialMetaphorZh": "一条工坊生产线已将合格货箱送到终点，验收闸门却被上游错位的定时联轴器持续锁死；调查员不拆机器，只用对照记录证明故障来自未定义的衔接契约。",
+    "supportingSymbolsZh": [
+      "在长桌前核对档案的工坊调查员",
+      "整齐封存并已抵达终点的合格货箱",
+      "齿位错开、卡住验收闸门的定时联轴器"
+    ],
+    "sceneDescriptionZh": "昏暗工业档案室内，调查员俯身站在长桌一端核对摊开的记录；桌旁整齐堆放的封存货箱表明生产成果已经抵达；远端一只齿位错开的定时联轴器卡住验收闸门。背景仅保留纵深空间与斜射天光。",
+    "focalElementsEn": [
+      "workshop investigator comparing records",
+      "sealed finished crates at the endpoint",
+      "misaligned timing coupling locking an inspection gate"
+    ],
+    "imagePromptEn": "A workshop investigator leans over a long table comparing aligned records. Beside the table, sealed finished crates rest neatly at the endpoint. Across the room, a misaligned timing coupling jams and locks the inspection gate, separating the investigator and completed crates from final release. Sparse industrial interior depth and angled window light only."
+  }
+}
