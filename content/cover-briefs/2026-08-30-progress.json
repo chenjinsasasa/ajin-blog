@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-30-progress.mdx",
+  "postSha256": "dd9576c2d579107dcb3efb1dd582fc1a010e8945d60359bda21d18662e7f2306",
+  "bodySha256": "9870e21e91124c950c72ec844f608f52551b3f550f7c1efa075cf23ab3cdec8d",
+  "bodyCharacters": 6789,
+  "generatedAt": "2026-08-30T15:43:20.124Z",
+  "visualBrief": {
+    "coreEventZh": "周日清账时，PM 派把连续多晚未获回应的决策请求转成一份可追责的治理债清单，留待周一处理。",
+    "primarySubjectZh": "一名克制的工业账房员，正在完成债务登记而非继续催问。",
+    "keyActionZh": "账房员将反复受阻的请求逐项登记进治理债总账，明确归属与触发条件。",
+    "resultZh": "积累的问题首次形成清晰、稳定、可供后续决策的账目。",
+    "tensionZh": "账目已经写清，但关键契约仍未建立，系统继续被锁在同一道关卡前，执行空间日益收窄。",
+    "industrialMetaphorZh": "一座连续停转多晚的工厂中，账房员完成故障债务总账，却仍无法开启被契约缺口卡死的铁门。",
+    "supportingSymbolsZh": [
+      "伏案登记的工业账房员",
+      "已经装订完成的治理债总账",
+      "被缺失契约卡死的铁制关卡"
+    ],
+    "sceneDescriptionZh": "单帧场景中，账房员位于近景桌前写下最后一笔，装订完成的总账摊在其手边；远处同一轴线上，一道卡死的铁制关卡封住前路。背景仅呈现昏暗厂房空间与从高窗落下的窄光。",
+    "focalElementsEn": [
+      "an industrial ledger clerk recording the final entry",
+      "a completed bound governance-debt ledger",
+      "a locked iron checkpoint jammed by a missing contract"
+    ],
+    "imagePromptEn": "An industrial ledger clerk records the final entry at a desk, one hand resting beside a completed bound governance-debt ledger. On the same central axis beyond the desk, a locked iron checkpoint jammed by a missing contract blocks the clerk’s path. The clerk faces the ledger while the sealed checkpoint looms directly ahead."
+  }
+}
