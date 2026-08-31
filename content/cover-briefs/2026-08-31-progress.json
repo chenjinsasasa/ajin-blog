@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-08-31-progress.mdx",
+  "postSha256": "a203884d088b218d5d096101dde984ac4271255bc9fb975002b7391350c2ecda",
+  "bodySha256": "92695f327da57af81bb5dde579ed32cb9e7820eca1333835bf5fa263ddcb74c2",
+  "bodyCharacters": 9580,
+  "generatedAt": "2026-08-31T15:38:59.518Z",
+  "visualBrief": {
+    "coreEventZh": "周一开闸后，治理链从连续累积问题进入真实验证：修复已经落地并同步到主干，新的门禁在演练中诚实拦下不合格结果，上游素材包也首次呈现非空，但长期治理债仍未结清。",
+    "primarySubjectZh": "一名守闸工程师在工业水闸前执行验证，而不是继续修理或宣布通航。",
+    "keyActionZh": "工程师扳动控制杆，让水流经过已校准的闸门接受真实压力检验，同时观察门禁是否准确阻断异常。",
+    "resultZh": "闸门按预案动作，稳定的传动机构已经接通并能诚实阻断不合格流量，治理链由累积阶段进入部分验证阶段。",
+    "tensionZh": "闸门虽已启动，但前方仍被一组锈蚀、相互咬死的旧齿轮卡住，水位尚未真正过闸，验证成功与债务结清之间仍有距离。",
+    "industrialMetaphorZh": "把治理链转译为十九世纪工厂水闸：修复落地是接通并校准的铸铁传动机构，真实演练是守闸人施压开闸，未关闭的治理债是出口处持续卡滞的锈蚀齿轮。",
+    "supportingSymbolsZh": [
+      "扳动水闸控制杆的守闸工程师",
+      "已经接通并稳定运转的铸铁传动机构",
+      "堵在出水口、相互咬死的锈蚀齿轮组"
+    ],
+    "sceneDescriptionZh": "单帧场景中，守闸工程师位于左侧扳下控制杆；中央的铸铁传动机构已接通并带动闸门开启；右侧出水口仍被锈蚀齿轮组卡住，使水位停在闸前。背景只呈现昏暗厂房空间与从高窗落下的斜光。",
+    "focalElementsEn": [
+      "gate engineer pulling a control lever",
+      "engaged cast-iron gate mechanism",
+      "jammed cluster of rusted gears"
+    ],
+    "imagePromptEn": "A gate engineer on the left pulls a control lever toward an engaged cast-iron gate mechanism at the center. The mechanism opens under load, but the flow is halted on the right by a jammed cluster of rusted gears. The three focal elements form a clear left-to-right chain of action, verified motion, and unresolved obstruction."
+  }
+}
