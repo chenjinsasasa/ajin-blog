@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-01-progress.mdx",
+  "postSha256": "c7310e0b7b79d50011d1034cb918223c28771adcd8d19c685367f265e16172cd",
+  "bodySha256": "50c3fb68f75ca7eae548c8bf862ba2d28eb48163321058f138095064f426b1ab",
+  "bodyCharacters": 3504,
+  "generatedAt": "2026-09-01T17:17:35.528Z",
+  "visualBrief": {
+    "coreEventZh": "四条工作线在证据与授权耗尽之处被统一对账，并准确停在各自的下一道门槛前。",
+    "primarySubjectZh": "一名负责核验与守闸的工业审计员。",
+    "keyActionZh": "审计员完成核验后压住前进动作，把已经证明的成果封存，同时拒绝开启尚未获准的下一道门。",
+    "resultZh": "可交付、已验证与已授权被清楚分开，已有价值获得确认，下一阶段没有被冒充为完成。",
+    "tensionZh": "继续推进带来的表面速度，与证据不足、授权未到时必须停下的经营纪律之间的冲突。",
+    "industrialMetaphorZh": "把多线项目治理转译为十九世纪工厂的总闸审计：账目已经校准归档，但动力只能送到获准的位置，锁闭铁门之后的产线仍保持静止。",
+    "supportingSymbolsZh": [
+      "守在总闸前的工业审计员",
+      "完成校准并封存的机械账簿",
+      "阻挡未授权产线的锁闭铁门"
+    ],
+    "sceneDescriptionZh": "一名工业审计员站在车间总闸前，一手按住已经完成校准并封存的机械账簿，另一手停在锁闭铁门之前；暖光落在人物与账簿上，铁门后方保持昏暗，形成一个核验完成却不越界推进的单帧瞬间。",
+    "focalElementsEn": [
+      "industrial auditor guarding the master control",
+      "calibrated mechanical ledger sealed shut",
+      "locked iron gate blocking the next production stage"
+    ],
+    "imagePromptEn": "An industrial auditor stands at the master control, one hand firmly resting on a calibrated mechanical ledger sealed shut, the other halted before a locked iron gate. The ledger lies within the lit, verified workspace, while the gate blocks the dark next production stage; the auditor’s restrained posture shows that proven work is secured and unauthorized progress has stopped."
+  }
+}
