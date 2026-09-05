@@ -98,8 +98,8 @@ The route guard is configured in `config/blog-cover-image2.json` and is part of 
 
 - An HTTP response such as `403` proves transport reachability; only DNS, connection, TLS, timeout, or reset failures fail the probe.
 - If the active Clash route fails the preflight, the guard checks ChatGPT-dedicated candidates through the local Mihomo Unix socket, selects the lowest-latency healthy candidate, clears stale connections, and requires the route probe to pass again.
-- If the long built-in image request later fails with `network error`, `error sending request`, `i/o timeout`, `context deadline exceeded`, connection reset/close, or timeout, the guard performs one forced route recovery and retries generation once after a short backoff.
-- Non-network failures are never retried. If recovery or the second attempt fails, publishing remains fail-closed and the first raw generation error is retained.
+- Each cover permits exactly one built-in generation attempt. A failed request stops publishing and retains the first raw error, including network and timeout failures.
+- Route recovery before generation may restore transport connectivity; it never authorizes another image generation after a failed attempt. Any later retry requires explicit user authorization.
 
 If Codex Image 2, the four references, or the output step fails, stop publishing. Do not switch source or model, and do not use an API key fallback.
 

@@ -15,7 +15,7 @@
     "candidateLimit": 8,
     "settleMilliseconds": 1000,
     "retryBackoffMilliseconds": 3000,
-    "maxGenerationAttempts": 2,
+    "maxGenerationAttempts": 1,
     "failureCooldownMilliseconds": 21600000,
     "failureStatePath": ".codex-image-route-failures.json",
     "curlPath": "/usr/bin/curl",
