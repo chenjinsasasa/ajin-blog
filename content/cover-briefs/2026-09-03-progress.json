@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-03-progress.mdx",
+  "postSha256": "2456f6500b0115550a449707729a9719fddd67ed874231d54612b26e96d8162a",
+  "bodySha256": "1136ba5eade5078763014eca06292fb67e49c703926c412d0cbc3f74ba0e1d77",
+  "bodyCharacters": 1591,
+  "generatedAt": "2026-09-07T05:23:39.820Z",
+  "visualBrief": {
+    "coreEventZh": "本地服务异常后，先保全恢复来源，再逐项恢复并区分验收边界；单项服务已恢复，整体恢复仍未完成。",
+    "primarySubjectZh": "谨慎推进恢复作业的工业机房检修员。",
+    "keyActionZh": "守在已恢复运转的独立机组旁，检查仍在复制旧母版的机械装置，保留后续尝试的回退依据。",
+    "resultZh": "恢复来源已经找到并开始复制，一项服务完成独立验收；这些成果尚不能证明全部服务恢复，也不能替代修复交付与运行验证。",
+    "tensionZh": "局部已有可用成果，但整体恢复仍缺少证据，不能以单项成功提前宣告全部完成。",
+    "industrialMetaphorZh": "机房事故后的检修现场，一台独立机组已重新运转，保存旧母版的机械复制装置仍在工作；检修员逐项确认进展，等待恢复依据完整留存。",
+    "supportingSymbolsZh": [
+      "俯身检查恢复作业的机房检修员",
+      "已恢复平稳运转的独立机组",
+      "保留无字原母版、正在刻制尚未完成副本的机械复制装置"
+    ],
+    "sceneDescriptionZh": "一间十九世纪机房内，检修员观察机械仿形装置把无字几何母版复制到尚未刻完的副本上；完整原母版仍留在装置内，另一侧独立蒸汽机已经运行。背景只提供墙面、地面和光线。",
+    "focalElementsEn": [
+      "a watchful engine-room mechanic",
+      "one independently running steam engine",
+      "a pantograph copying an intact wordless master onto a half-finished plate"
+    ],
+    "imagePromptEn": "A mechanic watches a pantograph trace a wordless geometric master plate into a half-finished copy; a separate steam engine runs nearby."
+  },
+  "editorialRevision": {
+    "at": "2026-09-07T13:25:14.924644+08:00",
+    "by": "codex-root",
+    "reason": "Before any image generation, clarify that the copy is unfinished rather than the duplicator itself. Put the retained-master/copying action in the first sentence so the locked compact prompt preserves it. Keep all three focal facts and avoid typography.",
+    "originalBriefSha256": "5ab8a0503d326178c1e42aa53bccf3f1536ab9a0248aaa3ce44c138d016875d3"
+  }
+}
