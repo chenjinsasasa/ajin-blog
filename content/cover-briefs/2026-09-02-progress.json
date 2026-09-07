@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-02-progress.mdx",
+  "postSha256": "b89f0f5785514ca599a500603c7cf2a07511b966bebfc5db5b8c5ed1ef72db69",
+  "bodySha256": "0d6979c083bc483b6aceaa534d69bffe04cc6df9b3541f73a08cc2a64b3d0ea0",
+  "bodyCharacters": 1569,
+  "generatedAt": "2026-09-05T05:24:48.342Z",
+  "visualBrief": {
+    "coreEventZh": "缺失博客已完成补发并验证公开可读，但自动写作因执行与回执的对应关系仍有缺口而暂停修复。",
+    "primarySubjectZh": "停下自动印刷机、检查执行机构的检修工。",
+    "keyActionZh": "将已经交付的印张留在机器之外，停机检查尚未可靠衔接的回执机构。",
+    "resultZh": "补发文章已经交付；自动写作保持暂停，尚未具备恢复调度的依据。",
+    "tensionZh": "持续出刊的需求，与完成状态必须由真实产物和对应证据支撑的要求之间存在冲突。",
+    "industrialMetaphorZh": "自动写作转译为印刷机，已补发文章转译为完整印张，执行与回执的对应缺口转译为印刷机上尚未接合的回执联动机构；检修工停机校准后者。",
+    "supportingSymbolsZh": [
+      "检查停机机构的检修工",
+      "仅有一幅蚀刻图像、完全无文字的已完成印张",
+      "联动杆脱开的停转印刷机"
+    ],
+    "sceneDescriptionZh": "检修工位于停转印刷机右侧，检查清楚脱开的联动杆；左侧放着仅有一幅蚀刻图像的完成印张，纸上没有任何文字、字符、数字、段落或排版框。背景只提供车间空间和光线。",
+    "focalElementsEn": [
+      "a mechanic checking a linkage",
+      "one finished image-only engraving sheet without lettering",
+      "a stopped printing press with a visibly disconnected rod"
+    ],
+    "imagePromptEn": "A mechanic checks a disconnected rod on a halted press. One finished sheet bears only a pictorial engraving. No glyphs, writing, text rows or print columns anywhere."
+  },
+  "editorialRevision": {
+    "at": "2026-09-05T05:31:06.044Z",
+    "by": "codex-root",
+    "reason": "First image rejected for pseudo typography; retain article meaning and three focal elements, specify a wordless pictorial impression.",
+    "originalBriefSha256": "23a1c7a483cc9076fb890f15d099fed108d37e1e0a5536eeb87b908d5736df88"
+  }
+}
