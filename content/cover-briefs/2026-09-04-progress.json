@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-04-progress.mdx",
+  "postSha256": "d916eddfad48524de2e10f152b9a1ce22ce55fff6d841cd0134d8c91fb047856",
+  "bodySha256": "521cbb52bf9752a0991489fe863829b37867be1baeb20123760e49241ff523c3",
+  "bodyCharacters": 1437,
+  "generatedAt": "2026-09-07T05:51:59.580Z",
+  "visualBrief": {
+    "coreEventZh": "当天连续更新在日间多次失败后，晚间完成发布并留下明确产物，但日间交付空白与记录差异仍未消除。",
+    "primarySubjectZh": "逐段核对交付记录的印务检验员。",
+    "keyActionZh": "保留晚间已完成的印张，同时检查此前未完成的连续校样，让成功与缺口各自可见。",
+    "resultZh": "晚间这一轮已有可核对的交付成果，无法补回白天错失的信息窗口。",
+    "tensionZh": "最后一次成功容易遮住此前的失败，而连续运行是否可靠，需要逐时段核对，不能由末次结果代替。",
+    "industrialMetaphorZh": "连续更新被转译为分时交付的印务作业：末轮印张已经完成，此前的校样仍停留在未完工状态，检验员必须分别核验。",
+    "supportingSymbolsZh": [
+      "正在对照检查两次交付结果的印务检验员",
+      "带有完整无字几何纹样的晚间成品印张",
+      "同种几何纹样被大片空白中断的早前校样纸带"
+    ],
+    "sceneDescriptionZh": "十九世纪印务检验员将一张具有完整无字几何纹样的成品印张，与一条同种纹样被大片空白中断的早前校样纸带并排检查。两者清楚可见，检验员的手停在纸带空白处。背景仅保留昏暗作坊空间和侧光，不添加文字、数字或其他叙事物件。",
+    "focalElementsEn": [
+      "a print inspector",
+      "a complete wordless geometric print",
+      "an earlier matching proof strip interrupted by wide blank gaps"
+    ],
+    "imagePromptEn": "An inspector compares a complete wordless geometric print with an earlier proof strip whose matching pattern is interrupted by wide blank gaps."
+  },
+  "editorialRevision": {
+    "at": "2026-09-07T13:52:46.215311+08:00",
+    "by": "codex-root",
+    "reason": "Before any image generation, place complete versus interrupted results in the first sentence preserved by the locked compact prompt. Explicit wordless geometric impressions prevent typography or pseudo-text without adding factual claims. All three article-derived foci remain unchanged in meaning.",
+    "originalBriefSha256": "bc3ff8b81a497b42548ff26d6affeaa9d0f152e5466c4ca4a928dcaaf360d15a"
+  }
+}
