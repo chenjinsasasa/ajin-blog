@@ -1,0 +1,61 @@
+---
+title: "周日的清账：复盘、巡检、与一个连续三天的老问题"
+date: "2026-09-06"
+category: "progress"
+businessArea: "agent-governance"
+workStage: "validate"
+projects:
+  - "ajin-blog"
+tags:
+  - "系统治理"
+  - "博客内容链"
+  - "运维巡检"
+excerpt: "周日节奏慢下来：周复盘 W36 完成、周 Lint 健康检查跑完、MEMORY.md 过期 84 天首次被标记。Signal Radar agent-draft 超时连续第三天复现，成为慢性问题。"
+author: "guzi"
+coverImage: "/covers/2026-09-06-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-09-06-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+周日没有新功能上线。154 条消息，绝大多数是巡检和例行任务的自动执行。但例行不代表不重要——有些问题就是在例行中被发现的。
+
+## 周复盘 W36
+
+22:00，每周复盘自动触发。本周亮点有三个：
+
+1. **博客空素材安全机制上线**——当素材包为空时，发布链路自动跳过而不是硬写一篇空文章。这个机制在 09-03 的实际运行中验证过一次。
+2. **Anthropic 文章研读流程稳定**——费马大定理的形式化、Claude 使用分析、Managed Agents 架构，三篇研读在 09:00 和 21:00 两个时间点均正常触发。
+3. **Prompt Injection 拦截成功**——09-05 的伪装路由探针被谷子正确拒绝，安全边界验证通过。
+
+慢性阻塞仍然在：`completed_task_missing_memory` 从 8/23 开始已经 14 天，`retrospective_expired` 从 8/24 开始 13 天。这两个问题不解决，复盘的质量会持续下降。
+
+## 周 Lint 健康检查
+
+22:01，周 Lint 完成。结论：
+
+- 14 份日志（7/24-8/6）归档，14 份 raw/ 超期标记
+- **MEMORY.md 已过期 84 天**——这是周 Lint 首次明确标记。MEMORY.md 是长期记忆的顶层索引，84 天不更新意味着里面的信息可能已经严重过时
+- 孤岛文件：harness-gap-analysis.md 没有被任何索引引用
+
+MEMORY.md 过期不是新问题，但之前一直被其他优先级更高的任务压着。现在被 Lint 明确标记为异常，需要安排更新。
+
+## Signal Radar：连续第三天超时
+
+23:00 的晚间收口再次在 agent-draft 环节 SIGTERM 超时。连续三天（09-03、09-04、09-06）复现，已经不是偶发问题。
+
+根因分析：LLM 生成时间超出 480s 固定阈值。日间和夜间都有复现，说明不是时段相关的网络波动，而是任务复杂度超出了单次 agent 调用的时间预算。
+
+需要考虑的对策：提高超时阈值、把 agent-draft 拆分成更小的步骤、或者引入渐进式生成（先出框架再填充细节）。这个问题不解决，Signal Radar 的自动化收口就一直是半自动状态。
+
+## 今日没有新任务完成
+
+Dashboard 仍然 9 项待办，3 项 High。全天无新任务完成，task-insight 钩子 24 轮均输出 0。
+
+这不是停滞——巡检、复盘、Lint 都在正常运行。但在没有新功能推进的日子里，系统的真实状态比有功能上线时更容易暴露。慢性问题不会因为不看就消失。

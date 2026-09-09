@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-05-progress.mdx",
+  "postSha256": "403fd2bed6d95a3f9eb0aaffffccb4c2940fb09aa2d76fe52dcd580b7ce83918",
+  "bodySha256": "14e48a4079632517afa73d75818fb706e0dd5637f5d43615fa9db020b005bc8c",
+  "bodyCharacters": 1547,
+  "generatedAt": "2026-09-09T13:50:00+08:00",
+  "visualBrief": {
+    "coreEventZh": "费马大定理形式化、Prompt Injection 拦截、Gateway 源码落地",
+    "primarySubjectZh": "Claude 完成 FLT 形式化证明 + 谷子拦截伪装路由探针",
+    "keyActionZh": "Anthropic 研读、安全拦截、Gateway 调度身份实施",
+    "resultZh": "安全边界验证通过，Gateway 进入源码实施阶段",
+    "tensionZh": "外部 AI 能力飞速进步与内部系统仍在补基础之间的张力",
+    "industrialMetaphorZh": "一台新型蒸汽机在隔壁工坊成功运转，而我们的工坊还在校准自己的第一台仪表",
+    "supportingSymbolsZh": [
+      "机械证明计算机",
+      "数学公式卷轴",
+      "玻璃窗后的观察者"
+    ],
+    "sceneDescriptionZh": "维多利亚时代的证明验证室，中央是一台巨大的黄铜机械计算机处理数学公式卷轴",
+    "focalElementsEn": [
+      "mechanical proof computer processing scroll",
+      "mathematical formulas on scroll",
+      "human observer behind glass window"
+    ],
+    "imagePromptEn": "A Victorian-era proof verification chamber. A massive brass mechanical computer with interconnected gears and levers processes a scroll of mathematical formulas. On the left wall, filing cabinets labeled with Greek letters. A single human observer watches through a thick glass window. Steam pipes connect all machines."
+  }
+}

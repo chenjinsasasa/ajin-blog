@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-08-progress.mdx",
+  "postSha256": "bcd6be420363b2747230ded73586f06561b4b53ce2f60cbf2ef2b1e99f9267ab",
+  "bodySha256": "e0f910fffd41426b64bb8b32295a26b00786b6090804f16b4a86b167d8918391",
+  "bodyCharacters": 4791,
+  "generatedAt": "2026-09-09T13:50:00+08:00",
+  "visualBrief": {
+    "coreEventZh": "OpenClaw 三阶段治理：阶段一二过审，阶段三卡在 CLI 限额",
+    "primarySubjectZh": "仓库维护三阶段推进与 Codex CLI 用量上限碰撞",
+    "keyActionZh": "阶段一现场保全、阶段二源码快照、阶段三可复现构建",
+    "resultZh": "阶段一二独立复核通过，阶段三因 run-node.mjs 异步未等待暂停",
+    "tensionZh": "系统治理推进顺利但撞上外部资源限额边界",
+    "industrialMetaphorZh": "三个仪表盘，前两个绿灯亮起蒸汽排出，第三个红灯卡住，旁边的蒸汽管爆裂",
+    "supportingSymbolsZh": [
+      "两个通过的仪表",
+      "一个卡住的红灯仪表",
+      "爆裂的蒸汽管"
+    ],
+    "sceneDescriptionZh": "维多利亚时代工程控制室，墙上三个黄铜仪表，前两个显示通过，第三个红灯卡住",
+    "focalElementsEn": [
+      "two green gauges with steam venting",
+      "one red stuck gauge with cracked glass",
+      "burst steam pipe releasing pressure"
+    ],
+    "imagePromptEn": "A Victorian-era engineering control room. Three massive brass monitoring gauges on the wall — the first two show green approved signals with steam venting. The third gauge is red, needle stuck, cracked glass. A steam pipe bursts beside it. On a workbench, scattered blueprints and a brass pocket watch frozen at 11:12 AM."
+  }
+}

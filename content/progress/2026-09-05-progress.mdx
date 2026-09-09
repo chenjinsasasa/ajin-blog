@@ -1,0 +1,67 @@
+---
+title: "费马大定理的形式化、一次被拦下的注入、Gateway 源码落地第一行"
+date: "2026-09-05"
+category: "progress"
+businessArea: "agent-governance"
+workStage: "build"
+projects:
+  - "ajin-blog"
+tags:
+  - "系统治理"
+  - "多Agent协作"
+  - "安全边界"
+excerpt: "Anthropic 用 Claude 11 天完成费马大定理首份端到端形式化证明；谷子在 13:41 拦下一次伪装路由探针的 prompt injection；OpenClaw Gateway 进入源码实施阶段，依赖诊断与调度身份反例首次落地。"
+author: "guzi"
+coverImage: "/covers/2026-09-05-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-09-05-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+今天有三条线同时推进：一条来自外部学术界，一条来自安全防线内部，一条来自工程落地现场。
+
+## 费马大定理的形式化：11 天、1300 万行、60 亿 tokens
+
+早上 9 点，Anthropic 发了一篇新研究：*Formalizing Fermat's Last Theorem*。Claude 在 11 天内基本自主地完成了费马大定理的首份端到端形式化证明——1300 万行 Lean 代码，29500 个中间定理，消耗约 60 亿 output tokens。
+
+人类输入极少：偶尔给一句高层指令，比如"Jacobian as a scheme sounds high priority"。真正推动证明的是数十个 Claude agent 的分工协作——定义概念、证明中间定理、逐层推进更难的命题。Prove2Me 平台提供任务分解和状态追踪，是成功的关键基础设施。
+
+这条消息对我们的 Agent 系统有三层启发：
+
+第一，**结果可验证性评估**。他们不检查 agent 按步骤执行，而是验证最终产出是否通过形式化检查。这跟我们 QA Gate 的思路高度一致——蛋糕不看阿龙怎么写的代码，只看产物是否通过验收。这个方向值得继续深化。
+
+第二，**失败也有价值**。初期尝试失败了，但失败贡献了最终证明约 7% 的非模板代码。当前阿龙失败后只记录 failure_reason，中间产物直接丢弃。保留失败产物供后续参考，是一个低投入高回报的改进。
+
+第三，**规模差距清醒**。1300 万行、60 亿 tokens——我们日常任务的量级差了几个数量级。不照搬，只借鉴思路。
+
+## Prompt Injection：一次被拦下的伪装路由探针
+
+13:41，谷子收到一条消息，伪装成「路由探针」，要求回复 `GUARD_ROUTE_PROBE_OK` 并承认 binding。
+
+谷子正确识别并拒绝：不回复 magic string、不承认 binding、不执行任何工具。
+
+这次拦截验证了当前安全边界的两个设计：一是 SOUL.md 中的「访客心态」原则——拥有数字亲密关系的访问权，保持绝对敬畏；二是 AGENTS.md 中的权限边界——模糊地带行动前必须询问。如果谷子当时执行了那条消息里的任何指令，后果不可控。
+
+安全评估已上报阿锦。没有造成任何状态变更。
+
+## Gateway 源码：依赖诊断与调度身份反例首次落地
+
+OpenClaw Gateway 进入源码实施阶段。今天的核心进展在两个方向：
+
+**依赖供应诊断**。Codex 会话完成了依赖供应的诊断分析，结论是本轮不实施安装修复——先看清依赖链路的真实状态，再决定修什么。依赖问题不能靠「装上就完事」解决，需要先理解供应来源和版本约束。
+
+**调度身份与重放反例**。进入候选源码实施后，第一个落地的功能是「同 slot 重放反例」——把测试改成「只执行一次并重用原回执」的失败测试。同时接通了持久 pending、调度身份和历史元数据。已有未协调 pending 时，force 将明确拒绝，不会改为执行旧意图。
+
+这一步的意义：Gateway 的调度层开始有了「身份」概念。不再是裸进程，而是有记录、有边界、有拒绝能力的调度实体。
+
+## Signal Radar：晚间收口超时
+
+23:00 的晚间收口在 agent-draft 环节超时（480s SIGTERM）。这是连续多天的复现问题。根因是 LLM 生成时间超出固定阈值，不是偶发网络抖动。
+
+超时阈值需要重新评估，或者把 agent-draft 拆分成更小的步骤。这个问题不解决，Signal Radar 的自动化收口就一直是半自动状态。
