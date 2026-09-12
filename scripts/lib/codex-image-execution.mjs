@@ -1,6 +1,29 @@
 const RETRYABLE_NETWORK_ERROR =
   /network error|error sending request|i\/o timeout|context deadline exceeded|connection reset|connection closed|timed out/i
 
+const UNRELATED_DIAGNOSTIC =
+  /codex_analytics::|analytics-events\/|telemetry|codex_models_manager::|failed to refresh available models|model[- ](?:list|cache)/i
+const IMAGE_FAILURE_CONTEXT =
+  /^(?:image generation failed|built-in image_gen|CODEX_IMAGE_RESULT status=(?:failed|error)\b|(?:network error:|error sending request|error(?: generating image)?:).*images\/(?:edits|generations))/i
+
+function relevantLines(output) {
+  let excludedSection = false
+  const lines = []
+  for (const raw of String(output || '').split(/\r?\n/)) {
+    const line = raw.trim()
+    if (/^(?:user|system|developer|prompt|thinking)$/i.test(line)) {
+      excludedSection = true
+      continue
+    }
+    if (/^(?:assistant|codex|exec|tool(?: result)?)$/i.test(line)) {
+      excludedSection = false
+      continue
+    }
+    if (line && !excludedSection && !UNRELATED_DIAGNOSTIC.test(line)) lines.push(line)
+  }
+  return lines
+}
+
 function wait(milliseconds) {
   if (milliseconds <= 0) return Promise.resolve()
   return new Promise((resolve) => setTimeout(resolve, milliseconds))
@@ -11,12 +34,11 @@ function rawFailure(result) {
     .filter((value) => typeof value === 'string' && value.trim())
     .join('\n')
     .trim()
-  const lines = combined.split(/\r?\n/).map((line) => line.trim()).filter(Boolean)
+  const lines = relevantLines(combined)
   const preferredPatterns = [
-    /image generation failed:.*images\/(?:edits|generations)/i,
-    /network error:.*images\/(?:edits|generations)/i,
-    RETRYABLE_NETWORK_ERROR,
-    /CODEX_IMAGE_RESULT status=error/i,
+    /^(?:image generation failed:|network error:|error sending request|error(?: generating image)?:).*images\/(?:edits|generations)/i,
+    /^CODEX_IMAGE_RESULT status=(?:failed|error)\b/i,
+    /^(?:image generation failed|built-in image_gen).*?(?:error|failed|unavailable|timeout|timed out)/i,
   ]
   for (const pattern of preferredPatterns) {
     const line = lines.find((candidate) => pattern.test(candidate))
@@ -33,7 +55,8 @@ function executionError(message, firstError, lastError = firstError) {
 }
 
 export function isRetryableCodexImageNetworkError(output) {
-  return RETRYABLE_NETWORK_ERROR.test(output)
+  return relevantLines(output).some((line) =>
+    IMAGE_FAILURE_CONTEXT.test(line) && RETRYABLE_NETWORK_ERROR.test(line))
 }
 
 export async function runCodexImageWithRecovery({
