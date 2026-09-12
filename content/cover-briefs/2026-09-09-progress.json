@@ -5,28 +5,28 @@
   "generatedBy": "codex",
   "executionMode": "full-article-analysis",
   "postPath": "content/progress/2026-09-09-progress.mdx",
-  "postSha256": "b0391e49090153c7705c8bc64f0e534135e3eb16824f97cf4594b90fc78981b8",
-  "bodySha256": "f631705e987e081ba868cc0c5828b4ca192a3ffbf641203a0638d4e0e82beaf6",
-  "bodyCharacters": 2971,
-  "generatedAt": "2026-09-10T14:56:00+08:00",
+  "postSha256": "82bbed974807342f5d22c5bd9c179ac025a08b56612a538de852d6b4785203f5",
+  "bodySha256": "b2521ffa024e91133cd35a3fc43919fd368c66597a0b65db56dbdeb066785f03",
+  "bodyCharacters": 897,
+  "generatedAt": "2026-09-12T09:00:33.413Z",
   "visualBrief": {
-    "coreEventZh": "港股收盘推送首次当日成功，积压三天的博客一次性补发",
-    "primarySubjectZh": "Signal Radar 港股收盘闭环 + ajin-blog 历史补发",
-    "keyActionZh": "港股收盘 chore 跑通、09-05/06/08 文章封面补齐",
-    "resultZh": "港股首次当日成功，博客历史缺口清零",
-    "tensionZh": "积压三天的博客一次性补发，但 Codex 限额仍是天花板",
-    "industrialMetaphorZh": "电报站发出好消息，邮件袋装满待发的信件",
+    "coreEventZh": "当天交付通过内容、配套材料与运行回执留下可核对的证据，但文件入库与实际送达所能证明的进度不同。",
+    "primarySubjectZh": "核对交付材料与流转凭据的工业档案员。",
+    "keyActionZh": "将配套齐全的交付卷宗核对归拢，并在尚待核实的交接关口前停下。",
+    "resultZh": "已完成环节留下对应产物，能够据此追溯交付进度。",
+    "tensionZh": "已有产物能够证明已完成的环节，却不能直接证明后续上线与持续运行。",
+    "industrialMetaphorZh": "把交付链转译为十九世纪档案工坊的卷宗交接：材料已整理成册，但越过下一道关口仍需独立核验。",
     "supportingSymbolsZh": [
-      "打孔电报纸带",
-      "路线图上的绿色旗标",
-      "蜡封信件"
+      "俯身核对交付材料的档案员",
+      "附有配套凭据的完整交付卷宗",
+      "尚未开启的铁制交接栅门"
     ],
-    "sceneDescriptionZh": "维多利亚时代电报站，黄铜打孔机刚打出带对孔的纸带，墙上路线图有绿色旗标",
+    "sceneDescriptionZh": "十九世纪档案工坊内，一名档案员站在画面左侧，低头核对怀中摊开的完整交付卷宗，配套凭据固定在册内。右侧铁制交接栅门保持关闭，档案员停在门前。背景仅有朴素墙面与侧窗投下的光线，定格材料已经齐备、下一环节尚待核实的一刻。",
     "focalElementsEn": [
-      "ticker tape with checkmark perforations",
-      "route map with green flags",
-      "wax-sealed envelopes in mail satchel"
+      "An archivist checking delivery records",
+      "A complete dossier with attached receipts",
+      "A closed iron handover gate"
     ],
-    "imagePromptEn": "A Victorian-era telegraph station at dusk. A brass ticker-tape machine on a polished wooden desk has printed a strip of tape with checkmark perforations. A large wall-mounted route map with brass pins and small green flags. A leather mail satchel with wax-sealed envelopes. Warm gaslight."
+    "imagePromptEn": "An archivist stands on the left, examining a complete open delivery dossier held against his chest, its receipts fastened inside. On the right, a closed iron handover gate blocks the next stage of passage. The archivist pauses before the gate, one hand resting on the verified pages."
   }
 }

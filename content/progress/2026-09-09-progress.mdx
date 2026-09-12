@@ -1,8 +1,8 @@
 ---
-title: "港股收盘推送首次当日成功，积压三天的博客一次性补发"
+title: "港股收盘更新完成推送，三篇博客补齐入库"
 date: "2026-09-09"
 category: "progress"
-businessArea: "agent-governance"
+businessArea: "operations"
 workStage: "operate"
 projects:
   - "signal-radar"
@@ -10,7 +10,7 @@ projects:
 tags:
   - "博客内容链"
   - "系统运维"
-excerpt: "Signal Radar 港股收盘两条 chore 跑通当日闭环，ajin-blog 把 09-05/09-06/09-08 的文章和封面一次补齐，但 Codex CLI 限额仍是博客链路真正的天花板。"
+excerpt: "Signal Radar 留下内容与运行回执，博客一次补齐三篇文章、三份封面说明和三张图片。"
 author: "along"
 coverImage: "/covers/2026-09-09-progress.png"
 coverSourceType: "generated"
@@ -24,65 +24,16 @@ coverBriefPath: "content/cover-briefs/2026-09-09-progress.json"
 coverReferenceSet: "homepage-entry-cards-v1"
 ---
 
-# 港股收盘推送首次当日成功，积压三天的博客一次性补发
+今天有两组能直接核对的交付：Signal Radar 完成港股收盘更新的内容推送，ajin-blog 把三个日期的文章和配图加入仓库。两边都留下了文件，但各自能说明的进度不同，值得拆开记清楚。
 
-> 阿龙视角：今天只发生两件值得写的事——Signal Radar 港股收盘跑通当日闭环，ajin-blog 一次性补发三天的文章与封面。其他都属于背景噪声。
+我是阿龙，先看 Signal Radar。16:20 的港股收盘任务实际运行约四分二十一秒，处理 40 条素材，整理出 4 个事件，其中 3 个被系统标为 P0。16:25，日报正文、结构化数据、评分和来源健康记录进入一次提交；紧接着，自动化记录进入另一次提交。后者写明本轮状态正常、内容已推送，并指向前一条内容提交。
 
-## 一、Signal Radar 港股收盘首次当日成功
+从工程角度，这次交付的价值在于能把结果和运行对上。日报说明产出了什么，运行记录说明处理规模，自动化回执说明推送到了哪一步。以后回看这一天，可以沿着同一次运行找到对应内容，不必只凭任务消息判断。事件数和优先级属于流程自己的输出，不能据此替所有新闻内容作准确性背书。
 
-今天下午 16:25，`signal-radar-automation` 在一分钟内连发两条 chore：
+博客的进展发生在更早的 13:54。当天的补发提交包含了 9 月 5 日、6 日、8 日三篇文章，同时包含三份封面说明和三张封面，共九个文件。这里有个小但容易误读的细节：提交标题只提到两天的文章，实际变更列表包含三篇。核对范围时，应以文件差异为准，9 月 8 日的正文也在这批提交里。
 
-1. `a30a423c`（16:25:12）— 发布 Signal Radar 2026-09-09 港股收盘更新
-   - `content/daily/2026-09-09.md`
-   - `public/data/daily/2026-09-09.json`
-   - `public/data/latest.json`
-   - `public/data/runs/2026-09-09.json`
-   - `public/data/scores/2026-09-09.json`
-   - `public/data/source-health/2026-09-09.json`
-   - `public/data/source-health/latest.json`
-2. `9d43b6c2`（16:25:13）— 记录 Signal Radar 2026-09-09 港股收盘更新
-   - `public/data/automation/2026-09-09.json`
-   - `public/data/automation/latest.json`
+把文章、封面说明和图片放到同一批变更中，至少让每个日期都有对应材料可查。三个日期的正文、封面说明和图片在同一提交中有对应路径可查。至于读者何时能在网站看到它们，需要另看部署和页面结果；这条提交本身能确认的是九个文件已经入库，不能单靠提交标题把线上状态补出来。
 
-这是 Signal Radar 当日的首次完整闭环——开盘、A 股收盘、港股收盘、晚间收口四轮里，只有港股收盘真正落地。第一条 commit 把日报、latest、运行元数据、评分、源健康度一并写盘；第二条 commit 把自动化层状态记到 `automation/` 下，跟 `latest.json` 同步。两步拆分干净，没有把发布和记账混在一个 commit 里——这种拆法的好处是回滚可以精确到任一层，坏处是如果中间断电就只能拿到日报而没有 automation 记录。今天没出问题，但下次出问题我就能看出来。
+两条工作线放在一起，差异很清楚：Signal Radar 这轮既有内容提交，也有记录推送成功的运行回执；博客这批则明确补齐了三个日期的文件。前者提供一次自动执行的样本，后者留下了三个日期的博客文件变更记录。它们都向前走了一步，也都没有替后续运行作保证。
 
-> 工程师吐槽：早盘（09:40）、A 股收盘（15:10）、晚间收口（23:00）三轮都没过——`agent-draft` SIGTERM/超时/源健康度校验失败各占一档。这种「只有一档成功」的稳定性曲线，是发布链路最难优化的形状，因为问题样本不够，又不像纯崩溃那么显眼。
-
-## 二、ajin-blog 三天补发一次性提交
-
-13:54，`ajin-blog` 跑了一个收口 commit：
-
-- `d727b225`（13:54:12）— `feat(blog): 补发 09-05/09-06 文章 + 09-05/09-06/09-08 封面`
-  - `content/progress/2026-09-05-progress.mdx`
-  - `content/progress/2026-09-06-progress.mdx`
-  - `content/progress/2026-09-08-progress.mdx`
-  - `content/cover-briefs/2026-09-05-progress.json`
-  - `content/cover-briefs/2026-09-06-progress.json`
-  - `content/cover-briefs/2026-09-08-progress.json`
-  - `public/covers/2026-09-05-progress.png`
-  - `public/covers/2026-09-06-progress.png`
-  - `public/covers/2026-09-08-progress.png`
-
-三天九文件一次落盘——文章三篇（09-05/09-06/09-08）、封面三张（09-05/06/08）、brief 三份。commit message 写的是「补发 09-05/09-06 文章 + 09-05/09-06/09-08 封面」，但 git diff 实际把 09-08 的文章、brief、封面一并落了盘——文章没有只补两天，commit message 略保守。09-08 这篇博客本身今天还没正式发布，所以 `2026-09-08-progress.mdx` 仍然以「已补发但未发布」的状态挂在仓库里——这点要跟三天积压的事实区分开。
-
-> 工程师吐槽：这种批量补发在文件系统层面很高效，但在治理层面很危险——如果某天 fact-gate 在 09-08 那篇上又翻车，连带 09-05/06 都会被一起拦在 commit/push 之外。下次应该把「单日闭环」和「批量补发」分到不同 commit，让单点失败不会污染整批。
-
-## 三、当日记录与遗留
-
-`memory/2026-09-09.md` 在 23:50 自动补全，里面把今天跑过的几件跨天事实也记下来了：
-
-- **09-08 博客仍未闭环**：fact-gate 在 `prior_review_unresolved_or_error` 这条硬规则下被拦截，文章里那条伪造 Codex 引文还没改。这跟今天的 commit/push 是两条独立的事——补发只是把内容搬过来，发不发布还得看新的 guard run。
-- **Codex CLI 限额仍是系统瓶颈**：连续第三天（9/7、9/8、9/9）撞同一面墙，恢复时间 `Sep 15 11:12 AM`。事实审稿依赖 Codex CLI 做 review，限额期间 verdict=PASS 这条硬门禁过不去。
-- **OpenClaw 仓库阶段三 F3**：63/63 测试通过、冷 cache 通过、runtime 16 pass，但 F4 仍是 `todo`，阶段三整体未收口。
-- **Telegram 通知**：白天基本正常，深夜 `httpx.ConnectError` 偶发。
-
-## 四、解法与下一步
-
-今天值得记的两件成果，本质上是「分桶隔离」在起作用：
-
-1. **Signal Radar**：发布和自动化记录拆到两条 commit，单层失败不至于污染整轮。
-2. **ajin-blog**：单日 commit 和批量补发混在同一个 commit 里是省事，但埋了「单点失败污染整批」的雷。下一步是把这种 commit 拆成「单日闭环 + 历史补发」两条独立链，fact-gate 拦截只会影响对应那条。
-
-至于 Codex CLI 限额，不在我们这一层的解法里——Sep 15 恢复后集中补发 9/2—9/8 的积压文章，是上游调度的问题，不能靠 Agent 层加补丁绕过去。
-
-明天先盯两件事：Signal Radar 早盘能不能把 `agent-draft` 的超时收一下，ajin-blog 的批量补发要不要在 fact-gate 前做一次单日/批量的拆分。
+今天的记录就落在这些具体交付上。后续观察 Signal Radar，要继续对照各个窗口的实际结果；查看博客，要把入库、上线和下一次自动更新逐项对上。让每一步都有对应产物，出现停顿时才找得到真正断开的地方。
