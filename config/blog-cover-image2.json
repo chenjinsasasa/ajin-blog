@@ -12,7 +12,7 @@
     "attempts": 3,
     "requiredPasses": 3,
     "timeoutSeconds": 8,
-    "candidateLimit": 8,
+    "candidateLimit": 0,
     "settleMilliseconds": 1000,
     "retryBackoffMilliseconds": 3000,
     "maxGenerationAttempts": 1,

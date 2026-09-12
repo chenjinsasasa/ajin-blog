@@ -86,7 +86,7 @@ The command:
 1. creates or refreshes the full-article visual brief;
 2. verifies all four reference hashes;
 3. requires three consecutive transport-level probes to `chatgpt.com` before starting the long image request;
-4. starts a bounded `codex exec` task that uses Codex's built-in `image_gen` tool without attaching input images;
+4. starts a `codex exec` task that uses Codex's built-in `image_gen` tool without attaching input images;
 5. injects the visual brief as the content blueprint and the mother prompt as the fixed style blueprint;
 6. removes `OPENAI_API_KEY` from the child environment and uses the Codex login state only;
 7. saves a local PNG under `public/covers/`;
@@ -97,9 +97,11 @@ The command:
 The route guard is configured in `config/blog-cover-image2.json` and is part of the only supported generation path:
 
 - An HTTP response such as `403` proves transport reachability; only DNS, connection, TLS, timeout, or reset failures fail the probe.
-- If the active Clash route fails the preflight, the guard checks ChatGPT-dedicated candidates through the local Mihomo Unix socket, selects the lowest-latency healthy candidate, clears stale connections, and requires the route probe to pass again.
+- `routeGuard.candidateLimit` is `0`: a failed probe or quarantined current route stops before generation. The blog workflow does not switch shared Clash routes or clear shared connections.
 - Each cover permits exactly one built-in generation attempt. A failed request stops publishing and retains the first raw error, including network and timeout failures.
-- Route recovery before generation may restore transport connectivity; it never authorizes another image generation after a failed attempt. Any later retry requires explicit user authorization.
+- Route probes do not authorize another image generation after a failed attempt. Any later retry requires explicit user authorization.
+
+The route probe timeout does not cover the Image 2 request. A request without a tool result remains unresolved; an outer task timeout or local process exit does not prove remote cancellation. Keep its worktree and output paths isolated, and never automatically publish a late result or start another request against the same paths.
 
 If Codex Image 2, the four references, or the output step fails, stop publishing. Do not switch source or model, and do not use an API key fallback.
 
