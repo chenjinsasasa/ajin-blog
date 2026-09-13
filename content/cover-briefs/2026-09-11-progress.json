@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "codex",
+  "executionMode": "full-article-analysis",
+  "postPath": "content/progress/2026-09-11-progress.mdx",
+  "postSha256": "5309324ea1d7275d7449f86b6d2a333b90ac7e7784eac184fd9fae56ac100847",
+  "bodySha256": "10935a32b840c8e9e0ea8a5ec9ff58cf0506c56e4345bc4caec8a074a89eeb32",
+  "bodyCharacters": 2056,
+  "generatedAt": "2026-09-13T05:40:32.980Z",
+  "visualBrief": {
+    "coreEventZh": "自动化开盘流程本次成功完成，但收盘连续中断，暴露出从单次跑通到稳定复现的缺口。",
+    "primarySubjectZh": "一台等待恢复连续运转的十九世纪机械压力机。",
+    "keyActionZh": "压力机在完成一次出件后停住，压头悬在下一次工作行程中。",
+    "resultZh": "已有一次完成抓取与推送的成功记录，但尚不能证明流程能够持续稳定运行。",
+    "tensionZh": "一次成功产出已经可见，下一轮能否可靠完成仍未解决，中断根因有待排查。",
+    "industrialMetaphorZh": "用压力机的一次合格出件对应开盘跑通，用下一行程中停住的传动机构对应收盘中断；只呈现停机状态，不暗示已查明机械故障原因。",
+    "supportingSymbolsZh": [
+      "主体：停在工作行程中的机械压力机",
+      "已确认成果：出料侧一件完整成形的金属工件，仅代表本次成功",
+      "未解阻碍：压力机侧面停在半程的传动连杆，停顿原因不可见"
+    ],
+    "sceneDescriptionZh": "车间内，一台机械压力机占据画面中央，压头悬停在工作行程中；出料侧放着一件完整成形的金属工件，侧面的传动连杆停在半程。斜射光同时照亮成品与静止连杆，背景仅保留空旷厂房的暗部空间，形成已有产出却无法继续稳定运转的单帧场景。",
+    "focalElementsEn": [
+      "Mechanical power press",
+      "Single fully formed metal workpiece",
+      "Motionless drive linkage at mid-stroke"
+    ],
+    "imagePromptEn": "A mechanical power press stands centrally with its ram suspended mid-stroke. A single fully formed metal workpiece rests on its output side. Along the press's near flank, an exposed drive linkage remains motionless halfway through its travel, with no visible cause for the halt."
+  }
+}

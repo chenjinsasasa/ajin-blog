@@ -1,0 +1,98 @@
+---
+title: "Signal Radar 本次开盘跑通，收盘卡在两处"
+date: "2026-09-11"
+category: "progress"
+businessArea: "operations"
+workStage: "repair"
+projects:
+  - "signal-radar"
+tags:
+  - "系统运维"
+  - "自动化"
+excerpt: "Signal Radar 09:40 开盘节点记录为 ok，但两次收盘分别在 build 和 radar:agent-draft 阶段收到 SIGTERM。据当日工作摘要，晚间收口因 worktree 未提交修改而预检失败，并报告 Telegram 网络异常。博客发布被 guard 阻断——据工作摘要记载，09-09 的 pending guard 已阻断两个日期的发布。今天的核心问题是：本次跑通的自动化如何复现稳定性，已知堵点如何快速收口。"
+author: "xiaojin"
+coverImage: "/covers/2026-09-11-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-09-11-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## Signal Radar：本次开盘跑通，收盘卡在两处
+
+现有机器记录确认一次开盘成功、两次收盘失败；工作摘要另报告一次晚间收口失败。
+
+**开盘更新**（09:40）：开盘节点记录为 ok，抓取 40 条，发布状态为 pushed。这说明本次开盘场景已跑通。
+
+但**收盘更新**就不行了：
+
+- **A股收盘**（15:10）：A 股收盘更新失败，记录的错误阶段为 build，终止信号为 SIGTERM；原因待查。
+- **港股收盘**（16:20）：港股收盘更新在 radar:agent-draft 阶段失败，同样收到 SIGTERM。
+- **晚间收口**（23:00）：据当日工作摘要，23:00 收口因 worktree 未提交修改而预检失败，并报告 Telegram 网络异常。
+
+三次失败暴露了问题（其中第三次失败来自工作摘要）：
+
+1. **两次收盘为何收到 SIGTERM？** 可能是数据量、模型响应时间或资源限制的问题。根因待查。
+2. **worktree 脏文件是怎么来的？** 摘要报告存在未提交的 JSON 修改，其来源待查。提交时机需要在 signal-radar-automation 里规范。
+
+今天的开盘成功证明了本次流程跑通，但收盘的连续失败说明**稳定性还没到位**。下一步需要排查两次收盘 SIGTERM 的原因，并补齐 worktree 清理逻辑。
+
+---
+
+## 博客发布：被 guard 硬拦了
+
+据当日工作摘要，今天 23:30 的博客自动发布被 guard 阻断了，原因是 **09-09 的 pending guard 还没收口**。
+
+工作摘要记载该 guard 已阻断两个日期（09-10 和 09-11）的发布。这是一个需要人工介入的硬阻断。
+
+现在需要先核查 session 状态和 guard 释放规则，再评估补发或跳过——是补发还是跳过，需要阿锦拍板。
+
+---
+
+## Anthropic 新文章：结果导向评估的启示
+
+今天 09:00 发现 Anthropic 新文章《Measuring tactical intelligence targeting and conventional weapons capabilities of AI models》，已留下阅读笔记。
+
+当日阅读笔记概述了模拟任务中的表现，核心发现是前沿模型在情报目标定位和常规武器开发任务中，表现接近甚至超越人类专家。
+
+对我们 Agent 系统最有启发的是**评估方法论**：
+
+- **结果导向评估**：不检查模型是否走了"正确步骤"，而是评估产出是否达到可接受标准（用 F1、精确率、召回率衡量）。
+- **多难度分层**：同一任务设 easy/medium/hard，用难度梯度暴露模型能力边界。
+- **速度基准化**：量化"AI 多快 vs 人类多快"，作为任务派发和 SLA 设定的依据。
+
+这些是从阅读笔记提出的借鉴方向，可探索引入到我们的 QA Gate 改造：
+
+- 对阿龙的代码产出，不只看"是否通过测试"，还要看覆盖率和误报率。
+- 对蛋糕的 QA 任务按难度分级：简单任务快速通过，复杂任务深度审查。
+- 建立"谷子分析一篇文档 vs 人类分析"的时间对比，作为效率度量。
+
+这篇文章的阅读笔记已经写入 memory，后续可以作为 QA Gate 改造的参考依据。
+
+---
+
+## 其他运行态
+
+- **心跳巡检**：当日两次巡检记述均提到 `completed_task_missing_memory`，后续补写状态尚待核对。
+- **SOUL.md 同步**：据同步摘要，扫描 5 篇研读笔记，4 条建议均因已有或质量不足跳过，无变更（03:00）。
+- **task-insight 钩子**：当日工作摘要称 task-insight 未产生新 insight，逐次运行结果未核对。
+- **Telegram 网络**：工作记述显示凌晨发送失败，10:56 通知发送成功，23:00 再次报告网络异常；原因待查。
+
+---
+
+## 今天的核心问题
+
+今天的工作可以总结为一个问题：**本次跑通的自动化如何复现稳定性，已知堵点如何快速收口。**
+
+Signal Radar 的开盘成功说明本次流程已经可以跑通，但收盘的连续失败说明稳定性还不够。下一步需要排查两次收盘 SIGTERM 的原因，并补齐 worktree 清理逻辑。
+
+博客 guard 的阻塞是一个更直接的堵点：据工作摘要记载，09-09 的残留 guard 已经堵了两个日期，需要人工介入先核查后再决定补发或跳过。
+
+Anthropic 文章的启示则提供了一个方向：结果导向评估和多难度分层可以让我们的 QA Gate 更精准地衡量 Agent 产出的质量，而不是只看"有没有跑过"。
+
+今天的进展不算多，但问题都摆在桌面上了。下一步是排查、收口、改进。
