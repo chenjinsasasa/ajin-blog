@@ -3,9 +3,12 @@
 import crypto from 'node:crypto'
 import fs from 'node:fs'
 import path from 'node:path'
-import { spawn, spawnSync } from 'node:child_process'
+import { spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 import sharp from 'sharp'
+import { runImageProcess, successfulImageResult } from './lib/blog-image-process.mjs'
+import { validateBriefArtifact, textHash } from './lib/blog-brief-contract.mjs'
+import { createImageWorkspace, assertLocalFile, assertSafeDestination, imageEnvironment } from './lib/blog-image-isolation.mjs'
 
 import {
   buildCodexImageArgs,
@@ -23,6 +26,7 @@ import {
   recoverCodexImageRoute,
 } from './lib/codex-image-route.mjs'
 
+let generationReceipt = null
 const projectRoot = process.cwd()
 const configPath = path.join(projectRoot, 'config', 'blog-cover-image2.json')
 const config = JSON.parse(fs.readFileSync(configPath, 'utf8'))
@@ -36,7 +40,7 @@ Usage:
 Options:
   --post <path>      Complete post whose visual brief defines the scene (required)
   --out <path>       Override the coverImage output path
-  --dry-run          Build/reuse the brief and print the exact image prompt only
+  --dry-run          Validate an existing current brief and print the prompt; no model calls
   --force            Replace an existing output file
   --skip-optimize    Keep the normalized 2048x1152 PNG
   -h, --help         Show this help
@@ -107,15 +111,9 @@ function briefRelativePath(postPath) {
 function readVisualBrief(briefPath, postPath) {
   if (!fs.existsSync(briefPath)) throw new Error(`visual brief 不存在：${briefPath}`)
   const artifact = JSON.parse(fs.readFileSync(briefPath, 'utf8'))
-  if (artifact.briefVersion !== config.briefVersion) {
-    throw new Error(`visual brief 版本错误：${artifact.briefVersion}`)
-  }
-  if (artifact.postPath !== path.relative(projectRoot, postPath)) {
-    throw new Error(`visual brief 文章路径不一致：${artifact.postPath}`)
-  }
-  if (!artifact.visualBrief || typeof artifact.visualBrief !== 'object') {
-    throw new Error('visual brief 缺少 visualBrief object')
-  }
+  const rawPost = fs.readFileSync(postPath, 'utf8')
+  validateBriefArtifact(artifact, { config, postPath: path.relative(projectRoot, postPath),
+    rawPost, body: matter(rawPost).content.trim(), current: true })
   return artifact
 }
 
@@ -134,45 +132,6 @@ function runCommand(command, args, options = {}) {
   })
   if (result.error) throw result.error
   if (result.status !== 0) throw new Error(`${command} 执行失败（exit=${result.status}）`)
-}
-
-function runStreamingCommand(command, args, options = {}) {
-  return new Promise((resolve) => {
-    const child = spawn(command, args, {
-      cwd: projectRoot,
-      env: options.env,
-      stdio: ['pipe', 'pipe', 'pipe'],
-    })
-    let settled = false
-    let stderr = ''
-    let stdout = ''
-
-    child.stdout.on('data', (chunk) => {
-      const text = chunk.toString()
-      stdout += text
-      process.stdout.write(text)
-    })
-    child.stderr.on('data', (chunk) => {
-      const text = chunk.toString()
-      stderr += text
-      process.stderr.write(text)
-    })
-    child.once('error', (error) => {
-      if (settled) return
-      settled = true
-      resolve({ status: 1, stderr: `${stderr}${error.message}`, stdout })
-    })
-    child.once('close', (status, signal) => {
-      if (settled) return
-      settled = true
-      resolve({
-        status: status ?? 1,
-        stderr: signal ? `${stderr}\nCodex 进程被信号终止：${signal}` : stderr,
-        stdout,
-      })
-    })
-    child.stdin.end(options.input || '')
-  })
 }
 
 function imageRouteOptions(excludedCandidates = []) {
@@ -228,15 +187,10 @@ async function main() {
   }
   const previousHash = fs.existsSync(outputPath) ? hashFile(outputPath) : ''
 
-  fs.mkdirSync(path.dirname(outputPath), { recursive: true })
-  runCommand(process.execPath, [
-    path.join(projectRoot, 'scripts', 'build-blog-cover-brief.mjs'),
-    '--post',
-    relativePostPath,
-  ])
+  assertSafeDestination(outputPath, path.join(projectRoot, 'public/covers'))
   const relativeBriefPath = briefRelativePath(postPath)
   const briefArtifact = readVisualBrief(path.join(projectRoot, relativeBriefPath), postPath)
-  const prompt = buildCodexImagePrompt({ briefArtifact, config, outputPath })
+  let prompt = buildCodexImagePrompt({ briefArtifact, config, outputPath })
   if (options.dryRun) {
     console.log(
       JSON.stringify(
@@ -258,7 +212,20 @@ async function main() {
     )
     return
   }
-  const codexArgs = buildCodexImageArgs(projectRoot)
+  const imageWork = createImageWorkspace()
+  const candidatePath = imageWork.candidate
+  prompt = buildCodexImagePrompt({ briefArtifact, config, outputPath: candidatePath })
+  const finalMessagePath = path.join(imageWork.directory, 'final-message.txt')
+  const codexArgs = buildCodexImageArgs(imageWork.directory)
+  codexArgs.splice(-1, 0, '--output-last-message', finalMessagePath)
+  const receiptPath = path.join(imageWork.directory, 'receipt.json')
+  const receipt = { runId: imageWork.runId, startedAt: new Date().toISOString(),
+    provider: config.provider, model: config.model, post: relativePostPath,
+    postSha256: briefArtifact.postSha256, briefSha256: hashFile(path.join(projectRoot, relativeBriefPath)),
+    promptSha256: textHash(prompt), output: requestedOutput, status: 'pending' }
+  generationReceipt = { receiptPath, receipt }
+  fs.writeFileSync(receiptPath, JSON.stringify(receipt, null, 2))
+  console.error(`[cover:image2] receipt ${receiptPath}`)
   const codexCliPath = resolveCodexCliPath()
   console.error(`[cover:image2] codex-cli ${JSON.stringify({ path: codexCliPath })}`)
 
@@ -281,15 +248,10 @@ async function main() {
   }
   let activeRouteName = route.to || route.current || ''
 
-  const codexEnvironment = Object.fromEntries(
-    Object.entries(process.env).filter(([key]) => key !== 'OPENAI_API_KEY'),
-  )
+  const codexEnvironment = imageEnvironment()
   const execution = await runCodexImageWithRecovery({
     backoffMilliseconds: config.routeGuard?.retryBackoffMilliseconds,
-    isSuccessfulResult: (attemptResult) =>
-      attemptResult.status === 0 &&
-      attemptResult.stdout.includes(`CODEX_IMAGE_RESULT status=ok output=${outputPath}`) &&
-      fs.existsSync(outputPath),
+    isSuccessfulResult: (attemptResult) => successfulImageResult(attemptResult, finalMessagePath, candidatePath),
     maxAttempts: config.routeGuard?.maxGenerationAttempts,
     recover: async () => {
       const recovery = await recoverCodexImageRoute(
@@ -317,8 +279,13 @@ async function main() {
       console.error(
         `[cover:image2] builtin-imagegen attempt=${attempt}/${config.routeGuard?.maxGenerationAttempts || 2}`,
       )
-      return runStreamingCommand(codexCliPath, codexArgs, {
+      // A failed attempt must never donate an old output or final marker to a retry.
+      for (const file of [candidatePath, finalMessagePath]) {
+        if (fs.existsSync(file) || fs.lstatSync(file, { throwIfNoEntry: false })) fs.unlinkSync(file)
+      }
+      return runImageProcess(codexCliPath, codexArgs, {
         env: codexEnvironment,
+        cwd: imageWork.directory,
         input: prompt,
       })
     },
@@ -331,22 +298,45 @@ async function main() {
     })}`,
   )
 
-  if (!fs.existsSync(outputPath)) {
-    throw new Error('Codex 返回成功但未生成目标文件；已 fail-closed')
+  if (execution.status !== 'ok') {
+    fs.writeFileSync(receiptPath, JSON.stringify({ ...receipt, status: 'failed', execution }, null, 2))
+    throw new Error(`Codex Image 2 失败；证据 ${receiptPath}`)
   }
-  if (previousHash && hashFile(outputPath) === previousHash) {
-    throw new Error('Codex 返回成功但目标文件未变化；已 fail-closed')
+  assertLocalFile(candidatePath, imageWork.directory)
+  const metadata = await sharp(candidatePath).metadata()
+  if (metadata.format !== 'png') throw new Error('生图输出不是 PNG')
+  if (previousHash && hashFile(candidatePath) === previousHash) throw new Error('生图返回旧图片')
+  await normalizeOutput(candidatePath)
+  // The project owns installation; Codex has no write permission to the repository.
+  assertSafeDestination(outputPath, path.join(projectRoot, 'public/covers'))
+  const oldOutput = fs.existsSync(outputPath) ? fs.readFileSync(outputPath) : null
+  const manifestPath = path.join(projectRoot, 'scripts/cover-optimization-manifest.json')
+  const oldManifest = fs.existsSync(manifestPath) ? fs.readFileSync(manifestPath) : null
+  const installPath = `${outputPath}.${imageWork.runId}.tmp`
+  try {
+    fs.copyFileSync(candidatePath, installPath, fs.constants.COPYFILE_EXCL)
+    fs.renameSync(installPath, outputPath)
+    if (!options.skipOptimize) {
+      runCommand(process.execPath, [path.join(projectRoot, 'scripts', 'optimize-covers.mjs'), outputPath])
+    }
+    if (previousHash && hashFile(outputPath) === previousHash) throw new Error('优化后图片与旧图片相同')
+  } catch (error) {
+    if (oldOutput) fs.writeFileSync(outputPath, oldOutput)
+    else if (fs.existsSync(outputPath)) fs.unlinkSync(outputPath)
+    if (oldManifest) fs.writeFileSync(manifestPath, oldManifest)
+    else if (fs.existsSync(manifestPath)) fs.unlinkSync(manifestPath)
+    if (fs.existsSync(installPath)) fs.unlinkSync(installPath)
+    throw error
   }
-  await normalizeOutput(outputPath)
-
-  if (!options.skipOptimize) {
-    runCommand(process.execPath, [path.join(projectRoot, 'scripts', 'optimize-covers.mjs'), outputPath])
-  }
+  fs.writeFileSync(receiptPath, JSON.stringify({ ...receipt, status: 'ok',
+    endedAt: new Date().toISOString(), outputSha256: hashFile(outputPath),
+    attempts: execution.attempts }, null, 2))
 
   console.log(
     JSON.stringify(
       {
         status: 'ok',
+        receiptPath,
         provider: config.provider,
         model: config.model,
         executionMode: config.executionMode,
@@ -368,6 +358,11 @@ async function main() {
 }
 
 main().catch((error) => {
+  if (generationReceipt) {
+    const { receiptPath, receipt } = generationReceipt
+    fs.writeFileSync(receiptPath, JSON.stringify({ ...receipt, status: 'failed',
+      endedAt: new Date().toISOString(), error: String(error.message || error).slice(0, 4000) }, null, 2))
+  }
   console.error(error instanceof Error ? error.message : error)
   process.exit(1)
 })

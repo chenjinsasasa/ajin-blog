@@ -125,8 +125,8 @@ coverReferenceSet: "homepage-entry-cards-v1"
 
 - When creating or updating a post:
   1. Finish the complete article body, then fill in Image 2 provenance fields, the derived `coverBriefPath`, and a `.png` `coverImage` path.
-  2. Run `npm run cover:image2:brief -- --post <post-path>`; Codex must read the full article and persist an auditable brief with post/body hashes.
-  3. Run `npm run cover:image2:generate -- --post <post-path>`; the generator automatically reuses a fresh brief or rebuilds a stale one.
+  2. Run `npm run cover:image2:brief -- --post <post-path>`; The project must call the OpenClaw-configured text model, read the full article, and persist an auditable brief with post/body hashes and the openclaw-text-v1 provenance contract.
+  3. Run `npm run cover:image2:generate -- --post <post-path>`; the generator only consumes an already fresh schemaVersion=2 brief; missing or stale briefs must be rebuilt explicitly before generation.
   4. Visually compare the result with all four locked references; reject anything outside the steam industrial age engraving world or inconsistent with the brief.
   5. Run `npm run cover:image2:validate -- --post <post-path>`.
   6. Run `npm run verify` before commit/push.
@@ -140,3 +140,12 @@ coverReferenceSet: "homepage-entry-cards-v1"
   6. Treat apply as atomic: all candidates are preflighted before writing, and any validation failure restores the post, brief, and manifest for the entire scope.
   7. Keep the previous cover file until the replacement has passed build and deployment verification; the apply step changes references but does not delete the previous asset.
 - Never substitute another source or model when Image 2 fails.
+
+## Production Agent Boundary (2026-09-19)
+
+- Codex is permitted inside the built-in Image 2 generation adapter and, by explicit user authorization on 2026-09-19, temporarily inside the isolated visual-review adapter. Writing, revision, fact review, full-article brief creation, publishing decisions, and operational monitoring must not dispatch Codex or fall back to it.
+- The project program owns execution order, budgets, schema/hash validation, file installation, Git actions, and publication receipts; OpenClaw owns scheduling and model configuration.
+- New briefs use schemaVersion 2 and provenanceVersion `openclaw-text-v1`, generatedBy `openclaw`, executionMode `configured-model`, and the actual configured provider/model/api. The content contract remains `full-article-v2`; image provenance remains Codex Image 2.
+- Historical schemaVersion 1 briefs are accepted for posts dated through 2026-09-19 only. Preserve their true historical origin; the new generation path must use schemaVersion 2 even for an explicitly requested historical redraw.
+- Generate into a dedicated writable temporary workspace with shell network disabled. Project code validates and installs the output; never grant the image task write access to the blog repository.
+- Visual QA temporarily uses explicitly configured Codex visual review plus deterministic file checks. The review task only returns a structured verdict for the candidate, four references, full article and brief; it must not modify the project, generate images, write prose, publish, or delegate. FAIL, invalid output and timeout stop publication without another backend fallback. Preserve schema, input hashes and staged-blob binding. Retire this exception only after a replacement vision backend passes capability validation and its switch is explicitly configured.

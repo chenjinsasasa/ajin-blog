@@ -7,7 +7,7 @@ import path from 'node:path'
 import { spawnSync } from 'node:child_process'
 import matter from 'gray-matter'
 
-import { resolveCodexCliPath } from './lib/codex-cli-path.mjs'
+import { BRIEF_PROVENANCE_VERSION, validateVisualBrief, validateBriefArtifact } from './lib/blog-brief-contract.mjs'
 
 const projectRoot = process.cwd()
 const contentRoot = path.join(projectRoot, 'content')
@@ -15,19 +15,9 @@ const config = JSON.parse(
   fs.readFileSync(path.join(projectRoot, 'config', 'blog-cover-image2.json'), 'utf8'),
 )
 const schemaPath = path.join(projectRoot, 'config', 'blog-cover-visual-brief.schema.json')
-const requiredBriefFields = [
-  'coreEventZh',
-  'primarySubjectZh',
-  'keyActionZh',
-  'resultZh',
-  'tensionZh',
-  'industrialMetaphorZh',
-  'sceneDescriptionZh',
-  'imagePromptEn',
-]
 
 function printHelp() {
-  console.log(`Build an auditable visual brief from a complete blog article through Codex.
+  console.log(`Build an auditable visual brief from a complete blog article through the OpenClaw configured text model.
 
 Usage:
   npm run cover:image2:brief -- --post content/progress/YYYY-MM-DD-progress.mdx
@@ -80,26 +70,6 @@ function briefRelativePath(postPath) {
   return path.join('content', 'cover-briefs', `${slug}.json`)
 }
 
-function validateVisualBrief(brief) {
-  if (!brief || typeof brief !== 'object' || Array.isArray(brief)) {
-    throw new Error('Codex visual brief 不是 JSON object')
-  }
-  for (const field of requiredBriefFields) {
-    if (typeof brief[field] !== 'string' || !brief[field].trim()) {
-      throw new Error(`Codex visual brief 缺少非空字段 ${field}`)
-    }
-  }
-  for (const field of ['supportingSymbolsZh', 'focalElementsEn']) {
-    if (
-      !Array.isArray(brief[field]) ||
-      brief[field].length !== 3 ||
-      !brief[field].every((item) => typeof item === 'string' && item.trim())
-    ) {
-      throw new Error(`${field} 必须包含恰好 3 个非空字符串`)
-    }
-  }
-}
-
 function buildPrompt({ title, excerpt, body, relativePostPath }) {
   return `【任务类型】A. 完整文章研读与视觉抽象
 【任务目标】读取当天完整博客正文，提炼一份供封面生成使用的结构化 visual brief。
@@ -118,6 +88,8 @@ function buildPrompt({ title, excerpt, body, relativePostPath }) {
 6. sceneDescriptionZh 必须说明一个可拍成单帧的连贯场景；背景只能提供空间与光线，不得增加第四个叙事物件。
 7. imagePromptEn 使用英文，在 500 字符内只描述三个视觉焦点的空间关系和动作，不要重复固定画风。
 8. 输出内容使用简体中文，只有 focalElementsEn 与 imagePromptEn 使用英文。
+9. 已完成归档、已封存、完好等成果必须与待验证状态区分：对应物件保持闭合完整（如 intact, unbroken seal），不得把历史失败转译为破裂封印或已完成成果受损；只对正文确实描述的损坏使用损坏隐喻。
+10. 核对数量、日期、标签或回执不是必须画出的物件；不要要求画出文字标签、编号或精确份数。历史失败/归档等含义用空间关系和完整封存状态表达，避免与无排版文字合同冲突。
 
 文章路径：${relativePostPath}
 标题：${title}
@@ -130,36 +102,20 @@ ${body}
 完整正文结束。`
 }
 
-function runCodex(prompt, outputPath) {
-  const codexCliPath = resolveCodexCliPath()
-  const args = [
-    '-a',
-    'never',
-    '-s',
-    'read-only',
-    'exec',
-    '--ephemeral',
-    '--skip-git-repo-check',
-    '--ignore-user-config',
-    '--ignore-rules',
-    '-C',
-    projectRoot,
-    '--output-schema',
-    schemaPath,
-    '--output-last-message',
-    outputPath,
-    '-',
-  ]
-  const result = spawnSync(codexCliPath, args, {
-    cwd: projectRoot,
-    env: Object.fromEntries(
-      Object.entries(process.env).filter(([key]) => key !== 'OPENAI_API_KEY'),
-    ),
-    input: prompt,
-    stdio: ['pipe', 'inherit', 'inherit'],
+function runTextModel(prompt) {
+  const cli = path.join(os.homedir(), '.openclaw/workspace/scripts/blog_model_cli.py')
+  const result = spawnSync('python3', [cli, '--role', 'brief', '--schema', schemaPath], {
+    cwd: projectRoot, input: prompt, encoding: 'utf8', timeout: 960000,
+    maxBuffer: 4 * 1024 * 1024, stdio: ['pipe', 'pipe', 'pipe'],
   })
-  if (result.error) throw result.error
-  if (result.status !== 0) throw new Error(`Codex 正文抽象失败（exit=${result.status}）`)
+  if (result.error || result.status !== 0) throw new Error(`全文抽象失败：${result.stderr || result.error?.message || result.status}`)
+  const envelope = JSON.parse(result.stdout)
+  if (envelope.provider !== 'claude' || envelope.model !== 'claude-sonnet-4-6' ||
+      envelope.api !== 'anthropic-messages' || envelope.stop_reason !== 'end_turn') {
+    throw new Error('brief 模型身份或终态无效')
+  }
+  validateVisualBrief(envelope.output)
+  return envelope
 }
 
 function main() {
@@ -181,71 +137,55 @@ function main() {
   const briefPath = path.join(projectRoot, relativeBriefPath)
 
   if (!options.force && fs.existsSync(briefPath)) {
-    const existing = JSON.parse(fs.readFileSync(briefPath, 'utf8'))
-    if (
-      existing.briefVersion === config.briefVersion &&
-      existing.promptVersion === config.promptVersion &&
-      existing.postSha256 === postSha256 &&
-      existing.bodySha256 === bodySha256
-    ) {
-      validateVisualBrief(existing.visualBrief)
-      console.log(
-        JSON.stringify(
-          {
-            status: 'ok',
-            action: 'reused',
-            post: relativePostPath,
-            brief: relativeBriefPath,
-            postSha256,
-          },
-          null,
-          2,
-        ),
-      )
+    try {
+      validateBriefArtifact(JSON.parse(fs.readFileSync(briefPath, 'utf8')), {
+        config, postPath: relativePostPath, rawPost, body, current: true,
+      })
+      console.log(JSON.stringify({ status: 'ok', action: 'reused', post: relativePostPath,
+        brief: relativeBriefPath, postSha256 }))
       return
-    }
+    } catch { /* Stale or legacy cache must be rebuilt by this explicit command. */ }
   }
+  const envelope = runTextModel(buildPrompt({ title, excerpt, body, relativePostPath }))
+  const visualBrief = envelope.output
 
-  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), 'ajin-blog-cover-brief-'))
-  const codexOutputPath = path.join(tempDir, 'visual-brief.json')
-  try {
-    runCodex(buildPrompt({ title, excerpt, body, relativePostPath }), codexOutputPath)
-    const visualBrief = JSON.parse(fs.readFileSync(codexOutputPath, 'utf8'))
-    validateVisualBrief(visualBrief)
-
-    const artifact = {
-      schemaVersion: 1,
-      briefVersion: config.briefVersion,
-      promptVersion: config.promptVersion,
-      generatedBy: 'codex',
-      executionMode: 'full-article-analysis',
-      postPath: relativePostPath,
-      postSha256,
-      bodySha256,
-      bodyCharacters: body.length,
-      generatedAt: new Date().toISOString(),
-      visualBrief,
-    }
-    fs.mkdirSync(path.dirname(briefPath), { recursive: true })
-    fs.writeFileSync(briefPath, `${JSON.stringify(artifact, null, 2)}\n`, 'utf8')
-
-    console.log(
-      JSON.stringify(
-        {
-          status: 'ok',
-          action: 'generated',
-          post: relativePostPath,
-          brief: relativeBriefPath,
-          postSha256,
-          bodyCharacters: body.length,
-        },
-        null,
-        2,
-      ),
-    )
-  } finally {
-    fs.rmSync(tempDir, { recursive: true, force: true })
+  const artifact = {
+    schemaVersion: 2,
+    briefVersion: config.briefVersion,
+    promptVersion: config.promptVersion,
+    generatedBy: 'openclaw',
+    provenanceVersion: BRIEF_PROVENANCE_VERSION,
+    executionMode: 'configured-model',
+    provider: envelope.provider,
+    model: envelope.model,
+    api: envelope.api,
+    postPath: relativePostPath,
+    postSha256,
+    bodySha256,
+    bodyCharacters: body.length,
+    generatedAt: new Date().toISOString(),
+    visualBrief,
   }
+  if (fs.readFileSync(postPath, 'utf8') !== rawPost) throw new Error('正文在 brief 生成期间变化')
+  fs.mkdirSync(path.dirname(briefPath), { recursive: true })
+  const temporary = `${briefPath}.${process.pid}.tmp`
+  fs.writeFileSync(temporary, `${JSON.stringify(artifact, null, 2)}\n`, { encoding: 'utf8', flag: 'wx' })
+  fs.renameSync(temporary, briefPath)
+
+  console.log(
+    JSON.stringify(
+      {
+        status: 'ok',
+        action: 'generated',
+        post: relativePostPath,
+        brief: relativeBriefPath,
+        postSha256,
+        bodyCharacters: body.length,
+      },
+      null,
+      2,
+    ),
+  )
 }
 
 try {

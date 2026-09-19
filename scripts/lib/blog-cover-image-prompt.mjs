@@ -1,3 +1,5 @@
+import { imagePermissionArgs } from './blog-image-isolation.mjs'
+
 function nonEmptyString(value, field) {
   if (typeof value !== 'string' || !value.trim()) {
     throw new Error(`visual brief 缺少非空字段 ${field}`)
@@ -23,10 +25,9 @@ export function buildCodexImageArgs(projectRoot) {
   return [
     '-a',
     'never',
-    '-s',
-    'workspace-write',
     '-c',
     'model_reasoning_effort="low"',
+    ...imagePermissionArgs(),
     'exec',
     '--ephemeral',
     '--skip-git-repo-check',

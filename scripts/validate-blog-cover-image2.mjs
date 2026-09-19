@@ -5,6 +5,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 import sharp from 'sharp'
+import { validateBriefArtifact } from './lib/blog-brief-contract.mjs'
 
 const projectRoot = process.cwd()
 const contentRoot = path.join(projectRoot, 'content')
@@ -123,21 +124,8 @@ async function validatePost(filePath, force, errors) {
   } else {
     try {
       const brief = JSON.parse(fs.readFileSync(briefPath, 'utf8'))
-      if (brief.schemaVersion !== 1) addError('visual brief schemaVersion 必须是 1')
-      if (brief.briefVersion !== config.briefVersion) {
-        addError(`visual brief briefVersion 必须是 ${JSON.stringify(config.briefVersion)}`)
-      }
-      if (brief.promptVersion !== config.promptVersion) {
-        addError(`visual brief promptVersion 必须是 ${JSON.stringify(config.promptVersion)}`)
-      }
-      if (brief.generatedBy !== 'codex' || brief.executionMode !== 'full-article-analysis') {
-        addError('visual brief 必须由 Codex full-article-analysis 生成')
-      }
-      if (brief.postPath !== relativePath) addError('visual brief postPath 与文章不一致')
-      if (brief.postSha256 !== hashText(rawPost)) addError('visual brief 已过期：文章哈希不一致')
-      if (brief.bodySha256 !== hashText(post.content.trim())) {
-        addError('visual brief 已过期：正文哈希不一致')
-      }
+      validateBriefArtifact(brief, { config, postPath: relativePath, rawPost,
+        body: post.content.trim(), date })
       for (const field of requiredBriefFields) {
         if (typeof brief.visualBrief?.[field] !== 'string' || !brief.visualBrief[field].trim()) {
           addError(`visual brief 缺少非空字段 ${field}`)

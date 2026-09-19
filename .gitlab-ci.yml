@@ -36,6 +36,7 @@ validate:
   stage: validate
   script:
     - npm ci --cache .npm --prefer-offline --no-audit
+    - npm run test:cover-image
     - npm run lint
     - npm run build
 

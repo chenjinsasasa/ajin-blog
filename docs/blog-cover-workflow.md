@@ -52,7 +52,7 @@ npm run cover:image2:brief -- \
   --post content/progress/YYYY-MM-DD-progress.mdx
 ```
 
-The brief stage reads the complete article, not only `title` and `excerpt`. Codex must select one main line and persist these auditable fields under `content/cover-briefs/`:
+The brief stage reads the complete article, not only `title` and `excerpt`. The OpenClaw-configured text model must select one main line and persist these auditable fields under `content/cover-briefs/`:
 
 - core event
 - primary subject
@@ -83,7 +83,7 @@ npm run cover:image2:generate -- \
 
 The command:
 
-1. creates or refreshes the full-article visual brief;
+1. validates an existing fresh schemaVersion 2 full-article visual brief without invoking a model; missing or stale briefs require the explicit brief command;
 2. verifies all four reference hashes;
 3. requires three consecutive transport-level probes to `chatgpt.com` before starting the long image request;
 4. starts a `codex exec` task that uses Codex's built-in `image_gen` tool without attaching input images;
@@ -131,3 +131,17 @@ npm run cover:image2:backfill:validate
 This gate verifies all manifest entries, fresh post/body hashes, the v2 brief and prompt versions, exactly three focal elements, the 700-character Image 2 prompt limit, unique project-local PNG targets, and all four locked reference hashes.
 
 Apply remains all-or-nothing. The apply command preflights every candidate before writing, writes the post, brief, and manifest as one recoverable transaction, validates every changed post, and requires the rebuilt manifest to report the whole scope as `applied`. Any failure restores every file in the batch to its pre-apply contents. Previous cover assets are retained for deployment rollback.
+
+## OpenClaw ownership and provenance (2026-09-19)
+
+The production workflow permits Codex for built-in Image 2 generation and, under the user-authorized temporary exception dated 2026-09-19, isolated visual review. The brief command invokes `~/.openclaw/workspace/scripts/blog_model_cli.py --role brief --schema <schema>` with the complete prompt on stdin. Model output must pass the local contract before an atomic brief write.
+
+New brief artifacts use `schemaVersion: 2`, `provenanceVersion: openclaw-text-v1`, `generatedBy: openclaw`, `executionMode: configured-model`, `provider: claude`, `model: claude-sonnet-4-6`, and `api: anthropic-messages`. `briefVersion: full-article-v2` remains the content abstraction version. Historical schemaVersion 1 artifacts remain valid for posts through 2026-09-19; do not rewrite their provenance.
+
+`cover:image2:generate --dry-run` validates and prints the prompt only: it does not rebuild a brief or call any model. Actual generation requires a current schemaVersion 2 brief, including for an explicitly requested historical redraw.
+
+The image adapter runs in a dedicated temporary workspace. Its `blog-image` permission profile permits workspace writes, read access elsewhere, and no shell network. It excludes inherited API keys and SSH agent variables. The project receives a regular PNG, rejects symlink escapes, normalizes/optimizes it, and installs it; the image task does not write the repository. The generation receipt path is printed to stderr, with prompt/brief/output hashes and run identity. Actual image-tool compatibility must be verified independently of sandbox probes.
+
+Fact review has no Codex fallback. Visual review temporarily belongs to explicitly configured Codex visual review; it cannot write the project, publish or delegate. Invalid output, timeout and FAIL stop publishing without switching backends. Deterministic checks still enforce image format, references, hashes, taxonomy and build requirements.
+
+Execution and acceptance tracking: [implementation plan](blog-openclaw-execution-plan.md), [checklist](blog-openclaw-execution-checklist.md). Permission semantics: [official Codex permissions](https://learn.chatgpt.com/docs/permissions).

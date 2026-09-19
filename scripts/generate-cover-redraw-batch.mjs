@@ -53,6 +53,7 @@ function main() {
       console.error(`[cover:redraw] skip existing ${entry.targetCover}`)
       continue
     }
+    runNode('build-blog-cover-brief.mjs', ['--post', entry.postPath])
     runNode('generate-blog-cover-image2.mjs', [
       '--post',
       entry.postPath,
