@@ -2,7 +2,7 @@
 
 - 执行依据：[执行方案](blog-openclaw-execution-plan.md)
 - 建立日期：2026-09-19
-- 当前阶段：按最新用户授权实施临时 Codex 视觉验收；Git交付、真实发布和自然运行尚未收口
+- 当前阶段：实现、Git交付、CI和代码部署已验收；等待下一未completed真实当天完成新流程发布与自然运行。
 - 填写规则：只有存在可复核证据才勾选；阻塞写明具体原因，不用“已实现”替代运行验证。
 
 ## A. 文档准备
@@ -95,7 +95,7 @@
 - 23:30 主任务：command + --notify-success，disabled；01:15 修复：command + 原有失败/修复通知参数，disabled。通知目标沿用原配置，未主动发送真实通知。
 - 09:20 OpenClaw 缺更检查：enabled；旧 Codex 缺更提醒：PAUSED。
 - 今日已公开文章不能重复发布；旧恢复receipt类型兼容缺口独立保留，不当作新流程验收成功。
-- 提交/推送/部署：博客 `7c2c4a8` 已到两个 remote main，流水线 #401 测试与生产部署成功；OpenClaw 最新 `daa7eda3` 已非强制快进到 origin main，修复 #403 暴露的脚本路径问题；主线流水线 #404待完成。
+- 提交/推送/部署：博客 `7c2c4a8` 已到两个 remote main，流水线 #401 测试与生产部署成功；OpenClaw 最新 `daa7eda3` 已非强制快进到 origin main，修复 #403 暴露的脚本路径问题；主线流水线 #404总状态success，所有阻断性门禁通过。
 - 真实发布、自然调度：未验收；用户已授权通过临时 Codex 视觉验收继续实施。已按用户要求新建包含临时视觉例外的收尾目标，状态 active。
 
 ### 原视觉阻塞与测试边界（临时例外授权前）
@@ -164,3 +164,12 @@
 - 与CI相同 `node:22.16-bookworm` 容器、网络关闭、只读挂载交付代码运行8项真实Workflow接线/进程测试全部通过。原日志保留于 `ci-403-workspace-tests.log`，修复证据见 `ci-path-fix.json`。
 - 本机与交付版本差异5文件已备份并同步，相关20项复验通过；路径修复也已同步。证据 `live-delivery-sync.json`，备份 `pre-delivery-sync/`。既有本地脏工作区未reset、checkout或整体pull。
 - 独立工作树完整 `npm run test:ci` 通过，见 `openclaw-local-full-ci.log`；远端流水线仍需独立验证，不能以本机通过替代。
+
+### 两侧交付流水线结论
+
+- 博客 #405（209c1c3）验证与生产部署成功。部署后文章可访问，封面哈希与发布仓库一致，见 `public-after-pipeline-405.json`。
+- OpenClaw #404（daa7eda3）总状态success：目录、治理、workspace和cron测试均成功；既有allow_failure观察作业因64个引擎文件格式问题失败，本次未修改引擎目录，单独保留日志，不称所有作业成功。
+- `live-delivery-final-manifest.json`：36个文件本机与交付版本一致，今日completed记录回执哈希匹配、pending为空。H05/H08完整新流程真实发布和H09自然运行仍未完成。
+- 下一次执行条件与职责边界汇总：`delivery-closeout.md`。今日不得重发，等下一未completed真实当天；当前目标active，主/修复调度不提前恢复。
+
+- 本次最终清单归档仅修改本文；复用 #404/#405 的实现验收证据，不再为记录流水线结果重复部署。文档归档推送使用GitLab ci.skip，未新增生产改动。
