@@ -18,7 +18,7 @@
 - [x] B02 记录主任务、修复任务和 Codex 缺更提醒的配置、运行状态与在途 run_id。
 - [x] B03 检查 guard/pending/receipt，确认互斥和切换窗口；不盲清 pending。
 - [x] B04 保存脱敏配置与回退版本，建立本轮 evidence 目录。
-- [ ] B05 核对实施、真实模型调用、发布和调度变更的已有授权；只对确实缺失的高影响动作补充决定。
+- [x] B05 已核对用户接受的收尾目标：包含实施、真实模型调用、范围内提交推送、CI/公网验证，以及真实发布成功后恢复调度。
 
 ## C. 文本和审稿（P1）
 
@@ -63,13 +63,13 @@
 
 ## H. 综合验收
 
-- [ ] H01 除生图与临时视觉验收外的全路径及失败分支禁止启动 Codex 的动态检查通过，包括绝对路径调用。视觉阶段的 subprocess tripwire、brief dry-run 和调度命令测试已通过；完整流程动态覆盖仍待综合验收。
-- [x] H02 受影响 Python 测试和新增边界测试通过。66 项通过；扩展旧门禁另有 2 项在 baseline 源代码上同样失败。
+- [x] H01 程序全流程及关键失败分支动态边界通过：真实 Workflow/Runtime 接线覆盖写作、审稿、修订、brief及允许的图像适配器；绝对路径 Codex 启动亦被 tripwire 拦截。外部模型、Git/公开发布边界使用 fixture，真实线上验收仍由 H05/H08 承担。
+- [x] H02 隔离交付工作树完整 `npm run test:blog-publish` 通过，新增 runtime 组 68 项通过；旧两项 Git fixture 已修复，远端更严格的事实引用规则保留。历史失败日志保留。
 - [x] H03 仓库 `npm run verify` 通过；无关既有失败单独记录。
 - [x] H04 无素材、重复触发、跨午夜、过期审稿/brief 等关键状态验证通过。程序层覆盖见h01-h04审计及迁移后45项guard/相邻合同回归；自然运行另由H09验收。
 - [ ] H05 当天真实素材的文本、审稿、brief、视觉模型调用通过。
 - [x] H06 当天真实 Image 2 生图与视觉验收通过。修正brief后的隔离候选PASS，未替换线上图，未当作发布完成。
-- [ ] H07 在已有授权范围提交推送本次改动，记录版本和两个 remote SHA。
+- [x] H07 范围内实现已提交推送：博客两个 remote main 为 `7c2c4a8`；OpenClaw origin main 为 `daa7eda3`（该仓库 GitHub push禁用）。后续状态文档增量单独提交。
 - [ ] H08 对应 CI、公开文章与封面核验通过，terminal receipt 为真实成功。
 - [ ] H09 按切换计划恢复或核对主调度，观察一次自然运行；与手动成功分开记录。
 - [ ] H10 汇总 Codex 仅限生图与临时视觉验收的调用边界证据、迁移结果及回退入口。
@@ -91,11 +91,11 @@
 ## J. 交接摘要（每阶段更新）
 
 - 证据根目录：`/Users/chenjin/.openclaw/workspace/tasks/ajin-blog-openclaw-only-20260919/`；上表文件名均相对该目录。
-- 下一步：落实用户授权的临时 Codex 视觉适配器并完成能力验收；外部 TERM 跨层回收测试已通过。随后补齐综合状态反例，在明确交付授权后进入提交和发布验收。
+- 下一步：完成 OpenClaw 流水线与主线交付，再以未 completed 的真实当天验证完整发布；成功后恢复调度并观察自然运行。
 - 23:30 主任务：command + --notify-success，disabled；01:15 修复：command + 原有失败/修复通知参数，disabled。通知目标沿用原配置，未主动发送真实通知。
 - 09:20 OpenClaw 缺更检查：enabled；旧 Codex 缺更提醒：PAUSED。
 - 今日已公开文章不能重复发布；旧恢复receipt类型兼容缺口独立保留，不当作新流程验收成功。
-- 提交/推送/部署：尚未执行；需要遵守项目独立授权规则。B05/H07未勾选。
+- 提交/推送/部署：博客 `7c2c4a8` 已到两个 remote main，流水线 #401 测试与生产部署成功；OpenClaw 最新 `daa7eda3` 已非强制快进到 origin main，修复 #403 暴露的脚本路径问题；主线流水线 #404待完成。
 - 真实发布、自然调度：未验收；用户已授权通过临时 Codex 视觉验收继续实施。已按用户要求新建包含临时视觉例外的收尾目标，状态 active。
 
 ### 原视觉阻塞与测试边界（临时例外授权前）
@@ -151,3 +151,16 @@
 - `two-repo-delivery-readiness.md`：两仓库交付白名单与未版本化依赖闭包已整理；今天已completed，完整新发布必须在下一个未completed的真实当天验证，不清账本、不重复公开。
 
 - `closeout-blog-verify.log`：本轮brief语义约束更新后完整verify通过，58项测试57通过/1跳过，历史队列验证与构建通过。
+
+### 代码交付进展
+
+- 博客 `7c2c4a894c7a5302b6b05a28d9b1b85e6269da2c`：origin/github main SHA一致；GitLab #401、validate #947、deploy_production #948成功。公开既有文章可访问、封面哈希与仓库一致，见 `blog-public-after-code-delivery.json`；这是代码部署证明，不是新流程真实发布证明。
+- OpenClaw `f647ab05fbe21dfde4429675fd2fb7a156d9fbf9`：隔离工作树基于远端 `9044eced`，保留严格引用/材料绑定；仅推送 origin 的 `codex/blog-openclaw-closeout-20260919`，GitHub push禁用。测试分支 #402 因既有 protected Runner排队；已非强制快进 main，主线 #403运行中。
+- `openclaw-delivery-blog-tests.log` 与 `openclaw-delivery-hygiene.json`：完整博客测试、目录治理、秘密扫描通过。新增便携 fixture 不依赖本机博客路径。生产本地 OpenClaw 的既有脏引擎修改未纳入提交，command cron仍是需核验的环境前置。
+
+### CI 环境差异修复与本机安装
+
+- #403 的 workspace_tests 失败：Runtime子脚本路径固定用户目录，导致本机测试误用运行副本、Linux找不到脚本。已改为 `Path(__file__).resolve().parent`，配置/数据目录保持原合同；修复提交 `daa7eda3` 已推送 origin main，#404待完成。
+- 与CI相同 `node:22.16-bookworm` 容器、网络关闭、只读挂载交付代码运行8项真实Workflow接线/进程测试全部通过。原日志保留于 `ci-403-workspace-tests.log`，修复证据见 `ci-path-fix.json`。
+- 本机与交付版本差异5文件已备份并同步，相关20项复验通过；路径修复也已同步。证据 `live-delivery-sync.json`，备份 `pre-delivery-sync/`。既有本地脏工作区未reset、checkout或整体pull。
+- 独立工作树完整 `npm run test:ci` 通过，见 `openclaw-local-full-ci.log`；远端流水线仍需独立验证，不能以本机通过替代。
