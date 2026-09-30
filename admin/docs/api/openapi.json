@@ -1,0 +1,2935 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "ajin-blog 本机日报管理 API",
+    "version": "0.1.0",
+    "description": "Local-only daily-report observation API. Authentication is required for all business data. No publication commands are implemented in this version."
+  },
+  "paths": {
+    "/api/auth/login": {
+      "post": {
+        "tags": [
+          "认证"
+        ],
+        "summary": "登录本机后台",
+        "operationId": "login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "example": {
+                "password": "example-not-a-real-password"
+              }
+            }
+          },
+          "required": true,
+          "description": "Validated input for login"
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Session_"
+                },
+                "example": {
+                  "data": {
+                    "csrf": "example"
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Too many login attempts",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "登录本机后台",
+        "security": [],
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Exact loopback origin of this service"
+          }
+        ]
+      }
+    },
+    "/api/auth/session": {
+      "get": {
+        "tags": [
+          "认证"
+        ],
+        "summary": "读取会话",
+        "operationId": "session",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Session_"
+                },
+                "example": {
+                  "data": {
+                    "csrf": "example"
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "description": "读取会话"
+      }
+    },
+    "/api/auth/logout": {
+      "post": {
+        "tags": [
+          "认证"
+        ],
+        "summary": "退出登录",
+        "operationId": "logout",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Ok_"
+                },
+                "example": {
+                  "data": {
+                    "ok": false
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "description": "退出登录",
+        "parameters": [
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Exact loopback origin of this service"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token returned by login or session"
+          }
+        ]
+      }
+    },
+    "/api/system/status": {
+      "get": {
+        "tags": [
+          "系统"
+        ],
+        "summary": "读取采集状态",
+        "operationId": "system_status",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_System_"
+                },
+                "example": {
+                  "data": {
+                    "worker_online": false,
+                    "repo_ready": false,
+                    "mode": "observe",
+                    "host": "example",
+                    "port": 1
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "description": "读取采集状态"
+      }
+    },
+    "/api/reports": {
+      "get": {
+        "tags": [
+          "日报"
+        ],
+        "summary": "筛选日报",
+        "operationId": "reports",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Status"
+            },
+            "description": "status filter or route value"
+          },
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "maxLength": 100,
+              "default": "",
+              "title": "Q"
+            },
+            "description": "q filter or route value"
+          },
+          {
+            "name": "start",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "Start"
+            },
+            "description": "start filter or route value"
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "",
+              "title": "End"
+            },
+            "description": "end filter or route value"
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1,
+              "title": "Page"
+            },
+            "description": "page filter or route value"
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 20,
+              "title": "Size"
+            },
+            "description": "size filter or route value"
+          },
+          {
+            "name": "issues",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean",
+              "default": false,
+              "title": "Issues"
+            },
+            "description": "issues filter or route value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Page_"
+                },
+                "example": {
+                  "data": {
+                    "items": [],
+                    "total": 1,
+                    "page": 1,
+                    "size": 1
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "筛选日报"
+      }
+    },
+    "/api/overview": {
+      "get": {
+        "tags": [
+          "日报"
+        ],
+        "summary": "今日日报与未完成记录",
+        "operationId": "overview",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Overview_"
+                },
+                "example": {
+                  "data": {
+                    "today": {
+                      "date": "example",
+                      "status": "published",
+                      "stage": "example",
+                      "title": "example",
+                      "reason": "example",
+                      "last_event": "example",
+                      "observed_at": "example",
+                      "schedule": {
+                        "known": null,
+                        "enabled": null
+                      },
+                      "scheduled_at": "example",
+                      "run_count": 1,
+                      "latest_run_id": "example",
+                      "evidence": {
+                        "status": null
+                      },
+                      "article": null,
+                      "capabilities": {
+                        "retry": null,
+                        "backfill": null,
+                        "reason": null
+                      }
+                    },
+                    "unfinished": []
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "Forbidden",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "description": "今日日报与未完成记录"
+      }
+    },
+    "/api/reports/{date}": {
+      "get": {
+        "tags": [
+          "日报"
+        ],
+        "summary": "日报详情及运行历史",
+        "operationId": "report_detail",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Date"
+            },
+            "description": "date filter or route value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Detail_"
+                },
+                "example": {
+                  "data": {
+                    "date": "example",
+                    "status": "published",
+                    "stage": "example",
+                    "title": "example",
+                    "reason": "example",
+                    "last_event": "example",
+                    "observed_at": "example",
+                    "schedule": {
+                      "known": false,
+                      "enabled": false
+                    },
+                    "scheduled_at": "example",
+                    "run_count": 1,
+                    "latest_run_id": "example",
+                    "evidence": {
+                      "status": "example"
+                    },
+                    "article": {
+                      "hash": "example",
+                      "path": "example",
+                      "cover": "example"
+                    },
+                    "capabilities": {
+                      "retry": false,
+                      "backfill": false,
+                      "reason": "example"
+                    },
+                    "runs": [],
+                    "notes": []
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "日报详情及运行历史"
+      }
+    },
+    "/api/reports/{date}/notes": {
+      "post": {
+        "tags": [
+          "日报"
+        ],
+        "summary": "记录处理意见",
+        "operationId": "add_note",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Date"
+            },
+            "description": "date filter or route value"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Exact loopback origin of this service"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token returned by login or session"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Note"
+              },
+              "example": {
+                "body": "已核查，等待执行侧修复。"
+              }
+            }
+          },
+          "description": "Validated input for add_note"
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Created_"
+                },
+                "example": {
+                  "data": {
+                    "id": 1
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "记录处理意见"
+      }
+    },
+    "/api/reports/{date}/article": {
+      "get": {
+        "tags": [
+          "产物"
+        ],
+        "summary": "只读正文预览",
+        "operationId": "article",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Date"
+            },
+            "description": "date filter or route value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Article_"
+                },
+                "example": {
+                  "data": {
+                    "title": "example",
+                    "body": "example",
+                    "hash": "example",
+                    "cover": "example",
+                    "path": "example"
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Artifact version changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "只读正文预览"
+      }
+    },
+    "/api/reports/{date}/cover": {
+      "get": {
+        "tags": [
+          "产物"
+        ],
+        "summary": "当前文章引用的封面",
+        "operationId": "cover",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Date"
+            },
+            "description": "date filter or route value"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "image/png": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "example": "example"
+              },
+              "image/jpeg": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "example": "example"
+              },
+              "image/webp": {
+                "schema": {
+                  "type": "string",
+                  "format": "binary"
+                },
+                "example": "example"
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Artifact version changed",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "当前文章引用的封面"
+      }
+    },
+    "/api/reports/{date}/action-preview": {
+      "post": {
+        "tags": [
+          "能力"
+        ],
+        "summary": "检查恢复能力（当前只读版）",
+        "operationId": "action_preview",
+        "security": [
+          {
+            "APIKeyCookie": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Date"
+            },
+            "description": "date filter or route value"
+          },
+          {
+            "name": "Origin",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Exact loopback origin of this service"
+          },
+          {
+            "name": "X-CSRF-Token",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "Token returned by login or session"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Action"
+              },
+              "example": {
+                "action": "retry"
+              }
+            }
+          },
+          "description": "Validated input for action_preview"
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Envelope_Preview_"
+                },
+                "example": {
+                  "data": {
+                    "supported": false,
+                    "action": "retry",
+                    "reason": "example",
+                    "allowed_actions": []
+                  },
+                  "observed_at": "example"
+                }
+              }
+            }
+          },
+          "401": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Unauthorized"
+          },
+          "403": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Forbidden"
+          },
+          "404": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Not Found"
+          },
+          "503": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            },
+            "description": "Service Unavailable"
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                },
+                "example": {}
+              }
+            }
+          },
+          "default": {
+            "description": "Unexpected error; retry after checking local service",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "code": "example",
+                  "message": "example"
+                }
+              }
+            }
+          }
+        },
+        "description": "检查恢复能力（当前只读版）"
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Action": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "pattern": "^(retry|backfill)$",
+            "title": "Action",
+            "description": "action as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "Action",
+        "description": "Action API value"
+      },
+      "Article": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "title as recorded by the local service"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body",
+            "description": "Plain text content; never executed as code"
+          },
+          "hash": {
+            "type": "string",
+            "title": "Hash",
+            "description": "SHA-256 of source bytes"
+          },
+          "cover": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover",
+            "description": "cover as recorded by the local service"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "description": "path as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "title",
+          "body",
+          "hash",
+          "cover",
+          "path"
+        ],
+        "title": "Article",
+        "description": "Article API value"
+      },
+      "ArtifactRef": {
+        "properties": {
+          "hash": {
+            "type": "string",
+            "title": "Hash",
+            "description": "SHA-256 of source bytes"
+          },
+          "path": {
+            "type": "string",
+            "title": "Path",
+            "description": "path as recorded by the local service"
+          },
+          "cover": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cover",
+            "description": "cover as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "hash",
+          "path",
+          "cover"
+        ],
+        "title": "ArtifactRef",
+        "description": "ArtifactRef API value"
+      },
+      "Backup": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Recorded business or execution state"
+          },
+          "date": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Date",
+            "description": "Business date in Asia/Shanghai"
+          },
+          "file": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "File",
+            "description": "file as recorded by the local service"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "Backup",
+        "description": "Backup API value"
+      },
+      "Capabilities": {
+        "properties": {
+          "retry": {
+            "type": "boolean",
+            "title": "Retry",
+            "description": "retry as recorded by the local service"
+          },
+          "backfill": {
+            "type": "boolean",
+            "title": "Backfill",
+            "description": "backfill as recorded by the local service"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "retry",
+          "backfill",
+          "reason"
+        ],
+        "title": "Capabilities",
+        "description": "Capabilities API value"
+      },
+      "Created": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id",
+            "description": "id as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "title": "Created",
+        "description": "Created API value"
+      },
+      "Detail": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date",
+            "description": "Business date in Asia/Shanghai"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "published",
+              "skipped",
+              "blocked",
+              "unknown",
+              "not_started",
+              "running"
+            ],
+            "title": "Status",
+            "description": "Recorded business or execution state"
+          },
+          "stage": {
+            "type": "string",
+            "title": "Stage",
+            "description": "Current recorded stage"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "title as recorded by the local service"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          },
+          "last_event": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Event",
+            "description": "Last observed source event timestamp; not a process heartbeat"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/Schedule",
+            "description": "schedule as recorded by the local service"
+          },
+          "scheduled_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scheduled At",
+            "description": "scheduled at as recorded by the local service"
+          },
+          "run_count": {
+            "type": "integer",
+            "title": "Run Count",
+            "description": "run count as recorded by the local service"
+          },
+          "latest_run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Run Id",
+            "description": "latest run id as recorded by the local service"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/Evidence",
+            "description": "Output of the durable publication verifier"
+          },
+          "article": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ArtifactRef"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "article as recorded by the local service"
+          },
+          "capabilities": {
+            "$ref": "#/components/schemas/Capabilities",
+            "description": "capabilities as recorded by the local service"
+          },
+          "runs": {
+            "items": {
+              "$ref": "#/components/schemas/Run"
+            },
+            "type": "array",
+            "title": "Runs",
+            "description": "Original run history; failures are preserved"
+          },
+          "notes": {
+            "items": {
+              "$ref": "#/components/schemas/NoteRecord"
+            },
+            "type": "array",
+            "title": "Notes",
+            "description": "Operator notes; do not change business state"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "status",
+          "stage",
+          "title",
+          "reason",
+          "last_event",
+          "observed_at",
+          "schedule",
+          "scheduled_at",
+          "run_count",
+          "latest_run_id",
+          "evidence",
+          "article",
+          "capabilities",
+          "runs",
+          "notes"
+        ],
+        "title": "Detail",
+        "description": "Detail API value"
+      },
+      "Envelope_Article_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Article",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Article]",
+        "description": "Envelope_Article_ API value"
+      },
+      "Envelope_Created_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Created",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Created]",
+        "description": "Envelope_Created_ API value"
+      },
+      "Envelope_Detail_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Detail",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Detail]",
+        "description": "Envelope_Detail_ API value"
+      },
+      "Envelope_Ok_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Ok",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Ok]",
+        "description": "Envelope_Ok_ API value"
+      },
+      "Envelope_Overview_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Overview",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Overview]",
+        "description": "Envelope_Overview_ API value"
+      },
+      "Envelope_Page_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Page",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Page]",
+        "description": "Envelope_Page_ API value"
+      },
+      "Envelope_Preview_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Preview",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Preview]",
+        "description": "Envelope_Preview_ API value"
+      },
+      "Envelope_Session_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/Session",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[Session]",
+        "description": "Envelope_Session_ API value"
+      },
+      "Envelope_System_": {
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/System",
+            "description": "Operation result"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          }
+        },
+        "type": "object",
+        "required": [
+          "data",
+          "observed_at"
+        ],
+        "title": "Envelope[System]",
+        "description": "Envelope_System_ API value"
+      },
+      "Error": {
+        "properties": {
+          "code": {
+            "type": "string",
+            "title": "Code",
+            "description": "code as recorded by the local service"
+          },
+          "message": {
+            "type": "string",
+            "title": "Message",
+            "description": "message as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "title": "Error",
+        "description": "Error API value"
+      },
+      "Event": {
+        "properties": {
+          "stage": {
+            "type": "string",
+            "title": "Stage",
+            "description": "Current recorded stage"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Recorded business or execution state"
+          },
+          "at": {
+            "type": "string",
+            "title": "At",
+            "description": "at as recorded by the local service"
+          },
+          "seq": {
+            "type": "integer",
+            "title": "Seq",
+            "description": "seq as recorded by the local service"
+          },
+          "attempt": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt",
+            "description": "attempt as recorded by the local service"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          },
+          "post_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Post Sha256",
+            "description": "post sha256 as recorded by the local service"
+          },
+          "receipt_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt Sha256",
+            "description": "receipt sha256 as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "stage",
+          "status",
+          "at",
+          "seq"
+        ],
+        "title": "Event",
+        "description": "Event API value"
+      },
+      "Evidence": {
+        "properties": {
+          "status": {
+            "type": "string",
+            "title": "Status",
+            "description": "Recorded business or execution state"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          },
+          "run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Run Id",
+            "description": "run id as recorded by the local service"
+          },
+          "receipt_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Receipt Sha256",
+            "description": "receipt sha256 as recorded by the local service"
+          },
+          "ledger_sha256": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ledger Sha256",
+            "description": "ledger sha256 as recorded by the local service"
+          },
+          "recovery_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Recovery Type",
+            "description": "recovery type as recorded by the local service"
+          },
+          "natural_schedule_verified": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Natural Schedule Verified",
+            "description": "Whether natural scheduling origin was proven"
+          }
+        },
+        "type": "object",
+        "required": [
+          "status"
+        ],
+        "title": "Evidence",
+        "description": "Evidence API value"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail",
+            "description": "detail as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError",
+        "description": "HTTPValidationError API value"
+      },
+      "Login": {
+        "properties": {
+          "password": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Password",
+            "description": "Local administrator password; never stored in browser storage"
+          }
+        },
+        "type": "object",
+        "required": [
+          "password"
+        ],
+        "title": "Login",
+        "description": "Login API value"
+      },
+      "Note": {
+        "properties": {
+          "body": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Body",
+            "description": "Plain text content; never executed as code"
+          }
+        },
+        "type": "object",
+        "required": [
+          "body"
+        ],
+        "title": "Note",
+        "description": "Note API value"
+      },
+      "NoteRecord": {
+        "properties": {
+          "id": {
+            "type": "integer",
+            "title": "Id",
+            "description": "id as recorded by the local service"
+          },
+          "body": {
+            "type": "string",
+            "title": "Body",
+            "description": "Plain text content; never executed as code"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At",
+            "description": "created at as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "body",
+          "created_at"
+        ],
+        "title": "NoteRecord",
+        "description": "NoteRecord API value"
+      },
+      "Ok": {
+        "properties": {
+          "ok": {
+            "type": "boolean",
+            "title": "Ok",
+            "description": "ok as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "ok"
+        ],
+        "title": "Ok",
+        "description": "Ok API value"
+      },
+      "Overview": {
+        "properties": {
+          "today": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Report"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "today as recorded by the local service"
+          },
+          "unfinished": {
+            "items": {
+              "$ref": "#/components/schemas/Report"
+            },
+            "type": "array",
+            "title": "Unfinished",
+            "description": "unfinished as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "today",
+          "unfinished"
+        ],
+        "title": "Overview",
+        "description": "Overview API value"
+      },
+      "Page": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/Report"
+            },
+            "type": "array",
+            "title": "Items",
+            "description": "items as recorded by the local service"
+          },
+          "total": {
+            "type": "integer",
+            "title": "Total",
+            "description": "total as recorded by the local service"
+          },
+          "page": {
+            "type": "integer",
+            "title": "Page",
+            "description": "page as recorded by the local service"
+          },
+          "size": {
+            "type": "integer",
+            "title": "Size",
+            "description": "size as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "items",
+          "total",
+          "page",
+          "size"
+        ],
+        "title": "Page",
+        "description": "Page API value"
+      },
+      "Preview": {
+        "properties": {
+          "supported": {
+            "type": "boolean",
+            "const": false,
+            "title": "Supported",
+            "description": "Whether execution is available; false in observation-only release"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "retry",
+              "backfill"
+            ],
+            "title": "Action",
+            "description": "action as recorded by the local service"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          },
+          "allowed_actions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Allowed Actions",
+            "description": "Actions currently executable; empty in observation-only release"
+          }
+        },
+        "type": "object",
+        "required": [
+          "supported",
+          "action",
+          "reason",
+          "allowed_actions"
+        ],
+        "title": "Preview",
+        "description": "Preview API value"
+      },
+      "Report": {
+        "properties": {
+          "date": {
+            "type": "string",
+            "title": "Date",
+            "description": "Business date in Asia/Shanghai"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "published",
+              "skipped",
+              "blocked",
+              "unknown",
+              "not_started",
+              "running"
+            ],
+            "title": "Status",
+            "description": "Recorded business or execution state"
+          },
+          "stage": {
+            "type": "string",
+            "title": "Stage",
+            "description": "Current recorded stage"
+          },
+          "title": {
+            "type": "string",
+            "title": "Title",
+            "description": "title as recorded by the local service"
+          },
+          "reason": {
+            "type": "string",
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          },
+          "last_event": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Event",
+            "description": "Last observed source event timestamp; not a process heartbeat"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At",
+            "description": "Server observation time in UTC"
+          },
+          "schedule": {
+            "$ref": "#/components/schemas/Schedule",
+            "description": "schedule as recorded by the local service"
+          },
+          "scheduled_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scheduled At",
+            "description": "scheduled at as recorded by the local service"
+          },
+          "run_count": {
+            "type": "integer",
+            "title": "Run Count",
+            "description": "run count as recorded by the local service"
+          },
+          "latest_run_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Latest Run Id",
+            "description": "latest run id as recorded by the local service"
+          },
+          "evidence": {
+            "$ref": "#/components/schemas/Evidence",
+            "description": "Output of the durable publication verifier"
+          },
+          "article": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ArtifactRef"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "article as recorded by the local service"
+          },
+          "capabilities": {
+            "$ref": "#/components/schemas/Capabilities",
+            "description": "capabilities as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "date",
+          "status",
+          "stage",
+          "title",
+          "reason",
+          "last_event",
+          "observed_at",
+          "schedule",
+          "scheduled_at",
+          "run_count",
+          "latest_run_id",
+          "evidence",
+          "article",
+          "capabilities"
+        ],
+        "title": "Report",
+        "description": "Report API value"
+      },
+      "Run": {
+        "properties": {
+          "id": {
+            "type": "string",
+            "title": "Id",
+            "description": "id as recorded by the local service"
+          },
+          "date": {
+            "type": "string",
+            "title": "Date",
+            "description": "Business date in Asia/Shanghai"
+          },
+          "events": {
+            "items": {
+              "$ref": "#/components/schemas/Event"
+            },
+            "type": "array",
+            "title": "Events",
+            "description": "events as recorded by the local service"
+          },
+          "source_hash": {
+            "type": "string",
+            "title": "Source Hash",
+            "description": "SHA-256 of original journal"
+          },
+          "last_event": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Event",
+            "description": "Last observed source event timestamp; not a process heartbeat"
+          },
+          "source": {
+            "type": "string",
+            "title": "Source",
+            "description": "source as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "id",
+          "date",
+          "events",
+          "source_hash",
+          "last_event",
+          "source"
+        ],
+        "title": "Run",
+        "description": "Run API value"
+      },
+      "Schedule": {
+        "properties": {
+          "known": {
+            "type": "boolean",
+            "title": "Known",
+            "description": "known as recorded by the local service"
+          },
+          "enabled": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Enabled",
+            "description": "enabled as recorded by the local service"
+          },
+          "time": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Time",
+            "description": "time as recorded by the local service"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason",
+            "description": "Human-readable explanation or original controlled reason code"
+          },
+          "hash": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Hash",
+            "description": "SHA-256 of source bytes"
+          }
+        },
+        "type": "object",
+        "required": [
+          "known",
+          "enabled"
+        ],
+        "title": "Schedule",
+        "description": "Schedule API value"
+      },
+      "Session": {
+        "properties": {
+          "csrf": {
+            "type": "string",
+            "title": "Csrf",
+            "description": "Per-session token required by state-changing requests"
+          }
+        },
+        "type": "object",
+        "required": [
+          "csrf"
+        ],
+        "title": "Session",
+        "description": "Session API value"
+      },
+      "System": {
+        "properties": {
+          "worker_online": {
+            "type": "boolean",
+            "title": "Worker Online",
+            "description": "worker online as recorded by the local service"
+          },
+          "repo_ready": {
+            "type": "boolean",
+            "title": "Repo Ready",
+            "description": "repo ready as recorded by the local service"
+          },
+          "backup": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Backup"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "backup as recorded by the local service"
+          },
+          "mode": {
+            "type": "string",
+            "const": "observe",
+            "title": "Mode",
+            "description": "mode as recorded by the local service"
+          },
+          "host": {
+            "type": "string",
+            "title": "Host",
+            "description": "host as recorded by the local service"
+          },
+          "port": {
+            "type": "integer",
+            "title": "Port",
+            "description": "port as recorded by the local service"
+          },
+          "last_success": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Success",
+            "description": "last success as recorded by the local service"
+          },
+          "last_attempt": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Attempt",
+            "description": "last attempt as recorded by the local service"
+          },
+          "errors": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Errors",
+            "description": "errors as recorded by the local service"
+          },
+          "schedule": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Schedule"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "schedule as recorded by the local service"
+          },
+          "report_count": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Report Count",
+            "description": "report count as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "worker_online",
+          "repo_ready",
+          "mode",
+          "host",
+          "port"
+        ],
+        "title": "System",
+        "description": "System API value"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location",
+            "description": "loc as recorded by the local service"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message",
+            "description": "msg as recorded by the local service"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type",
+            "description": "type as recorded by the local service"
+          },
+          "input": {
+            "title": "Input",
+            "description": "input as recorded by the local service"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context",
+            "description": "ctx as recorded by the local service"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "description": "ValidationError API value"
+      }
+    },
+    "securitySchemes": {
+      "APIKeyCookie": {
+        "type": "apiKey",
+        "in": "cookie",
+        "name": "ajin_admin_session"
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:4318"
+    }
+  ],
+  "tags": [
+    {
+      "name": "认证",
+      "description": "Local administrator session"
+    },
+    {
+      "name": "日报",
+      "description": "Reports, immutable run history and operator notes"
+    },
+    {
+      "name": "系统",
+      "description": "Collection and backup health"
+    },
+    {
+      "name": "产物",
+      "description": "Authenticated read-only artifact previews"
+    },
+    {
+      "name": "能力",
+      "description": "Read-only execution capability inspection"
+    }
+  ]
+}

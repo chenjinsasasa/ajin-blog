@@ -1,0 +1,4 @@
+#!/bin/sh
+set -eu
+ADMIN_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+exec "$ADMIN_DIR/.venv/bin/python" "$ADMIN_DIR/scripts/adminctl.py" "$@"

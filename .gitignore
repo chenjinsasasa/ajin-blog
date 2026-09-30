@@ -38,3 +38,11 @@ next-env.d.ts
 content/diary/*
 !content/diary/2026-08-25-chuanxi-ride-home.mdx
 .local/
+
+# Local admin build/runtime
+admin/frontend/dist/
+admin/.venv/
+admin/**/__pycache__/
+admin/**/.pytest_cache/
+admin/test-results/
+admin/.ruff_cache/
