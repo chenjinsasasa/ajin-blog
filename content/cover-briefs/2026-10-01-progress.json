@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-01-progress.mdx",
+  "postSha256": "4c9e139898b1a60206398fcf4b1bb51c43654e70766d3122d5a053b3120c11f4",
+  "bodySha256": "cf8ffc1356d38fecb38d8d50f99394750785921ccb52f834fbd2cc18a8392dac",
+  "bodyCharacters": 4236,
+  "generatedAt": "2026-10-01T20:43:32.473Z",
+  "visualBrief": {
+    "coreEventZh": "10月1日的工作现场围绕三条平行却互相牵扯的线索展开：博客侧把旧的两次审稿流程切换为一次独立事实审稿的新流程并重跑成功，日报后台与博客后台双双装上了删除按钮却都未触发实际删除，输入法项目则停在\"把错字也学进去了\"这一老问题的诊断与代码定位上。",
+    "primarySubjectZh": "在印刷工坊里独自值守的排版匠人，要在当天把一台经手的新机器并入旧工序的活字架上。",
+    "keyActionZh": "把旧流程作废后重新喂料跑通一次新机器，对照清单逐项挑拣尚未到齐的料件，并在一台小装置前反复端详其卡涩的传动。",
+    "resultZh": "新机器在只跑一遍的情况下顺利吐出第一份完整成品；删除能力已装上却未触发任何动作；输入法的咬字机构仍带着那个会跟着错字一起学的怪癖，停在待修。",
+    "tensionZh": "排版匠人需要同时盯住一台刚切换好的新机器、一份还没补齐的料件清单，以及一台被诊断出却还没修好的咬字小装置，三件事并行却并不等彼此。",
+    "industrialMetaphorZh": "19世纪印刷工坊里换装新机器、逐项清点字模、并在一旁反复调试咬字机构的工作场景。",
+    "supportingSymbolsZh": [
+      "值守工坊的排版匠人",
+      "刚切换完成且只跑了一遍就顺利吐版的新机器",
+      "仍卡着错字怪癖、暂未修复的咬字小装置"
+    ],
+    "sceneDescriptionZh": "一间被秋日余晖斜照的19世纪印刷工坊内，木质工台与字模架占据空间，匠人立在工台前，一手扶着新装上的机器曲柄，一手按着一份还没补全的清册；一旁的工作台角上放着一台小巧的咬字装置，机盖半开，里面仍留着卡涩的零件。背景仅提供工坊的木梁、纸张与光影，不再加入第四件叙事物件。",
+    "focalElementsEn": [
+      "a printer at the wooden workbench steadying the new press handle",
+      "a newly switched press that has just produced one clean sheet in a single run",
+      "a small typesetting device with its lid half open, still jammed with a faulty part"
+    ],
+    "imagePromptEn": "Inside a dim nineteenth-century print workshop bathed by late autumn light through a high window, a printer at the wooden workbench steadies the crank of a newly switched press with one hand while holding an incomplete tally sheet with the other. Beside the bench, a small typesetting device rests with its lid half open, still jammed by a faulty part. The newly switched press at center has just produced one clean sheet in a single run, while the printer watches the small jammed device nearby."
+  }
+}
