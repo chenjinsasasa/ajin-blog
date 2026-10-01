@@ -22,9 +22,7 @@ STAGES = {
     "prepare": "素材准备",
     "draft": "正文写作",
     "review-1": "事实审稿",
-    "revision": "正文修订",
-    "review-2": "事实复审",
-    "check-pass": "审稿验收",
+    "review-result": "事实审稿结果",
     "publish": "发布处理",
     "brief": "封面简报",
     "image": "封面生成",
@@ -261,7 +259,7 @@ def collect(config):
         reason = {
             "program_workflow_failed": "生产流程失败，请查看阶段证据",
             "unresolved_quote_retained": "修订后仍保留未核实引文",
-            "editorial_review_exhausted": "审稿未通过，复审预算已用尽",
+            "editorial_review_exhausted": "旧版审稿阶段未通过",
             "writer_error": "正文生成失败",
         }.get(reason, reason)
         article = None
