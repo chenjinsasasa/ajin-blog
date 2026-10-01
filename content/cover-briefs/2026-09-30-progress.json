@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "claude",
+  "model": "claude-sonnet-4-6",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-09-30-progress.mdx",
+  "postSha256": "52f88b5708af25be103370af1c50c2e03756e91e6ced61f84200ea0fc64d4bf3",
+  "bodySha256": "9e8438dec44e81b1bd2a7111eb90127561545240a4b8d963769538ed70caf29a",
+  "bodyCharacters": 374,
+  "generatedAt": "2026-10-01T11:57:41.716Z",
+  "visualBrief": {
+    "coreEventZh": "悬空预约已解除，第一处阻断点修复完成，但整条链路尚未经自然运行验证",
+    "primarySubjectZh": "维修工程师",
+    "keyActionZh": "解除卡住的闸门悬空锁",
+    "resultZh": "闸门恢复空闲，归档箱已封存，但水道全程通畅尚待下一次潮汐验证",
+    "tensionZh": "局部修复已完成与整条链路验证缺失",
+    "industrialMetaphorZh": "运河闸门悬空预约解除",
+    "supportingSymbolsZh": [
+      "手持扳手站在闸门旁的工程师",
+      "已贴封条的木质归档箱",
+      "远处未见船只通过的静止水道"
+    ],
+    "sceneDescriptionZh": "昏暗的运河闸室，工程师站在刚修好的闸门旁，手中扳手尚未放下，身后是一只已封存的归档木箱，远处水道延伸入雾中，尚未有船只驶来验证通畅",
+    "focalElementsEn": [
+      "Engineer with wrench beside repaired canal lock gate",
+      "Sealed wooden archive crate with intact closure",
+      "Empty canal waterway extending into mist without vessels"
+    ],
+    "imagePromptEn": "A canal engineer stands beside a heavy iron lock gate, wrench in hand, in dim industrial light. Behind him rests a sealed wooden crate with intact metal clasps. The canal waterway stretches into fog beyond, still and empty, awaiting the next vessel to prove the route is truly clear."
+  }
+}
