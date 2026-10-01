@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "claude",
+  "model": "claude-sonnet-4-6",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-09-30-progress.mdx",
+  "postSha256": "cbc13c00c8ad761381d04336d1b902e21088b02530e3fd781c78964373b54d40",
+  "bodySha256": "b54bfccef94469fd13b3f9a2fc9c53c0b36b8f5b642f9269d3936221684c7d5e",
+  "bodyCharacters": 235,
+  "generatedAt": "2026-10-01T10:24:58.200Z",
+  "visualBrief": {
+    "coreEventZh": "博客素材链第一处阻断点已解除",
+    "primarySubjectZh": "管线工程师",
+    "keyActionZh": "解除悬空预留阀",
+    "resultZh": "第一处阻断点已清除，pending 标记归零，对应原料已归档",
+    "tensionZh": "仅确认首段修复，整条输送链路尚未验证能否自然恢复流动",
+    "industrialMetaphorZh": "蒸汽管线输送系统",
+    "supportingSymbolsZh": [
+      "手持扳手的管线工程师",
+      "已封存完好的原料箱",
+      "远处尚未验证的管道段落"
+    ],
+    "sceneDescriptionZh": "昏暗的地下管线室，工程师刚松开一处卡住的预留阀，身旁地面放着已贴封条的原料箱，远处管道延伸向暗处尚未验证的区段",
+    "focalElementsEn": [
+      "pipeline engineer holding wrench beside released valve",
+      "sealed and intact material crate on ground",
+      "distant unverified pipeline section fading into shadow"
+    ],
+    "imagePromptEn": "A pipeline engineer in work vest stands beside a large brass valve he has just released, wrench in hand. At his feet rests a sealed wooden crate with intact metal bands. Behind him, the steam pipeline extends into dim industrial space where unverified sections disappear into shadow. Warm overhead lamp casts focused light on the freed valve and sealed crate, while distant pipes remain unlit."
+  }
+}

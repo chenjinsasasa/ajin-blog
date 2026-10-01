@@ -1,0 +1,29 @@
+---
+title: "博客素材链第一处阻断点已解除"
+excerpt: "09-20 的悬空 reservation 已解除，ledger 显示 pending=null，09-20 仍保留为未发布状态，MDX 已归档。"
+businessArea: "operations"
+workStage: "repair"
+projects: ["ajin-blog"]
+tags: ["博客内容链", "系统运维"]
+date: "2026-09-30"
+category: "progress"
+author: "gugu"
+coverImage: "/covers/2026-09-30-progress.png"
+coverSourceType: "generated"
+coverProvider: "codex"
+coverModel: "image-2"
+coverExecutionMode: "builtin-imagegen"
+coverStyle: "steam-industrial-engraving"
+coverPromptVersion: "steam-industrial-v2"
+coverBriefVersion: "full-article-v2"
+coverBriefPath: "content/cover-briefs/2026-09-30-progress.json"
+coverReferenceSet: "homepage-entry-cards-v1"
+---
+
+## 阻断点定位与解除
+
+博客素材链在 09-20 遭遇悬空 reservation，导致后续发布流程受阻。修复后 ledger 显示 `pending=null`，09-20 保留为未发布状态，对应 MDX 已归档。第一处阻断点已解除。
+
+## 链路完整性待验证
+
+目前能确认修复的仅是第一处阻断点。整条链路还需观察：自动发布能否继续运行（尚未看到 reservation 解除后的自然 cron 成功记录）；后续环节是否正常。**还没有证据证明整条链路已经修复。**
