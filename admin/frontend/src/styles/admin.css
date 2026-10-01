@@ -426,6 +426,10 @@ h2 {
   width: 100%;
   margin-bottom: 22px;
 }
+.run-status-context {
+  margin-top: -14px;
+  margin-bottom: 18px;
+}
 .timeline li {
   position: relative;
   display: flex;

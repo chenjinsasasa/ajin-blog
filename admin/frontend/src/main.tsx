@@ -658,42 +658,102 @@ function Timeline({ run }: { run?: Run }) {
     "prepare",
     "draft",
     "review-1",
-    "revision",
+    "revision-1",
     "review-2",
-    "check-pass",
+    "brief",
+    "image",
+    "visual",
     "publish",
   ];
+  const workflowFailure = [...run.events]
+    .reverse()
+    .find((e) => e.stage === "workflow" && e.status === "needs_attention");
+  const unfinishedStage = [...run.events]
+    .reverse()
+    .find(
+      (event) =>
+        event.status === "started" &&
+        !run.events.some(
+          (candidate) =>
+            candidate.stage === event.stage &&
+            candidate.status === "completed" &&
+            candidate.seq > event.seq,
+        ),
+    )?.stage;
+  const failedStage =
+    workflowFailure?.reason === "fact_review_not_passed_after_revision"
+      ? "review-2"
+      : workflowFailure?.reason === "fact_review_not_passed" ||
+          workflowFailure?.reason === "fact_review_result_invalid" ||
+          workflowFailure?.reason === "fact_review_findings_missing"
+        ? "review-1"
+        : workflowFailure?.reason === "revision_output_invalid"
+          ? "revision-1"
+          : workflowFailure?.reason === "publication_not_terminal"
+            ? "publish"
+            : workflowFailure?.reason === "preflight_identity_mismatch" ||
+                workflowFailure?.reason === "preflight_not_ready" ||
+                workflowFailure?.reason === "invalid_skip"
+              ? "prepare"
+              : workflowFailure?.reason === "draft_bytes_required"
+                ? "draft"
+                : workflowFailure?.reason?.startsWith("command_failed:")
+                  ? unfinishedStage
+                  : undefined;
   return (
     <ol className="timeline">
       {keys.map((key) => {
         const events = run.events.filter((e) => e.stage === key);
         const started = events.find((e) => e.status === "started");
         const complete = events.find((e) => e.status === "completed");
-        const failure = run.events.find((e) => e.status === "needs_attention");
-        const failed = !!(started && !complete && failure);
-        const review = run.events.find(
-          (e) =>
-            e.stage === "review-result" &&
-            e.at >= (started?.at || "") &&
-            e.at <=
-              (run.events.find((e) => e.stage === "publish")?.at || "z") &&
-            e.attempt === (key === "review-2" ? 2 : 1),
+        const failure =
+          events.find((e) => e.status === "needs_attention") ||
+          (failedStage === key ? workflowFailure : undefined);
+        const failed = !!failure;
+        const nextStageStarted =
+          complete &&
+          run.events.some(
+            (candidate) =>
+              candidate.status === "started" &&
+              candidate.seq > complete.seq &&
+              keys.indexOf(candidate.stage) > keys.indexOf(key),
+          );
+        const businessResultRecorded = run.events.some(
+          (candidate) =>
+            candidate.seq > (complete?.seq ?? -1) &&
+            ((key === "review-1" &&
+              candidate.stage === "review-result" &&
+              candidate.attempt === 1) ||
+              (key === "revision-1" &&
+                candidate.stage === "revision-result" &&
+                candidate.attempt === 1) ||
+              (key === "review-2" &&
+                candidate.stage === "review-result" &&
+                candidate.attempt === 2)),
         );
-        const unused =
-          (key === "revision" || key === "review-2") &&
-          !started &&
-          run.events.some((e) => e.stage === "publish");
+        const workflowSucceeded =
+          key === "publish" &&
+          run.events.some(
+            (candidate) =>
+              candidate.stage === "workflow" &&
+              candidate.status === "completed" &&
+              candidate.seq > (complete?.seq ?? -1),
+          );
+        const completed =
+          !!complete &&
+          !failed &&
+          (!!nextStageStarted || businessResultRecorded || workflowSucceeded);
         return (
           <li key={key}>
             <span
               className={
                 "timeline-icon " +
-                (failed ? "failed" : complete ? "complete" : "")
+                (failed ? "failed" : completed ? "complete" : "")
               }
             >
               {failed ? (
                 <XCircle size={16} />
-              ) : complete ? (
+              ) : completed ? (
                 <CheckCircle2 size={16} />
               ) : (
                 <Clock3 size={16} />
@@ -704,26 +764,34 @@ function Timeline({ run }: { run?: Run }) {
                 <strong>{stageNames[key]}</strong>
                 <span>
                   {failed
-                    ? "调用失败"
-                    : complete
-                      ? key.startsWith("review-")
-                        ? review?.status || "调用已返回"
-                        : "调用完成"
-                      : started
-                        ? "状态待核实"
-                        : unused
-                          ? "不适用"
+                    ? complete
+                      ? "验收未通过"
+                      : "调用失败"
+                    : completed
+                      ? "已完成"
+                      : complete
+                        ? "调用已返回"
+                        : started
+                          ? "状态待核实"
                           : "未记录"}
                 </span>
               </div>
               <p>
                 {started ? time(started.at) : "尚无事件"}
-                {complete && ` · ${duration(started?.at, complete.at)}`}
+                {(complete || failure) &&
+                  ` · ${duration(started?.at, (complete || failure)?.at)}`}
               </p>
-              {key === "publish" && started && (
-                <p>封面、视觉验收与上线子步骤未独立记录</p>
+              {failed && (
+                <p className="danger">
+                  {failure?.reason === "fact_review_not_passed_after_revision"
+                    ? "修订后的事实复审未通过"
+                    : failure?.reason === "fact_review_not_passed"
+                      ? "事实审稿未通过"
+                      : failure?.reason?.startsWith("command_failed:")
+                        ? `命令执行失败：${failure.reason.slice("command_failed:".length)}`
+                    : failure?.reason}
+                </p>
               )}
-              {failed && <p className="danger">{failure?.reason}</p>}
             </div>
           </li>
         );
@@ -817,18 +885,25 @@ function Detail() {
             <Badge variant="secondary">阶段记录</Badge>
           </div>
           {!!r.runs?.length && (
-            <select
-              aria-label="选择运行记录"
-              className="run-select"
-              value={run?.id || ""}
-              onChange={(e) => setSelected(e.target.value)}
-            >
-              {r.runs.map((v) => (
-                <option value={v.id} key={v.id}>
-                  {time(v.last_event)} · {v.id.slice(0, 8)}
-                </option>
-              ))}
-            </select>
+            <>
+              <select
+                aria-label="选择运行记录"
+                className="run-select"
+                value={run?.id || ""}
+                onChange={(e) => setSelected(e.target.value)}
+              >
+                {r.runs.map((v) => (
+                  <option value={v.id} key={v.id}>
+                    {time(v.last_event)} · {v.id.slice(0, 8)}
+                  </option>
+                ))}
+              </select>
+              {run && r.latest_run_id && run.id !== r.latest_run_id && (
+                <p className="artifact-caption run-status-context">
+                  当前查看历史运行 {run.id.slice(0, 8)}；顶部日报状态对应最近运行 {r.latest_run_id.slice(0, 8)}。
+                </p>
+              )}
+            </>
           )}
           <Timeline run={run} />
         </section>
