@@ -29,8 +29,9 @@ export function validateBriefArtifact(artifact, { config, postPath, rawPost, bod
         artifact.executionMode !== 'full-article-analysis') throw new Error('历史 brief 来源合同无效')
   } else if (artifact.schemaVersion === 2) {
     if (artifact.provenanceVersion !== BRIEF_PROVENANCE_VERSION || artifact.generatedBy !== 'openclaw' ||
-        artifact.executionMode !== 'configured-model' || artifact.provider !== 'claude' ||
-        artifact.model !== 'claude-sonnet-4-6' || artifact.api !== 'anthropic-messages') {
+        artifact.executionMode !== 'configured-model' || typeof artifact.provider !== 'string' ||
+        !artifact.provider || typeof artifact.model !== 'string' || !artifact.model ||
+        artifact.api !== 'anthropic-messages') {
       throw new Error('OpenClaw brief 来源合同无效')
     }
   } else throw new Error('需要当前 OpenClaw brief 来源合同')

@@ -110,7 +110,7 @@ function runTextModel(prompt) {
   })
   if (result.error || result.status !== 0) throw new Error(`全文抽象失败：${result.stderr || result.error?.message || result.status}`)
   const envelope = JSON.parse(result.stdout)
-  if (envelope.provider !== 'claude' || envelope.model !== 'claude-sonnet-4-6' ||
+  if (typeof envelope.provider !== 'string' || typeof envelope.model !== 'string' ||
       envelope.api !== 'anthropic-messages' || envelope.stop_reason !== 'end_turn') {
     throw new Error('brief 模型身份或终态无效')
   }

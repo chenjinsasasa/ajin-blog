@@ -12,12 +12,12 @@ const config = JSON.parse(fs.readFileSync(path.join(repo, 'config/blog-cover-ima
 const body = '真实工作记录。'.repeat(35)
 const rawPost = `---\ntitle: 测试\nexcerpt: 测试摘要\ndate: '2026-09-20'\ncoverImage: /covers/example.png\n---\n${body}\n`
 const visualBrief = {coreEventZh:'事件',primarySubjectZh:'主体',keyActionZh:'动作',resultZh:'结果',tensionZh:'张力',industrialMetaphorZh:'隐喻',supportingSymbolsZh:['人','机器','阀门'],sceneDescriptionZh:'场景',focalElementsEn:['an engineer','a press','a valve'],imagePromptEn:'An engineer inspects a press beside a valve.'}
-function artifact() {return {schemaVersion:2,briefVersion:config.briefVersion,promptVersion:config.promptVersion,generatedBy:'openclaw',provenanceVersion:'openclaw-text-v1',executionMode:'configured-model',provider:'claude',model:'claude-sonnet-4-6',api:'anthropic-messages',postPath:'content/progress/example.mdx',postSha256:textHash(rawPost),bodySha256:textHash(body),visualBrief}}
+function artifact() {return {schemaVersion:2,briefVersion:config.briefVersion,promptVersion:config.promptVersion,generatedBy:'openclaw',provenanceVersion:'openclaw-text-v1',executionMode:'configured-model',provider:'minimax',model:'MiniMax-M3',api:'anthropic-messages',postPath:'content/progress/example.mdx',postSha256:textHash(rawPost),bodySha256:textHash(body),visualBrief}}
 const options = {config,postPath:'content/progress/example.mdx',rawPost,body,date:'2026-09-20',current:true}
 
-test('新合同拒绝旧来源、未知版本、哈希漂移和伪造模型',()=>{
+test('新合同拒绝旧来源、未知版本、哈希漂移和缺失模型身份',()=>{
  assert.doesNotThrow(()=>validateBriefArtifact(artifact(),options))
- for (const change of [{schemaVersion:1,generatedBy:'codex'},{provenanceVersion:'unknown'},{postSha256:'0'.repeat(64)},{model:'unknown'}]) {
+ for (const change of [{schemaVersion:1,generatedBy:'codex'},{provenanceVersion:'unknown'},{postSha256:'0'.repeat(64)},{model:''}]) {
   assert.throws(()=>validateBriefArtifact({...artifact(),...change},options))
  }
  const old={...artifact(),schemaVersion:1,generatedBy:'codex',executionMode:'full-article-analysis'}
