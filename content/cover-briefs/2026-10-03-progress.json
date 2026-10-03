@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-03-progress.mdx",
+  "postSha256": "85760be3d039f55fe6f158ad6a3dc5258b01797b4ac9352043c0a05528e3ab12",
+  "bodySha256": "597b0a89620e2431b5ab18d97bbd362589f086755e0fb804aa418ec3d0035e6c",
+  "bodyCharacters": 2188,
+  "generatedAt": "2026-10-03T15:43:01.221Z",
+  "visualBrief": {
+    "coreEventZh": "把固化的判断标准改写成由本地模型现场裁量，使流程不再因预设之外的状态而整体停摆。",
+    "primarySubjectZh": "维护脚本判断逻辑的工坊主管",
+    "keyActionZh": "把硬性触发的警报机换成会看现场再做决定的工坊主管，让他重新称量成品与半成品的重量。",
+    "resultZh": "后台把误判为失败的成品重新盖上完整合格的封章，但输入法那条更新流程仍停在待真实验证的状态。",
+    "tensionZh": "工坊主管拿不准：是让旧规章继续把半成品和成品一起染红，还是放手让会看现场的人去重新称量。",
+    "industrialMetaphorZh": "19 世纪机械工坊：警报机自动按规章敲响，主管用天平重新称量封存箱里已完成与未完成的工件。",
+    "supportingSymbolsZh": [
+      "主持现场判断的工坊主管",
+      "后台已被重新盖上完整合格封章的成品封箱",
+      "敞着盖、等待下一次真实称量的输入法更新木箱"
+    ],
+    "sceneDescriptionZh": "昏暗的 19 世纪机械工坊内，只有一束顶光从高窗斜斜打下来，照亮中央的工作台。背景是砖墙与金属架，天平、量尺挂在架上，没有多余杂物。工坊主管站在台前，一只手扶着天平横梁，另一只手正准备揭开一只木箱的盖子，旁侧还有一只已重新盖好完整封章的成品封箱静静停放。",
+    "focalElementsEn": [
+      "foreman in a 19th-century workshop who reads the room before judging",
+      "intact sealed crate of a finished good, its stamp unbroken",
+      "open-lidded wooden crate awaiting its next real weighing"
+    ],
+    "imagePromptEn": "A single shaft of light from a high window falls onto a wooden workbench in a dim 19th-century workshop; brick walls and metal racks recede into shadow behind. At the bench stands a foreman in apron and rolled sleeves, one hand steadying a balance beam, the other lifting the lid off a wooden crate, while an intact sealed crate sits closed beside him."
+  }
+}
