@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-02-progress.mdx",
+  "postSha256": "1e0121b7facf20c64f6b7e31f5655bc66d3c364c690fde7591405652184cbe63",
+  "bodySha256": "4663efe48f704fa9d081698d50fc2bdd52f38921144324360aa7846167a15249",
+  "bodyCharacters": 2836,
+  "generatedAt": "2026-10-03T09:03:26.561Z",
+  "visualBrief": {
+    "coreEventZh": "在项目从原型期跨向可发布期的接合面上，多条线索同时纠缠：分支需要整理、封面生成链路卡住、审稿尺度被放宽",
+    "primarySubjectZh": "一位在档案室与机房之间来回的工程师",
+    "keyActionZh": "对照合同清单逐项检查每一处接缝，等待尚未返回的回执",
+    "resultZh": "昨日封存的图稿已归位并加盖完整的火漆封，当日的发布回执仍压在案头未结",
+    "tensionZh": "身份与合同已改写、配置与展示尚未同步，制度放宽与可见性必须同时成立",
+    "industrialMetaphorZh": "十九世纪制图工坊里，合同与样本在长桌上逐份比对，印刷机与签封印章在旁待命",
+    "supportingSymbolsZh": [
+      "站在长桌前端核对清单的制图工",
+      "已加盖完整火漆封的昨夜封面图稿",
+      "压在桌面角落、今日尚未封口的发布回执"
+    ],
+    "sceneDescriptionZh": "昏暗的十九世纪制图工坊里，一位工程师站在铺满羊皮纸与样本的长桌前端，桌上一枚昨夜封面图稿已被完整火漆封住，角落另有一份今日发布回执摊开未签，背景只保留窗光与木质墙面",
+    "focalElementsEn": [
+      "cartographer at the long table checking the ledger",
+      "intact wax-sealed broadsheet from the previous day",
+      "unsigned dispatch slip still lying open on the desk"
+    ],
+    "imagePromptEn": "A dim 19th-century cartographer's workshop. At the front of a long oak table stands a single cartographer comparing entries on an open ledger. On the table rests an intact wax-sealed broadsheet from the previous day, its seal unbroken. Near the corner of the same table lies an unsigned dispatch slip, still open and unstamped. Soft window light falls across the room, with wooden walls as plain background."
+  }
+}
