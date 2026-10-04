@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-04-progress.mdx",
+  "postSha256": "55ac0a17216568fdd134114bfb68d65292fff60de4c57827ddab68f6347133f2",
+  "bodySha256": "4a4daaf6a8949b3917cb1d3078f8d229f4011610f34f4d73174d69192cd12037",
+  "bodyCharacters": 1621,
+  "generatedAt": "2026-10-04T15:34:32.269Z",
+  "visualBrief": {
+    "coreEventZh": "把长文本工作台从零散拼凑收回到按需整理的一次整体收口。",
+    "primarySubjectZh": "主持收口的设计者",
+    "keyActionZh": "把多余的分类与多余副本一一清掉,只留下按需整理的核心工位。",
+    "resultZh": "方案抽象为「表达任务 + 输出偏好」并已在隔离候选中验证通过,视觉规范铺到多个桌面页面。",
+    "tensionZh": "最后一公里尚未走完,真实场景下的完整流程仍待连续验证。",
+    "industrialMetaphorZh": "19 世纪印刷工坊里,排字工把散落的字盘归拢,只留下最常用的一套活字与一台样张打样机。",
+    "supportingSymbolsZh": [
+      "正在归拢活字盘的主排字工",
+      "封好样张的完整印样,版面未破损",
+      "仍敞着等待最后一道工序的印样夹"
+    ],
+    "sceneDescriptionZh": "一间偏暗的印刷工坊内,一束顶光从高处斜照在中央的工作台;背景只见木架、纸卷与几束斜阳,不再出现多余物件。",
+    "focalElementsEn": [
+      "a typesetter gathering scattered type cases into one neat tray",
+      "a sealed proof sheet kept intact on the workbench",
+      "an open proof folder still awaiting its final run"
+    ],
+    "imagePromptEn": "A 19th-century print workshop under one overhead skylight. A typesetter at a wooden bench gathers scattered type cases into a single aligned tray, one hand steadying the frame. To his right, a sealed proof sheet lies flat, unbroken and complete. Beyond his left, an open proof folder waits with blank inner sheets. Warm wood, quiet air, only these three elements in frame."
+  }
+}
