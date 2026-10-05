@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-05-progress.mdx",
+  "postSha256": "34bfe8c1d687ce82c9bc8a6012e615336b10e40fbcfaa33ede3b528ca04bb335",
+  "bodySha256": "56a5f92d42ac7e6c0d5c7660e8f6b032a5c50453da206f929dd5fafe8764ba3f",
+  "bodyCharacters": 3893,
+  "generatedAt": "2026-10-05T15:42:51.834Z",
+  "visualBrief": {
+    "coreEventZh": "一条缺字母的拼音把整套输入法推到墙脚，整日围绕它跑完最小闭环、真实宿主验证与候选资格边界的三段推演。",
+    "primarySubjectZh": "面对错拼迟迟不肯认输的输入法调试者",
+    "keyActionZh": "在车间里把一台排字机反复拆装，试图让一条缺字的主件重新完整落位",
+    "resultZh": "一台原本拒绝拼合的排字机终于能让缺字主件一次落版，但更长的错件仍未被接纳，调试台仍留半成品",
+    "tensionZh": "墙角的工具刚刚接通真实蒸汽管线，缺件能跑通，长件却被卡住，仓库里那本刚被擦掉名字的旧账册再也找不回来",
+    "industrialMetaphorZh": "把拼音候选比作 19 世纪印刷厂的排字车间：词库是字模柜，候选栏是拣字盘，提交上屏是上版压印，宿主验证是真机试印，排序保护是拣字次序，备份基线是仓库账册",
+    "supportingSymbolsZh": [
+      "一台刚接通蒸汽管线的拣字排字机（主角调试对象）",
+      "一只已被擦去封签但仍完好的旧版账册（已删除的对照基线，封闭完好不可见原名）",
+      "一只半开半闭的拣字盘，仍卡着一枚未能落位的长字粒（尚未打通的更长错拼与持久化缺口）"
+    ],
+    "sceneDescriptionZh": "黄昏时分的排字车间，煤气灯把铁架与字模柜照得发黄；正中央一台拣字排字机刚被接上一根粗蒸汽管，机械师双手扶着拣字手柄，正把一枚缺了一角的小字粒往拣字盘里送；机器脚边是一只木箱，盖子合得严丝合缝，封签虽被擦去却依旧完整无损；背景只剩空墙与高窗投下的斜光，不再出现第四件物件。",
+    "focalElementsEn": [
+      "a typesetter’s composing machine freshly connected to a thick steam pipe",
+      "a sealed wooden ledger case with its label rubbed off but the seal intact",
+      "a half-open type case still holding an unplaced long type slug"
+    ],
+    "imagePromptEn": "In a 19th-century print shop at golden hour, a mechanic steadies the lever of a typesetter’s composing machine freshly coupled to a thick overhead steam pipe; beside the machine rests a sealed wooden ledger case whose label has been rubbed away yet whose unbroken seal keeps it closed; a half-open type case in the foreground still grips a long type slug that refuses to drop into place, casting a single sharp shadow across the iron floor."
+  }
+}
