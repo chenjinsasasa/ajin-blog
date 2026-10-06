@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-06-progress.mdx",
+  "postSha256": "daba12d415a481878fb6bae822ab86ded0e85dde219fa2f7cc0242c49bbf5feb",
+  "bodySha256": "a36431b02595e537efd99cad3355f439db8991b3063d17ce2a0b2931b3f1c9e7",
+  "bodyCharacters": 2869,
+  "generatedAt": "2026-10-06T15:43:06.643Z",
+  "visualBrief": {
+    "coreEventZh": "Ajin 输入法的几轮红合同被集中治绿，但对外交付动作被刻意压住，留下红转绿、但未真正落盘的收口节奏。",
+    "primarySubjectZh": "在工坊里逐份翻看、核对、并加盖完工印记的契约工匠",
+    "keyActionZh": "用墨笔把红色契约划为绿色、把待交付的匣子封好却不发运",
+    "resultZh": "桌上几份红契约已翻绿，匣子完整合盖尚未启运",
+    "tensionZh": "线上引擎仍在运转，可日志纸卷已两个月未续",
+    "industrialMetaphorZh": "契约工匠对照红绿印章逐份核对，把契约治绿却不让匣子出厂",
+    "supportingSymbolsZh": [
+      "手持红绿印章核对契约的工匠",
+      "完整合盖、尚未启运的密封匣子",
+      "搁置已久、尘埃未动的旧日志卷轴"
+    ],
+    "sceneDescriptionZh": "19 世纪工坊的一角，晨光从高窗斜照进来，工匠站在橡木长案前，案上摊着几份契约，旁边放着封好的木匣，背景里只剩一卷积灰的旧日志静静立在架上。",
+    "focalElementsEn": [
+      "a craftsman in an apron stamping contracts at a long oak workbench",
+      "a sealed wooden chest with its lid latched and untouched",
+      "a dusty log scroll left idle on a background shelf"
+    ],
+    "imagePromptEn": "A 19th-century workshop, morning light slanting from a tall window. At center, a craftsman in a leather apron stands at a long oak workbench, pressing a green stamp onto red-bordered contracts spread before him. To his right, a wooden chest sits sealed, its lid latched and clasp fastened, never opened. In the dim background, a single dusty log scroll rests motionless on a high shelf."
+  }
+}
