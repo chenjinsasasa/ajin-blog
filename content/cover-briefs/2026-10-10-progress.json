@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-10-progress.mdx",
+  "postSha256": "f7f57f50fd90964ddf214a6963e343b4f8a25c7aef9bcd96357c5f7c33c847be",
+  "bodySha256": "d30c16dbeb619d962f4f6592a0f6e8472f34cab0f127dd90bb9271651be8fc1f",
+  "bodyCharacters": 2021,
+  "generatedAt": "2026-10-10T15:45:55.817Z",
+  "visualBrief": {
+    "coreEventZh": "把一次性的磁盘清理流程封装成可反复调用的工具",
+    "primarySubjectZh": "整理并封存清理流程的工程师",
+    "keyActionZh": "将清理步骤逐条装订、压印成可重复执行的工序本",
+    "resultZh": "一份完整封存的清理工序本已就位，可随时调取",
+    "tensionZh": "约 80 GB 系统数据中仍有未实测的本地快照等待验证能否清掉",
+    "industrialMetaphorZh": "把零散的清理动作编入一本带铜扣的工序手册，再以人手反复翻开校验",
+    "supportingSymbolsZh": [
+      "整理并封存清理流程的工程师",
+      "合拢扣紧的工序手册（代表已稳定的可复用工具）",
+      "贴有封条、尚未开封的本地快照容器（代表尚待实测的 80 GB 系统数据）"
+    ],
+    "sceneDescriptionZh": "19 世纪工坊式账房内，一位工程师站在厚木桌前，将刚刚编订完成的清理工序手册合拢扣紧，铜扣落在封皮正中；桌面另一侧是一只贴有未拆封条的方形容器，体积明显大于手册，象征那部分尚未实测的系统占用；室内仅靠一盏高脚油灯照亮桌面，四周背景收进昏暗的木墙与浅烟雾，无多余物件。",
+    "focalElementsEn": [
+      "an engineer sealing a bound procedure manual at a workbench",
+      "a closed, intact manual fastened with a brass clasp",
+      "an unopened sealed crate marked as local snapshots"
+    ],
+    "imagePromptEn": "In a dim 19th-century workshop office, an engineer stands at a heavy wooden desk, pressing the brass clasp shut on a freshly bound procedure manual; the closed manual sits centered on the desk under a single tall oil lamp, while to one side rests an unopened sealed crate, larger than the manual, with its wax seal unbroken, representing the local snapshots still awaiting measurement."
+  }
+}
