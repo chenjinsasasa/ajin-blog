@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 2,
+  "briefVersion": "full-article-v2",
+  "promptVersion": "steam-industrial-v2",
+  "generatedBy": "openclaw",
+  "provenanceVersion": "openclaw-text-v1",
+  "executionMode": "configured-model",
+  "provider": "minimax",
+  "model": "MiniMax-M3",
+  "api": "anthropic-messages",
+  "postPath": "content/progress/2026-10-11-progress.mdx",
+  "postSha256": "69d8d0d9232da34f471985d0ae378087d0a4993c434f4e953f82d6ca6445a269",
+  "bodySha256": "831c52d0d303ab36bbddec6f6a7f5d622dfb20bc9ec88f73cb964ee9c2ffa2aa",
+  "bodyCharacters": 2396,
+  "generatedAt": "2026-10-11T17:10:16.172Z",
+  "visualBrief": {
+    "coreEventZh": "把输入法候选词排序的根因从英文路径纠正回中文拼音解码、词库权重与自动组句这一整条链，并以 Build120 把工作台正式切换到位。",
+    "primarySubjectZh": "校正拼音解析、把输入法拽回\"信得过\"那一天的总装配师",
+    "keyActionZh": "认清英文从未真正进入正赛，先压平简拼可信度与词频搭配评分，再撑起自动组句质量，让 Build120 真正落盘。",
+    "resultZh": "拼音链路与 Build120 同步就位，英文候选重新赢回正赛席位，\"还能用\"的输入法被拽回到\"信得过\"的台阶上。",
+    "tensionZh": "看上去要拽回的是英文排序，实际要安抚的是一整条被自己误诊的中文拼音解析链条，且 Build120 一度只在测试包上跑通、主包尚未换装。",
+    "industrialMetaphorZh": "19 世纪印刷排字房的捡字工——一开始以为只是英文铅字被错放，排查后才发现是整条中文拣字、配重、自动组版都有偏，必须把整套字模重新校准并升版。",
+    "supportingSymbolsZh": [
+      "站上拣字台、正把英文铅字逐枚推回正赛的排字师",
+      "已经平整码放、字面完整的 Build120 主字模版（完好未损的活字盘）",
+      "仍斜插在半空中、尚未归位的旧 Build119 字模架与几条散落的中文拣字槽"
+    ],
+    "sceneDescriptionZh": "灯光昏黄的 19 世纪印刷排字房内，一名排字师站在高大的拣字台前，一手持镊，将几枚英文活字逐枚推回正赛字盘的对应槽位；台面正中是一块字面完整、墨线清晰的 Build120 主字模版，对面的架子上仍斜插着旧 Build119 的字模与几条散落的中文拣字槽，等待被重新校准。",
+    "focalElementsEn": [
+      "a typesetter pushing English type back into the main case",
+      "an intact, unbroken Build120 master type forme on the composing table",
+      "a slanted, unsettled Build119 rack with scattered Chinese type trays"
+    ],
+    "imagePromptEn": "In a dim 19th-century type foundry, a typesetter stands at a tall composing frame, using tweezers to push English type pieces back into the main case slots. Centered on the table sits an intact, unbroken Build120 master type forme, its surface clean and ink-true. In the background, an unsettled Build120 rack leans askew, with scattered Chinese type trays still waiting to be realigned; no labels, text, or numbers appear."
+  }
+}
