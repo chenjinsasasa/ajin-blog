@@ -4,6 +4,7 @@ import { Suspense } from 'react'
 import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import './globals.css'
+import './redesign.css'
 import { Providers } from '@/components/Providers'
 import { Header } from '@/components/Header'
 
@@ -39,42 +40,18 @@ export default function RootLayout({
           </Suspense>
           <main className="section-shell main-frame">{children}</main>
           <footer className="site-footer">
-            <section className="site-footer__primary">
-              <div className="section-shell site-footer__primary-inner">
-                <div className="site-footer__brand">
-                  <p className="site-footer__title">ajin.blog</p>
-                  <p className="site-footer__copy">
-                    记录产品推进、AI 协作与日常判断，把真正发生过的过程长期留住。
-                  </p>
-
-                  <div className="site-footer__links">
-                    <Link href="/">Home</Link>
-                    <Link href="/#blog">Archive</Link>
-                    <a href="https://chenjin.ai" target="_blank" rel="noreferrer">
-                      Official
-                    </a>
-                  </div>
-                </div>
-
-                <div className="site-footer__cta">
-                  <p className="site-footer__cta-title">
-                    Read the archive and follow the work as it happens.
-                  </p>
-                  <p className="site-footer__cta-copy">
-                    首页是一份简介，文章区才是真正持续更新的正文。
-                  </p>
-                  <Link href="/#blog" className="site-footer__cta-link">
-                    Read The Archive
-                  </Link>
-                </div>
+            <div className="section-shell site-footer__inner">
+              <div>
+                <Link href="/" className="site-footer__title">ajin.blog</Link>
+                <p className="site-footer__copy">记录产品推进、AI 协作与日常判断。</p>
               </div>
-            </section>
-
-            <section className="site-footer__secondary">
-              <div className="section-shell site-footer__secondary-inner">
-                <p>© {currentYear} ajin.blog. All Rights Reserved.</p>
-              </div>
-            </section>
+              <nav className="site-footer__links" aria-label="页脚导航">
+                <Link href="/#blog">Archive</Link>
+                <Link href="/team">AI Team</Link>
+                <a href="https://chenjin.ai" target="_blank" rel="noreferrer">chenjin.ai ↗</a>
+              </nav>
+              <p className="site-footer__copyright">© {currentYear} ajin.blog</p>
+            </div>
           </footer>
           <Analytics />
           <SpeedInsights />

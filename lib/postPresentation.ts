@@ -1,5 +1,10 @@
 import type { PostMeta } from '@/lib/posts'
 
+/** Public previews must use the same visibility boundary as the article guard. */
+export function isPublicPost(post: Pick<PostMeta, 'category' | 'visibility'>) {
+  return post.category === 'progress' || post.visibility === 'public'
+}
+
 const DATE_FORMATS = {
   'zh-CN': {
     year: 'numeric',

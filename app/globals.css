@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,26 +6,25 @@
   color-scheme: dark;
   --bg: #000000;
   --fg: #efefef;
-  --muted-fg: #e8e8e8;
-  --soft-fg: rgba(232, 232, 232, 0.66);
-  --text-muted: rgba(232, 232, 232, 0.58);
+  --muted-fg: #d2d2d2;
+  --soft-fg: #a3a3a3;
+  --text-muted: #8c8c8c;
   --secondary: #e8e8e8;
   --border: rgba(255, 255, 255, 0.14);
   --accent: #e0c787;
-  --accent-strong: #ffffff;
+  --accent-strong: #ead7a5;
   --accent-soft: rgba(224, 199, 135, 0.14);
   --accent-softer: rgba(224, 199, 135, 0.08);
   --muted: rgba(255, 255, 255, 0.05);
   --panel: #000000;
   --panel-soft: rgba(255, 255, 255, 0.04);
   --font-body:
-    'Poppins', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC',
+    -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans CJK SC',
     'Microsoft YaHei', sans-serif;
   --font-display:
-    'Poppins', 'PingFang SC', 'Hiragino Sans GB', 'Noto Sans CJK SC',
-    'Microsoft YaHei', sans-serif;
+    'Songti SC', 'STSong', 'Noto Serif CJK SC', 'Source Han Serif SC', Georgia, serif;
   --font-mono:
-    'Montserrat', 'IBM Plex Mono', 'JetBrains Mono', 'SFMono-Regular', monospace;
+    'SFMono-Regular', Consolas, monospace;
   --sab: env(safe-area-inset-bottom, 0px);
 }
 

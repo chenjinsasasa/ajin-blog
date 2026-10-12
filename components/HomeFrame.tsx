@@ -17,7 +17,8 @@ export default function HomeFrame({ children }: HomeFrameProps) {
       if (!element) return
 
       requestAnimationFrame(() => {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+        const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        element.scrollIntoView({ behavior: reducedMotion ? 'auto' : 'smooth', block: 'start' })
       })
     }
 

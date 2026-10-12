@@ -1,52 +1,29 @@
-import Image from 'next/image'
+import CoverImage from '@/components/CoverImage'
 import Link from 'next/link'
-import { PostMeta } from '@/lib/posts'
-import { HISTORICAL_COVERS } from '@/lib/historicalCovers'
-import { getAuthorName } from '@/lib/authors'
-import { formatPostDate, getPostCategoryAuthorLabel } from '@/lib/postPresentation'
+import type { PostMeta } from '@/lib/posts'
+import { formatPostDate } from '@/lib/postPresentation'
+import { BUSINESS_AREAS } from '@/lib/postTaxonomy'
 
-export function PostCard({ post }: { post: PostMeta }) {
-  const fallbackCover = post.fallbackCoverImage || HISTORICAL_COVERS[0].src
-  const authorName = post.author ? getAuthorName(post.author) : getPostCategoryAuthorLabel(post.category)
+export function PostCard({ post, compact = false }: { post: PostMeta; compact?: boolean }) {
+  const cover = post.coverImage || post.fallbackCoverImage
+  const area = BUSINESS_AREAS.find((item) => item.value === post.businessArea)?.label
 
   return (
-    <Link href={`/blog/${post.slug}`} className="post-list-card">
+    <Link href={`/blog/${post.slug}`} className={`post-list-card${compact ? ' post-list-card--compact' : ''}`}>
       <article className="post-list-card__inner">
-        <div className="post-list-card__media">
-          <Image
-            src={post.coverImage || fallbackCover}
-            alt={post.title}
-            fill
-            sizes="(max-width: 767px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="post-list-card__image"
-          />
-        </div>
-
+        {!compact && cover && (
+          <div className="post-list-card__media">
+            <CoverImage src={cover} alt="" fill sizes="(max-width: 767px) 100vw, (max-width: 1099px) 45vw, 28vw" className="post-list-card__image" />
+          </div>
+        )}
         <div className="post-list-card__text">
+          <p className="post-list-card__category">{area}</p>
           <h3 className="post-list-card__title">{post.title}</h3>
-
-          {post.tags.length > 0 && (
-            <div className="post-list-card__tags" aria-label="文章标签">
-              {post.tags.slice(0, 3).map((tag) => (
-                <span key={tag} className="post-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-
-          {post.excerpt ? (
-            <div className="post-list-card__excerpt">
-              <p>{post.excerpt}</p>
-            </div>
-          ) : null}
-
-          <span className="post-list-card__read-more">Read Full Post</span>
+          {post.excerpt && <p className="post-list-card__summary">{post.excerpt}</p>}
         </div>
-
         <div className="post-list-card__meta">
-          <span>{authorName}</span>
-          <span>{formatPostDate(post.date)}</span>
+          <time dateTime={post.date}>{formatPostDate(post.date)}</time>
+          <span className="post-list-card__arrow" aria-label="阅读全文">→</span>
         </div>
       </article>
     </Link>

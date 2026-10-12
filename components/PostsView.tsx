@@ -22,6 +22,7 @@ interface FilterOption {
 
 interface PostsViewProps {
   posts: PostMeta[]
+  pinnedPost?: PostMeta | null
   totalCount?: number
   filters?: PostFilters
   authorOptions?: FilterOption[]
@@ -36,6 +37,7 @@ function formatMonth(month: string) {
 
 export default function PostsView({
   posts: initialPosts,
+  pinnedPost = null,
   totalCount: totalCountProp,
   filters = {},
   authorOptions = [],
@@ -117,93 +119,98 @@ export default function PostsView({
 
   return (
     <>
-      <div className="archive-filters">
-        <nav className="post-filter" aria-label="业务范围">
-          <Link
-            href={getAreaHref()}
-            className={`post-filter__item ${!filters.area ? 'post-filter__item--active' : ''}`}
-            aria-current={!filters.area ? 'page' : undefined}
-          >
-            全部
-          </Link>
-          {BUSINESS_AREAS.map((area) => (
-            <Link
-              key={area.value}
-              href={getAreaHref(area.value)}
-              className={`post-filter__item ${filters.area === area.value ? 'post-filter__item--active' : ''}`}
-              aria-current={filters.area === area.value ? 'page' : undefined}
-            >
-              {area.label}
-            </Link>
-          ))}
-        </nav>
+      <div className="archive-toolbar">
+        <details className="archive-controls" open={hasAnyFilter}>
+          <summary>筛选{hasAnyFilter ? ' · 已启用' : ''}</summary>
+          <div className="archive-filters">
+            <nav className="post-filter" aria-label="业务范围">
+              <Link
+                href={getAreaHref()}
+                className={`post-filter__item ${!filters.area ? 'post-filter__item--active' : ''}`}
+                aria-current={!filters.area ? 'page' : undefined}
+              >
+                全部
+              </Link>
+              {BUSINESS_AREAS.map((area) => (
+                <Link
+                  key={area.value}
+                  href={getAreaHref(area.value)}
+                  className={`post-filter__item ${filters.area === area.value ? 'post-filter__item--active' : ''}`}
+                  aria-current={filters.area === area.value ? 'page' : undefined}
+                >
+                  {area.label}
+                </Link>
+              ))}
+            </nav>
 
-        <details className="archive-filter-panel" open={secondaryFilterCount > 0}>
-          <summary className="archive-filter-panel__summary">
-            <span>筛选</span>
-            {secondaryFilterCount > 0 && (
-              <span className="archive-filter-panel__count">{secondaryFilterCount}</span>
-            )}
-          </summary>
+            <details className="archive-filter-panel" open={secondaryFilterCount > 0}>
+              <summary className="archive-filter-panel__summary">
+                <span>筛选</span>
+                {secondaryFilterCount > 0 && (
+                  <span className="archive-filter-panel__count">{secondaryFilterCount}</span>
+                )}
+              </summary>
 
-          <form action="/#blog" method="get" className="archive-filter-form" onSubmit={applyFilters}>
-            {filters.area && <input type="hidden" name="area" value={filters.area} />}
+              <form action="/#blog" method="get" className="archive-filter-form" onSubmit={applyFilters}>
+                {filters.area && <input type="hidden" name="area" value={filters.area} />}
 
-            <label className="archive-filter-field">
-              <span>阶段</span>
-              <select name="stage" defaultValue={filters.stage ?? ''}>
-                <option value="">全部阶段</option>
-                {WORK_STAGES.map((stage) => (
-                  <option key={stage.value} value={stage.value}>{stage.label}</option>
-                ))}
-              </select>
-            </label>
-
-            <label className="archive-filter-field">
-              <span>项目</span>
-              <select name="project" defaultValue={filters.project ?? ''}>
-                <option value="">全部项目</option>
-                {(['current', 'watchlist', 'historical'] as const).map((status) => (
-                  <optgroup
-                    key={status}
-                    label={{ current: '当前', watchlist: '观察', historical: '历史' }[status]}
-                  >
-                    {PROJECTS.filter((project) => project.status === status).map((project) => (
-                      <option key={project.value} value={project.value}>{project.label}</option>
+                <label className="archive-filter-field">
+                  <span>阶段</span>
+                  <select name="stage" defaultValue={filters.stage ?? ''}>
+                    <option value="">全部阶段</option>
+                    {WORK_STAGES.map((stage) => (
+                      <option key={stage.value} value={stage.value}>{stage.label}</option>
                     ))}
-                  </optgroup>
-                ))}
-              </select>
-            </label>
+                  </select>
+                </label>
 
-            <label className="archive-filter-field">
-              <span>作者</span>
-              <select name="author" defaultValue={filters.author ?? ''}>
-                <option value="">全部作者</option>
-                {authorOptions.map((author) => (
-                  <option key={author.value} value={author.value}>{author.label}</option>
-                ))}
-              </select>
-            </label>
+                <label className="archive-filter-field">
+                  <span>项目</span>
+                  <select name="project" defaultValue={filters.project ?? ''}>
+                    <option value="">全部项目</option>
+                    {(['current', 'watchlist', 'historical'] as const).map((status) => (
+                      <optgroup
+                        key={status}
+                        label={{ current: '当前', watchlist: '观察', historical: '历史' }[status]}
+                      >
+                        {PROJECTS.filter((project) => project.status === status).map((project) => (
+                          <option key={project.value} value={project.value}>{project.label}</option>
+                        ))}
+                      </optgroup>
+                    ))}
+                  </select>
+                </label>
 
-            <label className="archive-filter-field">
-              <span>时间</span>
-              <select name="month" defaultValue={filters.month ?? ''}>
-                <option value="">全部时间</option>
-                {monthOptions.map((month) => (
-                  <option key={month} value={month}>{formatMonth(month)}</option>
-                ))}
-              </select>
-            </label>
+                <label className="archive-filter-field">
+                  <span>作者</span>
+                  <select name="author" defaultValue={filters.author ?? ''}>
+                    <option value="">全部作者</option>
+                    {authorOptions.map((author) => (
+                      <option key={author.value} value={author.value}>{author.label}</option>
+                    ))}
+                  </select>
+                </label>
 
-            <div className="archive-filter-form__actions">
-              {hasAnyFilter && <Link href="/#blog" className="archive-filter-clear">清除</Link>}
-              <button type="submit" className="archive-filter-submit">应用</button>
-            </div>
-          </form>
+                <label className="archive-filter-field">
+                  <span>时间</span>
+                  <select name="month" defaultValue={filters.month ?? ''}>
+                    <option value="">全部时间</option>
+                    {monthOptions.map((month) => (
+                      <option key={month} value={month}>{formatMonth(month)}</option>
+                    ))}
+                  </select>
+                </label>
+
+                <div className="archive-filter-form__actions">
+                  {hasAnyFilter && <Link href="/#blog" className="archive-filter-clear">清除</Link>}
+                  <button type="submit" className="archive-filter-submit">应用</button>
+                </div>
+              </form>
+            </details>
+
+          </div>
         </details>
-
-        <p className="archive-filter-result">{totalCount} 篇文章</p>
+        <p className="archive-filter-result" aria-live="polite">{totalCount} 篇公开文章</p>
       </div>
 
       {totalCount === 0 ? (
@@ -214,11 +221,19 @@ export default function PostsView({
       ) : (
         <>
           <div className="post-grid">
-            {posts.map((post) => <PostCard key={post.slug} post={post} />)}
+            {posts.map((post, index) => <PostCard key={post.slug} post={post} compact={index >= 2} />)}
           </div>
 
+          {pinnedPost && (
+            <Link href={`/blog/${pinnedPost.slug}`} className="archive-pinned-entry">
+              <span>从这里开始 · 置顶档案</span>
+              <strong>{pinnedPost.title}</strong>
+              <span aria-hidden="true">→</span>
+            </Link>
+          )}
+
           {(hasMore || loadError) && (
-            <div className="post-grid__footer">
+            <div className="post-grid__footer" aria-live="polite">
               <button
                 onClick={() => void loadMore()}
                 disabled={loading}

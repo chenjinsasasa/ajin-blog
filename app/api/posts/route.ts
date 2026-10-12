@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getPostsWithPinned, type Category } from '@/lib/posts'
+import { isPublicPost } from '@/lib/postPresentation'
 import {
   isBusinessArea,
   isPostMonth,
@@ -34,7 +35,9 @@ export function GET(req: NextRequest) {
     author,
     month: isPostMonth(month) ? month : undefined,
   }
-  const { pinnedPost, posts } = getPostsWithPinned(filters)
+  const resolved = getPostsWithPinned(filters)
+  const pinnedPost = resolved.pinnedPost && isPublicPost(resolved.pinnedPost) ? resolved.pinnedPost : null
+  const posts = resolved.posts.filter(isPublicPost)
 
   const start =
     offsetParam !== null

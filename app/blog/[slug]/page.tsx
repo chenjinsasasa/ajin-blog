@@ -1,183 +1,125 @@
-import { getPostBySlug, getAllSlugs, getAdjacentPosts } from '@/lib/posts'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { getPostBySlug, getAllSlugs, getAdjacentPosts, getAllPosts } from '@/lib/posts'
+import { compileMDX } from 'next-mdx-remote/rsc'
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
+import CoverImage from '@/components/CoverImage'
 import Link from 'next/link'
 import readingTime from 'reading-time'
 import LikeButton from '@/components/LikeButton'
 import DiaryGuard from '@/components/DiaryGuard'
 import ReadingProgress from '@/components/ReadingProgress'
+import ArticleTOC from '@/components/ArticleTOC'
+import ArticleActions from '@/components/ArticleActions'
 import { Pre, Table } from '@/components/MDXComponents'
 import { ArticleImage, ArticleVideo } from '@/components/ArticleMedia'
 import { getAuthorName } from '@/lib/authors'
-import { formatPostDate, getPostCategoryEyebrow } from '@/lib/postPresentation'
-
+import { formatPostDate, getPostCategoryEyebrow, isPublicPost } from '@/lib/postPresentation'
+import { BUSINESS_AREAS } from '@/lib/postTaxonomy'
+import { rehypeArticleHeadings, type ArticleHeading } from '@/lib/articleHeadings'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
+import './article.css'
 
-interface Props {
-  params: { slug: string }
-}
+interface Props { params: { slug: string } }
 
 export async function generateStaticParams() {
-  const slugs = getAllSlugs()
-  return slugs.map((slug) => ({ slug }))
+  return getAllSlugs().map((slug) => ({ slug }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const post = getPostBySlug(params.slug)
   if (!post) return { title: '文章未找到' }
-
-  return {
-    title: post.title,
-    description: post.excerpt,
-  }
+  return { title: post.title, description: post.excerpt }
 }
 
-function formatReadingTime(content: string) {
-  const minutes = Math.max(1, Math.round(readingTime(content).minutes))
-  return `${minutes} min read`
-}
-
-function ArticleNavCard({
-  post,
-  label,
-}: {
-  post: { slug: string; title: string } | null
-  label: string
-}) {
-  if (!post) {
-    return (
-      <div className="detail-nav-card detail-nav-card--empty">
-        <p className="detail-nav-card__label">{label}</p>
-        <p className="detail-nav-card__empty">暂时没有更多文章了。</p>
-      </div>
-    )
-  }
-
-  return (
+function ArticleNavCard({ post, label }: { post: { slug: string; title: string } | null; label: string }) {
+  return post ? (
     <Link href={`/blog/${post.slug}`} className="detail-nav-card">
-      <p className="detail-nav-card__label">{label}</p>
+      <p className="detail-nav-card__label">{label} <span aria-hidden="true">→</span></p>
       <p className="detail-nav-card__title">{post.title}</p>
     </Link>
+  ) : (
+    <div className="detail-nav-card detail-nav-card--empty">
+      <p className="detail-nav-card__label">{label}</p>
+      <p className="detail-nav-card__empty">暂时没有更多文章了。</p>
+    </div>
   )
 }
 
-export default function BlogPost({ params }: Props) {
+export default async function BlogPost({ params }: Props) {
   const post = getPostBySlug(params.slug)
   if (!post) notFound()
-
-  const { prev, next } = getAdjacentPosts(params.slug)
+  const publicPost = isPublicPost(post)
+  const publicPosts = publicPost ? getAllPosts().filter(isPublicPost) : []
+  const index = publicPosts.findIndex((item) => item.slug === params.slug)
+  const { prev, next } = publicPost
+    ? { prev: publicPosts[index + 1] ?? null, next: publicPosts[index - 1] ?? null }
+    : getAdjacentPosts(params.slug)
   const authorName = post.author ? getAuthorName(post.author) : null
+  const businessArea = BUSINESS_AREAS.find((area) => area.value === post.businessArea)?.label
+  const minutes = Math.max(1, Math.round(readingTime(post.content).minutes))
+  const headings: ArticleHeading[] = []
+  const { content } = await compileMDX({
+    source: post.content,
+    components: { ArticleImage, ArticleVideo, pre: Pre, table: Table },
+    options: {
+      mdxOptions: {
+        remarkPlugins: [remarkGfm],
+        rehypePlugins: [
+          rehypeSlug,
+          [rehypeArticleHeadings as any, { title: post.title, headings }],
+          [rehypePrettyCode as any, {
+            theme: 'github-dark', keepBackground: true,
+            onVisitLine(node: any) {
+              if (node.children.length === 0) node.children = [{ type: 'text', value: ' ' }]
+            },
+            onVisitHighlightedLine(node: any) { node.properties.className.push('line--highlighted') },
+            onVisitHighlightedWord(node: any) { node.properties.className = ['word--highlighted'] },
+          }],
+        ],
+      },
+    },
+  })
 
   const articleContent = (
-    <article className="detail-page">
+    <article className="article-page">
       <ReadingProgress />
+      <header className={`article-hero${post.coverImage ? '' : ' article-hero--plain'}`}>
+        {post.coverImage && <div className="article-hero__art" aria-hidden="true"><CoverImage src={post.coverImage} showUnavailable={false} alt="" fill priority sizes="(max-width: 767px) 100vw, 65vw" /></div>}
+        <div className="article-hero__copy">
+          <nav className="article-breadcrumb" aria-label="当前位置"><Link href="/#blog">Archive</Link><span aria-hidden="true">/</span><span>{businessArea}</span><span aria-hidden="true">/</span><span>{getPostCategoryEyebrow(post.category, post.visibility)}</span></nav>
+          <h1>{post.title}</h1>
+          {post.excerpt && <p className="article-hero__excerpt">{post.excerpt}</p>}
+          <div className="article-hero__meta"><time dateTime={post.date}>{formatPostDate(post.date)}</time>{authorName && <span>{authorName}</span>}<span>约 {minutes} 分钟阅读</span><span>{businessArea}</span></div>
+          <div className="article-hero__actions"><Link href="/#blog" className="button-primary">← 返回档案</Link><ArticleActions key={post.slug} title={post.title} /></div>
+        </div>
+      </header>
 
-      <section className="detail-announce">
-        <p className="detail-announce__eyebrow">Not A Reader Yet?</p>
-        <p className="detail-announce__copy">
-          首页是一份导览，真正持续更新的部分在文章 Archive 里。
-        </p>
-        <Link href="/#blog" className="detail-announce__link">
-          Read The Archive
-        </Link>
-      </section>
-
-      <div className="detail-page__container">
-        <header className="detail-header">
-          <p className="detail-header__eyebrow">
-            {getPostCategoryEyebrow(post.category, post.visibility)}
-          </p>
-
-          <div className="detail-header__meta">
-            <time dateTime={post.date} className="detail-header__meta-item">
-              {formatPostDate(post.date, 'en-US')}
-            </time>
-            {authorName && (
-              <span className="detail-header__meta-item">
-                {authorName}
-              </span>
-            )}
-            <span className="detail-header__meta-item">
-              {formatReadingTime(post.content)}
-            </span>
-          </div>
-
-          <h1 className="detail-header__title">{post.title}</h1>
-
-          {post.excerpt && (
-            <p className="detail-header__excerpt">{post.excerpt}</p>
-          )}
-
-          {post.tags.length > 0 && (
-            <div className="detail-header__tags" aria-label="文章标签">
-              {post.tags.map((tag) => (
-                <span key={tag} className="post-tag">
-                  {tag}
-                </span>
-              ))}
-            </div>
-          )}
-        </header>
-
-        <section className="detail-content">
-          <div className="prose prose-custom max-w-none">
-            <MDXRemote
-              source={post.content}
-              components={{ ArticleImage, ArticleVideo, pre: Pre, table: Table }}
-              options={{
-                mdxOptions: {
-                  remarkPlugins: [remarkGfm],
-                  rehypePlugins: [
-                    rehypeSlug,
-                    [
-                      rehypePrettyCode as any,
-                      {
-                        theme: 'github-dark',
-                        keepBackground: true,
-                        onVisitLine(node: any) {
-                          if (node.children.length === 0) {
-                            node.children = [{ type: 'text', value: ' ' }]
-                          }
-                        },
-                        onVisitHighlightedLine(node: any) {
-                          node.properties.className.push('line--highlighted')
-                        },
-                        onVisitHighlightedWord(node: any) {
-                          node.properties.className = ['word--highlighted']
-                        },
-                      },
-                    ],
-                  ],
-                },
-              }}
-            />
-          </div>
-        </section>
-
-        <section className="detail-response">
-          <div className="detail-response__copy">
-            <p className="detail-response__eyebrow">Reader Response</p>
-            <p className="detail-response__text">
-              如果这一篇对你有触动，可以留一个喜欢。对写作者来说，这是一种很安静但很实在的回应。
-            </p>
-          </div>
-          <LikeButton slug={params.slug} />
-        </section>
-
-        <nav className="detail-nav" aria-label="文章导航">
-          <ArticleNavCard post={prev} label="上一篇" />
-          <ArticleNavCard post={next} label="下一篇" />
-        </nav>
+      <div className="article-layout" data-has-toc={headings.length >= 2}>
+        <aside className="article-sidebar" aria-label="文章导航与资料">
+          <ArticleTOC key={post.slug} />
+          <section className="article-info">
+            <h2 className="article-sidebar__heading">文档信息 <small>DOCUMENT INFO</small></h2>
+            <dl>
+              {authorName && <div><dt>作者</dt><dd>{authorName}</dd></div>}
+              <div><dt>发布时间</dt><dd><time dateTime={post.date}>{formatPostDate(post.date)}</time></dd></div>
+              <div><dt>阅读时长</dt><dd>约 {minutes} 分钟</dd></div>
+              <div><dt>分类</dt><dd>{businessArea}</dd></div>
+              {post.tags.length > 0 && <div><dt>标签</dt><dd>{post.tags.join(' · ')}</dd></div>}
+            </dl>
+          </section>
+        </aside>
+        <div className="article-reading">
+          <div className="prose-custom article-body">{content}</div>
+          <section className="detail-response">
+            <div><p className="detail-response__eyebrow">Reader Response</p><p className="detail-response__text">如果这一篇对你有触动，可以留一个喜欢。</p></div>
+            <LikeButton slug={params.slug} />
+          </section>
+          <nav className="detail-nav" aria-label="文章导航"><ArticleNavCard post={prev} label="上一篇" /><ArticleNavCard post={next} label="下一篇" /></nav>
+        </div>
       </div>
     </article>
   )
-
-  if (post.category === 'diary' && post.visibility !== 'public') {
-    return <DiaryGuard>{articleContent}</DiaryGuard>
-  }
-
-  return articleContent
+  return publicPost ? articleContent : <DiaryGuard>{articleContent}</DiaryGuard>
 }

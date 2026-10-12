@@ -1,0 +1,454 @@
+.team-page {
+  padding-top: 36px;
+  padding-bottom: 44px;
+}
+
+.team-page__intro {
+  margin-bottom: 44px;
+}
+
+.team-page__eyebrow {
+  margin: 0 0 18px;
+  color: var(--muted-fg);
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.5;
+  letter-spacing: 0.18em;
+}
+
+.team-page__intro h1 {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: clamp(36px, 3.4vw, 52px);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+
+.team-page__description {
+  margin: 14px 0 0;
+  color: var(--soft-fg);
+  font-size: 19px;
+  line-height: 1.65;
+}
+
+.team-page .team-archive {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 56px;
+  align-items: stretch;
+}
+
+.team-archive__index {
+  min-width: 0;
+  padding-right: 28px;
+  border-right: 1px solid #2b2b2b;
+}
+
+.team-archive__index h2 {
+  margin: 0;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.team-archive__index-label {
+  margin: 3px 0 16px;
+  color: var(--muted-fg);
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.16em;
+}
+
+.team-archive__index-list {
+  display: grid;
+}
+
+.team-archive__member-button {
+  position: relative;
+  display: grid;
+  grid-template-columns: 38px minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  min-height: 49px;
+  padding: 10px 8px 10px 0;
+  border: 0;
+  background: transparent;
+  color: var(--soft-fg);
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: left;
+  cursor: pointer;
+  transition: color 150ms ease;
+}
+
+.team-archive__member-number {
+  font-family: var(--font-display);
+  font-variant-numeric: tabular-nums;
+}
+
+.team-archive__member-button::before {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: -12px;
+  width: 3px;
+  background: transparent;
+  content: '';
+}
+
+.team-archive__member-button[aria-pressed='true'] {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.team-archive__member-button[aria-pressed='true']::before {
+  background: var(--accent);
+}
+
+.team-archive__member-button[aria-pressed='true'] .team-archive__member-number {
+  color: var(--accent);
+}
+
+.team-archive__member-button:hover {
+  color: var(--fg);
+}
+
+.team-archive__member-button:focus-visible,
+.team-archive__selector select:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.team-archive__record {
+  min-width: 0;
+}
+
+.team-archive__selector {
+  display: none;
+}
+
+.team-archive__record-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 22px;
+  padding-top: 11px;
+  border-top: 1px solid #2b2b2b;
+  color: var(--muted-fg);
+  font-family: var(--font-display);
+  font-size: 12px;
+  line-height: 1.6;
+  letter-spacing: 0.1em;
+  font-variant-numeric: tabular-nums;
+}
+
+.team-archive__selection-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  white-space: nowrap;
+  clip-path: inset(50%);
+}
+
+.team-archive__dossier {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+
+.team-archive__visual-column,
+.team-archive__story-column {
+  min-width: 0;
+}
+
+.team-archive__portrait {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 3px;
+  background: #0a0a0a;
+}
+
+.team-archive__portrait img {
+  object-fit: contain;
+}
+
+.team-archive__portrait-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  height: 100%;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: 42px;
+}
+
+.team-archive__portrait-fallback small {
+  color: var(--soft-fg);
+  font-size: 12px;
+  letter-spacing: 0.15em;
+}
+
+.team-archive__details {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0 0;
+  padding-top: 17px;
+  border-top: 1px solid #2b2b2b;
+  font-size: 16px;
+  line-height: 1.65;
+}
+
+.team-archive__details > div {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: 16px;
+}
+
+.team-archive__details dt {
+  color: var(--soft-fg);
+}
+
+.team-archive__details dd {
+  margin: 0;
+  color: var(--muted-fg);
+  overflow-wrap: anywhere;
+}
+
+.team-archive__identity h2 {
+  margin: -4px 0 0;
+  color: var(--fg);
+  font-family: var(--font-display);
+  font-size: clamp(50px, 4.2vw, 64px);
+  font-weight: 600;
+  line-height: 1.16;
+}
+
+.team-archive__identity p {
+  margin: 14px 0 0;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.team-archive__biography {
+  display: grid;
+  gap: 22px;
+  margin-top: 26px;
+}
+
+.team-archive__biography p {
+  margin: 0;
+  color: var(--muted-fg);
+  font-size: 18px;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+
+.team-archive__outside-work {
+  margin-top: 28px;
+}
+
+.team-archive__outside-work h3 {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 0 0 12px;
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.team-archive__outside-work h3::after {
+  flex: 1;
+  height: 1px;
+  background: #2b2b2b;
+  content: '';
+}
+
+.team-archive__outside-work p {
+  margin: 0;
+  color: var(--muted-fg);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+@media (min-width: 1500px) {
+  .team-archive__dossier {
+    grid-template-columns: 360px minmax(0, 1fr);
+    gap: 52px;
+  }
+}
+
+@media (max-width: 1279px) {
+  .team-page .team-archive {
+    grid-template-columns: 180px minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .team-archive__dossier {
+    grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (max-width: 1099px) {
+  .team-page .team-archive {
+    display: block;
+  }
+
+  .team-archive__index {
+    display: none;
+  }
+
+  .team-archive__selector {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 24px;
+    margin-bottom: 28px;
+  }
+
+  .team-archive__selector label {
+    color: var(--muted-fg);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .team-archive__selector select {
+    min-width: 200px;
+    min-height: 44px;
+    padding: 8px 40px 8px 12px;
+    border: 1px solid #767676;
+    border-radius: 2px;
+    background: #0a0a0a;
+    color: var(--fg);
+    font: inherit;
+    color-scheme: dark;
+  }
+
+  .team-archive__dossier {
+    grid-template-columns: minmax(240px, 320px) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .team-page {
+    padding-top: 28px;
+    padding-bottom: 32px;
+  }
+
+  .team-page__intro {
+    margin-bottom: 32px;
+  }
+
+  .team-page__eyebrow {
+    margin-bottom: 14px;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+  }
+
+  .team-page__intro h1 {
+    font-size: clamp(30px, 8.6vw, 38px);
+    line-height: 1.3;
+  }
+
+  .team-page__description {
+    margin-top: 12px;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .team-archive__selector {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .team-archive__selector select {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .team-archive__record-heading {
+    margin-bottom: 24px;
+  }
+
+  .team-archive__dossier {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .team-archive__visual-column,
+  .team-archive__story-column {
+    display: contents;
+  }
+
+  .team-archive__identity {
+    order: 1;
+    width: 100%;
+  }
+
+  .team-archive__identity h2 {
+    margin: 0;
+    font-size: 48px;
+  }
+
+  .team-archive__identity p {
+    margin-top: 10px;
+    font-size: 21px;
+  }
+
+  .team-archive__portrait {
+    order: 2;
+    width: 100%;
+    max-width: 380px;
+    margin-top: 24px;
+  }
+
+  .team-archive__biography {
+    order: 3;
+    width: 100%;
+    gap: 20px;
+    margin-top: 26px;
+  }
+
+  .team-archive__biography p {
+    font-size: 17px;
+    line-height: 1.85;
+  }
+
+  .team-archive__details {
+    order: 4;
+    width: 100%;
+    margin-top: 28px;
+  }
+
+  .team-archive__outside-work {
+    order: 5;
+    width: 100%;
+    margin-top: 26px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-archive__member-button {
+    transition: none;
+  }
+}
